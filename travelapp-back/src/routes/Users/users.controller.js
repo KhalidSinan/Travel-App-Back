@@ -1,7 +1,7 @@
-const { validationErrors } = require('../../middlewares/validationErrors')
-const { putName, putGender, putDate, putProfilePic, getProfile } = require('../../models/users.model');
 const { userData } = require('./users.serializer');
-const { validateChangeName, validateChangeGender, validateChangeDate } = require('./users.validation')
+const { validationErrors } = require('../../middlewares/validationErrors')
+const { putName, putGender, putDate, putProfilePic, getProfile, putLocation } = require('../../models/users.model');
+const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation } = require('./users.validation')
 
 async function httpGetProfile(req, res) {
     const user = req.user;
@@ -52,6 +52,19 @@ async function httpPutDate(req, res) {
     })
 }
 
+async function httpPutLocation(req, res) {
+    const { error } = await validateChangeLocation(req.body)
+    if (error) {
+        return res.status(400).json({ message: validationErrors(error.details) })
+    }
+    const user = req.user;
+    const { location } = await putLocation(user, { city: req.body.city, country: req.body.country });
+    return res.status(200).json({
+        message: 'Location Changed',
+        location
+    })
+}
+
 async function httpPutProfilePic(req, res) {
     const user = req.user;
     if (!req.file) {
@@ -61,10 +74,13 @@ async function httpPutProfilePic(req, res) {
     return res.status(200).json({ message: 'Profile Picture Updated Successfully' });
 }
 
+
+
 module.exports = {
     httpPutName,
     httpPutGender,
     httpPutDate,
     httpPutProfilePic,
-    httpGetProfile
+    httpGetProfile,
+    httpPutLocation
 }

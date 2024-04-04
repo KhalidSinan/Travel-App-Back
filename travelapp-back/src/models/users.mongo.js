@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
         maxlength: 100,
         trim: true,
     },
+    email_confirmed: {
+        type: Boolean,
+        default: false
+    },
     phone: contactSchema,
     location: {
         country: String,
@@ -56,9 +60,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    // wallet_account: {
-
-    // },
+    wallet_account: {
+        type: Number,
+        default: 100000
+    },
     // trips: {
     //     price: {
     //         type:

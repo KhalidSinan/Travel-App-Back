@@ -38,6 +38,10 @@ const planeReservationSchema = new mongoose.Schema({
     reservation_type: {
         type: String,
         required: true
+    },
+    is_confirmed: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 

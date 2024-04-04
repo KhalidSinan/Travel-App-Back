@@ -45,24 +45,26 @@ function validateLoginUser(user) {
     return schema.validate(user);
 }
 
-// function validateForgotPassword(user) {
-//     const schema = Joi.object({
-//         email: Joi.string().min(3).required().email(),
-//     })
-//     return schema.validate(user);
-// }
+function validateForgotPassword(user) {
+    const schema = Joi.object({
+        email: Joi.string().min(3).required(),
+    })
+    return schema.validate(user);
+}
 
-// function validateResetPassword(user) {
-//     const schema = Joi.object({
-//         password: Joi.string().min(8).required(),
-//         confirm_password: Joi.any().valid(Joi.ref('password')).required().label('Confirm password').messages({ 'any.only': 'Passwords do not match' })
-//     })
-//     return schema.validate(user);
-// }
+function validateResetPassword(user) {
+    const schema = Joi.object({
+        email: Joi.string().min(3).required(),
+        token: Joi.number().required(),
+        password: Joi.string().min(8).required(),
+        confirm_password: Joi.any().valid(Joi.ref('password')).required().label('Confirm password').messages({ 'any.only': 'Passwords do not match' })
+    })
+    return schema.validate(user);
+}
 
 module.exports = {
     validateRegisterUser,
     validateLoginUser,
-    // validateForgotPassword,
-    // validateResetPassword,
+    validateForgotPassword,
+    validateResetPassword,
 }

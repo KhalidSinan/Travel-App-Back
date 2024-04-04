@@ -34,8 +34,21 @@ async function validateChangeDate(data) {
     return schema.validate(data);
 }
 
+async function validateChangeLocation(data) {
+    const schema = Joi.object({
+        city: Joi.string().required().messages({
+            'any.required': 'City Required To Change'
+        }),
+        country: Joi.string().required().messages({
+            'any.required': 'Country Required To Change'
+        })
+    })
+    return schema.validate(data);
+}
+
 module.exports = {
     validateChangeName,
     validateChangeGender,
-    validateChangeDate
+    validateChangeDate,
+    validateChangeLocation
 }
