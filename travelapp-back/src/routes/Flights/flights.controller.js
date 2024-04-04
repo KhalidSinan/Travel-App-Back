@@ -1,12 +1,29 @@
 const { getFlights, getFlight } = require('../../models/flights.model')
-const { postReservation } = require('../../models/plane-reservation.model');
-const { validateReserveFlight } = require('./flights.validation');
+const { postReservation, getReservation, putConfirmation } = require('../../models/plane-reservation.model');
+const { validateReserveFlight, validateConfirmFlight, validateGetFlights } = require('./flights.validation');
 const { validationErrors } = require('../../middlewares/validationErrors');
 const { getPagination } = require('../../services/query');
+const { getWallet, putWallet } = require('../../models/users.model')
+const { convertTime12to24 } = require('../../services/convertTime')
 
 async function httpGetFlights(req, res) {
+    const { error } = await validateGetFlights({ source: req.query.source, destination: req.query.destination, date: req.query.date })
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
     const { skip, limit } = getPagination(req.query)
-    const flights = await getFlights(skip, limit);
+    const filter = { 'due_date.date': req.query.date, 'source.country': req.query.source, 'destination.country': req.query.destination }
+
+    // To Stop Duplicate
+    delete req.query.skip
+    delete req.query.limit
+    delete req.query.date
+    delete req.query.source
+    delete req.query.destination
+
+    // Put req.query into filter
+    Object.assign(filter, req.query)
+
+    const flights = await getFlights(skip, limit, filter);
     return res.status(200).json({ data: flights })
 }
 
@@ -39,9 +56,13 @@ async function httpReserveFlight(req, res) {
         user_id, flight_id, num_of_reservations: req.body.reservations.length,
         reservations: req.body.reservations, overall_price, reservation_type
     }
-    await postReservation(data)
+    const user_balance = await getWallet(user_id)
+    if (user_balance.wallet_account < overall_price || user_balance.wallet_account == 0) return res.status(400).json({ message: 'Insufficient Balance' })
 
-    return res.status(200).json({ message: 'Flight Reserved Successfully' })
+    const reservation = await postReservation(data)
+    await putWallet(user_id, -overall_price);
+
+    return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
 }
 
 async function reserveFlightHelper(reservations, flight, user_id) {
@@ -59,8 +80,52 @@ async function reserveFlightHelper(reservations, flight, user_id) {
     return overall_price
 }
 
+async function httpConfirmReservation(req, res) {
+    const reservation = await getReservation(req.params.id)
+    const user_id = req.user._id
+    if (!user_id.equals(reservation.user_id)) {
+        return res.status(400).json({
+            message: 'Cant Access This Reservation'
+        })
+    }
+    await putConfirmation(reservation, true)
+    return res.status(200).json({
+        message: 'Reservation Confirmed'
+    })
+}
+
+async function httpCancelReservation(req, res) {
+    const reservation = await getReservation(req.params.id)
+    console.log(req.user._id, reservation.user_id)
+    const user_id = req.user._id
+    if (!user_id.equals(reservation.user_id)) {
+        return res.status(400).json({
+            message: 'Cant Access This Reservation'
+        })
+    }
+    const date = new Date(reservation.flight_id[0].due_date.date)
+    const time = convertTime12to24(reservation.flight_id[0].due_date.time)
+    date.setUTCHours(time[0], time[1], time[2])
+
+    const timeDifference = date - Date.now()
+    console.log(date, timeDifference, 2 * 60 * 60 * 1000)
+    const chance = 2 * 60 * 60 * 1000
+    let rate = 0.2; // 0.2 will be back
+    if (timeDifference < chance) rate = 0; // Nothing is back
+
+    await putWallet(req.user.id, reservation.overall_price * rate)
+    console.log(reservation.overall_price * rate)
+    await putConfirmation(reservation, false)
+
+    return res.status(200).json({
+        message: 'Reservation Cancelled'
+    })
+}
+
 module.exports = {
     httpGetFlights,
     httpGetFlight,
-    httpReserveFlight
+    httpReserveFlight,
+    httpConfirmReservation,
+    httpCancelReservation
 }

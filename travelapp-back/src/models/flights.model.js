@@ -1,9 +1,10 @@
 const Flight = require('./flights.mongo')
 
-async function getFlights(skip, limit) {
-    return await Flight.find()
+async function getFlights(skip, limit, filter) {
+    return await Flight.find(filter)
         .skip(skip)
         .limit(limit)
+        .select('-classes')
 }
 
 async function getFlight(id) {

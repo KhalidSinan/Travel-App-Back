@@ -1,18 +1,18 @@
 const hotelData = require('./hotelData.json')
-const rooms = require('./rooms.json')
+const roomData = require('./roomData.json')
 const descriptions = require('./descriptions.json')
 const location = require('./country-by-cities.json')
 const hotels = require('./hotels.json')
+const hotels2 = require('./hotels2.json')
+const tags = require('./tags.json')
 const fs = require('fs')
 
 function createHotels() {
     let hotels = [];
     let room_types = []
-    // const tempCountry = location[Math.floor(Math.random() * (location.length))]
-    // const tempCity = tempCountry.cities[Math.floor(Math.random() * (tempCountry.cities.length))]
     const num_type_rooms = Math.floor(Math.random() * 10)
     for (let i = 0; i < num_type_rooms; i++) {
-        room_types.push(rooms[Math.floor(Math.random() * rooms.length)])
+        room_types.push(roomData[Math.floor(Math.random() * roomData.length)])
     }
     hotelData.forEach(data => {
         const temp = {
@@ -31,21 +31,61 @@ function createHotels() {
     fs.writeFileSync('hotels.final.json', JSON.stringify(hotels))
 }
 
-// function ss() {
-//     let temp = [];
-//     hotels.forEach(hotel => {
-//         let obj = {
-//             name: hotel.name,
-//             city: hotel.city,
-//             country: hotel.country,
-//             address: hotel.addressline1,
-//             overview: hotel.overview,
-//             stars: hotel.star_rating
-//         }
-//         temp.push(obj);
-//     })
-//     fs.writeFileSync('hotelData.json', JSON.stringify(temp))
-// }
+function hotels1Gen() {
+    let temp = [];
+    hotels.forEach(hotel => {
+        let obj = {
+            name: hotel.hotel_name,
+            city: hotel.city,
+            country: hotel.country,
+            address: hotel.addressline1,
+            overview: hotel.overview,
+            stars: hotel.star_rating
+        }
+        temp.push(obj);
+    })
+    fs.writeFileSync('hotelData.json', JSON.stringify(temp))
+}
+
+function hotels2Gen() {
+    let temp = [];
+    hotels2.forEach(hotel => {
+        const tempCountry = location[Math.floor(Math.random() * location.length)]
+        const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
+        let obj = {
+            name: hotel.name,
+            city: tempCity,
+            country: tempCountry.country,
+            address: hotel.address ?? hotel.directions,
+            overview: hotel.content,
+            stars: Math.floor(Math.random() * 5) + 1
+        }
+        temp.push(obj);
+    })
+    fs.writeFileSync('hotelData2.json', JSON.stringify(temp))
+}
+
+function tag1s() {
+    let temp = [];
+    rooms.forEach(room => {
+        let tagz = [];
+        const ran = Math.floor(Math.random() * 4)
+        for (let i = 0; i < ran; i++) tagz.push(tags[Math.floor(Math.random() * tags.length)])
+        let obj = {
+            description: room.Description,
+            price: room.BaseRate,
+            bed_options: room.BedOptions,
+            sleeps_count: room.SleepsCount,
+            smmoking_allowed: room.SmokingAllowed,
+            tags: tagz,
+        }
+        temp.push(obj)
+    })
+    fs.writeFileSync('roomData.json', JSON.stringify(temp))
+
+}
 
 createHotels()
-// ss();
+// hotels1Gen();
+// hotels2Gen();
+// tag1s();

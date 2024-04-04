@@ -1,8 +1,10 @@
-const nodemailer = require('nodemailer');
-const { postUser, getUser } = require('../../models/users.model');
+const crypto = require('crypto');
+const { postUser, getUser, putPassword } = require('../../models/users.model');
 const { generateToken, verifyToken } = require('../../services/token')
 const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword } = require('./auth.validation')
 const { validationErrors } = require('../../middlewares/validationErrors')
+const { postRequest, deleteRequests, getToken } = require('../../models/code_confirmation.model');
+const sendMail = require('../../services/sendMail');
 require('dotenv').config();
 
 // Done
@@ -14,10 +16,38 @@ async function register(req, res) {
         })
     }
     req.body.name = { 'first_name': req.body.first_name, 'last_name': req.body.last_name }
-    const { id, name } = await postUser(req.body);
+    const user = await postUser(req.body);
+
+    const token = crypto.randomInt(100000, 999999)
+    await deleteRequests(user.id)
+    await postRequest({ user_id: user.id, token })
+    await sendMail('Confirm Email', req.body.email, { name: req.body.name, token, template_name: 'public/templates/confirm_email.html' });
+
     return res.status(200).json({
-        message: 'User Registered Successfully',
-        token: generateToken({ id, name })
+        message: 'Confirm Your Email'
+    });
+}
+
+async function confirmEmail(req, res) {
+    // Body : email, token
+    const user = await getUser(req.body.email);
+    if (!user) {
+        return res.status(400).json({ message: 'User Not Found' })
+    }
+
+    const tokenSaved = await getToken(user.id)
+    console.log(tokenSaved.token)
+
+    if (req.body.token != tokenSaved.token) {
+        return res.status(400).json({
+            message: 'Code is Incorrect'
+        })
+    }
+
+    await deleteRequests(user.id)
+    return res.status(200).json({
+        message: 'Email Confirmed Successfully',
+        token: generateToken({ id: user.id, name: user.name })
     });
 }
 
@@ -45,67 +75,72 @@ async function login(req, res) {
     });
 }
 
-// async function forgotPassword(req, res) {
-//     const { error } = validateForgotPassword(req.body)
-//     if (error) {
-//         return res.status(404).json({
-//             message: 'Enter an email'
-//         })
-//     }
-//     const user = await findUser(req.body.email);
-//     if (!user) {
-//         return res.status(400).json({ message: 'user not found' })
-//     }
-//     const secret = process.env.SECRET_KEY + user.password;
-//     const token = generateToken({ id: user._id, name: user.name }, secret, '10m')
-//     const link = `http://localhost:5000/auth/reset-password/${user.id}/${token}`
+// Done
+async function forgotPassword(req, res) {
+    const { error } = validateForgotPassword(req.body)
+    if (error) {
+        return res.status(404).json({
+            errors: validationErrors(error.details)
+        })
+    }
+    const user = await getUser(req.body.email);
+    if (!user) {
+        return res.status(400).json({ message: 'User Not Found' })
+    }
 
-//     const transporter = nodemailer.transporter({
-//         service: 'gmail',
-//         auth: {
-//             user: process.env.APP_EMAIL,
-//             pass: process.env.APP_PASSWORD
-//         }
-//     })
+    const token = crypto.randomInt(100000, 999999)
 
-//     const mailOptions = {
-//         from: 'abdelaziz.aushar@gmail.com',
-//         to: user.email,
-//         subject: 'Reset Password',
-//         text: link
-//     }
+    await deleteRequests(user.id)
+    await postRequest({ user_id: user.id, token })
 
-//     transporter.sendMail(mailOptions)
-//     res.status(200).json({ message: 'Check Your Email' })
-// }
+    const name = user.name.first_name + ' ' + user.name.last_name
+    await sendMail('Forgot Password', req.body.email, { name, token, template_name: 'public/templates/forgot_password.html' });
 
-// async function resetPassword(req, res) {
-//     const { error } = validateResetPassword(req.body)
-//     if (error) {
-//         return res.status(404).json({
-//             message: error
-//         })
-//     }
-//     const user = await findUserById(req.params.id);
-//     if (!user) {
-//         return res.status(400).json({ message: 'user not found' })
-//     }
-//     const secret = process.env.SECRET_KEY + user.password;
-//     try {
-//         verifyToken(req.params.token, secret)
-//     } catch (err) {
-//         return res.status(500).json(err.message);
-//     }
-//     await updateUserPassword(user._id, req.body.password);
-//     return res.status(200).json({
-//         message: 'successfully changed',
-//         token: generateToken({ id: user.id, name: user.name })
-//     })
-// }
+    res.status(200).json({ message: 'Check Your Email' })
+}
+
+// Done
+async function resetPassword(req, res) {
+    const { error } = validateResetPassword(req.body)
+    if (error) {
+        return res.status(404).json({
+            errors: validationErrors(error.details)
+        })
+    }
+    const user = await getUser(req.body.email);
+    if (!user) {
+        return res.status(400).json({ message: 'User Not Found' })
+    }
+
+    const tokenSaved = await getToken(user.id)
+
+    if (req.body.token != tokenSaved.token) {
+        return res.status(400).json({
+            message: 'Code is Incorrect'
+        })
+    }
+
+    await putPassword(user, req.body.password);
+
+    return res.status(200).json({
+        message: 'Password Reset Successful',
+        token: generateToken({ id: user.id, name: user.name })
+    })
+}
+
+function codeConfirmation(token, savedToken) {
+    if (token != savedToken) {
+        return res.status(400).json({
+            message: 'Code is Incorrect'
+        })
+    }
+    return;
+}
 
 module.exports = {
     register,
+    confirmEmail,
     login,
-    // forgotPassword,
-    // resetPassword
+    forgotPassword,
+    resetPassword
 }

@@ -22,12 +22,11 @@ function createDate() {
         Math.floor(Math.random() * 12) * 5  // Set minutes to the nearest lower multiple of 10
     ));
     const dateObj = {
-        date: utcDate.toDateString(),
+        date: utcDate.toLocaleDateString(),
         time: utcDate.toLocaleTimeString()
     }
     return dateObj
 }
-
 
 function createAirline() {
     const { name, logo } = airlines[Math.floor(Math.random() * airlinesNum)]
@@ -99,6 +98,6 @@ async function createTrips(num_of_trips) {
     // await flightsMongo.insertMany(trips)
 }
 
-// createTrips(10000);
+// createTrips(20000);
 
 module.exports = createTrips;
