@@ -1,7 +1,7 @@
 const { userData } = require('./users.serializer');
 const { validationErrors } = require('../../middlewares/validationErrors')
-const { putName, putGender, putDate, putProfilePic, getProfile, putLocation } = require('../../models/users.model');
-const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation } = require('./users.validation')
+const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword } = require('../../models/users.model');
+const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword } = require('./users.validation')
 
 async function httpGetProfile(req, res) {
     const user = req.user;
@@ -74,6 +74,16 @@ async function httpPutProfilePic(req, res) {
     return res.status(200).json({ message: 'Profile Picture Updated Successfully' });
 }
 
+async function httpPutPassword(req, res) {
+    const { error } = await validateChangePassword(req.body);
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
+    const user = req.user
+    const check = await user.checkCredentials(user.password, req.body.old_password);
+    if (!check) return res.status(400).json({ message: 'Old Password Does Not Match' })
+    await putPassword(user, req.body.new_password)
+    return res.status(200).json({ message: 'Password Updated Successfully' })
+}
 
 
 module.exports = {
@@ -82,5 +92,6 @@ module.exports = {
     httpPutDate,
     httpPutProfilePic,
     httpGetProfile,
-    httpPutLocation
+    httpPutLocation,
+    httpPutPassword
 }
