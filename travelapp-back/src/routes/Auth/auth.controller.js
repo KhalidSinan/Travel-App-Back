@@ -1,5 +1,6 @@
 const crypto = require('crypto');
-const { postUser, getUser, putPassword } = require('../../models/users.model');
+const { userData } = require('../Users/users.serializer');
+const { postUser, getUser, putPassword, putEmailConfirmation } = require('../../models/users.model');
 const { generateToken, verifyToken } = require('../../services/token')
 const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword } = require('./auth.validation')
 const { validationErrors } = require('../../middlewares/validationErrors')
@@ -34,8 +35,11 @@ async function confirmEmail(req, res) {
     if (!user) {
         return res.status(400).json({ message: 'User Not Found' })
     }
-
+    if (user.email_confirmed) {
+        return res.status(400).json({ message: 'Email Already Confirmed' })
+    }
     const tokenSaved = await getToken(user.id)
+
     console.log(tokenSaved.token)
 
     if (req.body.token != tokenSaved.token) {
@@ -43,10 +47,12 @@ async function confirmEmail(req, res) {
             message: 'Code is Incorrect'
         })
     }
+    await putEmailConfirmation(user)
 
     await deleteRequests(user.id)
     return res.status(200).json({
         message: 'Email Confirmed Successfully',
+        profile: userData(user),
         token: generateToken({ id: user.id, name: user.name })
     });
 }
@@ -66,7 +72,8 @@ async function login(req, res) {
         if (check) {
             return res.status(200).json({
                 message: 'User Logged In',
-                token: generateToken({ id, name })
+                profile: userData(user),
+                token: generateToken({ id, name }),
             });
         }
     }
