@@ -26,9 +26,6 @@ function validateRegisterUser(user) {
             .required()
             .label('Confirm password')
             .messages({ 'any.only': '{{#label}} does not match' })
-        // phone_number: Joi.string().min(4).max(13).required().messages({
-        //     'any.required': "Phone Number Required",
-        // })
     })
     return schema.validate(user, { abortEarly: false });
 }

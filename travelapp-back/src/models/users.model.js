@@ -54,6 +54,11 @@ async function putWallet(user_id, overall_price) {
     await user.save();
 }
 
+async function putEmailConfirmation(user) {
+    user.email_confirmed = true;
+    await user.save();
+}
+
 module.exports = {
     postUser,
     getUser,
@@ -65,5 +70,6 @@ module.exports = {
     putPassword,
     putLocation,
     getWallet,
-    putWallet
+    putWallet,
+    putEmailConfirmation
 }
