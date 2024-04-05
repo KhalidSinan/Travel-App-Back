@@ -46,9 +46,31 @@ async function validateChangeLocation(data) {
     return schema.validate(data);
 }
 
+async function validateChangePassword(data) {
+    const schema = Joi.object({
+        old_password: Joi.string().min(8).max(25).required().label('Password').messages({
+            'any.required': "Password Required",
+            'string.min': "Old Password Must Be 8 Characters"
+        }),
+        new_password: Joi.string().min(8).max(25).required().label('Password').messages({
+            'any.required': "Password Required",
+            'string.min': "Old Password Must Be 8 Characters"
+        }),
+        new_password_confirmation: Joi.any().equal(Joi.ref('new_password'))
+            .required()
+            .label('Confirm password')
+            .messages({
+                'any.only': '{{#label}} does not match',
+                'any.required': "New Password Confirmation Required",
+            })
+    })
+    return schema.validate(data, { abortEarly: false });
+}
+
 module.exports = {
     validateChangeName,
     validateChangeGender,
     validateChangeDate,
-    validateChangeLocation
+    validateChangeLocation,
+    validateChangePassword
 }
