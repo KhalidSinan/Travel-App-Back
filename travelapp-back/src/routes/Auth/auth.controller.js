@@ -22,7 +22,8 @@ async function register(req, res) {
     const token = crypto.randomInt(100000, 999999)
     await deleteRequests(user.id)
     await postRequest({ user_id: user.id, token })
-    await sendMail('Confirm Email', req.body.email, { name: req.body.name, token, template_name: 'public/templates/confirm_email.html' });
+    const name = user.name.first_name + ' ' + user.name.last_name
+    await sendMail('Confirm Email', req.body.email, { name, token, template_name: 'public/templates/confirm_email.html' });
 
     return res.status(200).json({
         message: 'Confirm Your Email'
