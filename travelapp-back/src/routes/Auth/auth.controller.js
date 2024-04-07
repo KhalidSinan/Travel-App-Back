@@ -154,6 +154,8 @@ async function continueWithGoogle(req, res) {
         })
     }
     let user = await getUser(req.body.email)
+    const name = req.body.name.split(' ');
+    req.body.name = { first_name: name[0], last_name: name[1] }
     if (!user) user = await postUser(req.body);
     return res.status(200).json({
         message: 'Logged In Successfully',
