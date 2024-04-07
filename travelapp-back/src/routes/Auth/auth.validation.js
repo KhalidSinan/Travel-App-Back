@@ -65,10 +65,13 @@ function validateGoogleContinue(user) {
             'any.required': "Email Required",
             'string.email': "Email Must Be Valid"
         }),
-        name: Joi.number().required().messages({
+        name: Joi.string().required().messages({
             'any.required': "Name Required",
         }),
-        photo_url: Joi.string()
+        google_id: Joi.string().required().messages({
+            'any.required': "Google ID Required",
+        }),
+        photo_url: Joi.string(),
     })
     return schema.validate(user); s
 }
