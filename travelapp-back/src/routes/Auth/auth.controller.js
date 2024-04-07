@@ -2,10 +2,11 @@ const crypto = require('crypto');
 const { userData } = require('../Users/users.serializer');
 const { postUser, getUser, putPassword, putEmailConfirmation } = require('../../models/users.model');
 const { generateToken, verifyToken } = require('../../services/token')
-const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword } = require('./auth.validation')
+const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
 const { validationErrors } = require('../../middlewares/validationErrors')
 const { postRequest, deleteRequests, getToken } = require('../../models/code_confirmation.model');
 const sendMail = require('../../services/sendMail');
+const { postBlacklist } = require('../../models/blacklist.model');
 require('dotenv').config();
 
 // Done
@@ -145,10 +146,40 @@ function codeConfirmation(token, savedToken) {
     return;
 }
 
+async function continueWithGoogle(req, res) {
+    const { error } = validateGoogleContinue(req.body)
+    if (error) {
+        return res.status(400).json({
+            errors: validationErrors(error.details)
+        })
+    }
+    let user = await getUser(req.body.email)
+    if (!user) user = await postUser(req.body);
+    return res.status(200).json({
+        message: 'Logged In Successfully',
+        profile: userData(user),
+        token: generateToken({ id: user.id, name: user.name })
+    });
+}
+
+// Done
+async function logout(req, res) {
+    const user = req.user;
+    const token = req.headers.authorization.split(' ')[1];
+    const data = {
+        user_id: user.id,
+        token_blacklisted: token
+    }
+    await postBlacklist(data)
+    return res.status(200).json({ message: 'Logged Out Successfully' })
+}
+
 module.exports = {
     register,
     confirmEmail,
     login,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    continueWithGoogle,
+    logout
 }

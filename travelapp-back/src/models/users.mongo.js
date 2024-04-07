@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, 'Password Required'],
+        // required: [true, 'Password Required'],
         minlength: [8, 'Password must be atleast 8 characters long'],
         trim: true,
     },
@@ -64,6 +64,10 @@ const userSchema = new mongoose.Schema({
     is_guide: {
         type: Boolean,
         default: false
+    },
+    google_id: {
+        type: String,
+        default: null
     },
     wallet_account: {
         type: Number,
