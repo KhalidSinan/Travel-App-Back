@@ -13,7 +13,7 @@ passport.use(new JwtStrategy(opts, async (req, jwt_payload, done) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         const user = await User.findById(jwt_payload.id);
-        const check = checkBlacklist(user.id, token)
+        const check = await checkBlacklist(user.id, token)
         if (user && !check) {
             return done(null, user);
         } else {
@@ -26,6 +26,6 @@ passport.use(new JwtStrategy(opts, async (req, jwt_payload, done) => {
 
 async function checkBlacklist(user_id, token) {
     const check = await getBlacklist(user_id)
-    if (!check) return true
-    return false
+    if (!check) return false
+    return true
 }
