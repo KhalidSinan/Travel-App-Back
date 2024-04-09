@@ -24,7 +24,7 @@ async function register(req, res) {
     await deleteRequests(user.id)
     await postRequest({ user_id: user.id, token })
     const name = user.name.first_name + ' ' + user.name.last_name
-    await sendMail('Confirm Email', req.body.email, { name, token, template_name: 'public/templates/confirm_email.html' });
+    await sendMail('Confirm Email', req.body.email, { name, token, template_name: 'views/confirm_email.html' });
 
     return res.status(200).json({
         message: 'Confirm Your Email'
@@ -103,7 +103,7 @@ async function forgotPassword(req, res) {
     await postRequest({ user_id: user.id, token })
 
     const name = user.name.first_name + ' ' + user.name.last_name
-    await sendMail('Forgot Password', req.body.email, { name, token, template_name: 'public/templates/forgot_password.html' });
+    await sendMail('Forgot Password', req.body.email, { name, token, template_name: 'views/forgot_password.html' });
 
     res.status(200).json({ message: 'Check Your Email' })
 }
