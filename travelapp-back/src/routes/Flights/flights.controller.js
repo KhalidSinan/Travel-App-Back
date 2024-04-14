@@ -23,7 +23,8 @@ async function httpGetFlights(req, res) {
 
     // Put req.query into filter
     Object.assign(filter, req.query)
-
+    
+    // One-Way
     const flights = await getFlights(skip, limit, filter);
     return res.status(200).json({ data: flights })
 }
@@ -70,6 +71,7 @@ async function reserveFlightHelper(reservations, flight, user_id) {
     const classes = ['A', 'B', 'C']
     let overall_price = 0;
     reservations.forEach(reservation => {
+        reservation.price = flight.classes[classes.indexOf(reservation.seat_class)].price
         reservation.user_id = user_id;
         overall_price += reservation.price
         reservation.seat_number = reservation.seat_class + flight.classes[classes.indexOf(reservation.seat_class)].available_seats
@@ -97,41 +99,45 @@ async function httpConfirmReservation(req, res) {
 
 async function httpCancelReservation(req, res) {
     const reservation = await getReservation(req.params.id)
-    console.log(req.user._id, reservation.user_id)
     const user_id = req.user._id
     if (!user_id.equals(reservation.user_id)) {
         return res.status(400).json({
             message: 'Cant Access This Reservation'
         })
     }
-    const date = new Date(reservation.flight_id[0].due_date.date)
-    const time = convertTime12to24(reservation.flight_id[0].due_date.time)
-    date.setUTCHours(time[0], time[1], time[2])
-
-    const timeDifference = date - Date.now()
-    const chance = 2 * 60 * 60 * 1000
-    let rate = 0.2; // 0.2 will be back
-    if (timeDifference < chance) rate = 0; // Nothing is back
-
-    await putWallet(req.user.id, reservation.overall_price * rate)
-    console.log(reservation.overall_price * rate)
+    const fee = await findCancelRate(reservation)
+    await putWallet(req.user.id, fee);
     await putConfirmation(reservation, false)
-
     return res.status(200).json({
         message: 'Reservation Cancelled'
     })
 }
 
 async function httpGetReservation(req, res) {
-    // const { error } = validateGetReservation(req.body);
-    // if (error) return res.status(400).json({ message: validationErrors(error.details) })
     const reservation = await getReservation(req.params.id)
-    console.log(reservation)
+    const user_id = req.user._id
+    if (!user_id.equals(reservation.user_id)) {
+        return res.status(400).json({
+            message: 'Cant Access This Reservation'
+        })
+    }
+    const fee = await findCancelRate(reservation)
+    reservation.fee = fee
     return res.status(200).json({
         message: 'Reservation Data Retrieved Successfully',
         reservation: reservationData(reservation)
     })
+}
 
+async function findCancelRate(reservation) {
+    const date = new Date(reservation.flight_id[0].due_date.date)
+    const time = convertTime12to24(reservation.flight_id[0].due_date.time)
+    date.setUTCHours(time[0], time[1], time[2])
+    const timeDifference = date - Date.now()
+    const chance = 2 * 60 * 60 * 1000
+    let rate = 0.2; // 0.2 will be back
+    if (timeDifference < chance) rate = 0; // Nothing is back
+    return reservation.overall_price * rate
 }
 
 

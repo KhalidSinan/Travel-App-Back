@@ -8,9 +8,6 @@ async function validateReserveFlight(data) {
         }),
         seat_class: Joi.string().required().messages({
             'any.required': 'Seat Class Required'
-        }),
-        price: Joi.number().required().messages({
-            'any.required': 'Price Required'
         })
     })
 

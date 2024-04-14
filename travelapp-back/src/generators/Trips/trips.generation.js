@@ -57,7 +57,7 @@ function createClasses(available_seats) {
         },
         {
             "name": "Economy Class",
-            "code": 'B',
+            "code": 'C',
             "price": (Math.random() * 200 + 100).toFixed(2),
             "weight": 30,
             "available_seats": economy,
@@ -98,6 +98,6 @@ async function createTrips(num_of_trips) {
     // await flightsMongo.insertMany(trips)
 }
 
-// createTrips(20000);
+createTrips(20000);
 
 module.exports = createTrips;
