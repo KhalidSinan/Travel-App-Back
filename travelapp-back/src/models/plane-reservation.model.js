@@ -5,7 +5,7 @@ async function postReservation(data) {
 }
 
 async function getReservation(id) {
-    return await PlaneReservation.findById(id).populate('flight_id')
+    return await PlaneReservation.findById(id).populate('flight_id', '-source._id -destination._id').select('-reservations._id')
 }
 
 async function putConfirmation(reservation, data) {

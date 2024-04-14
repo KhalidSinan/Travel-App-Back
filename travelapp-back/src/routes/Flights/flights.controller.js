@@ -4,7 +4,8 @@ const { validateReserveFlight, validateConfirmFlight, validateGetFlights } = req
 const { validationErrors } = require('../../middlewares/validationErrors');
 const { getPagination } = require('../../services/query');
 const { getWallet, putWallet } = require('../../models/users.model')
-const { convertTime12to24 } = require('../../services/convertTime')
+const { convertTime12to24 } = require('../../services/convertTime');
+const { reservationData } = require('./flights.serializer');
 
 async function httpGetFlights(req, res) {
     const { error } = await validateGetFlights({ source: req.query.source, destination: req.query.destination, date: req.query.date })
@@ -108,7 +109,6 @@ async function httpCancelReservation(req, res) {
     date.setUTCHours(time[0], time[1], time[2])
 
     const timeDifference = date - Date.now()
-    console.log(date, timeDifference, 2 * 60 * 60 * 1000)
     const chance = 2 * 60 * 60 * 1000
     let rate = 0.2; // 0.2 will be back
     if (timeDifference < chance) rate = 0; // Nothing is back
@@ -122,10 +122,25 @@ async function httpCancelReservation(req, res) {
     })
 }
 
+async function httpGetReservation(req, res) {
+    // const { error } = validateGetReservation(req.body);
+    // if (error) return res.status(400).json({ message: validationErrors(error.details) })
+    const reservation = await getReservation(req.params.id)
+    console.log(reservation)
+    return res.status(200).json({
+        message: 'Reservation Data Retrieved Successfully',
+        reservation: reservationData(reservation)
+    })
+
+}
+
+
+
 module.exports = {
     httpGetFlights,
     httpGetFlight,
     httpReserveFlight,
+    httpGetReservation,
     httpConfirmReservation,
-    httpCancelReservation
+    httpCancelReservation,
 }
