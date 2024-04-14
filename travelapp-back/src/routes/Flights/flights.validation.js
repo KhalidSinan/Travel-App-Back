@@ -21,14 +21,6 @@ async function validateReserveFlight(data) {
     return schema.validate(data, { abortEarly: false });
 }
 
-async function validateConfirmFlight(data) {
-    // const schema = Joi.object({
-    //     reservation_type: Joi.string().required().messages('any.required', 'Reservation Type Required'),
-    //     reservations: Joi.array().items(reservationSchema)
-    // })
-    // return schema.validate(data, { abortEarly: false });
-}
-
 async function validateGetFlights(data) {
     const schema = Joi.object({
         source: Joi.string().required().messages({ 'any.required': 'Source Country Required' }),
@@ -40,6 +32,5 @@ async function validateGetFlights(data) {
 
 module.exports = {
     validateReserveFlight,
-    validateConfirmFlight,
     validateGetFlights,
 }
