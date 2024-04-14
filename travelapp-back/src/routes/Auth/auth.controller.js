@@ -40,21 +40,12 @@ async function confirmEmail(req, res) {
     if (user.email_confirmed) {
         return res.status(400).json({ message: 'Email Already Confirmed' })
     }
-    const tokenSaved = await getToken(user.id)
-
-    console.log(tokenSaved.token)
-
-    if (req.body.token != tokenSaved.token) {
-        return res.status(400).json({
-            message: 'Code is Incorrect'
-        })
-    }
+    confirmTokenHelper(user, req.body.token)
     await putEmailConfirmation(user)
 
     await deleteRequests(user.id)
     return res.status(200).json({
         message: 'Email Confirmed Successfully',
-        profile: userData(user),
         token: generateToken({ id: user.id, name: user.name })
     });
 }
@@ -74,7 +65,6 @@ async function login(req, res) {
         if (check) {
             return res.status(200).json({
                 message: 'User Logged In',
-                profile: userData(user),
                 token: generateToken({ id, name }),
             });
         }
@@ -121,13 +111,7 @@ async function resetPassword(req, res) {
         return res.status(400).json({ message: 'User Not Found' })
     }
 
-    const tokenSaved = await getToken(user.id)
-
-    if (req.body.token != tokenSaved.token) {
-        return res.status(400).json({
-            message: 'Code is Incorrect'
-        })
-    }
+    confirmTokenHelper(user, req.body.token)
 
     await putPassword(user, req.body.password);
 
@@ -137,15 +121,7 @@ async function resetPassword(req, res) {
     })
 }
 
-function codeConfirmation(token, savedToken) {
-    if (token != savedToken) {
-        return res.status(400).json({
-            message: 'Code is Incorrect'
-        })
-    }
-    return;
-}
-
+// Done
 async function continueWithGoogle(req, res) {
     const { error } = validateGoogleContinue(req.body)
     if (error) {
@@ -174,6 +150,16 @@ async function logout(req, res) {
     }
     await postBlacklist(data)
     return res.status(200).json({ message: 'Logged Out Successfully' })
+}
+
+async function confirmTokenHelper(user, token) {
+    const tokenSaved = await getToken(user.id)
+
+    if (token != tokenSaved.token) {
+        return res.status(400).json({
+            message: 'Code is Incorrect'
+        })
+    }
 }
 
 module.exports = {
