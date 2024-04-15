@@ -13,14 +13,18 @@ const placeSchema = new mongoose.Schema({
         type: addressSchema,
         required: true
     },
-    phone_number: contactSchema,
-    category: {
+    phone_number: {
+        // type: contactSchema // Fix
         type: String,
+        required: true
+    },
+    category: {
+        type: [String],
         required: true,
     },
     work_time: {
         type: workTimeSchema,
-        required: true,
+        // required: true, // Fix
     },
     description: {
         type: String,
