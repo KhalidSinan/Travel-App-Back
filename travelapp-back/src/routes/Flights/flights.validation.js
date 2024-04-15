@@ -23,6 +23,8 @@ async function validateGetFlights(data) {
         source: Joi.string().required().messages({ 'any.required': 'Source Country Required' }),
         destination: Joi.string().required().messages({ 'any.required': 'Destination Required' }),
         date: Joi.string().required().messages({ 'any.required': 'Date Required' }),
+        class_of_seats: Joi.string().required().messages({ 'any.required': 'Class Required' }),
+        num_of_seats: Joi.number().required().messages({ 'any.required': 'Number Of Seats Required' }),
     })
     return schema.validate(data, { abortEarly: false });
 }
