@@ -166,8 +166,6 @@ async function findCancelRate(reservation) {
     return reservation.overall_price * rate
 }
 
-
-
 module.exports = {
     httpGetFlights,
     httpGetFlight,
