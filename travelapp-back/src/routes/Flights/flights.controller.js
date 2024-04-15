@@ -5,28 +5,54 @@ const { validationErrors } = require('../../middlewares/validationErrors');
 const { getPagination } = require('../../services/query');
 const { getWallet, putWallet } = require('../../models/users.model')
 const { convertTime12to24 } = require('../../services/convertTime');
-const { reservationData } = require('./flights.serializer');
+const { reservationData, flightData, twoWayFlightData } = require('./flights.serializer');
+const { serializedData } = require('../../services/serializeArray');
 
+// Done
 async function httpGetFlights(req, res) {
-    const { error } = await validateGetFlights({ source: req.query.source, destination: req.query.destination, date: req.query.date })
+    const { error } = await validateGetFlights({ source: req.query.source, destination: req.query.destination, date: req.query.date, num_of_seats: req.query.num_of_seats, class_of_seats: req.query.class_of_seats })
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     const { skip, limit } = getPagination(req.query)
     const filter = { 'due_date.date': req.query.date, 'source.country': req.query.source, 'destination.country': req.query.destination }
 
     // To Stop Duplicate
-    delete req.query.skip
-    delete req.query.limit
-    delete req.query.date
-    delete req.query.source
-    delete req.query.destination
+    // delete req.query.skip
+    // delete req.query.limit
+    // delete req.query.date
+    // delete req.query.date_end
+    // delete req.query.source
+    // delete req.query.destination
 
     // Put req.query into filter
-    Object.assign(filter, req.query)
-    
-    // One-Way
+    // Object.assign(filter, req.query)
+    // Object.assign(filter2, req.query)
+    const classes = ['A', 'B', 'C']
+
     const flights = await getFlights(skip, limit, filter);
-    return res.status(200).json({ data: flights })
+    let data = flights.find(flight => {
+        if (flight.classes[classes.indexOf(req.query.class_of_seats)].available_seats >= req.query.num_of_seats) return flight
+    })
+    // Add this to two way
+    if (req.query.type == 'Two-Way') {
+        const filter_back = { 'due_date.date': req.query.date_end, 'source.country': req.query.destination, 'destination.country': req.query.source }
+        const flights_back = await getFlights(skip, limit, filter_back);
+        // Add Flights Together
+        let two_way = [];
+        flights.forEach(flight => {
+            flights_back.forEach(flight_back => {
+                let temp = { flight, flight_back }
+                if (flight.classes[classes.indexOf(req.query.class_of_seats)].available_seats >= req.query.num_of_seats
+                    && flight_back.classes[classes.indexOf(req.query.class_of_seats)].available_seats >= req.query.num_of_seats
+                ) two_way.push(temp)
+            })
+        })
+        data = two_way
+        return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
+
+    }
+
+    return res.status(200).json({ data: flightData(data) })
 }
 
 async function httpGetFlight(req, res) {
@@ -139,8 +165,6 @@ async function findCancelRate(reservation) {
     if (timeDifference < chance) rate = 0; // Nothing is back
     return reservation.overall_price * rate
 }
-
-
 
 module.exports = {
     httpGetFlights,

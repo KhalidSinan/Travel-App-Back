@@ -4,7 +4,7 @@ async function getFlights(skip, limit, filter) {
     return await Flight.find(filter)
         .skip(skip)
         .limit(limit)
-        .select('-classes')
+        .select('-source._id -destination._id')
 }
 
 async function getFlight(id) {

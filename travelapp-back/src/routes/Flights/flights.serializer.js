@@ -11,6 +11,26 @@ function reservationData(reservation) {
     }
 }
 
+function flightData(flight) {
+    return {
+        id: flight._id,
+        airline: flight.airline,
+        source: flight.source,
+        destination: flight.destination,
+        due_date: flight.due_date,
+        duration: flight.duration
+    }
+}
+
+function twoWayFlightData(two_way) {
+    return {
+        flight: flightData(two_way.flight),
+        flight_back: flightData(two_way.flight_back),
+    }
+}
+
 module.exports = {
-    reservationData
+    reservationData,
+    flightData,
+    twoWayFlightData
 }
