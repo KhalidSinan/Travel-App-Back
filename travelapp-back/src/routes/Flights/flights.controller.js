@@ -58,7 +58,7 @@ async function httpGetFlights(req, res) {
 async function httpGetFlight(req, res) {
     const flight = await getFlight(req.params.id);
     if (!flight) return res.status(404).json({ message: 'Not Found' })
-    return res.status(200).json({ data: flight })
+    return res.status(200).json({ data: flightData(flight) })
 }
 
 async function httpReserveFlight(req, res) {

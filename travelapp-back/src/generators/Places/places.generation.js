@@ -2,6 +2,7 @@ const fs = require('fs')
 const { faker } = require('@faker-js/faker')
 const restaurants = require('./restaurants.json')
 const location = require('./country-by-cities.json')
+const poi = require('./points-of-interest.json')
 
 
 function createRestaurants() {
@@ -28,4 +29,16 @@ function createRestaurants() {
 
 }
 
-createRestaurants();
+function getNames() {
+    let data = []
+    poi.forEach(po => {
+        const temp = {
+            name: po.properties.name
+        }
+        data.push(po.properties.name)
+    })
+    fs.writeFileSync('poi-names.json', JSON.stringify(data))
+}
+
+getNames()
+// createRestaurants();
