@@ -40,7 +40,7 @@ async function confirmEmail(req, res) {
     if (user.email_confirmed) {
         return res.status(400).json({ message: 'Email Already Confirmed' })
     }
-    confirmTokenHelper(user, req.body.token)
+    if (!await confirmTokenHelper(user, req.body.token)) return res.status(400).json({ message: 'Code is Incorrect' })
     await putEmailConfirmation(user)
 
     await deleteRequests(user.id)
@@ -111,7 +111,7 @@ async function resetPassword(req, res) {
         return res.status(400).json({ message: 'User Not Found' })
     }
 
-    confirmTokenHelper(user, req.body.token)
+    if (!await confirmTokenHelper(user, req.body.token)) return res.status(400).json({ message: 'Code is Incorrect' })
 
     await putPassword(user, req.body.password);
 
@@ -154,12 +154,7 @@ async function logout(req, res) {
 
 async function confirmTokenHelper(user, token) {
     const tokenSaved = await getToken(user.id)
-
-    if (token != tokenSaved.token) {
-        return res.status(400).json({
-            message: 'Code is Incorrect'
-        })
-    }
+    return token == tokenSaved.token
 }
 
 module.exports = {
