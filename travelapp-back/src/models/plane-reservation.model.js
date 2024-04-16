@@ -5,7 +5,8 @@ async function postReservation(data) {
 }
 
 async function getReservation(id) {
-    return await PlaneReservation.findById(id).populate('flight_id', '-source._id -destination._id').select('-reservations._id')
+    return await PlaneReservation.findById(id).populate('flight_id', '-source._id -destination._id')
+    //.select('-reservations._id')
 }
 
 async function putConfirmation(reservation, data) {
@@ -13,8 +14,14 @@ async function putConfirmation(reservation, data) {
     return await reservation.save();
 }
 
+async function removeReservation(reservation, person_reservation) {
+    reservation.reservations.pull(person_reservation)
+    await reservation.save()
+}
+
 module.exports = {
     postReservation,
     getReservation,
     putConfirmation,
+    removeReservation
 }
