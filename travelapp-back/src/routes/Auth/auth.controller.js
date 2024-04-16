@@ -31,6 +31,7 @@ async function register(req, res) {
     });
 }
 
+// Done
 async function confirmEmail(req, res) {
     // Body : email, token
     const user = await getUser(req.body.email);

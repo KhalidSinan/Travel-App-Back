@@ -1,5 +1,5 @@
 const { getFlights, getFlight } = require('../../models/flights.model')
-const { postReservation, getReservation, putConfirmation } = require('../../models/plane-reservation.model');
+const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
 const { validateReserveFlight, validateConfirmFlight, validateGetFlights } = require('./flights.validation');
 const { validationErrors } = require('../../middlewares/validationErrors');
 const { getPagination } = require('../../services/query');
@@ -109,6 +109,7 @@ async function reserveFlightHelper(reservations, flight, user_id) {
     return overall_price
 }
 
+// Done
 async function httpConfirmReservation(req, res) {
     const reservation = await getReservation(req.params.id)
     const user_id = req.user._id
@@ -123,6 +124,7 @@ async function httpConfirmReservation(req, res) {
     })
 }
 
+// Done
 async function httpCancelReservation(req, res) {
     const reservation = await getReservation(req.params.id)
     const user_id = req.user._id
@@ -131,12 +133,33 @@ async function httpCancelReservation(req, res) {
             message: 'Cant Access This Reservation'
         })
     }
-    const fee = await findCancelRate(reservation)
+    const id = req.body.person_id;
+    const person_reservation = reservation.reservations.find(res => res._id.equals(id))
+    if (!person_reservation) {
+        return res.status(200).json({
+            message: 'Person Reservation Not Found'
+        })
+    }
+    const fee = await findCancelRate(reservation, person_reservation.price) // Money That Will Be Returned
+    await removeReservation(reservation, person_reservation)
     await putWallet(req.user.id, fee);
-    await putConfirmation(reservation, false)
     return res.status(200).json({
         message: 'Reservation Cancelled'
     })
+    // Delete All Reservations
+    // const reservation = await getReservation(req.params.id)
+    // const user_id = req.user._id
+    // if (!user_id.equals(reservation.user_id)) {
+    //     return res.status(400).json({
+    //         message: 'Cant Access This Reservation'
+    //     })
+    // }
+    // const fee = await findCancelRate(reservation)
+    // await putWallet(req.user.id, fee);
+    // await putConfirmation(reservation, false)
+    // return res.status(200).json({
+    //     message: 'Reservation Cancelled'
+    // })
 }
 
 async function httpGetReservation(req, res) {
@@ -155,15 +178,17 @@ async function httpGetReservation(req, res) {
     })
 }
 
-async function findCancelRate(reservation) {
+// Done
+async function findCancelRate(reservation, person_price) {
     const date = new Date(reservation.flight_id[0].due_date.date)
+    date.setTime(date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
     const time = convertTime12to24(reservation.flight_id[0].due_date.time)
     date.setUTCHours(time[0], time[1], time[2])
     const timeDifference = date - Date.now()
     const chance = 2 * 60 * 60 * 1000
     let rate = 0.2; // 0.2 will be back
     if (timeDifference < chance) rate = 0; // Nothing is back
-    return reservation.overall_price * rate
+    return person_price * rate
 }
 
 module.exports = {
