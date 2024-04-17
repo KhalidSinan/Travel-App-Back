@@ -6,8 +6,8 @@ function reservationData(reservation) {
         due_date: reservation.flight_id[0].due_date,
         num_of_reservations: reservation.num_of_reservations,
         reservations: reservation.reservations,
-        cancel_fee: reservation.overall_price - reservation.fee,
-        returned_fee: reservation.fee
+        // cancel_fee: reservation.overall_price - reservation.fee,
+        // returned_fee: reservation.fee
     }
 }
 
@@ -18,7 +18,8 @@ function flightData(flight) {
         source: flight.source,
         destination: flight.destination,
         due_date: flight.due_date,
-        duration: flight.duration
+        duration: flight.duration,
+        price: flight.price
     }
 }
 

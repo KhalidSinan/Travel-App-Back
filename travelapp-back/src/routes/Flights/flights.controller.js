@@ -16,49 +16,88 @@ async function httpGetFlights(req, res) {
     const { skip, limit } = getPagination(req.query)
     const filter = { 'due_date.date': req.query.date, 'source.country': req.query.source, 'destination.country': req.query.destination }
 
+    const source = req.query.source
+    const destination = req.query.destination
+    const num_of_seats = req.query.num_of_seats
+    const class_of_seats = req.query.class_of_seats
+    const sort = req.query.sort
+    const type = req.query.type
+    const date_end = req.query.date_end
+
     // To Stop Duplicate
-    // delete req.query.skip
-    // delete req.query.limit
-    // delete req.query.date
-    // delete req.query.date_end
-    // delete req.query.source
-    // delete req.query.destination
+    delete req.query.skip
+    delete req.query.limit
+    delete req.query.date
+    delete req.query.source
+    delete req.query.destination
+    delete req.query.class_of_seats
+    delete req.query.num_of_seats
+    delete req.query.sort
+    delete req.query.type
+    delete req.query.date_end
+
 
     // Put req.query into filter
-    // Object.assign(filter, req.query)
-    // Object.assign(filter2, req.query)
-    const classes = ['A', 'B', 'C']
+    Object.assign(filter, req.query)
 
+    const classes = ['A', 'B', 'C']
     const flights = await getFlights(skip, limit, filter);
-    let data = flights.find(flight => {
-        if (flight.classes[classes.indexOf(req.query.class_of_seats)].available_seats >= req.query.num_of_seats) return flight
+    let data = []
+
+    flights.forEach(flight => {
+        if (flight && flight.classes[classes.indexOf(class_of_seats)].available_seats >= num_of_seats) {
+            flight.price = flight.classes[classes.indexOf(class_of_seats)].price
+            data.push(flight)
+        }
     })
-    // Add this to two way
-    if (req.query.type == 'Two-Way') {
-        const filter_back = { 'due_date.date': req.query.date_end, 'source.country': req.query.destination, 'destination.country': req.query.source }
+
+    // Two-Way
+    if (type == 'Two-Way') {
+        const filter_back = { 'due_date.date': date_end, 'source.country': destination, 'destination.country': source }
+        Object.assign(filter_back, req.query)
         const flights_back = await getFlights(skip, limit, filter_back);
+        delete req.query.date_end
         // Add Flights Together
         let two_way = [];
         flights.forEach(flight => {
             flights_back.forEach(flight_back => {
                 let temp = { flight, flight_back }
-                if (flight.classes[classes.indexOf(req.query.class_of_seats)].available_seats >= req.query.num_of_seats
-                    && flight_back.classes[classes.indexOf(req.query.class_of_seats)].available_seats >= req.query.num_of_seats
-                ) two_way.push(temp)
+                if (flight.classes[classes.indexOf(class_of_seats)].available_seats >= num_of_seats
+                    && flight_back.classes[classes.indexOf(class_of_seats)].available_seats >= num_of_seats
+                ) {
+                    temp.flight_back.price = flight_back.classes[classes.indexOf(class_of_seats)].price
+                    two_way.push(temp)
+                }
             })
         })
         data = two_way
+        if (sort) data.sort((a, b) => a.flight.price - b.flight.price)
+        if (sort == 'desc') {
+            data.reverse();
+        }
         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
-
     }
 
-    return res.status(200).json({ data: flightData(data) })
+    if (sort) data.sort((a, b) => a.price - b.price)
+    if (sort == 'desc') {
+        data.reverse();
+    }
+
+    return res.status(200).json({ data: serializedData(data, flightData) })
 }
 
+//Done
 async function httpGetFlight(req, res) {
     const flight = await getFlight(req.params.id);
     if (!flight) return res.status(404).json({ message: 'Not Found' })
-    return res.status(200).json({ data: flightData(flight) })
+    let data = flight;
+    if (req.query.id2) {
+        const flight_back = await getFlight(req.query.id2);
+        if (!flight_back) return res.status(404).json({ message: 'Not Found' })
+        data = { flight, flight_back }
+        return res.status(200).json({ data: twoWayFlightData(data) })
+    }
+    return res.status(200).json({ data: flightData(data) })
 }
 
 async function httpReserveFlight(req, res) {
