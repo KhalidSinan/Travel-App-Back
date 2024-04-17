@@ -23,6 +23,10 @@ async function httpGetFlights(req, res) {
     const sort = req.query.sort
     const type = req.query.type
     const date_end = req.query.date_end
+    let date = req.query.date
+    const airline = req.query.airline
+    let time_start = req.query.time_start
+    let time_end = req.query.time_end
 
     // To Stop Duplicate
     delete req.query.skip
@@ -35,6 +39,9 @@ async function httpGetFlights(req, res) {
     delete req.query.sort
     delete req.query.type
     delete req.query.date_end
+    delete req.query.airline
+    delete req.query.time_start
+    delete req.query.time_end
 
 
     // Put req.query into filter
@@ -48,15 +55,44 @@ async function httpGetFlights(req, res) {
         if (flight && flight.classes[classes.indexOf(class_of_seats)].available_seats >= num_of_seats) {
             flight.price = flight.classes[classes.indexOf(class_of_seats)].price
             data.push(flight)
+            if (airline && flight.airline.name != airline) data.pop()
         }
     })
+
+    if (time_start && time_end) {
+        // Start Time
+        const date1 = new Date(date)
+        date1.setTime(date1.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
+        time_start = convertTime12to24(time_start)
+        date1.setUTCHours(time_start[0], time_start[1], time_start[2])
+
+        // End Time
+        const date2 = new Date(date)
+        date2.setTime(date2.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
+        time_end = convertTime12to24(time_end)
+        date2.setUTCHours(time_end[0], time_end[1], time_end[2])
+
+        // Converting to ms
+        time_start = date1.valueOf()
+        time_end = date2.valueOf()
+
+        // Finding flights based on time
+        let temp = []
+        data.forEach(flight => {
+            const flight_date = new Date(flight.due_date.date)
+            flight_date.setTime(flight_date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
+            const time = convertTime12to24(flight.due_date.time)
+            flight_date.setUTCHours(time[0], time[1], time[2])
+            if (flight_date.valueOf() < time_end && flight_date.valueOf() > time_start) temp.push(flight)
+        })
+        data = temp;
+    }
 
     // Two-Way
     if (type == 'Two-Way') {
         const filter_back = { 'due_date.date': date_end, 'source.country': destination, 'destination.country': source }
         Object.assign(filter_back, req.query)
         const flights_back = await getFlights(skip, limit, filter_back);
-        delete req.query.date_end
         // Add Flights Together
         let two_way = [];
         flights.forEach(flight => {
@@ -66,15 +102,18 @@ async function httpGetFlights(req, res) {
                     && flight_back.classes[classes.indexOf(class_of_seats)].available_seats >= num_of_seats
                 ) {
                     temp.flight_back.price = flight_back.classes[classes.indexOf(class_of_seats)].price
+                    temp.overall_price = (flight_back.price + flight.price).toFixed(2)
                     two_way.push(temp)
+                    if (airline && (flight.airline.name != airline && flight_back.airline.name != airline)) two_way.pop()
                 }
             })
         })
         data = two_way
-        if (sort) data.sort((a, b) => a.flight.price - b.flight.price)
+        if (sort) data.sort((a, b) => (a.flight.price + a.flight_back.price) - (b.flight.price + b.flight_back.price))
         if (sort == 'desc') {
             data.reverse();
         }
+
         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
     }
 
