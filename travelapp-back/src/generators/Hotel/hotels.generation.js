@@ -1,7 +1,8 @@
-const hotelData = require('./hotelData.json')
+const { faker } = require('@faker-js/faker')
+const hotelData = require('./hotelData2.json')
 const roomData = require('./roomData.json')
 const descriptions = require('./descriptions.json')
-const location = require('./country-by-cities.json')
+const location = require('./countries-all.json')
 const hotels = require('./hotels.json')
 const hotels2 = require('./hotels2.json')
 const tags = require('./tags.json')
@@ -19,8 +20,8 @@ function createHotels() {
             name: data.name,
             location: {
                 country: data.country,
-                city: data.city,
-                address: data.address
+                city: data.city ?? faker.location.city(),
+                address: data.address ?? faker.location.streetAddress()
             },
             overview: data.overview,
             stars: data.stars,
@@ -55,7 +56,7 @@ function hotels2Gen() {
         let obj = {
             name: hotel.name,
             city: tempCity,
-            country: tempCountry.country,
+            country: tempCountry.name,
             address: hotel.address ?? hotel.directions,
             overview: hotel.content,
             stars: Math.floor(Math.random() * 5) + 1

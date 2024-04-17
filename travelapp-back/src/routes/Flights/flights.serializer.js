@@ -27,11 +27,12 @@ function twoWayFlightData(two_way) {
     return {
         flight: flightData(two_way.flight),
         flight_back: flightData(two_way.flight_back),
+        overall_price: two_way.overall_price
     }
 }
 
 module.exports = {
     reservationData,
     flightData,
-    twoWayFlightData
+    twoWayFlightData,
 }
