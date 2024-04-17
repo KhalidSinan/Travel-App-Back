@@ -8,7 +8,8 @@ async function getFlights(skip, limit, filter) {
 }
 
 async function getFlight(id) {
-    return await Flight.findById(id);
+    return await Flight.findById(id).select('-source._id -destination._id')
+
 }
 
 // async function addFlights(data) {
