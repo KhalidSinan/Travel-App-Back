@@ -103,8 +103,8 @@ async function createTrips(num_of_trips) {
         const trip = { source, destination, duration, airline, available_seats, departure_date, arrival_date, classes }
         trips.push(trip)
     }
-    fs.writeFileSync('trips.json', JSON.stringify(trips))
-    // await flightsMongo.insertMany(trips)
+    // fs.writeFileSync('trips.json', JSON.stringify(trips))
+    await flightsMongo.insertMany(trips)
 }
 
 createTrips(30000);

@@ -5,7 +5,7 @@ async function seedDB() {
     await mongoConnect();
     const count = 10000;
     const existingData = 1;
-    createTrips(count);
+    await createTrips(count);
 
     if (existingData === 0) {
         // seed trip
@@ -13,6 +13,7 @@ async function seedDB() {
     } else {
         console.log('Seeding not required.');
     }
+    await mongoDisconnect()
 }
 
 seedDB().catch(err => console.error(err));

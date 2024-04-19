@@ -20,7 +20,7 @@ function flightData(flight) {
         departure_date: flight.departure_date,
         arrival_date: flight.arrival_date.date,
         duration: flight.duration,
-        price: flight.price
+        price: flight.overall_price
     }
 }
 
