@@ -4,7 +4,7 @@ const restaurants = require('./restaurants(final).json')
 const location = require('./countries-all.json')
 const numbers = require('../../public/json/phone_number.json')
 const stadiums = require('./stadiums(final).json')
-// const musuems = require('./tag_clouds_world.json')
+const musuems = require('./traverler_rating_world.json')
 
 function createRestaurants() {
     let data = []
@@ -32,7 +32,8 @@ function createRestaurants() {
 
 function getNames() {
     let data = []
-    // fs.writeFileSync('musuem-names.json', JSON.stringify(data))
+    data = Object.keys(musuems)
+    fs.writeFileSync('musuem-names.json', JSON.stringify(data))
 }
 
 function createStadiums() {
@@ -65,6 +66,6 @@ function createStadiums() {
 }
 
 
-// getNames()
+getNames()
 // createRestaurants();
 // createStadiums();
