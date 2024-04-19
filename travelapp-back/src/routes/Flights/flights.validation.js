@@ -29,7 +29,15 @@ async function validateGetFlights(data) {
     return schema.validate(data, { abortEarly: false });
 }
 
+async function validateGetFlight(data) {
+    const schema = Joi.object({
+        id_back: Joi.string().hex().length(24)
+    })
+    return schema.validate(data, { abortEarly: false });
+}
+
 module.exports = {
     validateReserveFlight,
     validateGetFlights,
+    validateGetFlight
 }

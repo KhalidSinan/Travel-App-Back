@@ -1,11 +1,11 @@
 const { getFlights, getFlight } = require('../../models/flights.model')
 const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
-const { validateReserveFlight, validateConfirmFlight, validateGetFlights } = require('./flights.validation');
+const { validateReserveFlight, validateConfirmFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { validationErrors } = require('../../middlewares/validationErrors');
 const { getPagination } = require('../../services/query');
 const { getWallet, putWallet } = require('../../models/users.model')
 const { convertTime12to24 } = require('../../services/convertTime');
-const { reservationData, flightData, twoWayFlightData } = require('./flights.serializer');
+const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
 const { serializedData } = require('../../services/serializeArray');
 
 // Done
@@ -14,7 +14,7 @@ async function httpGetFlights(req, res) {
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     const { skip, limit } = getPagination(req.query)
-    const filter = { 'due_date.date': req.query.date, 'source.country': req.query.source, 'destination.country': req.query.destination }
+    const filter = { 'departure_date.date': req.query.date, 'source.country': req.query.source, 'destination.country': req.query.destination }
 
     const source = req.query.source
     const destination = req.query.destination
@@ -79,9 +79,9 @@ async function httpGetFlights(req, res) {
         // Finding flights based on time
         let temp = []
         data.forEach(flight => {
-            const flight_date = new Date(flight.due_date.date)
+            const flight_date = new Date(flight.departure_date.date)
             flight_date.setTime(flight_date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-            const time = convertTime12to24(flight.due_date.time)
+            const time = convertTime12to24(flight.departure_date.time)
             flight_date.setUTCHours(time[0], time[1], time[2])
             if (flight_date.valueOf() < time_end && flight_date.valueOf() > time_start) temp.push(flight)
         })
@@ -90,7 +90,7 @@ async function httpGetFlights(req, res) {
 
     // Two-Way
     if (type == 'Two-Way') {
-        const filter_back = { 'due_date.date': date_end, 'source.country': destination, 'destination.country': source }
+        const filter_back = { 'departure_date.date': date_end, 'source.country': destination, 'destination.country': source }
         Object.assign(filter_back, req.query)
         const flights_back = await getFlights(skip, limit, filter_back);
         // Add Flights Together
@@ -127,18 +127,23 @@ async function httpGetFlights(req, res) {
 
 //Done
 async function httpGetFlight(req, res) {
+    const { error } = await validateGetFlight(req.query)
+    if (error) {
+        return res.status(400).json({ message: 'Second ID Not Valid' })
+    }
     const flight = await getFlight(req.params.id);
     if (!flight) return res.status(404).json({ message: 'Not Found' })
     let data = flight;
-    if (req.query.id2) {
-        const flight_back = await getFlight(req.query.id2);
+    if (req.query.id_back) {
+        const flight_back = await getFlight(req.query.id_back);
         if (!flight_back) return res.status(404).json({ message: 'Not Found' })
         data = { flight, flight_back }
-        return res.status(200).json({ data: twoWayFlightData(data) })
+        return res.status(200).json({ two_way: true, data: twoWayFlightDataDetails(data) })
     }
-    return res.status(200).json({ data: flightData(data) })
+    return res.status(200).json({ two_way: false, data: flightDataDetails(data) })
 }
 
+// Maybe Disabled Person
 async function httpReserveFlight(req, res) {
     const { error } = validateReserveFlight(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
@@ -258,9 +263,9 @@ async function httpGetReservation(req, res) {
 
 // Done
 async function findCancelRate(reservation, person_price) {
-    const date = new Date(reservation.flight_id[0].due_date.date)
+    const date = new Date(reservation.flight_id[0].departure_date.date)
     date.setTime(date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-    const time = convertTime12to24(reservation.flight_id[0].due_date.time)
+    const time = convertTime12to24(reservation.flight_id[0].departure_date.time)
     date.setUTCHours(time[0], time[1], time[2])
     const timeDifference = date - Date.now()
     const chance = 2 * 60 * 60 * 1000

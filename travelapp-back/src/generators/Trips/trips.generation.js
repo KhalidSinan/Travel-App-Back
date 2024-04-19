@@ -22,6 +22,7 @@ function createDate() {
         Math.floor(Math.random() * 12) * 5  // Set minutes to the nearest lower multiple of 10
     ));
     const dateObj = {
+        format: utcDate,
         date: utcDate.toLocaleDateString(),
         time: utcDate.toLocaleTimeString()
     }
@@ -81,23 +82,31 @@ async function createTrips(num_of_trips) {
             destination = createPlace()
         }
 
-        const duration = Math.floor(Math.random() * 360)
+        const duration = 60 + Math.floor(Math.random() * 300 / 5) * 5
 
         const airline = createAirline()
 
-        const due_date = createDate()
+        let departure_date = createDate()
+        let arrival_date = departure_date
+        arrival_date.format.setMinutes(arrival_date.format.getMinutes() + duration)
+
+        departure_date = { date: departure_date.date, time: departure_date.time }
+        arrival_date = {
+            date: arrival_date.format.toLocaleDateString(),
+            time: arrival_date.format.toLocaleTimeString()
+        }
 
         const available_seats = Math.floor(Math.random() * 300)
 
         const classes = createClasses(available_seats);
 
-        const trip = { source, destination, duration, airline, available_seats, due_date, classes }
+        const trip = { source, destination, duration, airline, available_seats, departure_date, arrival_date, classes }
         trips.push(trip)
     }
     fs.writeFileSync('trips.json', JSON.stringify(trips))
     // await flightsMongo.insertMany(trips)
 }
 
-createTrips(20000);
+createTrips(30000);
 
 module.exports = createTrips;
