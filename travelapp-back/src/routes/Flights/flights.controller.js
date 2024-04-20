@@ -100,37 +100,27 @@ async function httpReserveFlight(req, res) {
     const num_of_reservations = req.body.reservations.length
     let overall_price = 0;
     let reservations_back = [], reservations = []
-    let idd = [];
-    let tempReservation = null
     for (const flight_id of flights) {
         const flight = await getFlight(flight_id)
         if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
         if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
         const { price, reserv } = await reserveFlightHelper(reservationData, flight, user_id)
         console.log(reserv)
-        if (reservations.length == 0) {
-            reservations = reserv
-            // console.log(reservations)
-        }
-        else if (reservations_back.length == 0) {
-            reservations_back = reserv
-            // console.log(reservations_back)
-        }
+        if (reservations.length == 0) reservations = JSON.parse(JSON.stringify(reserv));
+        else if (reservations_back.length == 0) reservations_back = JSON.parse(JSON.stringify(reserv));
         overall_price += price
     }
     overall_price = overall_price.toFixed(2)
     // Ready Reservations
     // Need to fix reservation back
-    // console.log(reservations, reservations_back)
     // Post Reservations
     const data = {
         user_id, flights, num_of_reservations, reservations,
         reservations_back, overall_price, reservation_type
     }
-    // const reservation = await postReservation(data)
+    const reservation = await postReservation(data)
 
-    return res.status(200).json({ message: 'Flight Reserved Successfully', data })
-    // return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
+    return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
 }
 
 // Done
