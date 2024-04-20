@@ -12,8 +12,9 @@ async function validateReserveFlight(data) {
     })
 
     const schema = Joi.object({
+        flights: Joi.array().messages({ 'any.required': 'Flight ID(s) Required' }),
         reservation_type: Joi.string().required().messages({ 'any.required': 'Reservation Type Required' }),
-        reservations: Joi.array().items(reservationSchema)
+        reservations: Joi.array().items(reservationSchema).messages({ 'any.required': 'Reservations Data Required' }),
     })
     return schema.validate(data, { abortEarly: false });
 }

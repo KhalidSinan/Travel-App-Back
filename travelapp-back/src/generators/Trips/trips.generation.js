@@ -107,6 +107,6 @@ async function createTrips(num_of_trips) {
     await flightsMongo.insertMany(trips)
 }
 
-createTrips(30000);
+// createTrips(30000);
 
 module.exports = createTrips;

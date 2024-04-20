@@ -14,4 +14,14 @@ function convertTime12to24(time12h) {
     return [hours, minutes, seconds]
 }
 
-module.exports = { convertTime12to24 }
+function convertToTimeFormat(minutes) {
+    let hours = Math.floor(minutes / 60);
+    let newMinutes = minutes % 60
+    newMinutes = newMinutes.toString()
+    hours = hours.toString()
+    if (newMinutes.length == 1) newMinutes = '0' + newMinutes
+    if (hours.length == 1) hours = '0' + hours
+    return hours + ':' + newMinutes
+}
+
+module.exports = { convertTime12to24, convertToTimeFormat }

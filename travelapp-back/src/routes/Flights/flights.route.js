@@ -9,8 +9,8 @@ const flightRouter = express.Router();
 
 // add jwtStrategy middleware
 flightRouter.get('/', requireJwtAuth, asyncHandler(httpGetFlights))
+flightRouter.post('/reserve', requireJwtAuth, asyncHandler(httpReserveFlight)) // :id -> reserve
 flightRouter.get('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetFlight))
-flightRouter.post('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpReserveFlight))
 flightRouter.post('/:id/confirm', requireJwtAuth, checkObjectID, asyncHandler(httpConfirmReservation))
 flightRouter.post('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelReservation))
 flightRouter.get('/reservation/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetReservation))

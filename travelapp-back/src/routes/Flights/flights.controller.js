@@ -20,6 +20,10 @@ async function httpGetFlights(req, res) {
     const classes = ['A', 'B', 'C']
     const classIndex = classes.indexOf(class_of_seats)
 
+    const flights = await getFlights(skip, limit, filter);
+    let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
+    if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
+
     if (type == 'Two-Way') {
         const filter_back = { 'departure_date.date': date_end, 'source.country': destination, 'destination.country': source }
         Object.assign(filter_back, req.query)
@@ -27,15 +31,10 @@ async function httpGetFlights(req, res) {
         data = getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIndex, airline)
         getFlightsDataSortHelper(sort, data)
         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
-    } else {
-        // Put req.query into filter
-        // Object.assign(filter, req.query)
-        const flights = await getFlights(skip, limit, filter);
-        let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
-        if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
-        getFlightsDataSortHelper(sort, data)
-        return res.status(200).json({ data: serializedData(data, flightData) })
     }
+
+    getFlightsDataSortHelper(sort, data)
+    return res.status(200).json({ data: serializedData(data, flightData) })
 }
 
 //Done
@@ -56,37 +55,82 @@ async function httpGetFlight(req, res) {
     return res.status(200).json({ two_way: false, data: flightDataDetails(data) })
 }
 
-// Maybe Disabled Person
+// // Maybe Disabled Person
+// async function httpReserveFlight(req, res) {
+//     const { error } = validateReserveFlight(req.body)
+//     if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
+//     // Get Data
+//     const user_id = req.user._id
+//     const reservation_type = req.body.reservation_type
+//     const flights = req.params.id
+
+//     const flight = await getFlight(flights);
+//     if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
+
+//     const num_of_reservations = req.body.num_of_reservations
+//     if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
+
+//     // Ready Reservations
+//     const overall_price = await reserveFlightHelper(req.body.reservations, flight, user_id)
+
+//     // Post Reservations
+//     const data = {
+//         user_id, flights, num_of_reservations: req.body.reservations.length,
+//         reservations: req.body.reservations, overall_price, reservation_type
+//     }
+//     const user_balance = await getWallet(user_id)
+//     if (user_balance.wallet_account < overall_price || user_balance.wallet_account == 0) return res.status(400).json({ message: 'Insufficient Balance' })
+
+//     const reservation = await postReservation(data)
+//     await putWallet(user_id, -overall_price);
+
+//     return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
+// }
+
 async function httpReserveFlight(req, res) {
-    const { error } = validateReserveFlight(req.body)
+    const { error } = await validateReserveFlight(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     // Get Data
     const user_id = req.user._id
     const reservation_type = req.body.reservation_type
-    const flight_id = req.params.id
-
-    const flight = await getFlight(flight_id);
-    if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
-
-    const num_of_reservations = req.body.num_of_reservations
-    if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
-
+    const flights = req.body.flights
+    const reservationData = req.body.reservations
+    const num_of_reservations = req.body.reservations.length
+    let overall_price = 0;
+    let reservations_back = [], reservations = []
+    let idd = [];
+    let tempReservation = null
+    for (const flight_id of flights) {
+        const flight = await getFlight(flight_id)
+        if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
+        if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
+        const { price, reserv } = await reserveFlightHelper(reservationData, flight, user_id)
+        console.log(reserv)
+        if (reservations.length == 0) {
+            reservations = reserv
+            // console.log(reservations)
+        }
+        else if (reservations_back.length == 0) {
+            reservations_back = reserv
+            // console.log(reservations_back)
+        }
+        overall_price += price
+    }
+    overall_price = overall_price.toFixed(2)
     // Ready Reservations
-    const overall_price = await reserveFlightHelper(req.body.reservations, flight, user_id)
-
+    // Need to fix reservation back
+    // console.log(reservations, reservations_back)
     // Post Reservations
     const data = {
-        user_id, flight_id, num_of_reservations: req.body.reservations.length,
-        reservations: req.body.reservations, overall_price, reservation_type
+        user_id, flights, num_of_reservations, reservations,
+        reservations_back, overall_price, reservation_type
     }
-    const user_balance = await getWallet(user_id)
-    if (user_balance.wallet_account < overall_price || user_balance.wallet_account == 0) return res.status(400).json({ message: 'Insufficient Balance' })
+    // const reservation = await postReservation(data)
 
-    const reservation = await postReservation(data)
-    await putWallet(user_id, -overall_price);
-
-    return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
+    return res.status(200).json({ message: 'Flight Reserved Successfully', data })
+    // return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
 }
 
 // Done
