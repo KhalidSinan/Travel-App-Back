@@ -85,8 +85,9 @@ function getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIn
         flights_back.forEach(flight_back => {
             let temp = { flight, flight_back }
             if (getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && getFlightsSeatsCalculateHelper(flight_back, num_of_seats, classIndex)) {
-                temp.flight_back.price = flight_back.classes[classIndex].price
-                temp.overall_price = (flight_back.price + flight.price).toFixed(2)
+                temp.flight_back.overall_price = flight_back.classes[classIndex].price
+                temp.flight.overall_price = flight.classes[classIndex].price
+                temp.overall_price = (temp.flight_back.overall_price + temp.flight.overall_price).toFixed(2)
                 data.push(temp)
                 if (airline && (flight.airline.name != airline && flight_back.airline.name != airline)) data.pop()
             }
@@ -104,24 +105,24 @@ function getFlightsDataSortHelper(sort = null, data) {
 
 async function reserveFlightHelper(reservations, flight, user_id) {
     const classes = ['A', 'B', 'C']
-    let overall_price = 0;
+    let price = 0;
     reservations.forEach(reservation => {
         reservation.price = flight.classes[classes.indexOf(reservation.seat_class)].price
         reservation.user_id = user_id;
-        overall_price += reservation.price
+        price += reservation.price
         reservation.seat_number = reservation.seat_class + flight.classes[classes.indexOf(reservation.seat_class)].available_seats
         flight.available_seats--;
         flight.classes[classes.indexOf(reservation.seat_class)].available_seats--;
     })
     // Save Flight Changes
     await flight.save();
-    return overall_price
+    return { price, reserv: reservations }
 }
 
 async function findCancelRate(reservation, person_price) {
-    const date = new Date(reservation.flight_id[0].departure_date.date)
+    const date = new Date(reservation.flights[0].departure_date.date)
     date.setTime(date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-    const time = convertTime12to24(reservation.flight_id[0].departure_date.time)
+    const time = convertTime12to24(reservation.flights[0].departure_date.time)
     date.setUTCHours(time[0], time[1], time[2])
     const timeDifference = date - Date.now()
     const chance = 2 * 60 * 60 * 1000

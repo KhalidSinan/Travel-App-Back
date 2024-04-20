@@ -1,14 +1,39 @@
+const { convertToTimeFormat } = require("../../services/convertTime");
+
 function reservationData(reservation) {
-    return {
-        airline: reservation.flight_id[0].airline,
-        source: reservation.flight_id[0].source,
-        destination: reservation.flight_id[0].destination,
-        departure_date: reservation.flight_id[0].departure_date,
+    const flight = reservation.flights[0];
+    const flight_back = reservation.flights[1];
+    let reservation_type = 'One-Way'
+    const data = {
+        flight: {
+            airline: reservation.flights[0].airline,
+            source: reservation.flights[0].source,
+            destination: reservation.flights[0].destination,
+            departure_date: reservation.flights[0].departure_date,
+            arrival_date: reservation.flights[0].arrival_date,
+            duration: convertToTimeFormat(reservation.flights[0].duration),
+            reservations: reservation.reservations,
+        },
         num_of_reservations: reservation.num_of_reservations,
-        reservations: reservation.reservations,
+        reservation_type: reservation_type,
+        two_way: false
         // cancel_fee: reservation.overall_price - reservation.fee,
         // returned_fee: reservation.fee
     }
+    if (flight_back) {
+        data.flight_back = {
+            airline: reservation.flights[1].airline,
+            source: reservation.flights[1].source,
+            destination: reservation.flights[1].destination,
+            departure_date: reservation.flights[1].departure_date,
+            arrival_date: reservation.flights[1].arrival_date,
+            duration: convertToTimeFormat(reservation.flights[1].duration),
+            reservations: reservation.reservations_back,
+        },
+            data.reservation_type = 'Two-Way'
+        data.two_way = true;
+    }
+    return data
 }
 
 function flightData(flight) {
