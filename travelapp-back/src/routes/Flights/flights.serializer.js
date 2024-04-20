@@ -6,31 +6,33 @@ function reservationData(reservation) {
     let reservation_type = 'One-Way'
     const data = {
         flight: {
-            airline: reservation.flights[0].airline,
+            airline: reservation.flights[0].airline.name,
             source: reservation.flights[0].source,
             destination: reservation.flights[0].destination,
             departure_date: reservation.flights[0].departure_date,
             arrival_date: reservation.flights[0].arrival_date,
             duration: convertToTimeFormat(reservation.flights[0].duration),
-            reservations: reservation.reservations,
+            reservations: reservation.reservations.data,
+            flight_price: reservation.reservations.overall_price
         },
         num_of_reservations: reservation.num_of_reservations,
         reservation_type: reservation_type,
-        two_way: false
-        // cancel_fee: reservation.overall_price - reservation.fee,
+        two_way: false,
+        overall_price: reservation.overall_price,
         // returned_fee: reservation.fee
     }
     if (flight_back) {
         data.flight_back = {
-            airline: reservation.flights[1].airline,
+            airline: reservation.flights[1].airline.name,
             source: reservation.flights[1].source,
             destination: reservation.flights[1].destination,
             departure_date: reservation.flights[1].departure_date,
             arrival_date: reservation.flights[1].arrival_date,
             duration: convertToTimeFormat(reservation.flights[1].duration),
-            reservations: reservation.reservations_back,
-        },
-            data.reservation_type = 'Two-Way'
+            reservations: reservation.reservations_back.data,
+            flight_price: reservation.reservations.overall_price
+        }
+        data.reservation_type = 'Two-Way'
         data.two_way = true;
     }
     return data
