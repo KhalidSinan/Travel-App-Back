@@ -3,16 +3,12 @@ const createTrips = require('./Trips/trips.generation');
 
 async function seedDB() {
     await mongoConnect();
-    const count = 10000;
-    const existingData = 1;
+    const count = 30000;
+
+    // Trips
     await createTrips(count);
 
-    if (existingData === 0) {
-        // seed trip
-        console.log('Database seeded!');
-    } else {
-        console.log('Seeding not required.');
-    }
+    console.log('Database seeded!');
     await mongoDisconnect()
 }
 

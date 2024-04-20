@@ -40,11 +40,11 @@ function flightData(flight) {
     return {
         id: flight._id,
         airline: flight.airline,
-        source: flight.source.country,
-        destination: flight.destination.country,
+        source: flight.source.city,
+        destination: flight.destination.city,
         departure_date: flight.departure_date,
         arrival_date: flight.arrival_date.date,
-        duration: flight.duration,
+        duration: convertToTimeFormat(flight.duration),
         price: flight.overall_price
     }
 }
@@ -73,7 +73,7 @@ function flightDataDetails(flight) {
         destination: flight.destination,
         departure_date: flight.departure_date,
         arrival_date: flight.arrival_date,
-        duration: flight.duration,
+        duration: convertToTimeFormat(flight.duration),
         classes: flight.classes
     }
 }

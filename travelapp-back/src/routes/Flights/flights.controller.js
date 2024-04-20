@@ -88,7 +88,7 @@ async function httpGetFlight(req, res) {
 //     return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
 // }
 
-async function httpReserveFlight(req, res) {
+async function httpReserveFlight(req, res) { 
     const { error } = await validateReserveFlight(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
