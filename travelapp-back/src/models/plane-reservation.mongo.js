@@ -13,42 +13,54 @@ const planeReservationSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    reservations: [{
-        person_name: {
-            type: String,
-            required: true,
-        },
-        seat_class: {
-            type: String,
-            required: true
-        },
-        seat_number: {
-            type: String,
-            required: true
-        },
-        price: {
+    reservations: {
+        data: [{
+            person_name: {
+                type: String,
+                required: true,
+            },
+            seat_class: {
+                type: String,
+                required: true
+            },
+            seat_number: {
+                type: String,
+                required: true
+            },
+            price: {
+                type: Number,
+                required: true
+            },
+        }],
+        overall_price: {
             type: Number,
             required: true
         },
-    }],
-    reservations_back: [{
-        person_name: {
-            type: String,
-            required: true,
-        },
-        seat_class: {
-            type: String,
-            required: true
-        },
-        seat_number: {
-            type: String,
-            required: true
-        },
-        price: {
+    },
+    reservations_back: {
+        data: [{
+            person_name: {
+                type: String,
+                required: true,
+            },
+            seat_class: {
+                type: String,
+                required: true
+            },
+            seat_number: {
+                type: String,
+                required: true
+            },
+            price: {
+                type: Number,
+                required: true
+            },
+        }],
+        overall_price: {
             type: Number,
             required: true
         },
-    }],
+    },
     overall_price: {
         type: Number,
         required: true

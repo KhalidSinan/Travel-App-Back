@@ -1,14 +1,19 @@
+const fs = require('fs')
+const countries = require('../../public/json/countries-all.json')
 const { convertTime12to24 } = require('../../services/convertTime');
 
 function getFlightsReqDataHelper(req) {
-    const source = req.query.source
-    const destination = req.query.destination
-    const num_of_seats = req.query.num_of_seats
-    const class_of_seats = req.query.class_of_seats
+    // Body
+    const source = req.body.source
+    const destination = req.body.destination
+    const date = req.body.date
+    const num_of_seats = req.body.num_of_seats
+    const class_of_seats = req.body.class_of_seats
+    const two_way = req.body.two_way
+    const date_end = req.body.date_end
+
+    // Query Param
     const sort = req.query.sort
-    const type = req.query.type
-    const date_end = req.query.date_end
-    const date = req.query.date
     const airline = req.query.airline
     const time_start = req.query.time_start
     const time_end = req.query.time_end
@@ -16,20 +21,44 @@ function getFlightsReqDataHelper(req) {
     // To Stop Duplicate
     delete req.query.skip
     delete req.query.limit
-    delete req.query.date
-    delete req.query.source
-    delete req.query.destination
-    delete req.query.class_of_seats
-    delete req.query.num_of_seats
     delete req.query.sort
-    delete req.query.type
-    delete req.query.date_end
     delete req.query.airline
     delete req.query.time_start
     delete req.query.time_end
 
-    return { source, destination, num_of_seats, class_of_seats, sort, type, date, date_end, airline, time_start, time_end }
+    return { source, destination, date, num_of_seats, class_of_seats, sort, two_way, date_end, airline, time_start, time_end }
 }
+
+// function getFlightsReqDataHelper(req) {
+//     const source = req.query.source
+//     const destination = req.query.destination
+//     const num_of_seats = req.query.num_of_seats
+//     const class_of_seats = req.query.class_of_seats
+//     const sort = req.query.sort
+//     const type = req.query.type
+//     const date_end = req.query.date_end
+//     const date = req.query.date
+//     const airline = req.query.airline
+//     const time_start = req.query.time_start
+//     const time_end = req.query.time_end
+
+//     // To Stop Duplicate
+//     delete req.query.skip
+//     delete req.query.limit
+//     delete req.query.date
+//     delete req.query.source
+//     delete req.query.destination
+//     delete req.query.class_of_seats
+//     delete req.query.num_of_seats
+//     delete req.query.sort
+//     delete req.query.type
+//     delete req.query.date_end
+//     delete req.query.airline
+//     delete req.query.time_start
+//     delete req.query.time_end
+
+//     return { source, destination, num_of_seats, class_of_seats, sort, type, date, date_end, airline, time_start, time_end }
+// }
 
 function getFlightsTimeFilterHelper(date, time_start, time_end, data) {
     // Start Time
@@ -139,6 +168,12 @@ function createDateTimeObject(date, time) {
     return temp;
 }
 
+function getCountries() {
+    let data = []
+    countries.forEach(country => data.push(country.name))
+    return data;
+}
+
 module.exports = {
     getFlightsDataSortHelper,
     getFlightsReqDataHelper,
@@ -146,5 +181,6 @@ module.exports = {
     getFlightsTwoWayDataHelper,
     getFlightsTimeFilterHelper,
     reserveFlightHelper,
-    findCancelRate
+    findCancelRate,
+    getCountries
 }
