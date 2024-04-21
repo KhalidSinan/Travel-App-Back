@@ -10,7 +10,6 @@ const workTimeSchema = new mongoose.Schema({
             type: Number,
             required: true,
         },
-        required: true,
     },
     end: {
         hour: {
@@ -21,7 +20,6 @@ const workTimeSchema = new mongoose.Schema({
             type: Number,
             required: true,
         },
-        required: true,
     },
 })
 

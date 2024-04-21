@@ -14,8 +14,7 @@ const placeSchema = new mongoose.Schema({
         required: true
     },
     phone_number: {
-        // type: contactSchema // Fix
-        type: String,
+        type: contactSchema, // Fix
         required: true
     },
     category: {
@@ -24,7 +23,7 @@ const placeSchema = new mongoose.Schema({
     },
     work_time: {
         type: workTimeSchema,
-        // required: true, // Fix
+        // required: true,
     },
     description: {
         type: String,

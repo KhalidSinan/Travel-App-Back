@@ -1,6 +1,6 @@
 const fs = require('fs')
-const airlines = require('./airlines.json')
-const airports = require('./airports.json')
+const airlines = require('../../public/json/airlines.json')
+const airports = require('../../public/json/airports.json')
 const flightsMongo = require('../../models/flights.mongo')
 
 const airportsNum = airports.length
@@ -103,10 +103,10 @@ async function createTrips(num_of_trips) {
         const trip = { source, destination, duration, airline, available_seats, departure_date, arrival_date, classes }
         trips.push(trip)
     }
-    fs.writeFileSync('trips.json', JSON.stringify(trips))
-    // await flightsMongo.insertMany(trips)
+    // fs.writeFileSync('trips.json', JSON.stringify(trips))
+    await flightsMongo.insertMany(trips)
 }
 
-createTrips(30000);
+// createTrips(30000);
 
 module.exports = createTrips;

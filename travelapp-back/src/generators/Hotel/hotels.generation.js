@@ -1,3 +1,4 @@
+const fs = require('fs')
 const { faker } = require('@faker-js/faker')
 const hotelData = require('./hotelData2.json')
 const roomData = require('./roomData.json')
@@ -6,7 +7,6 @@ const location = require('./countries-all.json')
 const hotels = require('./hotels.json')
 const hotels2 = require('./hotels2.json')
 const tags = require('./tags.json')
-const fs = require('fs')
 
 function createHotels() {
     let hotels = [];
