@@ -3,12 +3,12 @@ const asyncHandler = require('express-async-handler');
 
 const requireJwtAuth = require('../../middlewares/checkJwtAuth');
 const checkObjectID = require('../../middlewares/checkObjectID');
-const { httpGetFlights, httpGetFlight, httpReserveFlight, httpConfirmReservation, httpCancelReservation, httpGetReservation, httpGetCountries } = require('./flights.controller');
+const { httpGetFlights, httpGetFlight, httpReserveFlight, httpConfirmReservation, httpCancelReservation, httpGetReservation, httpGetSearchPageData } = require('./flights.controller');
 
 const flightRouter = express.Router();
 
 // add jwtStrategy middleware
-flightRouter.get('/search', requireJwtAuth, asyncHandler(httpGetCountries))
+flightRouter.get('/search', requireJwtAuth, asyncHandler(httpGetSearchPageData))
 flightRouter.post('/search', requireJwtAuth, asyncHandler(httpGetFlights))
 flightRouter.post('/reserve', requireJwtAuth, asyncHandler(httpReserveFlight))
 flightRouter.get('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetFlight))

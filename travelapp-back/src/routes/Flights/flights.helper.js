@@ -1,5 +1,6 @@
 const fs = require('fs')
 const countries = require('../../public/json/countries-all.json')
+const airlines = require('../../public/json/airlines.json')
 const { convertTime12to24 } = require('../../services/convertTime');
 
 function getFlightsReqDataHelper(req) {
@@ -174,6 +175,12 @@ function getCountries() {
     return data;
 }
 
+function getAirlines() {
+    let data = []
+    airlines.forEach(airline => data.push(airline.name))
+    return data;
+}
+
 module.exports = {
     getFlightsDataSortHelper,
     getFlightsReqDataHelper,
@@ -182,5 +189,6 @@ module.exports = {
     getFlightsTimeFilterHelper,
     reserveFlightHelper,
     findCancelRate,
-    getCountries
+    getCountries,
+    getAirlines
 }
