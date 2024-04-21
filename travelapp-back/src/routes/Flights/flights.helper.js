@@ -15,6 +15,7 @@ function getFlightsReqDataHelper(req) {
 
     // Query Param
     const sort = req.query.sort
+    const sortBy = req.query.sortBy
     const airline = req.query.airline
     const time_start = req.query.time_start
     const time_end = req.query.time_end
@@ -25,13 +26,14 @@ function getFlightsReqDataHelper(req) {
     delete req.query.skip
     delete req.query.limit
     delete req.query.sort
+    delete req.query.sortBy
     delete req.query.airline
     delete req.query.time_start
     delete req.query.time_end
     delete req.query.min_price
     delete req.query.max_price
 
-    return { source, destination, date, num_of_seats, class_of_seats, sort, two_way, date_end, airline, time_start, time_end, min_price, max_price }
+    return { source, destination, date, num_of_seats, class_of_seats, sort, sortBy, two_way, date_end, airline, time_start, time_end, min_price, max_price }
 }
 
 // function getFlightsReqDataHelper(req) {
@@ -87,6 +89,7 @@ function getFlightsTimeFilterHelper(date, time_start, time_end, data) {
     // Finding flights based on time
     let temp = []
     data.forEach(flight => {
+        const mainDate = createDateTimeObject(date, flight.departure_date.time)
         const flight_date = new Date(flight.departure_date.date)
         flight_date.setTime(flight_date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
         const time = convertTime12to24(flight.departure_date.time)
@@ -115,6 +118,7 @@ function getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline =
         const date = createDateTimeObject(flight.departure_date.date, flight.departure_date.time)
         if (flight && getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
             flight.overall_price = flight.classes[classIndex].price
+            flight.date = date
             data.push(flight)
             if (airline && flight.airline.name != airline) data.pop();
         }
@@ -127,9 +131,11 @@ function getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIn
     flights.forEach(flight => {
         flights_back.forEach(flight_back => {
             let temp = { flight, flight_back }
-            if (getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && getFlightsSeatsCalculateHelper(flight_back, num_of_seats, classIndex)) {
+            const date = createDateTimeObject(flight.departure_date.date, flight.departure_date.time)
+            if (getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && getFlightsSeatsCalculateHelper(flight_back, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
                 temp.flight_back.overall_price = flight_back.classes[classIndex].price
                 temp.flight.overall_price = flight.classes[classIndex].price
+                temp.flight.date = date
                 temp.overall_price = (temp.flight_back.overall_price + temp.flight.overall_price).toFixed(2)
                 data.push(temp)
                 if (airline && (flight.airline.name != airline && flight_back.airline.name != airline)) data.pop()
@@ -139,8 +145,15 @@ function getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIn
     return data
 }
 
-function getFlightsDataSortHelper(sort = null, data) {
-    if (sort) data.sort((a, b) => a.overall_price - b.overall_price)
+function getFlightsPriceSortHelper(sort = null, data) {
+    data.sort((a, b) => a.overall_price - b.overall_price)
+    if (sort == 'desc') {
+        data.reverse();
+    }
+}
+
+function getFlightsDateSortHelper(sort = null, data) {
+    data.sort((a, b) => a.date - b.date)
     if (sort == 'desc') {
         data.reverse();
     }
@@ -195,7 +208,8 @@ function getAirlines() {
 }
 
 module.exports = {
-    getFlightsDataSortHelper,
+    getFlightsPriceSortHelper,
+    getFlightsDateSortHelper,
     getFlightsReqDataHelper,
     getFlightsOneWayDataHelper,
     getFlightsTwoWayDataHelper,

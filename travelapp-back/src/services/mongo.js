@@ -12,9 +12,8 @@ async function mongoDisconnect() {
 
 async function dropDatabase() {
     const collections = mongoose.connection.collections;
-
     await Promise.all(Object.values(collections).map((collection) =>
-        collection.deleteMany({}) // an empty mongodb selector object ({}) must be passed as the filter argument
+        collection.deleteMany({})
     ));
 }
 
