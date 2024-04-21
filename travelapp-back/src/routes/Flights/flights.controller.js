@@ -6,7 +6,7 @@ const { validationErrors } = require('../../middlewares/validationErrors');
 const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
 const { validateReserveFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsDataSortHelper, getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries } = require('./flights.helper')
+const { getFlightsDataSortHelper, getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines } = require('./flights.helper')
 
 // Done
 // async function httpGetFlights(req, res) {
@@ -216,9 +216,10 @@ async function httpGetReservation(req, res) {
     })
 }
 
-function httpGetCountries(req, res) {
-    const countries = getCountries()
-    return res.status(200).json({ message: 'Countries Retreived Successfully', countries })
+function httpGetSearchPageData(req, res) {
+    const countries = getCountries();
+    const airlines = getAirlines();
+    return res.status(200).json({ message: 'Data Retreived Successfully', countries, airlines })
 }
 
 module.exports = {
@@ -228,5 +229,5 @@ module.exports = {
     httpGetReservation,
     httpConfirmReservation,
     httpCancelReservation,
-    httpGetCountries
+    httpGetSearchPageData
 }
