@@ -6,7 +6,7 @@ const { validationErrors } = require('../../middlewares/validationErrors');
 const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
 const { validateReserveFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsDataSortHelper, getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines } = require('./flights.helper')
+const { getFlightsDataSortHelper, getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper } = require('./flights.helper')
 
 // Done
 // async function httpGetFlights(req, res) {
@@ -37,13 +37,20 @@ const { getFlightsDataSortHelper, getFlightsReqDataHelper, getFlightsOneWayDataH
 //     return res.status(200).json({ data: serializedData(data, flightData) })
 // }
 
+// Done
+function httpGetSearchPageData(req, res) {
+    const countries = getCountries();
+    const airlines = getAirlines();
+    return res.status(200).json({ message: 'Data Retreived Successfully', countries, airlines })
+}
+
 async function httpGetFlights(req, res) {
     const { error } = await validateGetFlights({ source: req.body.source, destination: req.body.destination, date: req.body.date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats })
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     const { skip, limit } = getPagination(req.query)
     const filter = { 'departure_date.date': req.body.date, 'source.country': req.body.source, 'destination.country': req.body.destination }
-    const { source, destination, date, num_of_seats, class_of_seats, sort, two_way, date_end, airline, time_start, time_end } = getFlightsReqDataHelper(req)
+    const { source, destination, date, num_of_seats, class_of_seats, sort, two_way, date_end, airline, time_start, time_end, min_price, max_price } = getFlightsReqDataHelper(req)
 
     const classes = ['A', 'B', 'C']
     const classIndex = classes.indexOf(class_of_seats)
@@ -51,6 +58,7 @@ async function httpGetFlights(req, res) {
     const flights = await getFlights(skip, limit, filter);
     let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
     if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
+    if (min_price && max_price) data = getFlightsPriceFilterHelper(min_price, max_price, data)
 
     if (two_way) {
         const filter_back = { 'departure_date.date': date_end, 'source.country': destination, 'destination.country': source }
@@ -216,11 +224,6 @@ async function httpGetReservation(req, res) {
     })
 }
 
-function httpGetSearchPageData(req, res) {
-    const countries = getCountries();
-    const airlines = getAirlines();
-    return res.status(200).json({ message: 'Data Retreived Successfully', countries, airlines })
-}
 
 module.exports = {
     httpGetFlights,

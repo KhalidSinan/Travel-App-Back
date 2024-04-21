@@ -18,6 +18,8 @@ function getFlightsReqDataHelper(req) {
     const airline = req.query.airline
     const time_start = req.query.time_start
     const time_end = req.query.time_end
+    const min_price = req.query.min_price
+    const max_price = req.query.max_price
 
     // To Stop Duplicate
     delete req.query.skip
@@ -26,8 +28,10 @@ function getFlightsReqDataHelper(req) {
     delete req.query.airline
     delete req.query.time_start
     delete req.query.time_end
+    delete req.query.min_price
+    delete req.query.max_price
 
-    return { source, destination, date, num_of_seats, class_of_seats, sort, two_way, date_end, airline, time_start, time_end }
+    return { source, destination, date, num_of_seats, class_of_seats, sort, two_way, date_end, airline, time_start, time_end, min_price, max_price }
 }
 
 // function getFlightsReqDataHelper(req) {
@@ -92,6 +96,15 @@ function getFlightsTimeFilterHelper(date, time_start, time_end, data) {
     return temp
 }
 
+function getFlightsPriceFilterHelper(min_price, max_price, data) {
+    // Finding flights based on price
+    let temp = []
+    data.forEach(flight => {
+        if (flight.overall_price <= max_price && flight.overall_price >= min_price) temp.push(flight)
+    })
+    return temp
+}
+
 function getFlightsSeatsCalculateHelper(flight, seats, classIndex) {
     return flight.classes[classIndex].available_seats >= seats
 }
@@ -103,7 +116,7 @@ function getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline =
         if (flight && getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
             flight.overall_price = flight.classes[classIndex].price
             data.push(flight)
-            if (airline && flight.airline.name != airline) data.pop()
+            if (airline && flight.airline.name != airline) data.pop();
         }
     })
     return data
@@ -190,5 +203,6 @@ module.exports = {
     reserveFlightHelper,
     findCancelRate,
     getCountries,
-    getAirlines
+    getAirlines,
+    getFlightsPriceFilterHelper
 }
