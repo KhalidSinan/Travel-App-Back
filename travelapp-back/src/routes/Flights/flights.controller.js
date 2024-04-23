@@ -69,7 +69,7 @@ async function httpGetFlights(req, res) {
         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
     }
     if (sortBy == 'price') getFlightsPriceSortHelper(sort, data)
-    else if (sortBy == 'time') getFlightsPriceSortHelper(sort, data)
+    else if (sortBy == 'time') getFlightsDateSortHelper(sort, data)
     return res.status(200).json({ data: serializedData(data, flightData) })
 }
 
