@@ -1,7 +1,9 @@
-const { convertToTimeFormat } = require("../../services/convertTime");
+const { convertToTimeFormat, createDateTimeObject, msToTime } = require("../../services/convertTime");
 
 function reservationData(reservation) {
     const flight = reservation.flights[0];
+    let remaining = createDateTimeObject(flight.departure_date.date, flight.departure_date.time) - (Date.now() + 3 * 60 * 60 * 1000)
+    const remaining_time = msToTime(remaining - 2 * 60 * 60 * 1000)
     const flight_back = reservation.flights[1];
     let reservation_type = 'One-Way'
     const data = {
@@ -19,7 +21,8 @@ function reservationData(reservation) {
         reservation_type: reservation_type,
         two_way: false,
         overall_price: reservation.overall_price,
-        // returned_fee: reservation.fee
+        remaining_time: remaining_time
+
     }
     if (flight_back) {
         data.flight_back = {

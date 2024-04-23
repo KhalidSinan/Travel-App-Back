@@ -24,4 +24,23 @@ function convertToTimeFormat(minutes) {
     return hours + ':' + newMinutes
 }
 
-module.exports = { convertTime12to24, convertToTimeFormat }
+function createDateTimeObject(date, time) {
+    const temp = new Date(date)
+    temp.setTime(temp.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
+    time = convertTime12to24(time)
+    temp.setUTCHours(time[0], time[1], time[2])
+    return temp;
+}
+
+function msToTime(remaining) {
+    let seconds = Math.floor(remaining / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
+    seconds %= 60;
+    minutes %= 60;
+    hours %= 24;
+    return { days, hours, minutes, seconds }
+}
+
+module.exports = { convertTime12to24, convertToTimeFormat, createDateTimeObject, msToTime }

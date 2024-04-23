@@ -1,7 +1,7 @@
 const fs = require('fs')
 const countries = require('../../public/json/countries-all.json')
 const airlines = require('../../public/json/airlines.json')
-const { convertTime12to24 } = require('../../services/convertTime');
+const { convertTime12to24, createDateTimeObject } = require('../../services/convertTime');
 
 function getFlightsReqDataHelper(req) {
     // Body
@@ -185,14 +185,6 @@ async function findCancelRate(reservation, person_price) {
     let rate = 0.2; // 0.2 will be back
     if (timeDifference < chance) rate = 0; // Nothing is back
     return person_price * rate
-}
-
-function createDateTimeObject(date, time) {
-    const temp = new Date(date)
-    temp.setTime(temp.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-    time = convertTime12to24(time)
-    temp.setUTCHours(time[0], time[1], time[2])
-    return temp;
 }
 
 function getCountries() {
