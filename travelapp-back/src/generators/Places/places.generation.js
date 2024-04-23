@@ -6,6 +6,9 @@ const numbers = require('../../public/json/phone_number.json')
 const stadiums = require('../../public/json/stadiums(final).json')
 const musuems = require('../../public/json/musuem-names.json')
 const poi = require('../../public/json/poi-names.json')
+const places = require('../../public/json/cinemas-parks.json')
+const attractions = require('../../public/json/attractions.json')
+const random = require('../../public/json/random.json')
 const placesMongo = require('../../models/places.mongo')
 
 function createRestaurants() {
@@ -35,8 +38,9 @@ function createRestaurants() {
 
 function getNames() {
     let data = []
-    data = Object.keys(musuems)
-    fs.writeFileSync('musuem-names.json', JSON.stringify(data))
+    data = places
+    console.log(data)
+    // fs.writeFileSync('musuem-names.json', JSON.stringify(data))
 }
 
 function createStadiums() {
@@ -125,22 +129,97 @@ function createAdventure() {
     return data;
 }
 
+function createCinemasParks() {
+    let data = []
+    let i = 0;
+    places.forEach(el => {
+        const address = {
+            country: el.address.country,
+            city: faker.location.city(),
+            address: faker.location.streetAddress()
+        }
+        const number = createPhoneNumber()
+        const temp = {
+            name: el.name,
+            phone_number: number,
+            category: el.category,
+            // Or Entertainment
+            address: address,
+            // work_time:  // Fix
+            description: faker.lorem.word(),
+        }
+        i++;
+        data.push(temp)
+    })
+    // fs.writeFileSync('cinemas-parks.json', JSON.stringify(data))
+    return data;
+}
+
+function createAttractions() {
+    let data = []
+    attractions.forEach(el => {
+        const address = {
+            country: el.address.country,
+            city: faker.location.city(),
+            address: faker.location.streetAddress()
+        }
+        const number = createPhoneNumber()
+        const temp = {
+            name: el.name,
+            phone_number: number,
+            category: 'Attraction',
+            address: address,
+            description: faker.lorem.word(),
+        }
+        data.push(temp)
+    })
+    // fs.writeFileSync('attractions.json', JSON.stringify(data))
+    return data;
+}
+
+function createRandom() {
+    let data = []
+    let categories = ['Park', 'Attraction', 'Adventure', 'Arts & History']
+    random.forEach(el => {
+        const address = {
+            country: faker.location.country(),
+            city: faker.location.city(),
+            address: faker.location.streetAddress()
+        }
+        const number = createPhoneNumber()
+        const temp = {
+            name: el.name,
+            phone_number: number,
+            category: categories[Math.floor(Math.random() * categories.length)],
+            address: address,
+            description: faker.lorem.word(),
+        }
+        data.push(temp)
+    })
+    // fs.writeFileSync('random.json', JSON.stringify(data))
+    return data;
+}
+
 async function createPlaces() {
     let data = [];
     // Add Restaurants (Food)
     data = data.concat(createRestaurants());
     // Create Stadiums (Sports)
     data = data.concat(createStadiums());
-    // Create Musuems (Arts & HiStory)
+    // Create Musuems (Arts & History)
     data = data.concat(createMusuems());
     // Create Adventure (Adventure)
     data = data.concat(createAdventure());
+    // Create Cinemas And Parks
+    data = data.concat(createCinemasParks());
+    // Create Attractions
+    data = data.concat(createAttractions());
+    // Create Remaining Random Data
+    data = data.concat(createRandom());
 
     await placesMongo.insertMany(data);
 }
 
-// getNames()
-// createRestaurants();
-// createStadiums();
+// createCinemasParks()
 
 module.exports = createPlaces;

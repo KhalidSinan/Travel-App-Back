@@ -1,4 +1,5 @@
 const { mongoConnect, mongoDisconnect, dropDatabase } = require('../services/mongo');
+const createHotels = require('./Hotel/hotels.generation');
 const createPlaces = require('./Places/places.generation');
 const createTrips = require('./Trips/trips.generation');
 
@@ -15,7 +16,7 @@ async function seedDB() {
     // Trips
     await createTrips(count);
     // Hotels
-    // await createHotels()
+    await createHotels()
     // Places
     await createPlaces()
 
