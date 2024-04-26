@@ -8,8 +8,8 @@ async function deleteBlacklist(user_id) {
     return await Blacklist.deleteMany({ user_id })
 }
 
-async function getBlacklist(user_id) {
-    return await Blacklist.findOne({ user_id })
+async function getBlacklist(user_id, token) {
+    return await Blacklist.findOne({ user_id, token_blacklisted: token })
 }
 
 module.exports = {

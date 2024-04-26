@@ -47,8 +47,8 @@ function httpGetSearchPageData(req, res) {
 async function httpGetFlights(req, res) {
     const { error } = await validateGetFlights({ source: req.body.source, destination: req.body.destination, date: req.body.date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats })
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
-
     const { skip, limit } = getPagination(req.query)
+
     const filter = { 'departure_date.date': req.body.date, 'source.country': req.body.source, 'destination.country': req.body.destination }
     const { source, destination, date, num_of_seats, class_of_seats, sort, sortBy, two_way, date_end, airline, time_start, time_end, min_price, max_price } = getFlightsReqDataHelper(req)
 
