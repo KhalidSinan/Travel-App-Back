@@ -45,8 +45,12 @@ function flightData(flight) {
     return {
         id: flight._id,
         airline: flight.airline,
-        source: flight.source.city,
-        destination: flight.destination.city,
+        source: {
+            city: flight.source.city
+        },
+        destination: {
+            city: flight.destination.city
+        },
         departure_date: flight.departure_date,
         arrival_date: flight.arrival_date.date,
         duration: convertToTimeFormat(flight.duration),
