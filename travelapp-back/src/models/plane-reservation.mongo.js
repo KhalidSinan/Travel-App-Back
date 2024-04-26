@@ -58,7 +58,6 @@ const planeReservationSchema = new mongoose.Schema({
         }],
         overall_price: {
             type: Number,
-            required: true
         },
     },
     overall_price: {
