@@ -1,6 +1,6 @@
 [
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 96.99,
     "bed_options": "1 Queen Bed",
@@ -9,7 +9,7 @@
     "tags": ["Enhanced Views", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 King Bed",
@@ -18,7 +18,7 @@
     "tags": ["Privacy", "Seperate Living Areas", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 150.99,
     "bed_options": "2 Double Beds",
@@ -27,7 +27,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 110.99,
     "bed_options": "1 King Bed",
@@ -36,7 +36,7 @@
     "tags": ["Upgraded Furnishings", "WI-FI", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 243.99,
     "bed_options": "1 Queen Bed",
@@ -45,7 +45,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 229.99,
     "bed_options": "2 Queen Beds",
@@ -54,7 +54,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 87.99,
     "bed_options": "1 King Bed",
@@ -63,7 +63,7 @@
     "tags": ["WI-FI", "Enhanced Views", "Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "1 King Bed",
@@ -72,7 +72,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 248.99,
     "bed_options": "2 Double Beds",
@@ -81,7 +81,7 @@
     "tags": ["More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 234.99,
     "bed_options": "1 King Bed",
@@ -90,7 +90,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 146.99,
     "bed_options": "1 King Bed",
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 121.99,
     "bed_options": "1 King Bed",
@@ -112,7 +112,7 @@
     "tags": ["Seperate Living Areas", "Private Balcony"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 128.99,
     "bed_options": "2 Double Beds",
@@ -121,7 +121,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 244.99,
     "bed_options": "1 King Bed",
@@ -130,7 +130,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 76.99,
     "bed_options": "1 Queen Bed",
@@ -139,7 +139,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "2 Double Beds",
@@ -148,7 +148,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 167.99,
     "bed_options": "1 King Bed",
@@ -157,7 +157,7 @@
     "tags": ["Better Technology", "Exclusive Access", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 150.99,
     "bed_options": "2 Queen Beds",
@@ -166,7 +166,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 238.99,
     "bed_options": "2 Queen Beds",
@@ -175,7 +175,7 @@
     "tags": ["Upgraded Furnishings", "Aesthetic Appeal", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 256.99,
     "bed_options": "2 Queen Beds",
@@ -184,7 +184,7 @@
     "tags": ["Jacuzzi", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 64.99,
     "bed_options": "1 Queen Bed",
@@ -193,7 +193,7 @@
     "tags": ["WI-FI", "WI-FI", "More Space"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 122.99,
     "bed_options": "1 King Bed",
@@ -202,7 +202,7 @@
     "tags": ["Enhanced Views", "Aesthetic Appeal", "Privacy"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 142.99,
     "bed_options": "2 Double Beds",
@@ -211,7 +211,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "2 Queen Beds",
@@ -220,7 +220,7 @@
     "tags": ["WI-FI", "Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 129.99,
     "bed_options": "2 Queen Beds",
@@ -229,7 +229,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 144.99,
     "bed_options": "1 Queen Bed",
@@ -238,7 +238,7 @@
     "tags": ["Better Technology", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 248.99,
     "bed_options": "2 Queen Beds",
@@ -247,7 +247,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 229.99,
     "bed_options": "2 Double Beds",
@@ -256,7 +256,7 @@
     "tags": ["Special Packages and Offers", "Private Balcony", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "2 Queen Beds",
@@ -265,7 +265,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 103.99,
     "bed_options": "2 Queen Beds",
@@ -274,7 +274,7 @@
     "tags": ["Privacy", "More Space"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 61.99,
     "bed_options": "2 Double Beds",
@@ -283,7 +283,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 248.99,
     "bed_options": "2 Double Beds",
@@ -292,7 +292,7 @@
     "tags": ["Seperate Living Areas", "Privacy"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 239.99,
     "bed_options": "2 Double Beds",
@@ -301,7 +301,7 @@
     "tags": ["Special Packages and Offers", "Enhanced Views", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 132.99,
     "bed_options": "2 Double Beds",
@@ -310,7 +310,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 144.99,
     "bed_options": "2 Double Beds",
@@ -319,7 +319,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "2 Queen Beds",
@@ -328,7 +328,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "1 King Bed",
@@ -337,7 +337,7 @@
     "tags": ["Jacuzzi", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 83.99,
     "bed_options": "1 Queen Bed",
@@ -346,7 +346,7 @@
     "tags": ["Private Balcony", "Better Technology", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 241.99,
     "bed_options": "1 King Bed",
@@ -355,7 +355,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 242.99,
     "bed_options": "1 Queen Bed",
@@ -364,7 +364,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 144.99,
     "bed_options": "1 King Bed",
@@ -373,7 +373,7 @@
     "tags": ["Privacy", "Privacy", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 168.99,
     "bed_options": "1 Queen Bed",
@@ -382,7 +382,7 @@
     "tags": ["Complimentary Services", "Private Balcony", "Privacy"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 110.99,
     "bed_options": "2 Double Beds",
@@ -391,7 +391,7 @@
     "tags": ["Upgraded Furnishings", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 141.99,
     "bed_options": "1 Queen Bed",
@@ -400,7 +400,7 @@
     "tags": ["Exclusive Access", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 131.99,
     "bed_options": "2 Queen Beds",
@@ -409,7 +409,7 @@
     "tags": ["Additional Amenities", "More Space"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "1 Queen Bed",
@@ -418,7 +418,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "2 Double Beds",
@@ -427,7 +427,7 @@
     "tags": ["Private Balcony", "Better Technology", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 154.99,
     "bed_options": "2 Queen Beds",
@@ -436,7 +436,7 @@
     "tags": ["WI-FI", "Seperate Living Areas", "Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "1 King Bed",
@@ -445,7 +445,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 246.99,
     "bed_options": "1 Queen Bed",
@@ -454,7 +454,7 @@
     "tags": ["Better Technology", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 66.99,
     "bed_options": "1 Queen Bed",
@@ -463,7 +463,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 King Bed",
@@ -472,7 +472,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 64.99,
     "bed_options": "1 King Bed",
@@ -481,7 +481,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 156.99,
     "bed_options": "1 Queen Bed",
@@ -490,7 +490,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 133.99,
     "bed_options": "1 Queen Bed",
@@ -499,7 +499,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 257.99,
     "bed_options": "1 King Bed",
@@ -508,7 +508,7 @@
     "tags": ["Better Technology", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 103.99,
     "bed_options": "2 Double Beds",
@@ -517,7 +517,7 @@
     "tags": ["Privacy", "Private Balcony", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "2 Queen Beds",
@@ -526,7 +526,7 @@
     "tags": ["Enhanced Views", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "2 Queen Beds",
@@ -535,7 +535,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "1 King Bed",
@@ -544,7 +544,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "2 Double Beds",
@@ -553,7 +553,7 @@
     "tags": ["Additional Amenities", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 133.99,
     "bed_options": "2 Queen Beds",
@@ -562,7 +562,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 242.99,
     "bed_options": "2 Double Beds",
@@ -571,7 +571,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 103.99,
     "bed_options": "1 King Bed",
@@ -580,7 +580,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 257.99,
     "bed_options": "2 Double Beds",
@@ -589,7 +589,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "1 King Bed",
@@ -602,7 +602,7 @@
     ]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 137.99,
     "bed_options": "2 Queen Beds",
@@ -611,7 +611,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 128.99,
     "bed_options": "2 Double Beds",
@@ -620,7 +620,7 @@
     "tags": ["More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 65.99,
     "bed_options": "2 Double Beds",
@@ -629,7 +629,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 163.99,
     "bed_options": "2 Double Beds",
@@ -638,7 +638,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "2 Queen Beds",
@@ -647,7 +647,7 @@
     "tags": ["Privacy", "Special Packages and Offers"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 142.99,
     "bed_options": "1 Queen Bed",
@@ -656,7 +656,7 @@
     "tags": ["Private Balcony", "Special Packages and Offers", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 256.99,
     "bed_options": "1 King Bed",
@@ -665,7 +665,7 @@
     "tags": ["Special Packages and Offers", "Private Balcony"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "1 King Bed",
@@ -674,7 +674,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 103.99,
     "bed_options": "1 Queen Bed",
@@ -683,7 +683,7 @@
     "tags": ["Upgraded Furnishings", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 243.99,
     "bed_options": "1 King Bed",
@@ -692,7 +692,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 62.99,
     "bed_options": "1 King Bed",
@@ -701,7 +701,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 107.99,
     "bed_options": "2 Queen Beds",
@@ -710,7 +710,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 138.99,
     "bed_options": "1 Queen Bed",
@@ -723,7 +723,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "2 Double Beds",
@@ -732,7 +732,7 @@
     "tags": ["Better Technology", "Privacy", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 71.99,
     "bed_options": "2 Double Beds",
@@ -741,7 +741,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "1 King Bed",
@@ -750,7 +750,7 @@
     "tags": ["WI-FI", "Special Packages and Offers", "Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 257.99,
     "bed_options": "2 Queen Beds",
@@ -759,7 +759,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 151.99,
     "bed_options": "2 Double Beds",
@@ -768,7 +768,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 149.99,
     "bed_options": "1 King Bed",
@@ -777,7 +777,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 258.99,
     "bed_options": "1 King Bed",
@@ -786,7 +786,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 129.99,
     "bed_options": "1 King Bed",
@@ -795,7 +795,7 @@
     "tags": ["Complimentary Services", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "2 Queen Beds",
@@ -804,7 +804,7 @@
     "tags": ["More Space", "Private Balcony", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "1 King Bed",
@@ -813,7 +813,7 @@
     "tags": ["WI-FI", "Enhanced Views", "Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 235.99,
     "bed_options": "1 King Bed",
@@ -822,7 +822,7 @@
     "tags": ["Seperate Living Areas", "Special Packages and Offers"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 260.99,
     "bed_options": "1 King Bed",
@@ -831,7 +831,7 @@
     "tags": ["Jacuzzi", "Privacy", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 151.99,
     "bed_options": "2 Queen Beds",
@@ -840,7 +840,7 @@
     "tags": ["Better Technology", "Upgraded Furnishings", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 148.99,
     "bed_options": "1 King Bed",
@@ -849,7 +849,7 @@
     "tags": ["Exclusive Access", "Upgraded Furnishings", "More Space"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 King Bed",
@@ -858,7 +858,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 105.99,
     "bed_options": "1 King Bed",
@@ -867,7 +867,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "2 Double Beds",
@@ -876,7 +876,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 130.99,
     "bed_options": "1 King Bed",
@@ -885,7 +885,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 259.99,
     "bed_options": "1 King Bed",
@@ -894,7 +894,7 @@
     "tags": ["Upgraded Furnishings", "Private Balcony"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 135.99,
     "bed_options": "2 Queen Beds",
@@ -903,7 +903,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 138.99,
     "bed_options": "1 King Bed",
@@ -912,7 +912,7 @@
     "tags": ["Aesthetic Appeal", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 264.99,
     "bed_options": "1 Queen Bed",
@@ -921,7 +921,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 260.99,
     "bed_options": "2 Queen Beds",
@@ -930,7 +930,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 139.99,
     "bed_options": "2 Queen Beds",
@@ -939,7 +939,7 @@
     "tags": ["Complimentary Services", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 65.99,
     "bed_options": "2 Queen Beds",
@@ -948,7 +948,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 124.99,
     "bed_options": "1 Queen Bed",
@@ -957,7 +957,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 131.99,
     "bed_options": "1 King Bed",
@@ -966,7 +966,7 @@
     "tags": ["Jacuzzi", "Seperate Living Areas", "Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "1 Queen Bed",
@@ -975,7 +975,7 @@
     "tags": ["Seperate Living Areas", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 124.99,
     "bed_options": "1 King Bed",
@@ -984,7 +984,7 @@
     "tags": ["Private Balcony", "WI-FI", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "2 Double Beds",
@@ -993,7 +993,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 154.99,
     "bed_options": "2 Queen Beds",
@@ -1002,7 +1002,7 @@
     "tags": ["Upgraded Furnishings", "WI-FI", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "1 King Bed",
@@ -1011,7 +1011,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "2 Queen Beds",
@@ -1020,7 +1020,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 124.99,
     "bed_options": "1 King Bed",
@@ -1029,7 +1029,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 68.99,
     "bed_options": "2 Double Beds",
@@ -1038,7 +1038,7 @@
     "tags": ["Private Balcony", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "1 Queen Bed",
@@ -1047,7 +1047,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 108.99,
     "bed_options": "2 Double Beds",
@@ -1056,7 +1056,7 @@
     "tags": ["WI-FI", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "1 King Bed",
@@ -1065,7 +1065,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 260.99,
     "bed_options": "1 King Bed",
@@ -1074,7 +1074,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 133.99,
     "bed_options": "1 Queen Bed",
@@ -1083,7 +1083,7 @@
     "tags": ["Special Packages and Offers", "More Space"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 71.99,
     "bed_options": "1 Queen Bed",
@@ -1092,7 +1092,7 @@
     "tags": ["Additional Amenities", "Complimentary Services", "More Space"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 97.99,
     "bed_options": "1 Queen Bed",
@@ -1101,7 +1101,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "2 Queen Beds",
@@ -1110,7 +1110,7 @@
     "tags": ["Special Packages and Offers", "WI-FI", "Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 67.99,
     "bed_options": "1 Queen Bed",
@@ -1119,7 +1119,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 138.99,
     "bed_options": "1 Queen Bed",
@@ -1128,7 +1128,7 @@
     "tags": ["Upgraded Furnishings", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 156.99,
     "bed_options": "1 Queen Bed",
@@ -1137,7 +1137,7 @@
     "tags": ["More Space", "Enhanced Views", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "1 Queen Bed",
@@ -1146,7 +1146,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 131.99,
     "bed_options": "2 Double Beds",
@@ -1155,7 +1155,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 81.99,
     "bed_options": "1 King Bed",
@@ -1164,7 +1164,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 59.99,
     "bed_options": "2 Queen Beds",
@@ -1173,7 +1173,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "1 King Bed",
@@ -1182,7 +1182,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "2 Double Beds",
@@ -1191,7 +1191,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "2 Double Beds",
@@ -1200,7 +1200,7 @@
     "tags": ["Private Balcony", "Privacy"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 King Bed",
@@ -1209,7 +1209,7 @@
     "tags": ["Seperate Living Areas", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 144.99,
     "bed_options": "2 Queen Beds",
@@ -1218,7 +1218,7 @@
     "tags": ["More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 62.99,
     "bed_options": "1 King Bed",
@@ -1227,7 +1227,7 @@
     "tags": ["Private Balcony", "Upgraded Furnishings", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "2 Queen Beds",
@@ -1236,7 +1236,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 68.99,
     "bed_options": "1 King Bed",
@@ -1245,7 +1245,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 147.99,
     "bed_options": "1 Queen Bed",
@@ -1254,7 +1254,7 @@
     "tags": ["Additional Amenities", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 131.99,
     "bed_options": "2 Queen Beds",
@@ -1263,7 +1263,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 Queen Bed",
@@ -1272,7 +1272,7 @@
     "tags": ["WI-FI", "Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "1 King Bed",
@@ -1281,7 +1281,7 @@
     "tags": ["Aesthetic Appeal", "Enhanced Views", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "2 Queen Beds",
@@ -1290,7 +1290,7 @@
     "tags": ["Exclusive Access", "Additional Amenities", "More Space"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "2 Double Beds",
@@ -1299,7 +1299,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 257.99,
     "bed_options": "2 Queen Beds",
@@ -1308,7 +1308,7 @@
     "tags": ["Aesthetic Appeal", "More Space", "More Space"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 97.99,
     "bed_options": "1 King Bed",
@@ -1317,7 +1317,7 @@
     "tags": ["WI-FI", "More Space", "WI-FI"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "1 Queen Bed",
@@ -1326,7 +1326,7 @@
     "tags": ["Exclusive Access", "Upgraded Furnishings", "WI-FI"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 167.99,
     "bed_options": "1 King Bed",
@@ -1335,7 +1335,7 @@
     "tags": ["Jacuzzi", "Enhanced Views", "Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "1 King Bed",
@@ -1344,7 +1344,7 @@
     "tags": ["Additional Amenities", "More Space", "More Space"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 102.99,
     "bed_options": "1 Queen Bed",
@@ -1353,7 +1353,7 @@
     "tags": ["Private Balcony", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 89.99,
     "bed_options": "2 Queen Beds",
@@ -1362,7 +1362,7 @@
     "tags": ["Private Balcony", "Complimentary Services"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 112.99,
     "bed_options": "2 Double Beds",
@@ -1371,7 +1371,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 258.99,
     "bed_options": "1 Queen Bed",
@@ -1380,7 +1380,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 142.99,
     "bed_options": "1 King Bed",
@@ -1389,7 +1389,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "1 King Bed",
@@ -1398,7 +1398,7 @@
     "tags": ["More Space", "Privacy", "Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "2 Queen Beds",
@@ -1407,7 +1407,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 163.99,
     "bed_options": "1 King Bed",
@@ -1416,7 +1416,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 151.99,
     "bed_options": "2 Queen Beds",
@@ -1425,7 +1425,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 77.99,
     "bed_options": "1 Queen Bed",
@@ -1434,7 +1434,7 @@
     "tags": ["Complimentary Services", "Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "1 King Bed",
@@ -1443,7 +1443,7 @@
     "tags": ["Jacuzzi", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 129.99,
     "bed_options": "1 Queen Bed",
@@ -1452,7 +1452,7 @@
     "tags": ["WI-FI", "More Space", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 87.99,
     "bed_options": "1 Queen Bed",
@@ -1461,7 +1461,7 @@
     "tags": ["Seperate Living Areas", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Double Beds",
@@ -1470,7 +1470,7 @@
     "tags": ["Aesthetic Appeal", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 165.99,
     "bed_options": "1 Queen Bed",
@@ -1479,7 +1479,7 @@
     "tags": ["Upgraded Furnishings", "Aesthetic Appeal", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "2 Queen Beds",
@@ -1488,7 +1488,7 @@
     "tags": ["Special Packages and Offers", "Jacuzzi", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "2 Queen Beds",
@@ -1497,7 +1497,7 @@
     "tags": ["More Space", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 134.99,
     "bed_options": "1 Queen Bed",
@@ -1506,7 +1506,7 @@
     "tags": ["Aesthetic Appeal", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 147.99,
     "bed_options": "1 King Bed",
@@ -1515,7 +1515,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "2 Double Beds",
@@ -1524,7 +1524,7 @@
     "tags": ["Complimentary Services", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 241.99,
     "bed_options": "2 Double Beds",
@@ -1533,7 +1533,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 235.99,
     "bed_options": "1 Queen Bed",
@@ -1542,7 +1542,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "2 Double Beds",
@@ -1551,7 +1551,7 @@
     "tags": ["Enhanced Views", "Aesthetic Appeal", "More Space"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 106.99,
     "bed_options": "1 King Bed",
@@ -1560,7 +1560,7 @@
     "tags": ["Seperate Living Areas", "More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 65.99,
     "bed_options": "2 Double Beds",
@@ -1569,7 +1569,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "2 Double Beds",
@@ -1578,7 +1578,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "1 King Bed",
@@ -1587,7 +1587,7 @@
     "tags": ["Jacuzzi", "More Space"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 248.99,
     "bed_options": "1 King Bed",
@@ -1596,7 +1596,7 @@
     "tags": ["Privacy", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "2 Queen Beds",
@@ -1605,7 +1605,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 133.99,
     "bed_options": "2 Queen Beds",
@@ -1614,7 +1614,7 @@
     "tags": ["More Space", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 261.99,
     "bed_options": "2 Double Beds",
@@ -1623,7 +1623,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "2 Double Beds",
@@ -1632,7 +1632,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 121.99,
     "bed_options": "1 Queen Bed",
@@ -1641,7 +1641,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "1 King Bed",
@@ -1650,7 +1650,7 @@
     "tags": ["Upgraded Furnishings", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 127.99,
     "bed_options": "2 Double Beds",
@@ -1659,7 +1659,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 96.99,
     "bed_options": "2 Double Beds",
@@ -1668,7 +1668,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 63.99,
     "bed_options": "1 Queen Bed",
@@ -1677,7 +1677,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 124.99,
     "bed_options": "1 Queen Bed",
@@ -1690,7 +1690,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "1 Queen Bed",
@@ -1699,7 +1699,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "1 Queen Bed",
@@ -1708,7 +1708,7 @@
     "tags": ["Exclusive Access", "Exclusive Access", "Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 127.99,
     "bed_options": "2 Double Beds",
@@ -1717,7 +1717,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "1 King Bed",
@@ -1726,7 +1726,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "1 Queen Bed",
@@ -1735,7 +1735,7 @@
     "tags": ["Jacuzzi", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 81.99,
     "bed_options": "1 Queen Bed",
@@ -1744,7 +1744,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 93.99,
     "bed_options": "2 Queen Beds",
@@ -1753,7 +1753,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 259.99,
     "bed_options": "2 Queen Beds",
@@ -1762,7 +1762,7 @@
     "tags": ["Private Balcony", "Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 131.99,
     "bed_options": "1 King Bed",
@@ -1771,7 +1771,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "2 Queen Beds",
@@ -1780,7 +1780,7 @@
     "tags": ["Aesthetic Appeal", "Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 91.99,
     "bed_options": "2 Queen Beds",
@@ -1789,7 +1789,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "1 Queen Bed",
@@ -1798,7 +1798,7 @@
     "tags": ["Jacuzzi", "Upgraded Furnishings", "More Space"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 77.99,
     "bed_options": "2 Queen Beds",
@@ -1807,7 +1807,7 @@
     "tags": ["Privacy", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 110.99,
     "bed_options": "1 King Bed",
@@ -1816,7 +1816,7 @@
     "tags": ["Aesthetic Appeal", "Aesthetic Appeal", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 130.99,
     "bed_options": "2 Double Beds",
@@ -1825,7 +1825,7 @@
     "tags": ["More Space", "Better Technology", "More Space"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "2 Queen Beds",
@@ -1834,7 +1834,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 86.99,
     "bed_options": "2 Double Beds",
@@ -1843,7 +1843,7 @@
     "tags": ["More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 102.99,
     "bed_options": "2 Double Beds",
@@ -1852,7 +1852,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "1 King Bed",
@@ -1861,7 +1861,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Queen Beds",
@@ -1870,7 +1870,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 139.99,
     "bed_options": "2 Queen Beds",
@@ -1879,7 +1879,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 134.99,
     "bed_options": "1 Queen Bed",
@@ -1888,7 +1888,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "2 Queen Beds",
@@ -1897,7 +1897,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "1 King Bed",
@@ -1906,7 +1906,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 77.99,
     "bed_options": "2 Queen Beds",
@@ -1915,7 +1915,7 @@
     "tags": ["Privacy", "Better Technology", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 241.99,
     "bed_options": "1 Queen Bed",
@@ -1924,7 +1924,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "1 King Bed",
@@ -1933,7 +1933,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "2 Queen Beds",
@@ -1942,7 +1942,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "1 King Bed",
@@ -1951,7 +1951,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "2 Queen Beds",
@@ -1960,7 +1960,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "1 King Bed",
@@ -1969,7 +1969,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 269.99,
     "bed_options": "1 Queen Bed",
@@ -1978,7 +1978,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 235.99,
     "bed_options": "1 King Bed",
@@ -1987,7 +1987,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 100.99,
     "bed_options": "2 Double Beds",
@@ -1996,7 +1996,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "1 King Bed",
@@ -2005,7 +2005,7 @@
     "tags": ["Exclusive Access", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 83.99,
     "bed_options": "2 Double Beds",
@@ -2018,7 +2018,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 Queen Bed",
@@ -2027,7 +2027,7 @@
     "tags": ["Enhanced Views", "Better Technology", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 129.99,
     "bed_options": "1 Queen Bed",
@@ -2036,7 +2036,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 147.99,
     "bed_options": "1 Queen Bed",
@@ -2045,7 +2045,7 @@
     "tags": ["Private Balcony", "WI-FI"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 146.99,
     "bed_options": "2 Double Beds",
@@ -2054,7 +2054,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 107.99,
     "bed_options": "2 Double Beds",
@@ -2063,7 +2063,7 @@
     "tags": ["Privacy", "Complimentary Services", "Better Technology"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 King Bed",
@@ -2072,7 +2072,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "1 King Bed",
@@ -2081,7 +2081,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Queen Beds",
@@ -2090,7 +2090,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 246.99,
     "bed_options": "1 Queen Bed",
@@ -2099,7 +2099,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 233.99,
     "bed_options": "1 King Bed",
@@ -2108,7 +2108,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 107.99,
     "bed_options": "1 Queen Bed",
@@ -2117,7 +2117,7 @@
     "tags": ["Private Balcony", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 96.99,
     "bed_options": "2 Queen Beds",
@@ -2126,7 +2126,7 @@
     "tags": ["WI-FI", "Aesthetic Appeal", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 115.99,
     "bed_options": "1 Queen Bed",
@@ -2135,7 +2135,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 121.99,
     "bed_options": "2 Double Beds",
@@ -2144,7 +2144,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 147.99,
     "bed_options": "1 Queen Bed",
@@ -2153,7 +2153,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 153.99,
     "bed_options": "2 Queen Beds",
@@ -2162,7 +2162,7 @@
     "tags": ["Better Technology", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 131.99,
     "bed_options": "2 Queen Beds",
@@ -2171,7 +2171,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "1 Queen Bed",
@@ -2180,7 +2180,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 139.99,
     "bed_options": "1 Queen Bed",
@@ -2189,7 +2189,7 @@
     "tags": ["Complimentary Services", "Privacy", "WI-FI"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "2 Double Beds",
@@ -2198,7 +2198,7 @@
     "tags": ["More Space", "Private Balcony", "WI-FI"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 111.99,
     "bed_options": "1 Queen Bed",
@@ -2207,7 +2207,7 @@
     "tags": ["Special Packages and Offers", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "1 Queen Bed",
@@ -2216,7 +2216,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers", "Privacy"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "2 Double Beds",
@@ -2225,7 +2225,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "1 Queen Bed",
@@ -2234,7 +2234,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Double Beds",
@@ -2243,7 +2243,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "1 Queen Bed",
@@ -2252,7 +2252,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "1 King Bed",
@@ -2261,7 +2261,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "1 King Bed",
@@ -2270,7 +2270,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 265.99,
     "bed_options": "2 Queen Beds",
@@ -2279,7 +2279,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "1 Queen Bed",
@@ -2288,7 +2288,7 @@
     "tags": ["More Space", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 King Bed",
@@ -2297,7 +2297,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "1 Queen Bed",
@@ -2306,7 +2306,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "2 Queen Beds",
@@ -2319,7 +2319,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 129.99,
     "bed_options": "2 Double Beds",
@@ -2328,7 +2328,7 @@
     "tags": ["Private Balcony", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 266.99,
     "bed_options": "2 Queen Beds",
@@ -2337,7 +2337,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "2 Queen Beds",
@@ -2346,7 +2346,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 142.99,
     "bed_options": "1 Queen Bed",
@@ -2355,7 +2355,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 91.99,
     "bed_options": "2 Queen Beds",
@@ -2364,7 +2364,7 @@
     "tags": ["Better Technology", "Enhanced Views", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "1 King Bed",
@@ -2373,7 +2373,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "1 King Bed",
@@ -2382,7 +2382,7 @@
     "tags": ["Seperate Living Areas", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 106.99,
     "bed_options": "1 Queen Bed",
@@ -2391,7 +2391,7 @@
     "tags": ["Aesthetic Appeal", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 265.99,
     "bed_options": "2 Double Beds",
@@ -2400,7 +2400,7 @@
     "tags": ["Additional Amenities", "Privacy", "More Space"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "1 Queen Bed",
@@ -2409,7 +2409,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 69.99,
     "bed_options": "2 Double Beds",
@@ -2418,7 +2418,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 150.99,
     "bed_options": "1 Queen Bed",
@@ -2427,7 +2427,7 @@
     "tags": ["Aesthetic Appeal", "Privacy"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 229.99,
     "bed_options": "1 King Bed",
@@ -2436,7 +2436,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 132.99,
     "bed_options": "1 Queen Bed",
@@ -2445,7 +2445,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 64.99,
     "bed_options": "1 King Bed",
@@ -2454,7 +2454,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "1 Queen Bed",
@@ -2463,7 +2463,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "1 Queen Bed",
@@ -2472,7 +2472,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 82.99,
     "bed_options": "1 Queen Bed",
@@ -2481,7 +2481,7 @@
     "tags": ["Private Balcony", "Upgraded Furnishings", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "2 Queen Beds",
@@ -2490,7 +2490,7 @@
     "tags": ["Complimentary Services", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 112.99,
     "bed_options": "2 Queen Beds",
@@ -2499,7 +2499,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "1 Queen Bed",
@@ -2508,7 +2508,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 104.99,
     "bed_options": "2 Double Beds",
@@ -2517,7 +2517,7 @@
     "tags": ["Better Technology", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 113.99,
     "bed_options": "2 Queen Beds",
@@ -2526,7 +2526,7 @@
     "tags": ["Seperate Living Areas", "Additional Amenities", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 94.99,
     "bed_options": "1 Queen Bed",
@@ -2535,7 +2535,7 @@
     "tags": ["Jacuzzi", "WI-FI", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 100.99,
     "bed_options": "1 Queen Bed",
@@ -2544,7 +2544,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "2 Queen Beds",
@@ -2553,7 +2553,7 @@
     "tags": ["Enhanced Views", "Jacuzzi", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "1 Queen Bed",
@@ -2562,7 +2562,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 243.99,
     "bed_options": "1 King Bed",
@@ -2571,7 +2571,7 @@
     "tags": ["Aesthetic Appeal", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "1 King Bed",
@@ -2580,7 +2580,7 @@
     "tags": ["Additional Amenities", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "2 Queen Beds",
@@ -2589,7 +2589,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 62.99,
     "bed_options": "1 King Bed",
@@ -2598,7 +2598,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 167.99,
     "bed_options": "2 Double Beds",
@@ -2607,7 +2607,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 229.99,
     "bed_options": "1 Queen Bed",
@@ -2616,7 +2616,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 237.99,
     "bed_options": "1 King Bed",
@@ -2625,7 +2625,7 @@
     "tags": ["Exclusive Access", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 144.99,
     "bed_options": "2 Double Beds",
@@ -2634,7 +2634,7 @@
     "tags": ["Privacy", "Jacuzzi", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 140.99,
     "bed_options": "2 Queen Beds",
@@ -2643,7 +2643,7 @@
     "tags": ["Private Balcony", "More Space", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 269.99,
     "bed_options": "1 Queen Bed",
@@ -2652,7 +2652,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 125.99,
     "bed_options": "2 Queen Beds",
@@ -2661,7 +2661,7 @@
     "tags": ["Private Balcony", "WI-FI", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 123.99,
     "bed_options": "1 Queen Bed",
@@ -2670,7 +2670,7 @@
     "tags": ["Additional Amenities", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 123.99,
     "bed_options": "2 Double Beds",
@@ -2679,7 +2679,7 @@
     "tags": ["Upgraded Furnishings", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "1 Queen Bed",
@@ -2688,7 +2688,7 @@
     "tags": ["Aesthetic Appeal", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 149.99,
     "bed_options": "1 Queen Bed",
@@ -2697,7 +2697,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "2 Queen Beds",
@@ -2706,7 +2706,7 @@
     "tags": ["Privacy", "Special Packages and Offers", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 269.99,
     "bed_options": "2 Queen Beds",
@@ -2715,7 +2715,7 @@
     "tags": ["Private Balcony", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 236.99,
     "bed_options": "1 Queen Bed",
@@ -2724,7 +2724,7 @@
     "tags": ["Jacuzzi", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "1 King Bed",
@@ -2733,7 +2733,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 137.99,
     "bed_options": "2 Double Beds",
@@ -2742,7 +2742,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 75.99,
     "bed_options": "1 King Bed",
@@ -2751,7 +2751,7 @@
     "tags": ["Additional Amenities", "WI-FI", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 Queen Bed",
@@ -2760,7 +2760,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "2 Double Beds",
@@ -2769,7 +2769,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 148.99,
     "bed_options": "2 Queen Beds",
@@ -2778,7 +2778,7 @@
     "tags": ["Private Balcony", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Queen Beds",
@@ -2787,7 +2787,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 71.99,
     "bed_options": "1 Queen Bed",
@@ -2796,7 +2796,7 @@
     "tags": ["Privacy", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 77.99,
     "bed_options": "2 Queen Beds",
@@ -2805,7 +2805,7 @@
     "tags": ["Upgraded Furnishings", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 105.99,
     "bed_options": "1 King Bed",
@@ -2814,7 +2814,7 @@
     "tags": ["Exclusive Access", "Privacy", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 104.99,
     "bed_options": "1 King Bed",
@@ -2823,7 +2823,7 @@
     "tags": ["WI-FI", "More Space"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 59.99,
     "bed_options": "2 Queen Beds",
@@ -2832,7 +2832,7 @@
     "tags": ["More Space", "Upgraded Furnishings", "WI-FI"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 104.99,
     "bed_options": "1 Queen Bed",
@@ -2841,7 +2841,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "2 Double Beds",
@@ -2850,7 +2850,7 @@
     "tags": ["Special Packages and Offers", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "1 Queen Bed",
@@ -2859,7 +2859,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 91.99,
     "bed_options": "2 Double Beds",
@@ -2868,7 +2868,7 @@
     "tags": ["Additional Amenities", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 Queen Bed",
@@ -2877,7 +2877,7 @@
     "tags": ["Seperate Living Areas", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 135.99,
     "bed_options": "2 Queen Beds",
@@ -2886,7 +2886,7 @@
     "tags": ["WI-FI", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 66.99,
     "bed_options": "1 Queen Bed",
@@ -2895,7 +2895,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 101.99,
     "bed_options": "2 Queen Beds",
@@ -2904,7 +2904,7 @@
     "tags": ["Jacuzzi", "Additional Amenities", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 71.99,
     "bed_options": "2 Queen Beds",
@@ -2913,7 +2913,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 235.99,
     "bed_options": "2 Queen Beds",
@@ -2922,7 +2922,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "1 King Bed",
@@ -2931,7 +2931,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 130.99,
     "bed_options": "2 Double Beds",
@@ -2940,7 +2940,7 @@
     "tags": ["Private Balcony", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "1 King Bed",
@@ -2949,7 +2949,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 115.99,
     "bed_options": "1 King Bed",
@@ -2958,7 +2958,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "1 King Bed",
@@ -2967,7 +2967,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "2 Double Beds",
@@ -2976,7 +2976,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 96.99,
     "bed_options": "1 King Bed",
@@ -2985,7 +2985,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 83.99,
     "bed_options": "1 Queen Bed",
@@ -2994,7 +2994,7 @@
     "tags": ["Enhanced Views", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "1 Queen Bed",
@@ -3003,7 +3003,7 @@
     "tags": ["Enhanced Views", "Enhanced Views", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 71.99,
     "bed_options": "2 Double Beds",
@@ -3012,7 +3012,7 @@
     "tags": ["More Space", "Better Technology", "Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 267.99,
     "bed_options": "1 Queen Bed",
@@ -3021,7 +3021,7 @@
     "tags": ["Seperate Living Areas", "Privacy", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "1 King Bed",
@@ -3030,7 +3030,7 @@
     "tags": ["Privacy", "Complimentary Services", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 101.99,
     "bed_options": "2 Queen Beds",
@@ -3039,7 +3039,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 106.99,
     "bed_options": "2 Double Beds",
@@ -3052,7 +3052,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "2 Double Beds",
@@ -3061,7 +3061,7 @@
     "tags": ["Privacy", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "1 Queen Bed",
@@ -3070,7 +3070,7 @@
     "tags": ["Complimentary Services", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 81.99,
     "bed_options": "1 Queen Bed",
@@ -3079,7 +3079,7 @@
     "tags": ["Better Technology", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 124.99,
     "bed_options": "2 Double Beds",
@@ -3092,7 +3092,7 @@
     ]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 127.99,
     "bed_options": "2 Queen Beds",
@@ -3101,7 +3101,7 @@
     "tags": ["Enhanced Views", "Exclusive Access", "More Space"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 66.99,
     "bed_options": "2 Queen Beds",
@@ -3110,7 +3110,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 115.99,
     "bed_options": "1 Queen Bed",
@@ -3119,7 +3119,7 @@
     "tags": ["Additional Amenities", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "2 Queen Beds",
@@ -3128,7 +3128,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 264.99,
     "bed_options": "1 King Bed",
@@ -3137,7 +3137,7 @@
     "tags": ["Privacy", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 258.99,
     "bed_options": "2 Queen Beds",
@@ -3146,7 +3146,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 259.99,
     "bed_options": "1 King Bed",
@@ -3155,7 +3155,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 130.99,
     "bed_options": "1 Queen Bed",
@@ -3164,7 +3164,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "1 Queen Bed",
@@ -3173,7 +3173,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "2 Double Beds",
@@ -3182,7 +3182,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 243.99,
     "bed_options": "1 Queen Bed",
@@ -3191,7 +3191,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 99.99,
     "bed_options": "1 Queen Bed",
@@ -3200,7 +3200,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 235.99,
     "bed_options": "2 Queen Beds",
@@ -3209,7 +3209,7 @@
     "tags": ["More Space", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 65.99,
     "bed_options": "2 Queen Beds",
@@ -3218,7 +3218,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "2 Queen Beds",
@@ -3227,7 +3227,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "1 King Bed",
@@ -3236,7 +3236,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 239.99,
     "bed_options": "1 Queen Bed",
@@ -3245,7 +3245,7 @@
     "tags": ["Enhanced Views", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "2 Double Beds",
@@ -3254,7 +3254,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 78.99,
     "bed_options": "1 Queen Bed",
@@ -3263,7 +3263,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 73.99,
     "bed_options": "1 King Bed",
@@ -3272,7 +3272,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 75.99,
     "bed_options": "1 Queen Bed",
@@ -3281,7 +3281,7 @@
     "tags": ["Better Technology", "WI-FI"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 164.99,
     "bed_options": "1 King Bed",
@@ -3290,7 +3290,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 119.99,
     "bed_options": "1 King Bed",
@@ -3299,7 +3299,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "2 Queen Beds",
@@ -3308,7 +3308,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 241.99,
     "bed_options": "2 Double Beds",
@@ -3317,7 +3317,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 104.99,
     "bed_options": "2 Double Beds",
@@ -3326,7 +3326,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 243.99,
     "bed_options": "1 King Bed",
@@ -3335,7 +3335,7 @@
     "tags": ["Jacuzzi", "Additional Amenities", "WI-FI"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 Queen Bed",
@@ -3344,7 +3344,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 65.99,
     "bed_options": "2 Double Beds",
@@ -3353,7 +3353,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 66.99,
     "bed_options": "2 Double Beds",
@@ -3362,7 +3362,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 168.99,
     "bed_options": "2 Queen Beds",
@@ -3371,7 +3371,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 133.99,
     "bed_options": "1 Queen Bed",
@@ -3380,7 +3380,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "1 King Bed",
@@ -3389,7 +3389,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 101.99,
     "bed_options": "1 Queen Bed",
@@ -3398,7 +3398,7 @@
     "tags": ["Aesthetic Appeal", "Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Double Beds",
@@ -3407,7 +3407,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "1 Queen Bed",
@@ -3416,7 +3416,7 @@
     "tags": ["Seperate Living Areas", "Private Balcony"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 235.99,
     "bed_options": "1 King Bed",
@@ -3425,7 +3425,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "1 Queen Bed",
@@ -3434,7 +3434,7 @@
     "tags": ["Better Technology", "WI-FI"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 87.99,
     "bed_options": "1 Queen Bed",
@@ -3443,7 +3443,7 @@
     "tags": ["Aesthetic Appeal", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 142.99,
     "bed_options": "2 Double Beds",
@@ -3452,7 +3452,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 115.99,
     "bed_options": "2 Double Beds",
@@ -3461,7 +3461,7 @@
     "tags": ["Complimentary Services", "WI-FI", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 138.99,
     "bed_options": "2 Double Beds",
@@ -3470,7 +3470,7 @@
     "tags": ["Seperate Living Areas", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 153.99,
     "bed_options": "1 Queen Bed",
@@ -3479,7 +3479,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 103.99,
     "bed_options": "1 King Bed",
@@ -3488,7 +3488,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "1 King Bed",
@@ -3497,7 +3497,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 105.99,
     "bed_options": "1 Queen Bed",
@@ -3506,7 +3506,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 268.99,
     "bed_options": "1 King Bed",
@@ -3515,7 +3515,7 @@
     "tags": ["Seperate Living Areas", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "2 Double Beds",
@@ -3524,7 +3524,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 151.99,
     "bed_options": "2 Double Beds",
@@ -3533,7 +3533,7 @@
     "tags": ["Private Balcony", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 102.99,
     "bed_options": "1 Queen Bed",
@@ -3542,7 +3542,7 @@
     "tags": ["Better Technology", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "1 Queen Bed",
@@ -3551,7 +3551,7 @@
     "tags": ["Upgraded Furnishings", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 68.99,
     "bed_options": "2 Queen Beds",
@@ -3560,7 +3560,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 73.99,
     "bed_options": "2 Double Beds",
@@ -3573,7 +3573,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "1 Queen Bed",
@@ -3582,7 +3582,7 @@
     "tags": ["Enhanced Views", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "2 Queen Beds",
@@ -3591,7 +3591,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 81.99,
     "bed_options": "2 Queen Beds",
@@ -3600,7 +3600,7 @@
     "tags": ["Aesthetic Appeal", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 King Bed",
@@ -3609,7 +3609,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 103.99,
     "bed_options": "2 Double Beds",
@@ -3618,7 +3618,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 260.99,
     "bed_options": "2 Double Beds",
@@ -3627,7 +3627,7 @@
     "tags": ["Complimentary Services", "Privacy"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 167.99,
     "bed_options": "1 King Bed",
@@ -3636,7 +3636,7 @@
     "tags": ["More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 62.99,
     "bed_options": "1 King Bed",
@@ -3645,7 +3645,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 75.99,
     "bed_options": "1 King Bed",
@@ -3654,7 +3654,7 @@
     "tags": ["Exclusive Access", "Private Balcony", "Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "2 Double Beds",
@@ -3663,7 +3663,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 264.99,
     "bed_options": "1 King Bed",
@@ -3672,7 +3672,7 @@
     "tags": ["Better Technology", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 93.99,
     "bed_options": "2 Double Beds",
@@ -3681,7 +3681,7 @@
     "tags": ["Jacuzzi", "Upgraded Furnishings", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 266.99,
     "bed_options": "2 Queen Beds",
@@ -3690,7 +3690,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 143.99,
     "bed_options": "1 Queen Bed",
@@ -3699,7 +3699,7 @@
     "tags": ["Jacuzzi", "Additional Amenities"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 143.99,
     "bed_options": "2 Double Beds",
@@ -3708,7 +3708,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 91.99,
     "bed_options": "1 Queen Bed",
@@ -3717,7 +3717,7 @@
     "tags": ["More Space", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "2 Queen Beds",
@@ -3726,7 +3726,7 @@
     "tags": ["Exclusive Access", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "2 Queen Beds",
@@ -3735,7 +3735,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "1 Queen Bed",
@@ -3744,7 +3744,7 @@
     "tags": ["WI-FI", "Exclusive Access", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "2 Queen Beds",
@@ -3753,7 +3753,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 245.99,
     "bed_options": "1 Queen Bed",
@@ -3762,7 +3762,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 134.99,
     "bed_options": "2 Queen Beds",
@@ -3771,7 +3771,7 @@
     "tags": ["Privacy", "Seperate Living Areas", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "2 Double Beds",
@@ -3780,7 +3780,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "1 King Bed",
@@ -3789,7 +3789,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "2 Double Beds",
@@ -3798,7 +3798,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 141.99,
     "bed_options": "2 Double Beds",
@@ -3807,7 +3807,7 @@
     "tags": ["Enhanced Views", "Exclusive Access", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 115.99,
     "bed_options": "2 Queen Beds",
@@ -3816,7 +3816,7 @@
     "tags": ["Exclusive Access", "Better Technology", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "1 King Bed",
@@ -3825,7 +3825,7 @@
     "tags": ["Complimentary Services", "More Space", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 70.99,
     "bed_options": "1 Queen Bed",
@@ -3834,7 +3834,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "2 Double Beds",
@@ -3843,7 +3843,7 @@
     "tags": ["Seperate Living Areas", "Upgraded Furnishings", "More Space"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 75.99,
     "bed_options": "2 Double Beds",
@@ -3852,7 +3852,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 125.99,
     "bed_options": "2 Double Beds",
@@ -3861,7 +3861,7 @@
     "tags": ["Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 267.99,
     "bed_options": "1 Queen Bed",
@@ -3870,7 +3870,7 @@
     "tags": ["Special Packages and Offers", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "1 King Bed",
@@ -3879,7 +3879,7 @@
     "tags": ["Seperate Living Areas", "Special Packages and Offers", "WI-FI"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 269.99,
     "bed_options": "2 Double Beds",
@@ -3888,7 +3888,7 @@
     "tags": ["Complimentary Services", "WI-FI", "Privacy"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 242.99,
     "bed_options": "1 King Bed",
@@ -3897,7 +3897,7 @@
     "tags": ["Better Technology", "Aesthetic Appeal", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 268.99,
     "bed_options": "1 Queen Bed",
@@ -3906,7 +3906,7 @@
     "tags": ["WI-FI", "Aesthetic Appeal", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 159.99,
     "bed_options": "1 King Bed",
@@ -3919,7 +3919,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "1 Queen Bed",
@@ -3928,7 +3928,7 @@
     "tags": ["Privacy", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 123.99,
     "bed_options": "2 Queen Beds",
@@ -3937,7 +3937,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "2 Double Beds",
@@ -3946,7 +3946,7 @@
     "tags": ["Aesthetic Appeal", "Special Packages and Offers"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 125.99,
     "bed_options": "2 Double Beds",
@@ -3955,7 +3955,7 @@
     "tags": ["Special Packages and Offers", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "1 King Bed",
@@ -3964,7 +3964,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 148.99,
     "bed_options": "2 Double Beds",
@@ -3977,7 +3977,7 @@
     ]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "2 Queen Beds",
@@ -3986,7 +3986,7 @@
     "tags": ["Additional Amenities", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 156.99,
     "bed_options": "1 Queen Bed",
@@ -3995,7 +3995,7 @@
     "tags": ["Complimentary Services", "More Space", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 62.99,
     "bed_options": "1 Queen Bed",
@@ -4004,7 +4004,7 @@
     "tags": ["WI-FI", "Additional Amenities", "Private Balcony"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 94.99,
     "bed_options": "2 Queen Beds",
@@ -4013,7 +4013,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 133.99,
     "bed_options": "1 King Bed",
@@ -4022,7 +4022,7 @@
     "tags": ["Exclusive Access", "Aesthetic Appeal", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "2 Double Beds",
@@ -4031,7 +4031,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 168.99,
     "bed_options": "2 Queen Beds",
@@ -4040,7 +4040,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 130.99,
     "bed_options": "2 Queen Beds",
@@ -4049,7 +4049,7 @@
     "tags": ["Complimentary Services", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 100.99,
     "bed_options": "2 Double Beds",
@@ -4058,7 +4058,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 136.99,
     "bed_options": "2 Queen Beds",
@@ -4067,7 +4067,7 @@
     "tags": ["Enhanced Views", "Privacy"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 149.99,
     "bed_options": "2 Double Beds",
@@ -4076,7 +4076,7 @@
     "tags": ["Better Technology", "WI-FI"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 78.99,
     "bed_options": "1 King Bed",
@@ -4085,7 +4085,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 King Bed",
@@ -4094,7 +4094,7 @@
     "tags": ["More Space", "Complimentary Services", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "2 Queen Beds",
@@ -4103,7 +4103,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "2 Double Beds",
@@ -4112,7 +4112,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Queen Beds",
@@ -4121,7 +4121,7 @@
     "tags": ["More Space", "More Space"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 240.99,
     "bed_options": "1 Queen Bed",
@@ -4130,7 +4130,7 @@
     "tags": ["Better Technology", "Special Packages and Offers", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "2 Double Beds",
@@ -4139,7 +4139,7 @@
     "tags": ["Enhanced Views", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 148.99,
     "bed_options": "1 Queen Bed",
@@ -4148,7 +4148,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 138.99,
     "bed_options": "1 King Bed",
@@ -4157,7 +4157,7 @@
     "tags": ["Special Packages and Offers", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 66.99,
     "bed_options": "2 Queen Beds",
@@ -4166,7 +4166,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "2 Queen Beds",
@@ -4175,7 +4175,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 89.99,
     "bed_options": "2 Queen Beds",
@@ -4184,7 +4184,7 @@
     "tags": ["Privacy", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "2 Queen Beds",
@@ -4193,7 +4193,7 @@
     "tags": ["WI-FI", "More Space", "Special Packages and Offers"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 89.99,
     "bed_options": "2 Double Beds",
@@ -4202,7 +4202,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 144.99,
     "bed_options": "2 Double Beds",
@@ -4211,7 +4211,7 @@
     "tags": ["Privacy", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 269.99,
     "bed_options": "1 King Bed",
@@ -4220,7 +4220,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 246.99,
     "bed_options": "2 Queen Beds",
@@ -4229,7 +4229,7 @@
     "tags": ["Upgraded Furnishings", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 264.99,
     "bed_options": "2 Queen Beds",
@@ -4238,7 +4238,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 146.99,
     "bed_options": "2 Queen Beds",
@@ -4247,7 +4247,7 @@
     "tags": ["Privacy", "Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 265.99,
     "bed_options": "2 Queen Beds",
@@ -4256,7 +4256,7 @@
     "tags": ["Privacy", "Exclusive Access", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 69.99,
     "bed_options": "1 Queen Bed",
@@ -4265,7 +4265,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 167.99,
     "bed_options": "2 Queen Beds",
@@ -4274,7 +4274,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 244.99,
     "bed_options": "1 King Bed",
@@ -4283,7 +4283,7 @@
     "tags": ["Aesthetic Appeal", "Private Balcony"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 147.99,
     "bed_options": "1 King Bed",
@@ -4292,7 +4292,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "1 King Bed",
@@ -4301,7 +4301,7 @@
     "tags": ["Seperate Living Areas", "Privacy", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Double Beds",
@@ -4310,7 +4310,7 @@
     "tags": ["Upgraded Furnishings", "Seperate Living Areas", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 115.99,
     "bed_options": "1 King Bed",
@@ -4319,7 +4319,7 @@
     "tags": ["Upgraded Furnishings", "Complimentary Services"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 71.99,
     "bed_options": "2 Double Beds",
@@ -4328,7 +4328,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 237.99,
     "bed_options": "1 King Bed",
@@ -4337,7 +4337,7 @@
     "tags": ["Private Balcony", "Privacy", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 135.99,
     "bed_options": "1 Queen Bed",
@@ -4346,7 +4346,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 139.99,
     "bed_options": "1 Queen Bed",
@@ -4355,7 +4355,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 125.99,
     "bed_options": "1 Queen Bed",
@@ -4364,7 +4364,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 246.99,
     "bed_options": "2 Double Beds",
@@ -4373,7 +4373,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "2 Queen Beds",
@@ -4382,7 +4382,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 256.99,
     "bed_options": "2 Queen Beds",
@@ -4391,7 +4391,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 King Bed",
@@ -4400,7 +4400,7 @@
     "tags": ["Special Packages and Offers", "Private Balcony"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "1 Queen Bed",
@@ -4409,7 +4409,7 @@
     "tags": ["Better Technology", "Better Technology", "Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Double Beds",
@@ -4418,7 +4418,7 @@
     "tags": ["Private Balcony", "Aesthetic Appeal", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 106.99,
     "bed_options": "2 Queen Beds",
@@ -4427,7 +4427,7 @@
     "tags": ["Privacy", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 147.99,
     "bed_options": "2 Double Beds",
@@ -4436,7 +4436,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 134.99,
     "bed_options": "2 Queen Beds",
@@ -4445,7 +4445,7 @@
     "tags": ["Privacy", "Enhanced Views", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 246.99,
     "bed_options": "2 Double Beds",
@@ -4454,7 +4454,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 104.99,
     "bed_options": "1 Queen Bed",
@@ -4463,7 +4463,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 257.99,
     "bed_options": "2 Double Beds",
@@ -4472,7 +4472,7 @@
     "tags": ["Upgraded Furnishings", "Complimentary Services", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "2 Double Beds",
@@ -4481,7 +4481,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 112.99,
     "bed_options": "1 King Bed",
@@ -4494,7 +4494,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 140.99,
     "bed_options": "1 Queen Bed",
@@ -4503,7 +4503,7 @@
     "tags": ["Complimentary Services", "Better Technology"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 133.99,
     "bed_options": "1 King Bed",
@@ -4512,7 +4512,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 240.99,
     "bed_options": "1 King Bed",
@@ -4521,7 +4521,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 81.99,
     "bed_options": "1 Queen Bed",
@@ -4530,7 +4530,7 @@
     "tags": ["Better Technology", "Additional Amenities", "WI-FI"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 123.99,
     "bed_options": "1 King Bed",
@@ -4539,7 +4539,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 143.99,
     "bed_options": "1 King Bed",
@@ -4548,7 +4548,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "1 Queen Bed",
@@ -4557,7 +4557,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 75.99,
     "bed_options": "2 Double Beds",
@@ -4566,7 +4566,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 266.99,
     "bed_options": "2 Queen Beds",
@@ -4575,7 +4575,7 @@
     "tags": ["Private Balcony", "Better Technology", "Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 168.99,
     "bed_options": "1 Queen Bed",
@@ -4584,7 +4584,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "2 Double Beds",
@@ -4593,7 +4593,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "2 Double Beds",
@@ -4602,7 +4602,7 @@
     "tags": ["Better Technology", "Seperate Living Areas", "More Space"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 102.99,
     "bed_options": "2 Queen Beds",
@@ -4611,7 +4611,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 148.99,
     "bed_options": "2 Double Beds",
@@ -4620,7 +4620,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "2 Queen Beds",
@@ -4629,7 +4629,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 87.99,
     "bed_options": "2 Double Beds",
@@ -4638,7 +4638,7 @@
     "tags": ["Jacuzzi", "Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 100.99,
     "bed_options": "2 Double Beds",
@@ -4647,7 +4647,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "2 Double Beds",
@@ -4656,7 +4656,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "2 Queen Beds",
@@ -4665,7 +4665,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 King Bed",
@@ -4674,7 +4674,7 @@
     "tags": ["Private Balcony", "Private Balcony", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 259.99,
     "bed_options": "2 Queen Beds",
@@ -4683,7 +4683,7 @@
     "tags": ["More Space", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 93.99,
     "bed_options": "2 Double Beds",
@@ -4692,7 +4692,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 135.99,
     "bed_options": "2 Double Beds",
@@ -4705,7 +4705,7 @@
     ]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "1 King Bed",
@@ -4714,7 +4714,7 @@
     "tags": ["Private Balcony", "Enhanced Views", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 266.99,
     "bed_options": "2 Queen Beds",
@@ -4723,7 +4723,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 140.99,
     "bed_options": "2 Queen Beds",
@@ -4732,7 +4732,7 @@
     "tags": ["Better Technology", "Better Technology", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "2 Queen Beds",
@@ -4741,7 +4741,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 155.99,
     "bed_options": "2 Double Beds",
@@ -4750,7 +4750,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "1 Queen Bed",
@@ -4759,7 +4759,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 113.99,
     "bed_options": "2 Queen Beds",
@@ -4768,7 +4768,7 @@
     "tags": ["Additional Amenities", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 241.99,
     "bed_options": "2 Queen Beds",
@@ -4777,7 +4777,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 143.99,
     "bed_options": "1 King Bed",
@@ -4786,7 +4786,7 @@
     "tags": ["More Space", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 63.99,
     "bed_options": "2 Double Beds",
@@ -4799,7 +4799,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 74.99,
     "bed_options": "2 Double Beds",
@@ -4808,7 +4808,7 @@
     "tags": ["Special Packages and Offers", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 246.99,
     "bed_options": "1 King Bed",
@@ -4821,7 +4821,7 @@
     ]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "1 King Bed",
@@ -4830,7 +4830,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 169.99,
     "bed_options": "2 Double Beds",
@@ -4843,7 +4843,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 250.99,
     "bed_options": "1 Queen Bed",
@@ -4852,7 +4852,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "2 Queen Beds",
@@ -4861,7 +4861,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 122.99,
     "bed_options": "2 Queen Beds",
@@ -4870,7 +4870,7 @@
     "tags": ["Special Packages and Offers", "Jacuzzi", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 122.99,
     "bed_options": "1 King Bed",
@@ -4879,7 +4879,7 @@
     "tags": ["Privacy", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 132.99,
     "bed_options": "1 King Bed",
@@ -4888,7 +4888,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "1 Queen Bed",
@@ -4897,7 +4897,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "1 Queen Bed",
@@ -4906,7 +4906,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 156.99,
     "bed_options": "1 Queen Bed",
@@ -4915,7 +4915,7 @@
     "tags": ["Seperate Living Areas", "Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "1 Queen Bed",
@@ -4924,7 +4924,7 @@
     "tags": ["Privacy", "Privacy"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "1 King Bed",
@@ -4933,7 +4933,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "2 Double Beds",
@@ -4942,7 +4942,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 240.99,
     "bed_options": "2 Queen Beds",
@@ -4951,7 +4951,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 King Bed",
@@ -4960,7 +4960,7 @@
     "tags": ["Private Balcony", "Privacy", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 101.99,
     "bed_options": "2 Double Beds",
@@ -4969,7 +4969,7 @@
     "tags": ["Privacy", "Privacy", "Privacy"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 132.99,
     "bed_options": "1 King Bed",
@@ -4978,7 +4978,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 64.99,
     "bed_options": "2 Queen Beds",
@@ -4987,7 +4987,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 264.99,
     "bed_options": "1 Queen Bed",
@@ -4996,7 +4996,7 @@
     "tags": ["Exclusive Access", "Additional Amenities", "Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 258.99,
     "bed_options": "1 Queen Bed",
@@ -5005,7 +5005,7 @@
     "tags": ["Upgraded Furnishings", "WI-FI", "Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "1 King Bed",
@@ -5014,7 +5014,7 @@
     "tags": ["Upgraded Furnishings", "More Space"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 131.99,
     "bed_options": "2 Queen Beds",
@@ -5023,7 +5023,7 @@
     "tags": ["Complimentary Services", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 168.99,
     "bed_options": "2 Double Beds",
@@ -5032,7 +5032,7 @@
     "tags": ["WI-FI", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 93.99,
     "bed_options": "1 King Bed",
@@ -5041,7 +5041,7 @@
     "tags": ["Jacuzzi", "Special Packages and Offers"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "1 King Bed",
@@ -5050,7 +5050,7 @@
     "tags": ["Privacy", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 132.99,
     "bed_options": "1 Queen Bed",
@@ -5059,7 +5059,7 @@
     "tags": ["Seperate Living Areas", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 67.99,
     "bed_options": "1 King Bed",
@@ -5068,7 +5068,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 107.99,
     "bed_options": "2 Queen Beds",
@@ -5077,7 +5077,7 @@
     "tags": ["Seperate Living Areas", "Complimentary Services", "WI-FI"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 65.99,
     "bed_options": "1 King Bed",
@@ -5086,7 +5086,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 72.99,
     "bed_options": "2 Queen Beds",
@@ -5095,7 +5095,7 @@
     "tags": ["Private Balcony", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "1 Queen Bed",
@@ -5104,7 +5104,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 141.99,
     "bed_options": "1 King Bed",
@@ -5113,7 +5113,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "2 Double Beds",
@@ -5122,7 +5122,7 @@
     "tags": ["Complimentary Services", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 265.99,
     "bed_options": "1 Queen Bed",
@@ -5131,7 +5131,7 @@
     "tags": ["Complimentary Services", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 268.99,
     "bed_options": "1 King Bed",
@@ -5140,7 +5140,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 88.99,
     "bed_options": "1 King Bed",
@@ -5149,7 +5149,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 121.99,
     "bed_options": "1 Queen Bed",
@@ -5158,7 +5158,7 @@
     "tags": ["Jacuzzi", "WI-FI"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 69.99,
     "bed_options": "1 King Bed",
@@ -5167,7 +5167,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 105.99,
     "bed_options": "2 Double Beds",
@@ -5176,7 +5176,7 @@
     "tags": ["Jacuzzi", "Additional Amenities", "More Space"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 143.99,
     "bed_options": "1 Queen Bed",
@@ -5185,7 +5185,7 @@
     "tags": ["Upgraded Furnishings", "More Space"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 233.99,
     "bed_options": "1 King Bed",
@@ -5194,7 +5194,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 Queen Bed",
@@ -5203,7 +5203,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 156.99,
     "bed_options": "2 Double Beds",
@@ -5212,7 +5212,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 138.99,
     "bed_options": "2 Queen Beds",
@@ -5221,7 +5221,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 76.99,
     "bed_options": "2 Queen Beds",
@@ -5234,7 +5234,7 @@
     ]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 159.99,
     "bed_options": "1 King Bed",
@@ -5243,7 +5243,7 @@
     "tags": ["Special Packages and Offers", "Exclusive Access"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 104.99,
     "bed_options": "2 Double Beds",
@@ -5252,7 +5252,7 @@
     "tags": ["Privacy", "Seperate Living Areas", "Special Packages and Offers"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 127.99,
     "bed_options": "2 Double Beds",
@@ -5261,7 +5261,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 109.99,
     "bed_options": "2 Queen Beds",
@@ -5270,7 +5270,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 91.99,
     "bed_options": "1 King Bed",
@@ -5279,7 +5279,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 135.99,
     "bed_options": "1 King Bed",
@@ -5288,7 +5288,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 234.99,
     "bed_options": "2 Queen Beds",
@@ -5297,7 +5297,7 @@
     "tags": ["WI-FI", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "1 Queen Bed",
@@ -5306,7 +5306,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 159.99,
     "bed_options": "1 Queen Bed",
@@ -5315,7 +5315,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 258.99,
     "bed_options": "1 King Bed",
@@ -5324,7 +5324,7 @@
     "tags": ["More Space", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 140.99,
     "bed_options": "2 Double Beds",
@@ -5333,7 +5333,7 @@
     "tags": ["Exclusive Access", "Jacuzzi", "Private Balcony"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 76.99,
     "bed_options": "2 Queen Beds",
@@ -5342,7 +5342,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 66.99,
     "bed_options": "2 Queen Beds",
@@ -5351,7 +5351,7 @@
     "tags": ["Exclusive Access", "Upgraded Furnishings", "More Space"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 140.99,
     "bed_options": "2 Double Beds",
@@ -5360,7 +5360,7 @@
     "tags": ["More Space", "Complimentary Services"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 70.99,
     "bed_options": "2 Double Beds",
@@ -5369,7 +5369,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "2 Queen Beds",
@@ -5382,7 +5382,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 123.99,
     "bed_options": "2 Double Beds",
@@ -5391,7 +5391,7 @@
     "tags": ["Better Technology", "Enhanced Views", "More Space"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 100.99,
     "bed_options": "2 Queen Beds",
@@ -5400,7 +5400,7 @@
     "tags": ["More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 117.99,
     "bed_options": "2 Double Beds",
@@ -5409,7 +5409,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 135.99,
     "bed_options": "1 King Bed",
@@ -5418,7 +5418,7 @@
     "tags": ["Jacuzzi", "More Space", "Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 249.99,
     "bed_options": "1 Queen Bed",
@@ -5427,7 +5427,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 King Bed",
@@ -5436,7 +5436,7 @@
     "tags": ["WI-FI", "Complimentary Services", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 112.99,
     "bed_options": "2 Queen Beds",
@@ -5445,7 +5445,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 121.99,
     "bed_options": "2 Queen Beds",
@@ -5454,7 +5454,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 61.99,
     "bed_options": "2 Double Beds",
@@ -5463,7 +5463,7 @@
     "tags": ["Special Packages and Offers", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "2 Queen Beds",
@@ -5472,7 +5472,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 153.99,
     "bed_options": "1 Queen Bed",
@@ -5481,7 +5481,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "1 Queen Bed",
@@ -5494,7 +5494,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "2 Double Beds",
@@ -5503,7 +5503,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 Queen Bed",
@@ -5512,7 +5512,7 @@
     "tags": ["Aesthetic Appeal", "Private Balcony", "Privacy"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 256.99,
     "bed_options": "1 Queen Bed",
@@ -5521,7 +5521,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 129.99,
     "bed_options": "2 Queen Beds",
@@ -5530,7 +5530,7 @@
     "tags": ["Privacy", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "2 Queen Beds",
@@ -5539,7 +5539,7 @@
     "tags": ["Special Packages and Offers", "Private Balcony"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "2 Queen Beds",
@@ -5548,7 +5548,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 135.99,
     "bed_options": "1 King Bed",
@@ -5557,7 +5557,7 @@
     "tags": ["Special Packages and Offers", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "2 Double Beds",
@@ -5566,7 +5566,7 @@
     "tags": ["Private Balcony", "Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 119.99,
     "bed_options": "2 Queen Beds",
@@ -5575,7 +5575,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 245.99,
     "bed_options": "1 Queen Bed",
@@ -5584,7 +5584,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 141.99,
     "bed_options": "1 King Bed",
@@ -5593,7 +5593,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 260.99,
     "bed_options": "2 Queen Beds",
@@ -5602,7 +5602,7 @@
     "tags": ["Exclusive Access", "Complimentary Services", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 245.99,
     "bed_options": "2 Queen Beds",
@@ -5611,7 +5611,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 119.99,
     "bed_options": "2 Double Beds",
@@ -5620,7 +5620,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 110.99,
     "bed_options": "2 Queen Beds",
@@ -5629,7 +5629,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "2 Queen Beds",
@@ -5638,7 +5638,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 93.99,
     "bed_options": "1 Queen Bed",
@@ -5647,7 +5647,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 78.99,
     "bed_options": "2 Queen Beds",
@@ -5656,7 +5656,7 @@
     "tags": ["More Space", "WI-FI", "Private Balcony"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 146.99,
     "bed_options": "2 Queen Beds",
@@ -5665,7 +5665,7 @@
     "tags": ["Seperate Living Areas", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 165.99,
     "bed_options": "2 Double Beds",
@@ -5674,7 +5674,7 @@
     "tags": ["Enhanced Views", "Special Packages and Offers", "WI-FI"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 84.99,
     "bed_options": "1 King Bed",
@@ -5683,7 +5683,7 @@
     "tags": ["Exclusive Access", "WI-FI", "More Space"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 92.99,
     "bed_options": "1 King Bed",
@@ -5696,7 +5696,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 134.99,
     "bed_options": "1 Queen Bed",
@@ -5705,7 +5705,7 @@
     "tags": ["Seperate Living Areas", "Jacuzzi"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Queen Beds",
@@ -5718,7 +5718,7 @@
     ]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 129.99,
     "bed_options": "1 Queen Bed",
@@ -5727,7 +5727,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "2 Queen Beds",
@@ -5736,7 +5736,7 @@
     "tags": ["Seperate Living Areas", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 135.99,
     "bed_options": "2 Queen Beds",
@@ -5745,7 +5745,7 @@
     "tags": ["More Space", "Upgraded Furnishings"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "2 Queen Beds",
@@ -5754,7 +5754,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 110.99,
     "bed_options": "2 Double Beds",
@@ -5763,7 +5763,7 @@
     "tags": ["Additional Amenities", "Enhanced Views"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "1 Queen Bed",
@@ -5772,7 +5772,7 @@
     "tags": ["Better Technology", "Additional Amenities", "Jacuzzi"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 78.99,
     "bed_options": "1 King Bed",
@@ -5781,7 +5781,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 107.99,
     "bed_options": "1 King Bed",
@@ -5790,7 +5790,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 99.99,
     "bed_options": "2 Double Beds",
@@ -5799,7 +5799,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 132.99,
     "bed_options": "1 Queen Bed",
@@ -5808,7 +5808,7 @@
     "tags": ["Private Balcony", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 166.99,
     "bed_options": "1 King Bed",
@@ -5817,7 +5817,7 @@
     "tags": ["Upgraded Furnishings", "Privacy", "Additional Amenities"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "1 King Bed",
@@ -5826,7 +5826,7 @@
     "tags": ["Aesthetic Appeal", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 146.99,
     "bed_options": "2 Queen Beds",
@@ -5835,7 +5835,7 @@
     "tags": ["Complimentary Services", "Exclusive Access", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "1 King Bed",
@@ -5844,7 +5844,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "1 Queen Bed",
@@ -5853,7 +5853,7 @@
     "tags": ["Upgraded Furnishings", "Seperate Living Areas"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 139.99,
     "bed_options": "1 King Bed",
@@ -5862,7 +5862,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 87.99,
     "bed_options": "1 Queen Bed",
@@ -5871,7 +5871,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "2 Queen Beds",
@@ -5880,7 +5880,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 78.99,
     "bed_options": "1 King Bed",
@@ -5889,7 +5889,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 136.99,
     "bed_options": "2 Queen Beds",
@@ -5898,7 +5898,7 @@
     "tags": ["Additional Amenities"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 260.99,
     "bed_options": "2 Queen Beds",
@@ -5907,7 +5907,7 @@
     "tags": ["Exclusive Access", "Jacuzzi", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 149.99,
     "bed_options": "2 Queen Beds",
@@ -5916,7 +5916,7 @@
     "tags": ["Jacuzzi", "Additional Amenities", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 86.99,
     "bed_options": "2 Queen Beds",
@@ -5925,7 +5925,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "2 Double Beds",
@@ -5934,7 +5934,7 @@
     "tags": ["WI-FI", "Private Balcony", "More Space"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 258.99,
     "bed_options": "1 Queen Bed",
@@ -5943,7 +5943,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 99.99,
     "bed_options": "1 King Bed",
@@ -5952,7 +5952,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 167.99,
     "bed_options": "2 Double Beds",
@@ -5961,7 +5961,7 @@
     "tags": ["Better Technology", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "2 Queen Beds",
@@ -5970,7 +5970,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 243.99,
     "bed_options": "2 Double Beds",
@@ -5979,7 +5979,7 @@
     "tags": ["More Space", "Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 261.99,
     "bed_options": "1 Queen Bed",
@@ -5988,7 +5988,7 @@
     "tags": ["Jacuzzi", "More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "1 King Bed",
@@ -5997,7 +5997,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "2 Queen Beds",
@@ -6006,7 +6006,7 @@
     "tags": ["WI-FI", "Enhanced Views", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 99.99,
     "bed_options": "1 Queen Bed",
@@ -6015,7 +6015,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 134.99,
     "bed_options": "2 Double Beds",
@@ -6024,7 +6024,7 @@
     "tags": ["Aesthetic Appeal", "Exclusive Access", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 101.99,
     "bed_options": "2 Queen Beds",
@@ -6033,7 +6033,7 @@
     "tags": ["Better Technology", "Privacy"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 105.99,
     "bed_options": "1 King Bed",
@@ -6042,7 +6042,7 @@
     "tags": ["Better Technology", "Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 63.99,
     "bed_options": "1 Queen Bed",
@@ -6051,7 +6051,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 135.99,
     "bed_options": "2 Double Beds",
@@ -6060,7 +6060,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 78.99,
     "bed_options": "2 Queen Beds",
@@ -6069,7 +6069,7 @@
     "tags": ["Upgraded Furnishings", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 242.99,
     "bed_options": "2 Double Beds",
@@ -6078,7 +6078,7 @@
     "tags": ["Exclusive Access", "Jacuzzi", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 165.99,
     "bed_options": "1 King Bed",
@@ -6087,7 +6087,7 @@
     "tags": ["Special Packages and Offers", "Private Balcony", "More Space"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 73.99,
     "bed_options": "1 King Bed",
@@ -6096,7 +6096,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 137.99,
     "bed_options": "2 Double Beds",
@@ -6105,7 +6105,7 @@
     "tags": ["Exclusive Access", "Jacuzzi", "WI-FI"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 89.99,
     "bed_options": "2 Queen Beds",
@@ -6114,7 +6114,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "2 Queen Beds",
@@ -6123,7 +6123,7 @@
     "tags": ["Additional Amenities", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 160.99,
     "bed_options": "2 Double Beds",
@@ -6132,7 +6132,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "1 King Bed",
@@ -6141,7 +6141,7 @@
     "tags": ["Enhanced Views", "Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 130.99,
     "bed_options": "1 King Bed",
@@ -6150,7 +6150,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 254.99,
     "bed_options": "2 Queen Beds",
@@ -6159,7 +6159,7 @@
     "tags": ["Special Packages and Offers", "WI-FI", "WI-FI"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 145.99,
     "bed_options": "1 Queen Bed",
@@ -6168,7 +6168,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 64.99,
     "bed_options": "1 King Bed",
@@ -6177,7 +6177,7 @@
     "tags": ["Seperate Living Areas", "Better Technology", "Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 135.99,
     "bed_options": "2 Queen Beds",
@@ -6186,7 +6186,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 91.99,
     "bed_options": "2 Double Beds",
@@ -6195,7 +6195,7 @@
     "tags": ["Exclusive Access", "Complimentary Services", "WI-FI"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 81.99,
     "bed_options": "1 King Bed",
@@ -6204,7 +6204,7 @@
     "tags": ["Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 86.99,
     "bed_options": "2 Queen Beds",
@@ -6213,7 +6213,7 @@
     "tags": ["WI-FI", "Private Balcony", "Aesthetic Appeal"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 268.99,
     "bed_options": "1 King Bed",
@@ -6222,7 +6222,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 98.99,
     "bed_options": "2 Queen Beds",
@@ -6231,7 +6231,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Budget Room",
     "price": 99.99,
     "bed_options": "1 King Bed",
@@ -6240,7 +6240,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 229.99,
     "bed_options": "2 Double Beds",
@@ -6249,7 +6249,7 @@
     "tags": ["Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 75.99,
     "bed_options": "1 King Bed",
@@ -6258,7 +6258,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 268.99,
     "bed_options": "2 Queen Beds",
@@ -6267,7 +6267,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 82.99,
     "bed_options": "1 Queen Bed",
@@ -6276,7 +6276,7 @@
     "tags": ["Special Packages and Offers", "Enhanced Views"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 113.99,
     "bed_options": "1 King Bed",
@@ -6285,7 +6285,7 @@
     "tags": ["Exclusive Access", "Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 132.99,
     "bed_options": "2 Queen Beds",
@@ -6294,7 +6294,7 @@
     "tags": ["Seperate Living Areas", "Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 126.99,
     "bed_options": "2 Queen Beds",
@@ -6303,7 +6303,7 @@
     "tags": ["Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 67.99,
     "bed_options": "2 Double Beds",
@@ -6312,7 +6312,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 252.99,
     "bed_options": "1 Queen Bed",
@@ -6321,7 +6321,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 168.99,
     "bed_options": "2 Double Beds",
@@ -6330,7 +6330,7 @@
     "tags": ["Additional Amenities", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 257.99,
     "bed_options": "1 Queen Bed",
@@ -6339,7 +6339,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 83.99,
     "bed_options": "1 Queen Bed",
@@ -6348,7 +6348,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 148.99,
     "bed_options": "1 King Bed",
@@ -6357,7 +6357,7 @@
     "tags": ["Special Packages and Offers", "Special Packages and Offers"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "1 Queen Bed",
@@ -6366,7 +6366,7 @@
     "tags": ["More Space", "Privacy"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 240.99,
     "bed_options": "2 Queen Beds",
@@ -6375,7 +6375,7 @@
     "tags": ["Jacuzzi", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 105.99,
     "bed_options": "2 Queen Beds",
@@ -6384,7 +6384,7 @@
     "tags": ["Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 107.99,
     "bed_options": "1 Queen Bed",
@@ -6393,7 +6393,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 247.99,
     "bed_options": "1 Queen Bed",
@@ -6402,7 +6402,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "2 Queen Beds",
@@ -6411,7 +6411,7 @@
     "tags": ["Private Balcony", "Privacy", "WI-FI"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 248.99,
     "bed_options": "2 Double Beds",
@@ -6420,7 +6420,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "1 Queen Bed",
@@ -6429,7 +6429,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 99.99,
     "bed_options": "2 Queen Beds",
@@ -6438,7 +6438,7 @@
     "tags": ["Privacy", "Special Packages and Offers"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Suite",
     "price": 256.99,
     "bed_options": "2 Queen Beds",
@@ -6447,7 +6447,7 @@
     "tags": ["Aesthetic Appeal", "WI-FI"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 108.99,
     "bed_options": "1 King Bed",
@@ -6456,7 +6456,7 @@
     "tags": ["Seperate Living Areas", "Exclusive Access"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 120.99,
     "bed_options": "1 Queen Bed",
@@ -6465,7 +6465,7 @@
     "tags": ["Seperate Living Areas", "Enhanced Views", "More Space"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 159.99,
     "bed_options": "2 Double Beds",
@@ -6474,7 +6474,7 @@
     "tags": ["Enhanced Views", "Jacuzzi"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 263.99,
     "bed_options": "2 Double Beds",
@@ -6483,7 +6483,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Queen Beds",
@@ -6492,7 +6492,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 74.99,
     "bed_options": "1 Queen Bed",
@@ -6501,7 +6501,7 @@
     "tags": ["More Space", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 156.99,
     "bed_options": "1 King Bed",
@@ -6510,7 +6510,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Suite",
     "price": 262.99,
     "bed_options": "2 Double Beds",
@@ -6519,7 +6519,7 @@
     "tags": ["Seperate Living Areas", "Privacy", "Private Balcony"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "2 Double Beds",
@@ -6528,7 +6528,7 @@
     "tags": ["Exclusive Access", "Enhanced Views"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Double Beds",
@@ -6537,7 +6537,7 @@
     "tags": ["Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 143.99,
     "bed_options": "1 King Bed",
@@ -6546,7 +6546,7 @@
     "tags": ["Special Packages and Offers", "Seperate Living Areas"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 123.99,
     "bed_options": "2 Double Beds",
@@ -6555,7 +6555,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 82.99,
     "bed_options": "1 King Bed",
@@ -6564,7 +6564,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 231.99,
     "bed_options": "2 Queen Beds",
@@ -6573,7 +6573,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 96.99,
     "bed_options": "1 Queen Bed",
@@ -6582,7 +6582,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "1 Queen Bed",
@@ -6591,7 +6591,7 @@
     "tags": ["Jacuzzi", "More Space"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 248.99,
     "bed_options": "1 King Bed",
@@ -6600,7 +6600,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Standard Room",
     "price": 114.99,
     "bed_options": "1 Queen Bed",
@@ -6609,7 +6609,7 @@
     "tags": ["Additional Amenities", "More Space"]
   },
   {
-    "description": "2 Double Beds (City View)",
+    "description": "City View",
     "type": "Budget Room",
     "price": 85.99,
     "bed_options": "2 Double Beds",
@@ -6618,7 +6618,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 240.99,
     "bed_options": "2 Double Beds",
@@ -6627,7 +6627,7 @@
     "tags": ["Aesthetic Appeal", "Seperate Living Areas"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 154.99,
     "bed_options": "2 Queen Beds",
@@ -6636,7 +6636,7 @@
     "tags": ["Jacuzzi"]
   },
   {
-    "description": "1 Queen Bed (Amenities)",
+    "description": "Amenities",
     "type": "Budget Room",
     "price": 80.99,
     "bed_options": "1 Queen Bed",
@@ -6645,7 +6645,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 268.99,
     "bed_options": "2 Double Beds",
@@ -6654,7 +6654,7 @@
     "tags": ["Seperate Living Areas", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 140.99,
     "bed_options": "2 Queen Beds",
@@ -6663,7 +6663,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Suite",
     "price": 267.99,
     "bed_options": "1 Queen Bed",
@@ -6676,7 +6676,7 @@
     ]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 153.99,
     "bed_options": "2 Queen Beds",
@@ -6685,7 +6685,7 @@
     "tags": ["Privacy", "Enhanced Views"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 106.99,
     "bed_options": "2 Queen Beds",
@@ -6694,7 +6694,7 @@
     "tags": ["Jacuzzi", "Jacuzzi", "Additional Amenities"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Standard Room",
     "price": 118.99,
     "bed_options": "1 Queen Bed",
@@ -6703,7 +6703,7 @@
     "tags": ["WI-FI"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 152.99,
     "bed_options": "1 King Bed",
@@ -6712,7 +6712,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 96.99,
     "bed_options": "1 King Bed",
@@ -6721,7 +6721,7 @@
     "tags": ["Exclusive Access", "More Space", "Better Technology"]
   },
   {
-    "description": "1 King Bed (City View)",
+    "description": "City View",
     "type": "Standard Room",
     "price": 121.99,
     "bed_options": "1 King Bed",
@@ -6730,7 +6730,7 @@
     "tags": ["Enhanced Views", "Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 131.99,
     "bed_options": "2 Queen Beds",
@@ -6739,7 +6739,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (City View)",
+    "description": "City View",
     "type": "Deluxe Room",
     "price": 161.99,
     "bed_options": "2 Queen Beds",
@@ -6748,7 +6748,7 @@
     "tags": ["Private Balcony", "Special Packages and Offers"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 138.99,
     "bed_options": "1 Queen Bed",
@@ -6757,7 +6757,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Queen Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 162.99,
     "bed_options": "2 Queen Beds",
@@ -6766,7 +6766,7 @@
     "tags": ["Private Balcony", "More Space"]
   },
   {
-    "description": "2 Double Beds (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 60.99,
     "bed_options": "2 Double Beds",
@@ -6775,7 +6775,7 @@
     "tags": ["Jacuzzi", "Private Balcony"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 149.99,
     "bed_options": "1 King Bed",
@@ -6784,7 +6784,7 @@
     "tags": ["Aesthetic Appeal"]
   },
   {
-    "description": "2 Queen Beds (Amenities)",
+    "description": "Amenities",
     "type": "Suite",
     "price": 244.99,
     "bed_options": "2 Queen Beds",
@@ -6793,7 +6793,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Deluxe Room",
     "price": 157.99,
     "bed_options": "1 Queen Bed",
@@ -6806,7 +6806,7 @@
     ]
   },
   {
-    "description": "2 Double Beds (Amenities)",
+    "description": "Amenities",
     "type": "Deluxe Room",
     "price": 158.99,
     "bed_options": "2 Double Beds",
@@ -6815,7 +6815,7 @@
     "tags": ["Privacy", "Special Packages and Offers", "Exclusive Access"]
   },
   {
-    "description": "1 King Bed (Mountain View)",
+    "description": "Mountain View",
     "type": "Standard Room",
     "price": 102.99,
     "bed_options": "1 King Bed",
@@ -6824,7 +6824,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "1 Queen Bed (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 77.99,
     "bed_options": "1 Queen Bed",
@@ -6833,7 +6833,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 68.99,
     "bed_options": "1 King Bed",
@@ -6842,7 +6842,7 @@
     "tags": ["Enhanced Views", "Private Balcony", "Better Technology"]
   },
   {
-    "description": "2 Double Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 146.99,
     "bed_options": "2 Double Beds",
@@ -6851,7 +6851,7 @@
     "tags": ["Privacy"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Deluxe Room",
     "price": 169.99,
     "bed_options": "2 Double Beds",
@@ -6860,7 +6860,7 @@
     "tags": ["More Space"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Suite",
     "price": 234.99,
     "bed_options": "2 Queen Beds",
@@ -6869,7 +6869,7 @@
     "tags": ["Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (Cityside)",
+    "description": "Cityside",
     "type": "Standard Room",
     "price": 132.99,
     "bed_options": "2 Queen Beds",
@@ -6878,7 +6878,7 @@
     "tags": ["Upgraded Furnishings"]
   },
   {
-    "description": "1 King Bed (Waterfront View)",
+    "description": "Waterfront View",
     "type": "Budget Room",
     "price": 95.99,
     "bed_options": "1 King Bed",
@@ -6887,7 +6887,7 @@
     "tags": ["Aesthetic Appeal", "Complimentary Services"]
   },
   {
-    "description": "2 Queen Beds (Mountain View)",
+    "description": "Mountain View",
     "type": "Deluxe Room",
     "price": 137.99,
     "bed_options": "2 Queen Beds",
@@ -6896,7 +6896,7 @@
     "tags": ["Privacy", "Private Balcony", "Special Packages and Offers"]
   },
   {
-    "description": "2 Double Beds (Cityside)",
+    "description": "Cityside",
     "type": "Budget Room",
     "price": 86.99,
     "bed_options": "2 Double Beds",
