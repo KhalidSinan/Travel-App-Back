@@ -70,23 +70,12 @@ function getFlightsReqDataHelper(req) {
 function getFlightsTimeFilterHelper(date, time_start, time_end, data) {
     let dateArray = date.split("/");
     let newDate = `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
+
     // Start Time
-    const date1 = createDateTimeObject(newDate, time_start)
-    // const date1 = new Date(date)
-    // date1.setTime(date1.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-    // time_start = convertTime12to24(time_start)
-    // date1.setUTCHours(time_start[0], time_start[1], time_start[2])
+    time_start = createDateTimeObject(newDate, time_start)
 
     // End Time
-    const date2 = createDateTimeObject(newDate, time_end)
-    // const date2 = new Date(date)
-    // date2.setTime(date2.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-    // time_end = convertTime12to24(time_end)
-    // date2.setUTCHours(time_end[0], time_end[1], time_end[2])
-
-    // Converting to ms
-    time_start = date1
-    time_end = date2
+    time_end = createDateTimeObject(newDate, time_end)
 
     // Finding flights based on time
     let temp = []
@@ -96,11 +85,29 @@ function getFlightsTimeFilterHelper(date, time_start, time_end, data) {
     return temp
 }
 
+function getTwoWayFlightsTimeFilterHelper(date, time_start, time_end, data) {
+    let dateArray = date.split("/");
+    let newDate = `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
+
+    // Start Time
+    time_start = createDateTimeObject(newDate, time_start)
+
+    // End Time
+    time_end = createDateTimeObject(newDate, time_end)
+
+    // Finding flights based on time
+    let temp = []
+    data.forEach(flight => {
+        if (flight.flight.departure_date.dateTime <= time_end && flight.flight.departure_date.dateTime >= time_start) temp.push(flight)
+    })
+    return temp
+}
+
 function getFlightsPriceFilterHelper(min_price, max_price, data) {
     // Finding flights based on price
     let temp = []
     data.forEach(flight => {
-        if (flight.overall_price <= max_price && flight.overall_price >= min_price) temp.push(flight)
+        if (+flight.overall_price <= max_price && +flight.overall_price >= min_price) temp.push(flight)
     })
     return temp
 }
@@ -126,11 +133,10 @@ function getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIn
     flights.forEach(flight => {
         flights_back.forEach(flight_back => {
             let temp = { flight, flight_back }
-            const date = createDateTimeObject(flight.departure_date.date, flight.departure_date.time)
+            const date = flight.departure_date.dateTime
             if (getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && getFlightsSeatsCalculateHelper(flight_back, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
                 temp.flight_back.overall_price = flight_back.classes[classIndex].price
                 temp.flight.overall_price = flight.classes[classIndex].price
-                temp.flight.date = date
                 temp.overall_price = (temp.flight_back.overall_price + temp.flight.overall_price).toFixed(2)
                 data.push(temp)
                 if (airline && (flight.airline.name != airline && flight_back.airline.name != airline)) data.pop()
@@ -152,6 +158,23 @@ function getFlightsDateSortHelper(sort = null, data) {
     if (sort == 'desc') {
         data.reverse();
     }
+}
+
+function getTwoWayFlightsDateSortHelper(sort = null, data) {
+    data.sort((a, b) => a.flight.departure_date.dateTime - b.flight.departure_date.dateTime)
+    if (sort == 'desc') {
+        data.reverse();
+    }
+}
+
+function oneWaySorter(sortBy = null, sort = null, data) {
+    if (sortBy == 'price') getFlightsPriceSortHelper(sort, data)
+    else if (sortBy == 'time') getFlightsDateSortHelper(sort, data)
+}
+
+function twoWaySorter(sortBy = null, sort = null, data) {
+    if (sortBy == 'price') getFlightsPriceSortHelper(sort, data)
+    else if (sortBy == 'time') getTwoWayFlightsDateSortHelper(sort, data)
 }
 
 async function reserveFlightHelper(reservations, flight, user_id) {
@@ -193,8 +216,6 @@ function getAirlines() {
 }
 
 module.exports = {
-    getFlightsPriceSortHelper,
-    getFlightsDateSortHelper,
     getFlightsReqDataHelper,
     getFlightsOneWayDataHelper,
     getFlightsTwoWayDataHelper,
@@ -203,5 +224,8 @@ module.exports = {
     findCancelRate,
     getCountries,
     getAirlines,
-    getFlightsPriceFilterHelper
+    getFlightsPriceFilterHelper,
+    oneWaySorter,
+    twoWaySorter,
+    getTwoWayFlightsTimeFilterHelper
 }
