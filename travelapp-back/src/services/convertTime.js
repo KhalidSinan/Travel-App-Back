@@ -1,7 +1,7 @@
 function convertTime12to24(time12h) {
     const [time, modifier] = time12h.split(' ');
 
-    let [hours, minutes, seconds] = time.split(':');
+    let [hours, minutes] = time.split(':');
 
     if (hours === '12') {
         hours = '00';
@@ -11,7 +11,7 @@ function convertTime12to24(time12h) {
         hours = parseInt(hours, 10) + 12;
     }
 
-    return [hours, minutes, seconds]
+    return [hours, minutes]
 }
 
 function convertToTimeFormat(minutes) {
@@ -28,7 +28,7 @@ function createDateTimeObject(date, time) {
     const temp = new Date(date)
     temp.setTime(temp.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
     time = convertTime12to24(time)
-    temp.setUTCHours(time[0], time[1], time[2])
+    temp.setUTCHours((Number)(time[0]) - 3, time[1])
     return temp;
 }
 

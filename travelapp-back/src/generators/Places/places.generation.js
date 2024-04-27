@@ -39,7 +39,7 @@ function createRestaurants() {
 function getNames() {
     let data = []
     data = places
-    console.log(data)
+    // console.log(data)
     // fs.writeFileSync('musuem-names.json', JSON.stringify(data))
 }
 

@@ -15,7 +15,8 @@ async function putConfirmation(reservation, data) {
 }
 
 async function removeReservation(reservation, person_reservation) {
-    reservation.reservations.pull(person_reservation)
+    reservation.reservations.data.pull(person_reservation)
+    reservation.num_of_reservations--;
     await reservation.save()
 }
 

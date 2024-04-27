@@ -180,7 +180,7 @@ async function httpCancelReservation(req, res) {
         })
     }
     const id = req.body.person_id;
-    const person_reservation = reservation.reservations.find(res => res._id.equals(id))
+    const person_reservation = reservation.reservations.data.find(res => res._id.equals(id))
     if (!person_reservation) {
         return res.status(200).json({
             message: 'Person Reservation Not Found'

@@ -68,33 +68,30 @@ function getFlightsReqDataHelper(req) {
 // }
 
 function getFlightsTimeFilterHelper(date, time_start, time_end, data) {
+    let dateArray = date.split("/");
+    let newDate = `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
     // Start Time
-    const date1 = createDateTimeObject(date, time_start)
+    const date1 = createDateTimeObject(newDate, time_start)
     // const date1 = new Date(date)
     // date1.setTime(date1.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
     // time_start = convertTime12to24(time_start)
     // date1.setUTCHours(time_start[0], time_start[1], time_start[2])
 
     // End Time
-    const date2 = createDateTimeObject(date, time_end)
+    const date2 = createDateTimeObject(newDate, time_end)
     // const date2 = new Date(date)
     // date2.setTime(date2.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
     // time_end = convertTime12to24(time_end)
     // date2.setUTCHours(time_end[0], time_end[1], time_end[2])
 
     // Converting to ms
-    time_start = date1.valueOf()
-    time_end = date2.valueOf()
+    time_start = date1
+    time_end = date2
 
     // Finding flights based on time
     let temp = []
     data.forEach(flight => {
-        const mainDate = createDateTimeObject(date, flight.departure_date.time)
-        const flight_date = new Date(flight.departure_date.date)
-        flight_date.setTime(flight_date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-        const time = convertTime12to24(flight.departure_date.time)
-        flight_date.setUTCHours(time[0], time[1], time[2])
-        if (flight_date.valueOf() < time_end && flight_date.valueOf() > time_start) temp.push(flight)
+        if (flight.departure_date.dateTime <= time_end && flight.departure_date.dateTime >= time_start) temp.push(flight)
     })
     return temp
 }
@@ -115,10 +112,8 @@ function getFlightsSeatsCalculateHelper(flight, seats, classIndex) {
 function getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline = null) {
     let data = []
     flights.forEach(flight => {
-        const date = createDateTimeObject(flight.departure_date.date, flight.departure_date.time)
-        if (flight && getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
+        if (flight && getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && flight.departure_date.dateTime > Date.now()) {
             flight.overall_price = flight.classes[classIndex].price
-            flight.date = date
             data.push(flight)
             if (airline && flight.airline.name != airline) data.pop();
         }
@@ -176,14 +171,12 @@ async function reserveFlightHelper(reservations, flight, user_id) {
 }
 
 async function findCancelRate(reservation, person_price) {
-    const date = new Date(reservation.flights[0].departure_date.date)
-    date.setTime(date.valueOf() + 3 * 60 * 60 * 1000) // To Fix Timezones
-    const time = convertTime12to24(reservation.flights[0].departure_date.time)
-    date.setUTCHours(time[0], time[1], time[2])
-    const timeDifference = date - Date.now()
+    const date = reservation.flights[0].departure_date.dateTime
+    const timeDifference = date - new Date(Date.now() + 3 * 60 * 60 * 1000)
     const chance = 2 * 60 * 60 * 1000
     let rate = 0.2; // 0.2 will be back
     if (timeDifference < chance) rate = 0; // Nothing is back
+    console.log(timeDifference, rate)
     return person_price * rate
 }
 

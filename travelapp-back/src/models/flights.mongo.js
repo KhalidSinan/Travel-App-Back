@@ -30,10 +30,12 @@ const flightSchema = new mongoose.Schema({
         required: true
     },
     departure_date: {
+        dateTime: Date,
         date: String,
         time: String
     },
     arrival_date: {
+        dateTime: Date,
         date: String,
         time: String
     },
