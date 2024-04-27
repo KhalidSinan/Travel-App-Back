@@ -21,13 +21,16 @@ function createDate() {
         date.getHours() + Math.floor(Math.random() * 24), // Add random hours (0-23)
         Math.floor(Math.random() * 12) * 5  // Set minutes to the nearest lower multiple of 10
     ));
+
     const dateObj = {
-        format: utcDate,
-        date: utcDate.toLocaleDateString(),
-        time: utcDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        dateTime: utcDate,
+        date: utcDate.toLocaleDateString('en-GB'),
+        time: utcDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     };
     return dateObj
 }
+
+createDate()
 
 function createAirline() {
     const { name, logo } = airlines[Math.floor(Math.random() * airlinesNum)]
@@ -87,13 +90,15 @@ async function createTrips(num_of_trips) {
         const airline = createAirline()
 
         let departure_date = createDate()
-        let arrival_date = departure_date
-        arrival_date.format.setMinutes(arrival_date.format.getMinutes() + duration)
-
-        departure_date = { date: departure_date.date, time: departure_date.time }
+        let arrival_date = new Date(departure_date.dateTime)
         arrival_date = {
-            date: arrival_date.format.toLocaleDateString(),
-            time: arrival_date.format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+            dateTime: arrival_date,
+        }
+        arrival_date.dateTime.setMinutes(arrival_date.dateTime.getMinutes() + duration)
+        arrival_date = {
+            dateTime: arrival_date.dateTime,
+            date: arrival_date.dateTime.toLocaleDateString('en-GB'),
+            time: arrival_date.dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         }
 
         const available_seats = Math.floor(Math.random() * 300)
@@ -106,7 +111,5 @@ async function createTrips(num_of_trips) {
     // fs.writeFileSync('trips.json', JSON.stringify(trips))
     await flightsMongo.insertMany(trips)
 }
-
-// createTrips(30000);
 
 module.exports = createTrips;
