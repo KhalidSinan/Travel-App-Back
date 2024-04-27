@@ -52,7 +52,9 @@ function flightData(flight) {
             city: flight.destination.city
         },
         departure_date: flight.departure_date,
-        arrival_date: flight.arrival_date.date,
+        arrival_date: {
+            date: flight.arrival_date.date
+        },
         duration: convertToTimeFormat(flight.duration),
         price: flight.overall_price,
     }
