@@ -72,7 +72,7 @@ function twoWayFlightDataDetails(two_way) {
     return {
         flight: flightDataDetails(two_way.flight),
         flight_back: flightDataDetails(two_way.flight_back),
-        overall_price: two_way.overall_price
+        overall_price: two_way.overall_price,
     }
 }
 
