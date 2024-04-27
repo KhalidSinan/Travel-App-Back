@@ -24,8 +24,8 @@ function createDate() {
     const dateObj = {
         format: utcDate,
         date: utcDate.toLocaleDateString(),
-        time: utcDate.toLocaleTimeString()
-    }
+        time: utcDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    };
     return dateObj
 }
 
@@ -93,7 +93,7 @@ async function createTrips(num_of_trips) {
         departure_date = { date: departure_date.date, time: departure_date.time }
         arrival_date = {
             date: arrival_date.format.toLocaleDateString(),
-            time: arrival_date.format.toLocaleTimeString()
+            time: arrival_date.format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         }
 
         const available_seats = Math.floor(Math.random() * 300)
