@@ -6,7 +6,7 @@ const { validationErrors } = require('../../middlewares/validationErrors');
 const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
 const { validateReserveFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsPriceSortHelper, getFlightsDateSortHelper, getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper } = require('./flights.helper')
+const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper')
 
 // Done
 // async function httpGetFlights(req, res) {
@@ -65,11 +65,12 @@ async function httpGetFlights(req, res) {
         Object.assign(filter_back, req.query)
         const flights_back = await getFlights(skip, limit, filter_back);
         data = getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIndex, airline)
-        getFlightsDataSortHelper(sort, data)
+        if (time_start && time_end) data = getTwoWayFlightsTimeFilterHelper(date, time_start, time_end, data)
+        if (min_price && max_price) data = getFlightsPriceFilterHelper(min_price, max_price, data)
+        twoWaySorter(sortBy, sort, data)
         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
     }
-    if (sortBy == 'price') getFlightsPriceSortHelper(sort, data)
-    else if (sortBy == 'time') getFlightsDateSortHelper(sort, data)
+    oneWaySorter(sortBy, sort, data)
     return res.status(200).json({ data: serializedData(data, flightData) })
 }
 
