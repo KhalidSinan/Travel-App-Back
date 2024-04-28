@@ -32,7 +32,8 @@ async function validateGetFlights(data) {
 
 async function validateGetFlight(data) {
     const schema = Joi.object({
-        id_back: Joi.string().hex().length(24)
+        id_back: Joi.string().hex().length(24),
+        class: Joi.string().length(1),
     })
     return schema.validate(data, { abortEarly: false });
 }
