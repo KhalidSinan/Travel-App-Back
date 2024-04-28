@@ -6,7 +6,7 @@ const { validationErrors } = require('../../middlewares/validationErrors');
 const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
 const { validateReserveFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper')
+const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper, changeClassName } = require('./flights.helper')
 
 // Done
 // async function httpGetFlights(req, res) {
@@ -77,9 +77,7 @@ async function httpGetFlights(req, res) {
 //Done
 async function httpGetFlight(req, res) {
     const { error } = await validateGetFlight(req.query)
-    if (error) {
-        return res.status(400).json({ message: 'Second ID Not Valid' })
-    }
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
     const flight = await getFlight(req.params.id);
     if (!flight) return res.status(404).json({ message: 'Not Found' })
     flight.class = flight.classes.find(flight_class => flight_class.code == req.query.class)
@@ -131,6 +129,7 @@ async function httpReserveFlight(req, res) {
     const { error } = await validateReserveFlight(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
+
     // Get Data
     const user_id = req.user._id
     const reservation_type = req.body.reservation_type
@@ -140,6 +139,7 @@ async function httpReserveFlight(req, res) {
     let overall_price = 0;
     let reservations_back = [], reservations = []
     for (const flight_id of flights) {
+
         const flight = await getFlight(flight_id)
         if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
         if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
@@ -149,6 +149,10 @@ async function httpReserveFlight(req, res) {
         overall_price += price
     }
     overall_price = overall_price.toFixed(2)
+
+
+    changeClassName(reservations, reservations_back)
+
     const data = {
         user_id, flights, num_of_reservations, reservations,
         reservations_back, overall_price, reservation_type

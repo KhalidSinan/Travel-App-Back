@@ -178,7 +178,7 @@ function twoWaySorter(sortBy = null, sort = null, data) {
 }
 
 async function reserveFlightHelper(reservations, flight, user_id) {
-    const classes = ['A', 'B', 'C']
+    const classes = ['A', 'B', 'C'];
     let price = 0;
     reservations.forEach(reservation => {
         reservation.price = flight.classes[classes.indexOf(reservation.seat_class)].price
@@ -214,6 +214,18 @@ function getAirlines() {
     return data;
 }
 
+function changeClassName(reservations, reservations_back) {
+    let classesMap = new Map([['A', 'First'], ['B', 'Business'], ['C', 'Economy']])
+    reservations.data.forEach(reservation => {
+        reservation.seat_class = classesMap.get(reservation.seat_class)
+    })
+    if (reservations_back.size == 0) {
+        reservations_back.data.forEach(reservation => {
+            reservation.seat_class = classesMap.get(reservation.seat_class)
+        })
+    }
+}
+
 module.exports = {
     getFlightsReqDataHelper,
     getFlightsOneWayDataHelper,
@@ -226,5 +238,6 @@ module.exports = {
     getFlightsPriceFilterHelper,
     oneWaySorter,
     twoWaySorter,
-    getTwoWayFlightsTimeFilterHelper
+    getTwoWayFlightsTimeFilterHelper,
+    changeClassName
 }
