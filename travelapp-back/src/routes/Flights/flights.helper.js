@@ -199,7 +199,6 @@ async function findCancelRate(reservation, person_price) {
     const chance = 2 * 60 * 60 * 1000
     let rate = 0.2; // 0.2 will be back
     if (timeDifference < chance) rate = 0; // Nothing is back
-    console.log(timeDifference, rate)
     return person_price * rate
 }
 

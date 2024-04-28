@@ -3,8 +3,8 @@ const { convertToTimeFormat, createDateTimeObject, msToTime } = require("../../s
 function reservationData(reservation) {
     const flight = reservation.flights[0];
     let remaining = flight.departure_date.dateTime.valueOf() - Date.now()
-    const remaining_time = msToTime(remaining)
-    console.log(remaining, remaining_time)
+    let remaining_time = msToTime(remaining)
+    if (remaining_time.seconds < 0) remaining_time = { days: 0, hours: 0, minutes: 0, seconds: 0 };
     const flight_back = reservation.flights[1];
     let reservation_type = 'One-Way'
     const data = {
@@ -93,6 +93,12 @@ function twoWayFlightDataDetails(two_way) {
 }
 
 function flightDataDetails(flight) {
+    let flight_class = {
+        name: flight.class.name,
+        price: flight.class.price,
+        weight: flight.class.weight,
+        features: flight.class.features,
+    }
     return {
         id: flight._id,
         airline: flight.airline,
@@ -107,7 +113,7 @@ function flightDataDetails(flight) {
             time: flight.arrival_date.time,
         },
         duration: convertToTimeFormat(flight.duration),
-        classes: flight.classes
+        class: flight_class
     }
 }
 
