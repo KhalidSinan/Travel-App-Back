@@ -32,8 +32,8 @@ async function validateGetFlights(data) {
 
 async function validateGetFlight(data) {
     const schema = Joi.object({
-        id_back: Joi.string().hex().length(24),
-        class: Joi.string().length(1),
+        id_back: Joi.string().hex().length(24).messages({ 'string.hex': 'ID Must Be Valid', 'string.length': 'ID Must Be Valid' }),
+        class: Joi.string().length(1).required().messages({ 'any.required': 'Class Required' }),
     })
     return schema.validate(data, { abortEarly: false });
 }
