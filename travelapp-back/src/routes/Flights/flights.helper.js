@@ -10,7 +10,7 @@ function getFlightsReqDataHelper(req) {
     const date = req.body.date
     const num_of_seats = req.body.num_of_seats
     const class_of_seats = req.body.class_of_seats
-    const two_way = req.body.two_way
+    const two_way = req.body.two_way == 'true' ? true : false
     const date_end = req.body.date_end
 
     // Query Param
