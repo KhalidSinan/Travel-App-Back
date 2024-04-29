@@ -12,7 +12,7 @@ flightRouter.get('/search', requireJwtAuth, asyncHandler(httpGetSearchPageData))
 flightRouter.post('/search', requireJwtAuth, asyncHandler(httpGetFlights))
 flightRouter.post('/reserve', requireJwtAuth, asyncHandler(httpReserveFlight))
 flightRouter.get('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetFlight))
-flightRouter.post('/:id/confirm', requireJwtAuth, checkObjectID, asyncHandler(httpConfirmReservation))
+flightRouter.post('/confirm', requireJwtAuth, asyncHandler(httpConfirmReservation))
 flightRouter.post('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelReservation))
 flightRouter.get('/reservation/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetReservation))
 
