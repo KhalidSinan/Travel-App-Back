@@ -144,8 +144,8 @@ async function httpReserveFlight(req, res) {
         if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
         if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
         const { price, reserv } = await reserveFlightHelper(reservationData, flight, user_id)
-        if (reservations.length == 0) reservations = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price }
-        else if (reservations_back.length == 0) reservations_back = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price }
+        if (reservations.length == 0) reservations = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price.toFixed(2) }
+        else if (reservations_back.length == 0) reservations_back = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price.toFixed(2) }
         overall_price += price
     }
     overall_price = overall_price.toFixed(2)
@@ -164,7 +164,7 @@ async function httpReserveFlight(req, res) {
 
 // Done
 async function httpConfirmReservation(req, res) {
-    const reservation = await getReservation(req.params.id)
+    const reservation = await getReservation(req.body.id)
     const user_id = req.user._id
     if (!user_id.equals(reservation.user_id)) {
         return res.status(400).json({
