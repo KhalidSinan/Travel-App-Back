@@ -100,20 +100,22 @@ function flightDataDetails(flight) {
         features: flight.class.features,
     }
     return {
-        id: flight._id,
-        airline: flight.airline,
-        source: flight.source,
-        destination: flight.destination,
-        departure_date: {
-            date: flight.departure_date.date,
-            time: flight.departure_date.time,
-        },
-        arrival_date: {
-            date: flight.arrival_date.date,
-            time: flight.arrival_date.time,
-        },
-        duration: convertToTimeFormat(flight.duration),
-        class: flight_class
+        flight: {
+            id: flight._id,
+            airline: flight.airline,
+            source: flight.source,
+            destination: flight.destination,
+            departure_date: {
+                date: flight.departure_date.date,
+                time: flight.departure_date.time,
+            },
+            arrival_date: {
+                date: flight.arrival_date.date,
+                time: flight.arrival_date.time,
+            },
+            duration: convertToTimeFormat(flight.duration),
+            class: flight_class
+        }
     }
 }
 
