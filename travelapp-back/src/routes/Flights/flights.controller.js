@@ -89,7 +89,7 @@ async function httpGetFlight(req, res) {
         data = { flight, flight_back }
         return res.status(200).json({ two_way: true, data: twoWayFlightDataDetails(data) })
     }
-    return res.status(200).json({ two_way: false, data: flightDataDetails(data) })
+    return res.status(200).json({ two_way: false, data: { flight: flightDataDetails(data) } })
 }
 
 // // Maybe Disabled Person
