@@ -165,6 +165,7 @@ async function httpReserveFlight(req, res) {
 // Done
 async function httpConfirmReservation(req, res) {
     const reservation = await getReservation(req.body.id)
+    if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
     const user_id = req.user._id
     if (!user_id.equals(reservation.user_id)) {
         return res.status(400).json({
