@@ -80,8 +80,8 @@ function flightData(flight) {
 
 function twoWayFlightData(two_way) {
     return {
-        flight: flightData(two_way.flight),
-        flight_back: flightData(two_way.flight_back),
+        flight: flightData(two_way.flight).flight,
+        flight_back: flightData(two_way.flight_back).flight,
         overall_price: two_way.overall_price
     }
 }
@@ -102,22 +102,20 @@ function flightDataDetails(flight) {
         features: flight.class.features,
     }
     return {
-        flight: {
-            id: flight._id,
-            airline: flight.airline,
-            source: flight.source,
-            destination: flight.destination,
-            departure_date: {
-                date: flight.departure_date.date,
-                time: flight.departure_date.time,
-            },
-            arrival_date: {
-                date: flight.arrival_date.date,
-                time: flight.arrival_date.time,
-            },
-            duration: convertToTimeFormat(flight.duration),
-            class: flight_class
-        }
+        id: flight._id,
+        airline: flight.airline,
+        source: flight.source,
+        destination: flight.destination,
+        departure_date: {
+            date: flight.departure_date.date,
+            time: flight.departure_date.time,
+        },
+        arrival_date: {
+            date: flight.arrival_date.date,
+            time: flight.arrival_date.time,
+        },
+        duration: convertToTimeFormat(flight.duration),
+        class: flight_class
     }
 }
 
