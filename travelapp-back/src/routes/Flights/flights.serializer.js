@@ -56,23 +56,25 @@ function reservationData(reservation) {
 
 function flightData(flight) {
     return {
-        id: flight._id,
-        airline: flight.airline,
-        source: {
-            city: flight.source.city
-        },
-        destination: {
-            city: flight.destination.city
-        },
-        departure_date: {
-            date: flight.departure_date.date,
-            time: flight.departure_date.time,
-        },
-        arrival_date: {
-            date: flight.arrival_date.date
-        },
-        duration: convertToTimeFormat(flight.duration),
-        price: flight.overall_price,
+        flight: {
+            id: flight._id,
+            airline: flight.airline,
+            source: {
+                city: flight.source.city
+            },
+            destination: {
+                city: flight.destination.city
+            },
+            departure_date: {
+                date: flight.departure_date.date,
+                time: flight.departure_date.time,
+            },
+            arrival_date: {
+                date: flight.arrival_date.date
+            },
+            duration: convertToTimeFormat(flight.duration),
+            price: flight.overall_price,
+        }
     }
 }
 
