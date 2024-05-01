@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const destinationSchema = require('./destination.mongo')
+const addressSchema = require('./address.mongo')
 const roomTypeSchema = require('./room-types.mongo')
 
 const hotelSchema = new mongoose.Schema({
@@ -8,7 +8,7 @@ const hotelSchema = new mongoose.Schema({
         required: true
     },
     location: {
-        type: destinationSchema,
+        type: addressSchema,
         required: true
     },
     stars: {
