@@ -4,7 +4,10 @@ Joi.objectId = require('joi-objectid')(Joi)
 async function validateReserveFlight(data) {
     const reservationSchema = Joi.object({
         person_name: Joi.string().required().messages({
-            'any.required': 'Person Required'
+            'any.required': 'Person Name Required'
+        }),
+        person_passport: Joi.string().required().messages({
+            'any.required': 'Person Passport Required'
         }),
         seat_class: Joi.string().required().messages({
             'any.required': 'Seat Class Required'

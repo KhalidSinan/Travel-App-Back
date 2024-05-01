@@ -21,7 +21,7 @@ async function createHotels() {
             location: {
                 country: data.country,
                 city: data.city ?? faker.location.city(),
-                name: data.address ?? faker.location.streetAddress()
+                address: data.address ?? faker.location.streetAddress()
             },
             description: data.overview,
             stars: data.stars,

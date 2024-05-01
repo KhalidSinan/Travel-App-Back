@@ -23,6 +23,10 @@ const planeReservationSchema = new mongoose.Schema({
                 type: String,
                 required: true
             },
+            person_passport: {
+                type: String,
+                required: true
+            },
             seat_number: {
                 type: String,
                 required: true
@@ -44,6 +48,10 @@ const planeReservationSchema = new mongoose.Schema({
                 required: true,
             },
             seat_class: {
+                type: String,
+                required: true
+            },
+            person_passport: {
                 type: String,
                 required: true
             },
