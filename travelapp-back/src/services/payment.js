@@ -1,3 +1,6 @@
+require('dotenv').config()
+const URL = process.env.URL;
+
 function createPaymentData(data, amount, type) {
     const currency = 'USD'
     let items = [];
@@ -20,8 +23,10 @@ function createPaymentData(data, amount, type) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": `http://localhost:5000/payment/execute_payment?amount=${amount}&currency=${currency}`,
-            "cancel_url": "http://localhost:5000/payment/cancel"
+            // "return_url": `http://localhost:5000/payment/execute_payment?amount=${amount}&currency=${currency}`,
+            "return_url": `${URL}/payment/execute_payment?amount=${amount}&currency=${currency}`,
+            "cancel_url": `${URL}/payment/cancel`
+            // "cancel_url": "http://localhost:5000/payment/cancel"
         },
         "transactions": [{
             "item_list": {
