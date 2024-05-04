@@ -15,6 +15,6 @@ flightRouter.get('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetFlig
 flightRouter.post('/confirm', requireJwtAuth, asyncHandler(httpConfirmReservation))
 flightRouter.post('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelReservation))
 flightRouter.get('/reservation/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetReservation))
-flightRouter.get('/reservation/:id/pay', checkObjectID, asyncHandler(httpPayReservation))
+flightRouter.get('/reservation/:id/pay', requireJwtAuth, checkObjectID, asyncHandler(httpPayReservation))
 
 module.exports = flightRouter;
