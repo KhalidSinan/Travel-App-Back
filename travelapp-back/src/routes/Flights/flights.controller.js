@@ -28,7 +28,6 @@ async function httpGetFlights(req, res) {
 
     const classes = ['A', 'B', 'C']
     const classIndex = classes.indexOf(class_of_seats)
-
     const flights = await getFlights(skip, limit, filter);
     let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
     if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
@@ -36,8 +35,8 @@ async function httpGetFlights(req, res) {
 
     if (two_way) {
         const filter_back = { 'departure_date.date': date_end, 'source.country': destination, 'destination.country': source }
-        Object.assign(filter_back, req.query)
-        const flights_back = await getFlights(skip, limit, filter_back);
+        // Object.assign(filter_back, req.query)
+        const flights_back = await getFlights(0, 0, filter_back);
         data = getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIndex, airline)
         if (time_start && time_end) data = getTwoWayFlightsTimeFilterHelper(date, time_start, time_end, data)
         if (min_price && max_price) data = getFlightsPriceFilterHelper(min_price, max_price, data)
