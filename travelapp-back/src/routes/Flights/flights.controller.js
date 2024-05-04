@@ -6,36 +6,10 @@ const { validationErrors } = require('../../middlewares/validationErrors');
 const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
 const { validateReserveFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper, changeClassName } = require('./flights.helper')
+const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper, changeClassName } = require('./flights.helper');
+const { paymentSheet } = require('../Payments/payments.controller');
+const createPaymentData = require('../../services/payment');
 
-// Done
-// async function httpGetFlights(req, res) {
-//     const { error } = await validateGetFlights({ source: req.query.source, destination: req.query.destination, date: req.query.date, num_of_seats: req.query.num_of_seats, class_of_seats: req.query.class_of_seats })
-//     if (error) return res.status(400).json({ message: validationErrors(error.details) })
-
-//     const { skip, limit } = getPagination(req.query)
-//     const filter = { 'departure_date.date': req.query.date, 'source.country': req.query.source, 'destination.country': req.query.destination }
-//     const { source, destination, num_of_seats, class_of_seats, sort, type, date, date_end, airline, time_start, time_end } = getFlightsReqDataHelper(req)
-
-//     const classes = ['A', 'B', 'C']
-//     const classIndex = classes.indexOf(class_of_seats)
-
-//     const flights = await getFlights(skip, limit, filter);
-//     let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
-//     if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
-
-//     if (type == 'Two-Way') {
-//         const filter_back = { 'departure_date.date': date_end, 'source.country': destination, 'destination.country': source }
-//         Object.assign(filter_back, req.query)
-//         const flights_back = await getFlights(skip, limit, filter_back);
-//         data = getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIndex, airline)
-//         getFlightsDataSortHelper(sort, data)
-//         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
-//     }
-
-//     getFlightsDataSortHelper(sort, data)
-//     return res.status(200).json({ data: serializedData(data, flightData) })
-// }
 
 // Done
 function httpGetSearchPageData(req, res) {
@@ -232,6 +206,15 @@ async function httpGetReservation(req, res) {
     })
 }
 
+async function httpPayReservation(req, res) {
+    const reservation = await getReservation(req.params.id)
+    const data = reservation.reservations.data
+    if (reservation.reservations_back.data.length > 0) data.push(...reservation.reservations_back.data)
+    const payment_data = createPaymentData(data, reservation.overall_price, "flight")
+    req.body.data = payment_data
+    paymentSheet(req, res)
+}
+
 
 module.exports = {
     httpGetFlights,
@@ -240,5 +223,6 @@ module.exports = {
     httpGetReservation,
     httpConfirmReservation,
     httpCancelReservation,
-    httpGetSearchPageData
+    httpGetSearchPageData,
+    httpPayReservation
 }
