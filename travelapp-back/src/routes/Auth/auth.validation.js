@@ -25,7 +25,8 @@ function validateRegisterUser(user) {
         password_confirmation: Joi.any().equal(Joi.ref('password'))
             .required()
             .label('Confirm password')
-            .messages({ 'any.only': '{{#label}} does not match' })
+            .messages({ 'any.only': '{{#label}} does not match' }),
+        device_token: Joi.string()
     })
     return schema.validate(user, { abortEarly: false });
 }
@@ -38,6 +39,7 @@ function validateLoginUser(user) {
         password: Joi.string().required().messages({
             'any.required': "Password Required",
         }),
+        device_token: Joi.string()
     })
     return schema.validate(user);
 }

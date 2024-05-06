@@ -69,10 +69,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    wallet_account: {
-        type: Number,
-        default: 100000
-    },
+    device_token: [String]
     // trips: {
     //     price: {
     //         type:
