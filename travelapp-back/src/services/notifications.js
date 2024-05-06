@@ -1,8 +1,11 @@
-//this is your service.js file or some file where you want to handle push notification
 const admin = require('firebase-admin');
 require('dotenv').config();
 
 async function sendPushNotification(title, body, token, data = null) {
+    let temp = [];
+    token.forEach(tok => {
+        if(tok.expiry - Date.now() > 0) temp.push(tok.token)
+    })
     const message = {
         notification: {
             title,
