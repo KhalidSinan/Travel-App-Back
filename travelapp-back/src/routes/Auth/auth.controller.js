@@ -18,6 +18,8 @@ async function register(req, res) {
         })
     }
     req.body.name = { 'first_name': req.body.first_name, 'last_name': req.body.last_name }
+    // check remember me
+    req.body.device_token = { 'token': req.body.device_token }
     const user = await postUser(req.body);
 
     const token = crypto.randomInt(100000, 999999)
@@ -64,7 +66,10 @@ async function login(req, res) {
         const { id, name } = user;
         const check = await user.checkCredentials(user.password, req.body.password);
         if (check) {
-            if (req.body.device_token) await addDeviceToken(user, req.body.device_token);
+            if (req.body.device_token) {
+                req.body.device_token = { 'token': req.body.device_token }
+                await addDeviceToken(user, req.body.device_token);
+            }
             return res.status(200).json({
                 message: 'User Logged In',
                 token: generateToken({ id, name }),
@@ -151,6 +156,7 @@ async function logout(req, res) {
         token_blacklisted: token
     }
     await postBlacklist(data)
+    req.body.device_token = { 'token': req.body.device_token }
     await removeDeviceToken(user, req.body.device_token);
     return res.status(200).json({ message: 'Logged Out Successfully' })
 }

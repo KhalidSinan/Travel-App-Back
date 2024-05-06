@@ -60,13 +60,13 @@ async function putEmailConfirmation(user) {
 }
 
 async function addDeviceToken(user, token) {
-    user.device_token.pull(token);
+    user.device_token = user.device_token.filter((obj) => obj.token != token.token);
     user.device_token.push(token);
     await user.save();
 }
 
 async function removeDeviceToken(user, token) {
-    user.device_token.pull(token);
+    user.device_token = user.device_token.filter((obj) => obj.token != token.token);
     await user.save();
 }
 

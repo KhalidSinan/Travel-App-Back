@@ -69,7 +69,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    device_token: [String]
+    device_token: [{
+        token: String,
+        expiry: {
+            type: Date,
+            default: () => {
+                const now = new Date();
+                now.setMonth(now.getMonth() + 1);
+                return now;
+            }
+        }
+    }]
     // trips: {
     //     price: {
     //         type:
