@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const { userData } = require('../Users/users.serializer');
-const { postUser, getUser, putPassword, putEmailConfirmation } = require('../../models/users.model');
+const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken } = require('../../models/users.model');
 const { generateToken, verifyToken } = require('../../services/token')
 const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
 const { validationErrors } = require('../../middlewares/validationErrors')
@@ -64,6 +64,7 @@ async function login(req, res) {
         const { id, name } = user;
         const check = await user.checkCredentials(user.password, req.body.password);
         if (check) {
+            if (req.body.device_token) await addDeviceToken(user, req.body.device_token);
             return res.status(200).json({
                 message: 'User Logged In',
                 token: generateToken({ id, name }),
@@ -150,6 +151,7 @@ async function logout(req, res) {
         token_blacklisted: token
     }
     await postBlacklist(data)
+    await removeDeviceToken(user, req.body.device_token);
     return res.status(200).json({ message: 'Logged Out Successfully' })
 }
 

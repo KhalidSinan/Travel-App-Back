@@ -59,6 +59,17 @@ async function putEmailConfirmation(user) {
     await user.save();
 }
 
+async function addDeviceToken(user, token) {
+    user.device_token.pull(token);
+    user.device_token.push(token);
+    await user.save();
+}
+
+async function removeDeviceToken(user, token) {
+    user.device_token.pull(token);
+    await user.save();
+}
+
 module.exports = {
     postUser,
     getUser,
@@ -71,5 +82,7 @@ module.exports = {
     putLocation,
     getWallet,
     putWallet,
-    putEmailConfirmation
+    putEmailConfirmation,
+    addDeviceToken,
+    removeDeviceToken
 }

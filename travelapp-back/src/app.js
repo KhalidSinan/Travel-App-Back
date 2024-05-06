@@ -5,6 +5,15 @@ const errorHandler = require('./middlewares/errorHandler')
 const logger = require('./services/logger');
 const app = express();
 
+// FCM 
+var admin = require("firebase-admin");
+
+var serviceAccount = require('./config/push-notification-key.json');
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+
 // Cron Jobs
 const cron = require('./services/cron')
 
