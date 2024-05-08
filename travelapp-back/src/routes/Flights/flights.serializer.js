@@ -9,7 +9,9 @@ function reservationData(reservation) {
     let reservation_type = 'One-Way'
     const data = {
         flight: {
-            airline: reservation.flights[0].airline.name,
+            airline: {
+                name: reservation.flights[0].airline.name
+            },
             source: reservation.flights[0].source,
             destination: reservation.flights[0].destination,
             departure_date: {
@@ -33,7 +35,9 @@ function reservationData(reservation) {
     }
     if (flight_back) {
         data.flight_back = {
-            airline: reservation.flights[1].airline.name,
+            airline: {
+                name: reservation.flights[1].airline.name
+            },
             source: reservation.flights[1].source,
             destination: reservation.flights[1].destination,
             departure_date: {
