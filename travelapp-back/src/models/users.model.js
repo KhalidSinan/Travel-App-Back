@@ -54,6 +54,10 @@ async function putWallet(user_id, overall_price) {
     await user.save();
 }
 
+function checkConfirmed(user) {
+    return user.email_confirmed == true;
+}
+
 async function putEmailConfirmation(user) {
     user.email_confirmed = true;
     await user.save();
@@ -84,5 +88,6 @@ module.exports = {
     putWallet,
     putEmailConfirmation,
     addDeviceToken,
-    removeDeviceToken
+    removeDeviceToken,
+    checkConfirmed
 }
