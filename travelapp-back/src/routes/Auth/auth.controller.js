@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const { userData } = require('../Users/users.serializer');
-const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken } = require('../../models/users.model');
+const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken, checkConfirmed } = require('../../models/users.model');
 const { generateToken, verifyToken } = require('../../services/token')
 const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
 const { validationErrors } = require('../../middlewares/validationErrors')
@@ -62,6 +62,7 @@ async function login(req, res) {
         });
     }
     const user = await getUser(req.body.email);
+    if (!checkConfirmed(user)) return res.status(400).json({ message: 'Confirm Your Email' });
     if (user) {
         const { id, name } = user;
         const check = await user.checkCredentials(user.password, req.body.password);
