@@ -23,18 +23,23 @@ async function httpGetFlights(req, res) {
 
     const classes = ['A', 'B', 'C']
     const classIndex = classes.indexOf(class_of_seats)
-    const flights = await getFlights(skip, limit, filter);
+    let flights = await getFlights(skip, limit, filter);
+    console.log(flights.length)
     let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
     if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
     if (min_price && max_price) data = getFlightsPriceFilterHelper(min_price, max_price, data)
 
     if (two_way) {
+        flights = await getFlights(0, 0, filter);
         const filter_back = { 'departure_date.date': date_end, 'source.country': destination, 'destination.country': source }
         // Object.assign(filter_back, req.query)
         const flights_back = await getFlights(0, 0, filter_back);
         data = getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIndex, airline)
         if (time_start && time_end) data = getTwoWayFlightsTimeFilterHelper(date, time_start, time_end, data)
         if (min_price && max_price) data = getFlightsPriceFilterHelper(min_price, max_price, data)
+        if (data.length > limit) {
+            data = data.slice(skip, skip + limit)
+        }
         twoWaySorter(sortBy, sort, data)
         return res.status(200).json({ data: serializedData(data, twoWayFlightData) })
     }
