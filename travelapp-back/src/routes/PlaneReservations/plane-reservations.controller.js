@@ -103,6 +103,7 @@ async function httpCancelReservation(req, res) {
 async function httpGetReservation(req, res) {
     const reservation = await getReservation(req.params.id)
     const user_id = req.user._id
+    if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
     if (!user_id.equals(reservation.user_id)) {
         return res.status(400).json({
             message: 'Cant Access This Reservation'

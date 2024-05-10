@@ -30,8 +30,8 @@ function reservationData(reservation) {
         reservation_type: reservation_type,
         two_way: false,
         overall_price: reservation.overall_price,
-        remaining_time: remaining_time
-
+        remaining_time: remaining_time,
+        is_confirmed: reservation.is_confirmed
     }
     if (flight_back) {
         data.flight_back = {
