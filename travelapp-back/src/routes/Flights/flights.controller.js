@@ -1,14 +1,10 @@
 const { getPagination } = require('../../services/query');
 const { serializedData } = require('../../services/serializeArray');
-const { getWallet, putWallet } = require('../../models/users.model')
 const { getFlights, getFlight } = require('../../models/flights.model')
 const { validationErrors } = require('../../middlewares/validationErrors');
-const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
-const { validateReserveFlight, validateGetFlights, validateGetFlight } = require('./flights.validation');
-const { reservationData, flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper, changeClassName } = require('./flights.helper');
-const { paymentSheet } = require('../Payments/payments.controller');
-const createPaymentData = require('../../services/payment');
+const { validateGetFlights, validateGetFlight } = require('./flights.validation');
+const { flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
+const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, reserveFlightHelper, findCancelRate, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper');
 
 
 // Done
@@ -97,130 +93,8 @@ async function httpGetFlight(req, res) {
 //     return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
 // }
 
-async function httpReserveFlight(req, res) {
-    const { error } = await validateReserveFlight(req.body)
-    if (error) return res.status(400).json({ message: validationErrors(error.details) })
-
-
-    // Get Data
-    const user_id = req.user._id
-    const reservation_type = req.body.reservation_type
-    const flights = req.body.flights
-    const reservationData = req.body.reservations
-    const num_of_reservations = req.body.reservations.length
-    let overall_price = 0;
-    let reservations_back = [], reservations = []
-    for (const flight_id of flights) {
-
-        const flight = await getFlight(flight_id)
-        if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
-        if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
-        const { price, reserv } = await reserveFlightHelper(reservationData, flight, user_id)
-        if (reservations.length == 0) reservations = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price.toFixed(2) }
-        else if (reservations_back.length == 0) reservations_back = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price.toFixed(2) }
-        overall_price += price
-    }
-    overall_price = overall_price.toFixed(2)
-
-
-    changeClassName(reservations, reservations_back)
-
-    const data = {
-        user_id, flights, num_of_reservations, reservations,
-        reservations_back, overall_price, reservation_type
-    }
-    const reservation = await postReservation(data)
-
-    return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
-}
-
-// Done
-async function httpConfirmReservation(req, res) {
-    const reservation = await getReservation(req.body.id)
-    if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
-    const user_id = req.user._id
-    if (!user_id.equals(reservation.user_id)) {
-        return res.status(400).json({
-            message: 'Cant Access This Reservation'
-        })
-    }
-    await putConfirmation(reservation, true)
-    return res.status(200).json({
-        message: 'Reservation Confirmed'
-    })
-}
-
-// Done
-async function httpCancelReservation(req, res) {
-    const reservation = await getReservation(req.params.id)
-    const user_id = req.user._id
-    if (!user_id.equals(reservation.user_id)) {
-        return res.status(400).json({
-            message: 'Cant Access This Reservation'
-        })
-    }
-    const id = req.body.person_id;
-    const person_reservation = reservation.reservations.data.find(res => res._id.equals(id))
-    if (!person_reservation) {
-        return res.status(200).json({
-            message: 'Person Reservation Not Found'
-        })
-    }
-    const fee = await findCancelRate(reservation, person_reservation.price) // Money That Will Be Returned
-    await removeReservation(reservation, person_reservation)
-    await putWallet(req.user.id, fee);
-    return res.status(200).json({
-        message: 'Reservation Cancelled'
-    })
-    // Delete All Reservations
-    // const reservation = await getReservation(req.params.id)
-    // const user_id = req.user._id
-    // if (!user_id.equals(reservation.user_id)) {
-    //     return res.status(400).json({
-    //         message: 'Cant Access This Reservation'
-    //     })
-    // }
-    // const fee = await findCancelRate(reservation)
-    // await putWallet(req.user.id, fee);
-    // await putConfirmation(reservation, false)
-    // return res.status(200).json({
-    //     message: 'Reservation Cancelled'
-    // })
-}
-
-async function httpGetReservation(req, res) {
-    const reservation = await getReservation(req.params.id)
-    const user_id = req.user._id
-    if (!user_id.equals(reservation.user_id)) {
-        return res.status(400).json({
-            message: 'Cant Access This Reservation'
-        })
-    }
-    const fee = await findCancelRate(reservation)
-    reservation.fee = fee
-    return res.status(200).json({
-        message: 'Reservation Data Retrieved Successfully',
-        reservation: reservationData(reservation)
-    })
-}
-
-async function httpPayReservation(req, res) {
-    const reservation = await getReservation(req.params.id)
-    const data = reservation.reservations.data
-    if (reservation.reservations_back.data.length > 0) data.push(...reservation.reservations_back.data)
-    const payment_data = createPaymentData(data, reservation.overall_price, "flight")
-    req.body.data = payment_data
-    paymentSheet(req, res)
-}
-
-
 module.exports = {
     httpGetFlights,
     httpGetFlight,
-    httpReserveFlight,
-    httpGetReservation,
-    httpConfirmReservation,
-    httpCancelReservation,
     httpGetSearchPageData,
-    httpPayReservation
 }

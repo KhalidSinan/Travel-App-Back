@@ -177,30 +177,6 @@ function twoWaySorter(sortBy = null, sort = null, data) {
     else if (sortBy == 'time') getTwoWayFlightsDateSortHelper(sort, data)
 }
 
-async function reserveFlightHelper(reservations, flight, user_id) {
-    const classes = ['A', 'B', 'C'];
-    let price = 0;
-    reservations.forEach(reservation => {
-        reservation.price = flight.classes[classes.indexOf(reservation.seat_class)].price
-        reservation.user_id = user_id;
-        price += reservation.price
-        reservation.seat_number = reservation.seat_class + flight.classes[classes.indexOf(reservation.seat_class)].available_seats
-        flight.available_seats--;
-        flight.classes[classes.indexOf(reservation.seat_class)].available_seats--;
-    })
-    // Save Flight Changes
-    await flight.save();
-    return { price, reserv: reservations }
-}
-
-async function findCancelRate(reservation, person_price) {
-    const date = reservation.flights[0].departure_date.dateTime
-    const timeDifference = date - new Date(Date.now() + 3 * 60 * 60 * 1000)
-    const chance = 2 * 60 * 60 * 1000
-    let rate = 0.2; // 0.2 will be back
-    if (timeDifference < chance) rate = 0; // Nothing is back
-    return person_price * rate
-}
 
 function getCountries() {
     let data = []
@@ -214,30 +190,17 @@ function getAirlines() {
     return data;
 }
 
-function changeClassName(reservations, reservations_back) {
-    let classesMap = new Map([['A', 'First'], ['B', 'Business'], ['C', 'Economy']])
-    reservations.data.forEach(reservation => {
-        reservation.seat_class = classesMap.get(reservation.seat_class)
-    })
-    if (reservations_back.size == 0) {
-        reservations_back.data.forEach(reservation => {
-            reservation.seat_class = classesMap.get(reservation.seat_class)
-        })
-    }
-}
+
 
 module.exports = {
     getFlightsReqDataHelper,
     getFlightsOneWayDataHelper,
     getFlightsTwoWayDataHelper,
     getFlightsTimeFilterHelper,
-    reserveFlightHelper,
-    findCancelRate,
     getCountries,
     getAirlines,
     getFlightsPriceFilterHelper,
     oneWaySorter,
     twoWaySorter,
     getTwoWayFlightsTimeFilterHelper,
-    changeClassName
 }

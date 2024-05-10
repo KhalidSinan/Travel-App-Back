@@ -29,6 +29,7 @@ app.use(cors());
 // Use Routes
 app.use('/auth', require('./routes/Auth/auth.route'))
 app.use('/flights', require('./routes/Flights/flights.route'))
+app.use('/plane-reservations', require('./routes/PlaneReservations/plane-reservations.route'))
 app.use('/users', require('./routes/Users/users.route'))
 app.use('/payment', require('./routes/Payments/payments.route'))
 
