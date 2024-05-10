@@ -44,15 +44,6 @@ async function putLocation(user, location) {
     return await user.save();
 }
 
-async function getWallet(user_id) {
-    return await User.findById(user_id).select('wallet_account -_id')
-}
-
-async function putWallet(user_id, overall_price) {
-    const user = await User.findById(user_id)
-    user.wallet_account += overall_price
-    await user.save();
-}
 
 function checkConfirmed(user) {
     return user.email_confirmed == true;
@@ -84,8 +75,6 @@ module.exports = {
     getProfile,
     putPassword,
     putLocation,
-    getWallet,
-    putWallet,
     putEmailConfirmation,
     addDeviceToken,
     removeDeviceToken,
