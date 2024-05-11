@@ -14,6 +14,7 @@ function httpGetSearchPageData(req, res) {
     return res.status(200).json({ message: 'Data Retreived Successfully', countries, airlines })
 }
 
+// Done
 async function httpGetFlights(req, res) {
     const { error } = await validateGetFlights({ source: req.body.source, destination: req.body.destination, date: req.body.date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats })
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
@@ -24,7 +25,6 @@ async function httpGetFlights(req, res) {
     const classes = ['A', 'B', 'C']
     const classIndex = classes.indexOf(class_of_seats)
     let flights = await getFlights(skip, limit, filter);
-    console.log(flights.length)
     let data = getFlightsOneWayDataHelper(flights, num_of_seats, classIndex, airline)
     if (time_start && time_end) data = getFlightsTimeFilterHelper(date, time_start, time_end, data)
     if (min_price && max_price) data = getFlightsPriceFilterHelper(min_price, max_price, data)

@@ -1,12 +1,14 @@
 const crypto = require('crypto');
-const { userData } = require('../Users/users.serializer');
-const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken, checkConfirmed } = require('../../models/users.model');
-const { generateToken, verifyToken } = require('../../services/token')
-const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
-const { validationErrors } = require('../../middlewares/validationErrors')
-const { postRequest, deleteRequests, getToken } = require('../../models/code_confirmation.model');
 const sendMail = require('../../services/sendMail');
+const { confirmTokenHelper } = require('./auth.helper');
+const { userData } = require('../Users/users.serializer');
 const { postBlacklist } = require('../../models/blacklist.model');
+const { generateToken } = require('../../services/token')
+const { validationErrors } = require('../../middlewares/validationErrors')
+const { postRequest, deleteRequests } = require('../../models/code_confirmation.model');
+const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken, checkConfirmed } = require('../../models/users.model');
+const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
+
 require('dotenv').config();
 
 // Done
@@ -162,10 +164,6 @@ async function logout(req, res) {
     return res.status(200).json({ message: 'Logged Out Successfully' })
 }
 
-async function confirmTokenHelper(user, token) {
-    const tokenSaved = await getToken(user.id)
-    return token == tokenSaved.token
-}
 
 module.exports = {
     register,

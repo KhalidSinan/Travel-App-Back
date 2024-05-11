@@ -12,11 +12,12 @@ async function getFlight(id) {
 
 }
 
-// async function addFlights(data) {
-//     return await Flight.create(data[0]);
-// }
+async function addFlights(data) {
+    return await Flight.create(data);
+}
 
 module.exports = {
     getFlights,
     getFlight,
+    addFlights
 }
