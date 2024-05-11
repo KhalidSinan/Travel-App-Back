@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const organizedTripSchema = new mongoose.Schema({
-    user_id: {
+    organizer_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
