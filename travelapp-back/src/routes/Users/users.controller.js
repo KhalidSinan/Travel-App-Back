@@ -5,6 +5,7 @@ const { validateChangeName, validateChangeGender, validateChangeDate, validateCh
 
 async function httpGetProfile(req, res) {
     const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const profile = await getProfile(user);
     return res.status(200).json({
         message: 'Profile Retreived',
@@ -18,6 +19,7 @@ async function httpPutName(req, res) {
         return res.status(400).json({ message: validationErrors(error.details) })
     }
     const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const name = { first_name: req.body.first_name, last_name: req.body.last_name }
     await putName(user, name);
     return res.status(200).json({
@@ -32,6 +34,7 @@ async function httpPutGender(req, res) {
         return res.status(400).json({ message: validationErrors(error.details) })
     }
     const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const gender = await putGender(user, req.body.gender);
     return res.status(200).json({
         message: 'Gender Changed',
@@ -45,6 +48,7 @@ async function httpPutDate(req, res) {
         return res.status(400).json({ message: validationErrors(error.details) })
     }
     const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const { date_of_birth } = await putDate(user, req.body.date);
     return res.status(200).json({
         message: 'Date Changed',
@@ -58,6 +62,7 @@ async function httpPutLocation(req, res) {
         return res.status(400).json({ message: validationErrors(error.details) })
     }
     const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const { location } = await putLocation(user, { city: req.body.city, country: req.body.country });
     return res.status(200).json({
         message: 'Location Changed',
@@ -67,6 +72,7 @@ async function httpPutLocation(req, res) {
 
 async function httpPutProfilePic(req, res) {
     const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     if (!req.file) {
         return res.status(404).json({ message: 'Image Not Found' });
     }
@@ -79,6 +85,7 @@ async function httpPutPassword(req, res) {
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     const user = req.user
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const check = await user.checkCredentials(user.password, req.body.old_password);
     if (!check) return res.status(400).json({ message: 'Old Password Does Not Match' })
     await putPassword(user, req.body.new_password)

@@ -6,6 +6,28 @@ const flightsMongo = require('../../models/flights.mongo')
 const airportsNum = airports.length
 const airlinesNum = airlines.length
 
+const firstClassFeatures = [
+    "Premium seats",
+    "Lounge access",
+    "Complimentary beverages",
+    "Enhanced food options",
+    "Amenity kits",
+    "luxury toiletries",
+    "Designer bedding",
+    "Priority billing"
+]
+const businessClassFeatures = [
+    "Lie-flat seats",
+    "Enclosed suite",
+    "Entertainment unit",
+    "Pajamas",
+    "Amenity kit",
+    "Fast Wi-Fi"
+]
+const economyClassFeatures = [
+
+]
+
 function createPlace() {
     let { name, city, country } = airports[Math.floor(Math.random() * airportsNum)];
     // name += ' Airport';
@@ -107,9 +129,42 @@ async function createTrips(num_of_trips) {
 
         const trip = { source, destination, duration, airline, available_seats, departure_date, arrival_date, classes }
         trips.push(trip)
+
+        // Trip Back
+        // const trip_back = revertTrip(trip);
+        // trips.push(trip_back)
     }
     // fs.writeFileSync('trips.json', JSON.stringify(trips))
     await flightsMongo.insertMany(trips)
 }
+
+function revertTrip(trip) {
+    const extraDays = Math.floor(Math.random() * 30);
+    let departure_date = new Date(trip.departure_date.dateTime.setDate(trip.departure_date.dateTime.getDate() + extraDays));
+    departure_date = {
+        dateTime: departure_date,
+        date: departure_date.toLocaleDateString('en-GB'),
+        time: departure_date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    }
+    let arrival_date = new Date(trip.arrival_date.dateTime.setDate(trip.arrival_date.dateTime.getDate() + extraDays));
+    arrival_date = {
+        dateTime: arrival_date,
+        date: arrival_date.toLocaleDateString('en-GB'),
+        time: arrival_date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    }
+    const trip_back = {
+        source: trip.destination,
+        destination: trip.source,
+        duration: trip.duration,
+        airline: trip.airline,
+        available_seats: trip.available_seats,
+        departure_date: departure_date,
+        arrival_date: arrival_date,
+        classes: trip.classes
+    }
+    return trip_back
+}
+
+// createTrips(1);
 
 module.exports = createTrips;

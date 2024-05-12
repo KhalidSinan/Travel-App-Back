@@ -13,6 +13,9 @@ async function seedDB() {
 
     console.log('Seeding Database');
 
+    // Admin
+    // await createAdmin();
+
     // Trips
     await createTrips(count);
     // Hotels

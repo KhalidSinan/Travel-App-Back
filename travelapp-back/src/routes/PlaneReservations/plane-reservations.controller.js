@@ -4,7 +4,9 @@ const { paymentSheet } = require('../Payments/payments.controller');
 const { reservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservation.validation');
 const { reserveFlightHelper, findCancelRate, changeClassName } = require('./plane-reservations.helper')
-const { postReservation, getReservation, putConfirmation, removeReservation } = require('../../models/plane-reservation.model');
+const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation } = require('../../models/plane-reservation.model');
+const sendPushNotification = require('../../services/notifications');
+const { postNotification } = require('../../models/notification.model');
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -54,6 +56,15 @@ async function httpConfirmReservation(req, res) {
         })
     }
     await putConfirmation(reservation, true)
+
+    //Notifications
+    const title = 'Reservation Confirmed'
+    const body = 'Reservation Has Been Confirmed'
+
+    const tokens = req.user.device_token;
+    // await sendPushNotification(title, body, tokens);
+    await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: reservation._id });
+
     return res.status(200).json({
         message: 'Reservation Confirmed'
     })
@@ -62,12 +73,15 @@ async function httpConfirmReservation(req, res) {
 // Done
 async function httpCancelReservation(req, res) {
     const reservation = await getReservation(req.params.id)
+    if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
+
     const user_id = req.user._id
     if (!user_id.equals(reservation.user_id)) {
         return res.status(400).json({
             message: 'Cant Access This Reservation'
         })
     }
+
     const id = req.body.person_id;
     let person_reservation = reservation.reservations.data.find(res => res._id.equals(id))
     if (reservation.reservation_type == 'Two-Way' && !person_reservation) {
@@ -78,11 +92,22 @@ async function httpCancelReservation(req, res) {
             message: 'Person Reservation Not Found'
         })
     }
-    const fee = await findCancelRate(reservation, person_reservation.price) // Money That Will Be Returned
-    await removeReservation(reservation, person_reservation)
+    // const fee = await findCancelRate(reservation, person_reservation.price) // Money That Will Be Returned
+    const length = await removeReservation(reservation, person_reservation)
+    if (length == 0) await deleteReservation(reservation);
+
+    //Notifications
+    const title = "Reservation Cancelled"
+    const body = `${person_reservation.person_name} Reservation Has Been Cancelled`
+
+    const tokens = req.user.device_token;
+    // await sendPushNotification(title, body, tokens);
+    await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: person_reservation._id });
+
     return res.status(200).json({
         message: 'Reservation Cancelled'
     })
+
     // Delete All Reservations
     // const reservation = await getReservation(req.params.id)
     // const user_id = req.user._id
@@ -120,6 +145,7 @@ async function httpGetReservation(req, res) {
 // Done
 async function httpPayReservation(req, res) {
     const reservation = await getReservation(req.params.id)
+    if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
     const data = reservation.reservations.data
     if (reservation.reservations_back.data.length > 0) data.push(...reservation.reservations_back.data)
     const payment_data = createPaymentData(data, reservation.overall_price, "flight")

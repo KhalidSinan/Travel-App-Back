@@ -33,11 +33,22 @@ async function removeReservation(reservation, person_reservation) {
     reservation.num_of_reservations--;
     reservation.overall_price = reservation.overall_price.toFixed(2);
     await reservation.save()
+    return reservation.num_of_reservations;
+}
+
+async function getAllPlaneReservations() {
+    return await PlaneReservation.find()
+}
+
+async function deleteReservation(reservation) {
+    return await PlaneReservation.deleteOne(reservation)
 }
 
 module.exports = {
     postReservation,
     getReservation,
     putConfirmation,
-    removeReservation
+    removeReservation,
+    getAllPlaneReservations,
+    deleteReservation
 }

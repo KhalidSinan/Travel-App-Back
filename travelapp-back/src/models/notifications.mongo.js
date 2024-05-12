@@ -13,6 +13,11 @@ const notificationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    notification_identifier: {
+        type: String,
+        required: true,
+        default: ''
+    },
 }, { timestamps: true })
 
 module.exports = mongoose.model('Notification', notificationSchema)

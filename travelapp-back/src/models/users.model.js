@@ -65,6 +65,10 @@ async function removeDeviceToken(user, token) {
     await user.save();
 }
 
+async function getDeviceTokens(user_id) {
+    return await User.find({ _id: user_id }).select('device_token -_id');
+}
+
 module.exports = {
     postUser,
     getUser,
@@ -78,5 +82,6 @@ module.exports = {
     putEmailConfirmation,
     addDeviceToken,
     removeDeviceToken,
-    checkConfirmed
+    checkConfirmed,
+    getDeviceTokens
 }

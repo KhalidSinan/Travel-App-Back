@@ -52,13 +52,13 @@ async function httpGetFlight(req, res) {
     const { error } = await validateGetFlight(req.query)
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
     const flight = await getFlight(req.params.id);
-    if (!flight) return res.status(404).json({ message: 'Not Found' })
+    if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
     flight.class = flight.classes.find(flight_class => flight_class.code == req.query.class)
     let data = flight;
     if (req.query.id_back) {
         const flight_back = await getFlight(req.query.id_back);
         flight_back.class = flight.classes.find(flight_class => flight_class.code == req.query.class)
-        if (!flight_back) return res.status(404).json({ message: 'Not Found' })
+        if (!flight_back) return res.status(404).json({ message: 'Flight Not Found' })
         data = { flight, flight_back }
         return res.status(200).json({ two_way: true, data: twoWayFlightDataDetails(data) })
     }
