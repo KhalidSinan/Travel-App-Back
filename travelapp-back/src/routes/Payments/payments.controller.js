@@ -36,11 +36,12 @@ function executePayment(req, res) {
         }]
     };
     const paymentId = req.query.paymentId;
-    paypal.payment.execute(paymentId, paymentExecutionData, function (error, payment) {
+    paypal.payment.execute(paymentId, paymentExecutionData, async function (error, payment) {
         if (error) {
             console.log(error);
             throw error;
         } else {
+            // Add Notifications
             res.redirect("http://return_url/?status=success&id=" + payment.id + "&state=" + payment.state);
         }
     });
