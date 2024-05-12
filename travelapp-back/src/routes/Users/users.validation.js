@@ -54,7 +54,7 @@ async function validateChangePassword(data) {
         }),
         new_password: Joi.string().min(8).max(25).required().label('Password').messages({
             'any.required': "Password Required",
-            'string.min': "Old Password Must Be 8 Characters"
+            'string.min': "New Password Must Be 8 Characters"
         }),
         new_password_confirmation: Joi.any().equal(Joi.ref('new_password'))
             .required()
@@ -67,10 +67,21 @@ async function validateChangePassword(data) {
     return schema.validate(data, { abortEarly: false });
 }
 
+async function validateDeleteAccount(data) {
+    const schema = Joi.object({
+        password: Joi.string().min(8).max(25).required().messages({
+            'any.required': "Password Required",
+            'string.min': "Password Must Be 8 Characters"
+        }),
+    })
+    return schema.validate(data);
+}
+
 module.exports = {
     validateChangeName,
     validateChangeGender,
     validateChangeDate,
     validateChangeLocation,
-    validateChangePassword
+    validateChangePassword,
+    validateDeleteAccount
 }

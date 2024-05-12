@@ -1,7 +1,7 @@
 const { userData } = require('./users.serializer');
 const { validationErrors } = require('../../middlewares/validationErrors')
-const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword } = require('../../models/users.model');
-const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword } = require('./users.validation')
+const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount } = require('../../models/users.model');
+const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount } = require('./users.validation')
 
 async function httpGetProfile(req, res) {
     const user = req.user;
@@ -92,6 +92,21 @@ async function httpPutPassword(req, res) {
     return res.status(200).json({ message: 'Password Updated Successfully' })
 }
 
+async function httpDeleteAccount(req, res) {
+    const { error } = await validateDeleteAccount(req.body);
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
+    const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
+
+    const check = await user.checkCredentials(user.password, req.body.password)
+    console.log(req.body.password)
+    if (!check) return res.status(200).json({ message: 'Incorrect Password' })
+
+    const data = await deleteAccount(user._id);
+    return res.status(200).json({ message: 'Account Has Been Deleted' })
+}
+
 
 module.exports = {
     httpPutName,
@@ -100,5 +115,6 @@ module.exports = {
     httpPutProfilePic,
     httpGetProfile,
     httpPutLocation,
-    httpPutPassword
+    httpPutPassword,
+    httpDeleteAccount
 }

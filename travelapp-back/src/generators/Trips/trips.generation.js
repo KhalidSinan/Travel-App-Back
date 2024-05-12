@@ -25,7 +25,11 @@ const businessClassFeatures = [
     "Fast Wi-Fi"
 ]
 const economyClassFeatures = [
-
+    "Free meal",
+    "Free beverages",
+    "TV screen",
+    "Power outlets",
+    "Backrests"
 ]
 
 function createPlace() {
@@ -131,8 +135,8 @@ async function createTrips(num_of_trips) {
         trips.push(trip)
 
         // Trip Back
-        // const trip_back = revertTrip(trip);
-        // trips.push(trip_back)
+        const trip_back = revertTrip(trip);
+        trips.push(trip_back)
     }
     // fs.writeFileSync('trips.json', JSON.stringify(trips))
     await flightsMongo.insertMany(trips)
