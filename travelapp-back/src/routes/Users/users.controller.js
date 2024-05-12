@@ -100,10 +100,9 @@ async function httpDeleteAccount(req, res) {
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
     const check = await user.checkCredentials(user.password, req.body.password)
-    console.log(req.body.password)
     if (!check) return res.status(200).json({ message: 'Incorrect Password' })
 
-    const data = await deleteAccount(user._id);
+    await deleteAccount(user._id);
     return res.status(200).json({ message: 'Account Has Been Deleted' })
 }
 
