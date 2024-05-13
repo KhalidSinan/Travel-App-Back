@@ -7,30 +7,39 @@ const airportsNum = airports.length
 const airlinesNum = airlines.length
 
 const firstClassFeatures = [
-    "Premium seats",
-    "Lounge access",
-    "Complimentary beverages",
-    "Enhanced food options",
-    "Amenity kits",
-    "luxury toiletries",
-    "Designer bedding",
-    "Priority billing"
+    "Premium Seats",
+    "Lounge Access",
+    "Complimentary Beverages",
+    "Enhanced Food Options",
+    "Amenity Kits",
+    "Luxury Toiletries",
+    "Designer Bedding",
+    "Priority Billing"
 ]
 const businessClassFeatures = [
-    "Lie-flat seats",
-    "Enclosed suite",
-    "Entertainment unit",
+    "Lie-flat Seats",
+    "Enclosed Suite",
+    "Entertainment Unit",
     "Pajamas",
-    "Amenity kit",
+    "Amenity Kit",
     "Fast Wi-Fi"
 ]
 const economyClassFeatures = [
-    "Free meal",
-    "Free beverages",
-    "TV screen",
-    "Power outlets",
+    "Free Meal",
+    "Free Beverages",
+    "TV Screen",
+    "Power Outlets",
     "Backrests"
 ]
+
+function getRandomUniqueElements(array, n) {
+    const features = new Set();
+    while (features.size < n) {
+        const randomIndex = Math.floor(Math.random() * array.length);
+        features.add(array[randomIndex]);
+    }
+    return Array.from(features);
+}
 
 function createPlace() {
     let { name, city, country } = airports[Math.floor(Math.random() * airportsNum)];
@@ -75,7 +84,7 @@ function createClasses(available_seats) {
             "price": (Math.random() * 800 + 700).toFixed(2),
             "weight": 30,
             "available_seats": first,
-            "features": ['Wifi', 'Food']
+            "features": getRandomUniqueElements(firstClassFeatures, 3)
         },
         {
             "name": "Business Class",
@@ -83,7 +92,7 @@ function createClasses(available_seats) {
             "price": (Math.random() * 400 + 300).toFixed(2),
             "weight": 25,
             "available_seats": business,
-            "features": ['Wifi']
+            "features": getRandomUniqueElements(businessClassFeatures, 3)
         },
         {
             "name": "Economy Class",
@@ -91,7 +100,7 @@ function createClasses(available_seats) {
             "price": (Math.random() * 200 + 100).toFixed(2),
             "weight": 30,
             "available_seats": economy,
-            "features": ['Nothing']
+            "features": getRandomUniqueElements(economyClassFeatures, 3)
         }
     ]
 }
@@ -126,7 +135,6 @@ async function createTrips(num_of_trips) {
             date: arrival_date.dateTime.toLocaleDateString('en-GB'),
             time: arrival_date.dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         }
-
         const available_seats = Math.floor(Math.random() * 300)
 
         const classes = createClasses(available_seats);
@@ -146,13 +154,14 @@ function revertTrip(trip) {
     const extraDays = Math.floor(Math.random() * 30);
     let departure_date = new Date(trip.departure_date.dateTime);
     departure_date.setDate(departure_date.getDate() + extraDays)
+    departure_date.setHours(Math.floor(Math.random() * 24), Math.floor(Math.random() * 12) * 5)
     departure_date = {
         dateTime: departure_date,
         date: departure_date.toLocaleDateString('en-GB'),
         time: departure_date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     }
-    let arrival_date = new Date(trip.departure_date.dateTime);
-    arrival_date.setDate(arrival_date.getDate() + extraDays)
+    let arrival_date = new Date(departure_date.dateTime);
+    arrival_date.setMinutes(departure_date.dateTime.getMinutes() + trip.duration)
     arrival_date = {
         dateTime: arrival_date,
         date: arrival_date.toLocaleDateString('en-GB'),
