@@ -29,9 +29,10 @@ function changeClassName(reservations, reservations_back) {
     reservations.data.forEach(reservation => {
         reservation.seat_class = classesMap.get(reservation.seat_class)
     })
-    if (reservations_back.size == 0) {
+    if (reservations_back.size != 0) {
         reservations_back.data.forEach(reservation => {
             reservation.seat_class = classesMap.get(reservation.seat_class)
+            console.log(reservation.seat_class)
         })
     }
 }
