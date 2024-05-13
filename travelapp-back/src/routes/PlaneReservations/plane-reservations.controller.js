@@ -21,8 +21,8 @@ async function httpMakeReservation(req, res) {
     const num_of_reservations = req.body.reservations.length
     let overall_price = 0;
     let reservations_back = [], reservations = []
-    for (const flight_id of flights) {
 
+    for (const flight_id of flights) {
         const flight = await getFlight(flight_id)
         if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
         if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
@@ -33,10 +33,8 @@ async function httpMakeReservation(req, res) {
     }
     overall_price = overall_price.toFixed(2)
 
-
     changeClassName(reservations, reservations_back)
-    console.log(reservations);
-
+    
     const data = {
         user_id, flights, num_of_reservations, reservations,
         reservations_back, overall_price, reservation_type
