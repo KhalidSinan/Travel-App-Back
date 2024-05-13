@@ -35,6 +35,7 @@ async function httpMakeReservation(req, res) {
 
 
     changeClassName(reservations, reservations_back)
+    console.log(reservations);
 
     const data = {
         user_id, flights, num_of_reservations, reservations,

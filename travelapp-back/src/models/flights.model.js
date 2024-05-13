@@ -16,8 +16,13 @@ async function addFlights(data) {
     return await Flight.create(data);
 }
 
+async function getFlightsCount(filter) {
+    return await Flight.find(filter).countDocuments();
+}
+
 module.exports = {
     getFlights,
     getFlight,
-    addFlights
+    addFlights,
+    getFlightsCount
 }
