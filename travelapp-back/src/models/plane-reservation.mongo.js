@@ -21,6 +21,7 @@ const planeReservationSchema = new mongoose.Schema({
             },
             seat_class: {
                 type: String,
+                // enum: ['A', 'B', 'C'],
                 required: true
             },
             person_passport: {
@@ -49,6 +50,7 @@ const planeReservationSchema = new mongoose.Schema({
             },
             seat_class: {
                 type: String,
+                // enum: ['A', 'B', 'C'],
                 required: true
             },
             person_passport: {

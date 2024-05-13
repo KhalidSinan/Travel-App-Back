@@ -78,7 +78,7 @@ function createClasses(available_seats) {
             "features": ['Wifi', 'Food']
         },
         {
-            "name": "Bussiness Class",
+            "name": "Business Class",
             "code": 'B',
             "price": (Math.random() * 400 + 300).toFixed(2),
             "weight": 25,
@@ -144,13 +144,15 @@ async function createTrips(num_of_trips) {
 
 function revertTrip(trip) {
     const extraDays = Math.floor(Math.random() * 30);
-    let departure_date = new Date(trip.departure_date.dateTime.setDate(trip.departure_date.dateTime.getDate() + extraDays));
+    let departure_date = new Date(trip.departure_date.dateTime);
+    departure_date.setDate(departure_date.getDate() + extraDays)
     departure_date = {
         dateTime: departure_date,
         date: departure_date.toLocaleDateString('en-GB'),
         time: departure_date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     }
-    let arrival_date = new Date(trip.arrival_date.dateTime.setDate(trip.arrival_date.dateTime.getDate() + extraDays));
+    let arrival_date = new Date(trip.departure_date.dateTime);
+    arrival_date.setDate(arrival_date.getDate() + extraDays)
     arrival_date = {
         dateTime: arrival_date,
         date: arrival_date.toLocaleDateString('en-GB'),

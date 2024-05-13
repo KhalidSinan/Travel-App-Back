@@ -134,12 +134,14 @@ function getFlightsTwoWayDataHelper(flights, flights_back, num_of_seats, classIn
         flights_back.forEach(flight_back => {
             let temp = { flight, flight_back }
             const date = flight.departure_date.dateTime
-            if (getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && getFlightsSeatsCalculateHelper(flight_back, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
-                temp.flight_back.overall_price = flight_back.classes[classIndex].price
-                temp.flight.overall_price = flight.classes[classIndex].price
-                temp.overall_price = (temp.flight_back.overall_price + temp.flight.overall_price).toFixed(2)
-                data.push(temp)
-                if (airline && (flight.airline.name != airline && flight_back.airline.name != airline)) data.pop()
+            if (temp.flight.departure_date.dateTime <= temp.flight_back.departure_date.dateTime) {
+                if (getFlightsSeatsCalculateHelper(flight, num_of_seats, classIndex) && getFlightsSeatsCalculateHelper(flight_back, num_of_seats, classIndex) && date.valueOf() > Date.now()) {
+                    temp.flight_back.overall_price = flight_back.classes[classIndex].price
+                    temp.flight.overall_price = flight.classes[classIndex].price
+                    temp.overall_price = (temp.flight_back.overall_price + temp.flight.overall_price).toFixed(2)
+                    data.push(temp)
+                    if (airline && (flight.airline.name != airline && flight_back.airline.name != airline)) data.pop()
+                }
             }
         })
     })
