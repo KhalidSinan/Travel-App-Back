@@ -5,7 +5,7 @@ const createTrips = require('./Trips/trips.generation');
 
 async function seedDB() {
     await mongoConnect();
-    const count = 10000;
+    const count = 20000;
 
     // Delete All Tables
     console.log('Dropping Database')
