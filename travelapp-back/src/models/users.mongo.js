@@ -63,7 +63,8 @@ const userSchema = new mongoose.Schema({
     },
     is_guide: {
         type: Boolean,
-        default: false
+        default: false,
+        required: true
     },
     google_id: {
         type: String,
