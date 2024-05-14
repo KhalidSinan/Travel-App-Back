@@ -4,8 +4,12 @@ const codeConfirmationSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
     },
-    token: Number
+    token: {
+        type: Number,
+        required: true,
+    }
 }, { timestamps: true })
 
 

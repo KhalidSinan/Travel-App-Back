@@ -64,7 +64,7 @@ async function login(req, res) {
         });
     }
     const user = await getUser(req.body.email);
-    if (!user) return res.status(400).json({ message: 'Confirm Your Email' });
+    if (!user) return res.status(400).json({ message: 'Not Registered' });
     if (!checkConfirmed(user)) return res.status(400).json({ message: 'Confirm Your Email' });
     if (user) {
         const { id, name } = user;

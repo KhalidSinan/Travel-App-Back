@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const tripDestinationSchema = require('./destination.mongo');
 const classDetailSchema = require('./class-details.mongo');
 
+const dateSchema = new mongoose.Schema({
+    dateTime: Date,
+    date: String,
+    time: String
+})
+
 const flightSchema = new mongoose.Schema({
     source: {
         type: tripDestinationSchema,
@@ -16,28 +22,29 @@ const flightSchema = new mongoose.Schema({
         required: true
     },
     airline: {
-        name: {
-            type: String,
-            required: true
+        type: {
+            name: {
+                type: String,
+                required: true
+            },
+            logo: {
+                type: String,
+                required: true
+            }
         },
-        logo: {
-            type: String,
-            required: true
-        }
+        required: true
     },
     available_seats: {
         type: Number,
         required: true
     },
     departure_date: {
-        dateTime: Date,
-        date: String,
-        time: String
+        type: dateSchema,
+        required: true
     },
     arrival_date: {
-        dateTime: Date,
-        date: String,
-        time: String
+        type: dateSchema,
+        required: true
     },
     classes: {
         type: [classDetailSchema],

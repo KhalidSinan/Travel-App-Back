@@ -2,7 +2,7 @@ const createPaymentData = require('../../services/payment');
 const { getFlight } = require('../../models/flights.model');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { reservationData } = require('./plane-reservations.serializer');
-const { validateReserveFlight } = require('./plane-reservation.validation');
+const { validateReserveFlight } = require('./plane-reservations.validation');
 const { reserveFlightHelper, findCancelRate, changeClassName } = require('./plane-reservations.helper')
 const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation } = require('../../models/plane-reservation.model');
 const sendPushNotification = require('../../services/notifications');
@@ -31,10 +31,11 @@ async function httpMakeReservation(req, res) {
         else if (reservations_back.length == 0) reservations_back = { data: JSON.parse(JSON.stringify(reserv)), overall_price: price.toFixed(2) }
         overall_price += price
     }
+    if (reservations_back.length == 0) reservations_back = null
     overall_price = overall_price.toFixed(2)
 
     changeClassName(reservations, reservations_back)
-    
+
     const data = {
         user_id, flights, num_of_reservations, reservations,
         reservations_back, overall_price, reservation_type

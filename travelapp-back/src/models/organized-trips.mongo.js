@@ -4,10 +4,12 @@ const organizedTripSchema = new mongoose.Schema({
     organizer_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true
     },
     trip_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Trip',
+        required: true
     },
     available_seats: {
         type: Number,

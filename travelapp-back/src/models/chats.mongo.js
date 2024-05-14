@@ -5,10 +5,12 @@ const chatSchema = new mongoose.Schema({
     organizer_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
     },
     trip_id: { // Organized Trip
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
     },
     users_id: [{
         type: mongoose.Schema.Types.ObjectId,

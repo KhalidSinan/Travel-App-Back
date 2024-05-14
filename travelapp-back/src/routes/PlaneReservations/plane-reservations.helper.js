@@ -29,11 +29,12 @@ function changeClassName(reservations, reservations_back) {
     reservations.data.forEach(reservation => {
         reservation.seat_class = classesMap.get(reservation.seat_class)
     })
-    if (reservations_back.size != 0) {
-        reservations_back.data.forEach(reservation => {
-            reservation.seat_class = classesMap.get(reservation.seat_class)
-        })
-    }
+    if (reservations_back != null)
+        if (reservations_back.length != 0) {
+            reservations_back.data.forEach(reservation => {
+                reservation.seat_class = classesMap.get(reservation.seat_class)
+            })
+        }
 }
 
 module.exports = {
