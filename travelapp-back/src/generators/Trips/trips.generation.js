@@ -7,30 +7,52 @@ const airportsNum = airports.length
 const airlinesNum = airlines.length
 
 const firstClassFeatures = [
-    "Premium Seats",
-    "Lounge Access",
-    "Complimentary Beverages",
-    "Enhanced Food Options",
-    "Amenity Kits",
-    "Luxury Toiletries",
-    "Designer Bedding",
-    "Priority Billing"
+    "Comfort",
+    "Beverages",
+    "Buffet",
+    "Toiletries",
+    "Bedding"
 ]
 const businessClassFeatures = [
-    "Lie-flat Seats",
-    "Enclosed Suite",
-    "Entertainment Unit",
+    "Lie seats",
+    "Suite",
+    "Entertainment",
     "Pajamas",
-    "Amenity Kit",
-    "Fast Wi-Fi"
+    "Wifi"
 ]
 const economyClassFeatures = [
-    "Free Meal",
-    "Free Beverages",
-    "TV Screen",
-    "Power Outlets",
-    "Backrests"
+    "Meal",
+    "Drinks",
+    "TV",
+    "Charging",
+    "Backrest"
 ]
+
+// const firstClassFeatures = [
+//     "Premium Seats",
+//     "Lounge Access",
+//     "Complimentary Beverages",
+//     "Enhanced Food Options",
+//     "Amenity Kits",
+//     "Luxury Toiletries",
+//     "Designer Bedding",
+//     "Priority Billing"
+// ]
+// const businessClassFeatures = [
+//     "Lie-flat Seats",
+//     "Enclosed Suite",
+//     "Entertainment Unit",
+//     "Pajamas",
+//     "Amenity Kit",
+//     "Fast Wi-Fi"
+// ]
+// const economyClassFeatures = [
+//     "Free Meal",
+//     "Free Beverages",
+//     "TV Screen",
+//     "Power Outlets",
+//     "Backrests"
+// ]
 
 function getRandomUniqueElements(array, n) {
     const features = new Set();
