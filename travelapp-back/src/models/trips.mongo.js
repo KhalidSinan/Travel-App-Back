@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const tripDestinationSchema = require('./trip-destinations.mongo');
 
 const tripSchema = new mongoose.Schema({
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     overall_num_of_days: {
         type: Number,
         required: true
