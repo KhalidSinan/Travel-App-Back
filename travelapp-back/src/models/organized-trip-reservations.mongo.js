@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const messageSchema = require('./messages.mongo');
 
-const chatSchema = new mongoose.Schema({
-    organizer_id: {
+const tripReservationSchema = new mongoose.Schema({
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
@@ -12,16 +11,11 @@ const chatSchema = new mongoose.Schema({
         ref: 'OrganizedTrip',
         required: true,
     },
-    users_id: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    }],
-    name: {
-        type: String,
+    overall_price: {
+        type: Number,
         required: true
     },
-    messages: [messageSchema],
 }, { timestamps: true })
 
 
-module.exports = mongoose.model('Chat', chatSchema)
+module.exports = mongoose.model('TripReservation', tripReservationSchema)
