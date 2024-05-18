@@ -1,3 +1,4 @@
+const adminsMongo = require('../models/admins.mongo');
 const { mongoConnect, mongoDisconnect, dropDatabase } = require('../services/mongo');
 const createHotels = require('./Hotel/hotels.generation');
 const createPlaces = require('./Places/places.generation');
@@ -15,6 +16,7 @@ async function seedDB() {
 
     // Admin
     // await createAdmin();
+    await adminsMongo.create({ username: 'elonMusk-22', password: '123123123', role: 'Super-Admin' })
 
     // Trips
     console.log('Seeding Trips')

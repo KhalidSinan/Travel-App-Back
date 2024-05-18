@@ -32,6 +32,7 @@ app.use('/flights', require('./routes/Flights/flights.route'))
 app.use('/plane-reservations', require('./routes/PlaneReservations/plane-reservations.route'))
 app.use('/users', require('./routes/Users/users.route'))
 app.use('/payment', require('./routes/Payments/payments.route'))
+app.use('/dashboard', require('./routes/Admins/admins.route'))
 
 // Error Handling
 app.use(errorHandler);

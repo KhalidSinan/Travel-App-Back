@@ -157,7 +157,8 @@ async function logout(req, res) {
     const token = req.headers.authorization.split(' ')[1];
     const data = {
         user_id: user.id,
-        token_blacklisted: token
+        token_blacklisted: token,
+        user_type: 'User'
     }
     await postBlacklist(data)
     req.body.device_token = { 'token': req.body.device_token }
