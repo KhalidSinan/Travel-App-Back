@@ -10,4 +10,7 @@ const notificationRouter = express.Router();
 notificationRouter.get('/', requireJwtAuth, asyncHandler(httpGetAllNotifications))
 notificationRouter.get('/:id/read', requireJwtAuth, checkObjectID, asyncHandler(httpMarkNotification))
 
+// Maybe
+// notificationRouter.get('/search', requireJwtAuth, asyncHandler(httpMarkNotification))
+
 module.exports = notificationRouter;

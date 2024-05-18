@@ -7,6 +7,7 @@ const { reserveFlightHelper, findCancelRate, changeClassName } = require('./plan
 const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation } = require('../../../models/plane-reservation.model');
 const sendPushNotification = require('../../../services/notifications');
 const { postNotification } = require('../../../models/notification.model');
+const { validationErrors } = require('../../../middlewares/validationErrors')
 
 // Done
 async function httpMakeReservation(req, res) {
