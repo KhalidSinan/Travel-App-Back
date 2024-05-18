@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const reservationSchema = require('./reservation.mongo')
 
 const planeReservationSchema = new mongoose.Schema({
     user_id: {
