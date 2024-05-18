@@ -1,9 +1,9 @@
-const { findAdmin, getAdmins, postAdmin, deleteAdmin } = require('../../models/admins.model')
+const { findAdmin, getAdmins, postAdmin, deleteAdmin } = require('../../../models/admins.model')
 const { validateLoginAdmin, validatePostAdmin, validateDeleteAdmin } = require('./admins.validation')
-const { generateToken } = require('../../services/token')
-const { getPagination } = require('../../services/query')
-const { validationErrors } = require('../../middlewares/validationErrors')
-const { postBlacklist } = require('../../models/blacklist.model')
+const { generateToken } = require('../../../services/token')
+const { getPagination } = require('../../../services/query')
+const { validationErrors } = require('../../../middlewares/validationErrors')
+const { postBlacklist } = require('../../../models/blacklist.model')
 
 // Done
 async function login(req, res) {

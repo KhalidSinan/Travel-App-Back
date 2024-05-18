@@ -1,6 +1,6 @@
 const { userData } = require('./users.serializer');
-const { validationErrors } = require('../../middlewares/validationErrors')
-const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount } = require('../../models/users.model');
+const { validationErrors } = require('../../../middlewares/validationErrors')
+const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount } = require('../../../models/users.model');
 const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount } = require('./users.validation')
 
 async function httpGetProfile(req, res) {

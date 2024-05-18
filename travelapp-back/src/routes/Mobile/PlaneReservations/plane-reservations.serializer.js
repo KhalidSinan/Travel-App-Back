@@ -1,4 +1,4 @@
-const { msToTime, convertToTimeFormat } = require("../../services/convertTime");
+const { msToTime, convertToTimeFormat } = require("../../../services/convertTime");
 
 function reservationData(reservation) {
     const flight = reservation.flights[0];

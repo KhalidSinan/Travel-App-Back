@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
-const requireJwtAuth = require('../../middlewares/checkJwtAuth');
+const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const { paymentSheet, executePayment } = require('./payments.controller');
 
 const paymentRouter = express.Router();

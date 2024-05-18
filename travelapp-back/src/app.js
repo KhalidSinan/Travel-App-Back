@@ -26,13 +26,16 @@ app.use(logger); // Logging Requests To Access Log
 app.use(helmet())
 app.use(cors());
 
-// Use Routes
-app.use('/auth', require('./routes/Auth/auth.route'))
-app.use('/flights', require('./routes/Flights/flights.route'))
-app.use('/plane-reservations', require('./routes/PlaneReservations/plane-reservations.route'))
-app.use('/users', require('./routes/Users/users.route'))
-app.use('/payment', require('./routes/Payments/payments.route'))
-app.use('/dashboard', require('./routes/Admins/admins.route'))
+// Mobile
+app.use('/auth', require('./routes/Mobile/Auth/auth.route'))
+app.use('/flights', require('./routes/Mobile/Flights/flights.route'))
+app.use('/plane-reservations', require('./routes/Mobile/PlaneReservations/plane-reservations.route'))
+app.use('/users', require('./routes/Mobile/Users/users.route'))
+app.use('/payment', require('./routes/Mobile/Payments/payments.route'))
+app.use('/notifications', require('./routes/Mobile/Notifications/notifications.route'))
+
+// Dashboard
+app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
 
 // Error Handling
 app.use(errorHandler);

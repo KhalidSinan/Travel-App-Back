@@ -1,10 +1,10 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
-const requireJwtAuth = require('../../middlewares/checkJwtAuth');
-const checkObjectID = require('../../middlewares/checkObjectID');
+const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
+const checkObjectID = require('../../../middlewares/checkObjectID');
 
-const upload = require('../../services/imageUploading');
+const upload = require('../../../services/imageUploading');
 const { httpPutName, httpPutGender, httpPutDate, httpPutProfilePic, httpGetProfile, httpPutLocation, httpPutPassword, httpDeleteAccount } = require('./users.controller');
 
 const userRouter = express.Router()
