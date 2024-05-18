@@ -7,7 +7,7 @@ async function postNotification(data) {
 
 // get all notifications
 async function getNotifications(user_id) {
-    return await Notifications.find({ user_id })
+    return await Notifications.find({ user_id }).select('-user_id').sort({ 'created_at': -1 })
 }
 
 // get one notification

@@ -1,7 +1,7 @@
-const { getPagination } = require('../../services/query');
-const { serializedData } = require('../../services/serializeArray');
-const { getFlights, getFlight, getFlightsCount } = require('../../models/flights.model')
-const { validationErrors } = require('../../middlewares/validationErrors');
+const { getPagination } = require('../../../services/query');
+const { serializedData } = require('../../../services/serializeArray');
+const { getFlights, getFlight, getFlightsCount } = require('../../../models/flights.model')
+const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validateGetFlights, validateGetFlight } = require('./flights.validation');
 const { flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
 const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper');

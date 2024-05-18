@@ -1,4 +1,4 @@
-const { getToken } = require("../../models/code_confirmation.model")
+const { getToken } = require("../../../models/code_confirmation.model")
 
 async function confirmTokenHelper(user, token) {
     const tokenSaved = await getToken(user.id)

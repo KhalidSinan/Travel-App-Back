@@ -1,8 +1,8 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
-const requireJwtAuth = require('../../middlewares/checkJwtAuth');
-const checkObjectID = require('../../middlewares/checkObjectID');
+const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
+const checkObjectID = require('../../../middlewares/checkObjectID');
 const { httpGetFlights, httpGetFlight, httpGetSearchPageData } = require('./flights.controller');
 
 const flightRouter = express.Router();

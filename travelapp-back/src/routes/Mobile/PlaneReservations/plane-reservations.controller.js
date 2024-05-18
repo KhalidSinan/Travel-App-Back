@@ -1,12 +1,12 @@
-const createPaymentData = require('../../services/payment');
-const { getFlight } = require('../../models/flights.model');
+const createPaymentData = require('../../../services/payment');
+const { getFlight } = require('../../../models/flights.model');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { reservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservations.validation');
 const { reserveFlightHelper, findCancelRate, changeClassName } = require('./plane-reservations.helper')
-const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation } = require('../../models/plane-reservation.model');
-const sendPushNotification = require('../../services/notifications');
-const { postNotification } = require('../../models/notification.model');
+const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation } = require('../../../models/plane-reservation.model');
+const sendPushNotification = require('../../../services/notifications');
+const { postNotification } = require('../../../models/notification.model');
 
 // Done
 async function httpMakeReservation(req, res) {

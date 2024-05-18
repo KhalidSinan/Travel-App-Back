@@ -1,4 +1,4 @@
-const { convertToTimeFormat } = require("../../services/convertTime");
+const { convertToTimeFormat } = require("../../../services/convertTime");
 
 function flightData(flight) {
     return {

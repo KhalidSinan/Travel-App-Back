@@ -1,12 +1,12 @@
 const crypto = require('crypto');
-const sendMail = require('../../services/sendMail');
+const sendMail = require('../../../services/sendMail');
 const { confirmTokenHelper } = require('./auth.helper');
 const { userData } = require('../Users/users.serializer');
-const { postBlacklist } = require('../../models/blacklist.model');
-const { generateToken } = require('../../services/token')
-const { validationErrors } = require('../../middlewares/validationErrors')
-const { postRequest, deleteRequests } = require('../../models/code_confirmation.model');
-const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken, checkConfirmed } = require('../../models/users.model');
+const { postBlacklist } = require('../../../models/blacklist.model');
+const { generateToken } = require('../../../services/token')
+const { validationErrors } = require('../../../middlewares/validationErrors')
+const { postRequest, deleteRequests } = require('../../../models/code_confirmation.model');
+const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken, checkConfirmed } = require('../../../models/users.model');
 const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
 
 require('dotenv').config();

@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { register, login, forgotPassword, resetPassword, confirmEmail, logout, continueWithGoogle } = require('./auth.controller');
 
-const requireJwtAuth = require('../../middlewares/checkJwtAuth');
+const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 
 const authRouter = express.Router();
 

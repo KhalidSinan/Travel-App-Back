@@ -19,13 +19,15 @@ passport.use(new JwtStrategy(opts, async (req, jwt_payload, done) => {
             const check = await checkBlacklist(user.id, token)
             if (!check) return done(null, false);
             return done(null, user);
-        } else if (admin) {
+        }
+        else if (admin) {
             const check = await checkBlacklist(admin.id, token)
             if (!check) return done(null, false);
             return done(null, admin);
         } else {
             return done(null, false);
         }
+
     } catch (err) {
         return done(err, false);
     }

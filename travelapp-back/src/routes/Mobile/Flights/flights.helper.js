@@ -1,7 +1,7 @@
 const fs = require('fs')
-const countries = require('../../public/json/countries-all.json')
-const airlines = require('../../public/json/airlines.json')
-const { convertTime12to24, createDateTimeObject } = require('../../services/convertTime');
+const countries = require('../../../public/json/countries-all.json')
+const airlines = require('../../../public/json/airlines.json')
+const { convertTime12to24, createDateTimeObject } = require('../../../services/convertTime');
 
 function getFlightsReqDataHelper(req) {
     // Body
