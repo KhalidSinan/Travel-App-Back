@@ -36,6 +36,7 @@ app.use('/notifications', require('./routes/Mobile/Notifications/notifications.r
 
 // Dashboard
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
+app.use('/dashboard', require('./routes/Dashboard/Announcements/announcements.route'))
 
 // Error Handling
 app.use(errorHandler);

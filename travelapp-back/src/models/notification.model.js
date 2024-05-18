@@ -1,24 +1,28 @@
-const Notifications = require('./notifications.mongo')
+const Notification = require('./notifications.mongo')
 
 // Add notification
 async function postNotification(data) {
-    await Notifications.create(data);
+    await Notification.create(data);
 }
 
-// get all notifications
-async function getNotifications(user_id) {
-    return await Notifications.find({ user_id }).select('-user_id').sort({ 'created_at': -1 })
+// get all notifications for user
+async function getNotificationsForUser(user_id) {
+    return await Notification.find({ user_id }).select('-user_id').sort({ 'created_at': -1 })
 }
 
 // get one notification
 async function getNotification(user_id, notification_identifier) {
-    return await Notifications.find({ user_id, notification_identifier })
+    return await Notification.find({ user_id, notification_identifier })
 }
 
 // mark notification as read
+async function putIsRead(notification_id, is_read) {
+    await Notification.findByIdAndUpdate(notification_id, { is_read })
+}
 
 module.exports = {
     postNotification,
-    getNotifications,
-    getNotification
+    getNotificationsForUser,
+    getNotification,
+    putIsRead
 }

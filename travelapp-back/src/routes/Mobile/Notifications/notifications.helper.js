@@ -6,7 +6,6 @@ function notificationSorterHelper(notifications) {
     const year = month * 12
 
     const categorizedNotifications = { today: [], yesterday: [], week: [], month: [], year: [], moreThanYear: [] };
-
     notifications.forEach(notification => {
         if (Date.now() - +notification.createdAt < today) categorizedNotifications.today.push(notification)
         else if (Date.now() - +notification.createdAt < yesterday) categorizedNotifications.yesterday.push(notification)
