@@ -1,7 +1,6 @@
 
 const Joi = require('joi');
 
-
 const searchHotelsValidation = Joi.object({
     nameOrCity: Joi.string().required(),
     startDate: Joi.date().optional(),

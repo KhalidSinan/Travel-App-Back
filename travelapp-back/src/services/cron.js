@@ -6,6 +6,8 @@ const { getFlight } = require('../models/flights.model');
 const sendPushNotification = require('./notifications');
 const { getDeviceTokens } = require('../models/users.model');
 const { getNotification, postNotification } = require('../models/notification.model');
+const HotelReservation = require('../models/hotel-reservations.mongo');
+const Hotel = require('../models/hotels.mongo');
 
 // Just Remove Comment
 
@@ -30,3 +32,42 @@ const { getNotification, postNotification } = require('../models/notification.mo
 //         }
 //     })
 // })
+
+// Task 3 : Update Room Availability
+const updateRoomAvailability = schedule.scheduleJob('0 0 * * *', async () => {
+    console.log('Running the daily room availability update');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const endingReservations = await HotelReservation.find({
+        end_date: { $gte: today, $lt: tomorrow }
+    });
+
+    const session = await Hotel.startSession();
+    session.startTransaction();
+    try {
+        for (const reservation of endingReservations) {
+            const hotel = await Hotel.findById(reservation.hotel_id).session(session);
+            if (!hotel) continue;
+
+            for (const roomCode of reservation.room_codes) {
+                const roomType = hotel.room_types.find(room => room.code === roomCode);
+                if (roomType) {
+                    await Hotel.updateOne(
+                        { _id: hotel._id, "room_types.code": roomType.code },
+                        { $inc: { "room_types.$.available_rooms": 1 } },
+                        { session }
+                    );
+                }
+            }
+        }
+        await session.commitTransaction();
+    } catch (err) {
+        await session.abortTransaction();
+        console.error("Error updating room availability:", err);
+    } finally {
+        session.endSession();
+    }
+})
