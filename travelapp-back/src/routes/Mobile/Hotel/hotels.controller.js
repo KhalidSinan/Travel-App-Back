@@ -1,13 +1,13 @@
 
-const { validationErrors } = require('../../middlewares/validationErrors');
+const { validationErrors } = require('../../../middlewares/validationErrors');
 const { searchHotelsValidation, reservationValidation } = require('./hotels.validation');
-const { postReservation } = require("../../models/hotel-reservations.model");
-const { getPagination } = require('../../services/query');
-const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../models/hotels.model")
-const { getUserById } = require("../../models/users.model")
-const HotelReservation = require('../../models/hotel-reservations.mongo');
-const Hotel = require('../../models/hotels.mongo');
-const cron = require('node-cron')
+const { postReservation } = require("../../../models/hotel-reservations.model");
+const { getPagination } = require('../../../services/query');
+const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../models/hotels.model")
+const { getUserById } = require("../../../models/users.model")
+const HotelReservation = require('../../../models/hotel-reservations.mongo');
+const Hotel = require('../../../models/hotels.mongo');
+const { calculateTotalPrice } = require('./hotels.helper');
 
 // async function Reserve(req, res) {
 //     const { error } = validateReserveHotel(req.body);
@@ -64,6 +64,7 @@ async function searchHotels(req, res) {
         return res.status(400).json({ error: "You must provide either the hotel name or the city name." });
     }
 
+    // Date if not given then today is the date
     let effectiveStartDate;
     if (startDate) {
         const [day, month, year] = startDate.split('/').map(Number);
@@ -126,18 +127,6 @@ async function searchHotels(req, res) {
     }
 }
 
-function calculateTotalPrice(roomTypes, roomCodes, startDate, endDate) {
-    const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
-    let totalPrice = 0;
-    roomCodes.forEach(code => {
-        const roomType = roomTypes.find(room => room.code === code);
-        if (roomType) {
-            totalPrice += roomType.price * days;
-        }
-    });
-    return totalPrice;
-}
-
 async function makeReservation(req, res) {
     const { error } = reservationValidation.validate(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
@@ -196,51 +185,6 @@ async function makeReservation(req, res) {
     }
 }
 
-
-
-
-async function updateRoomAvailability() {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    const endingReservations = await HotelReservation.find({
-        end_date: { $gte: today, $lt: tomorrow }
-    });
-
-    const session = await Hotel.startSession();
-    session.startTransaction();
-    try {
-        for (const reservation of endingReservations) {
-            const hotel = await Hotel.findById(reservation.hotel_id).session(session);
-            if (!hotel) continue;
-
-            for (const roomCode of reservation.room_codes) {
-                const roomType = hotel.room_types.find(room => room.code === roomCode);
-                if (roomType) {
-                    await Hotel.updateOne(
-                        { _id: hotel._id, "room_types.code": roomType.code },
-                        { $inc: { "room_types.$.available_rooms": 1 } },
-                        { session }
-                    );
-                }
-            }
-        }
-        await session.commitTransaction();
-    } catch (err) {
-        await session.abortTransaction();
-        console.error("Error updating room availability:", err);
-    } finally {
-        session.endSession();
-    }
-}
-
-
-cron.schedule('0 0 * * *', () => {
-    console.log('Running the daily room availability update');
-    updateRoomAvailability().catch(err => console.error(err));
-});
 module.exports = {
     makeReservation,
     searchHotels
