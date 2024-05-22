@@ -2,7 +2,6 @@ const Hotel = require("./hotels.mongo")
 
 
 async function getHotelById(id) {
-
     return await Hotel.findById(id)
 }
 

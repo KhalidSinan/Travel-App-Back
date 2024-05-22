@@ -73,6 +73,31 @@ async function deleteAccount(user_id) {
     return await User.deleteOne({ _id: user_id });
 }
 
+async function getOrganizers() {
+    return await User.find({ is_guide: true });
+}
+
+async function getOrganizer(_id) {
+    return await User.find({ _id, is_guide: true });
+}
+
+async function acceptOrganizer(_id) {
+    return await User.findOneAndUpdate({ _id }, { is_guide: true });
+}
+
+// No need
+async function denyOrganizer(_id) {
+    return await User.findOneAndUpdate({ _id }, { is_guide: true });
+}
+
+async function getUserById(_id) {
+    return await User.find({ _id })
+}
+
+async function deactivateAccount(_id) {
+    return await User.findOneAndUpdate({ _id }, { is_guide: false });
+}
+
 module.exports = {
     postUser,
     getUser,
@@ -88,5 +113,10 @@ module.exports = {
     removeDeviceToken,
     checkConfirmed,
     getDeviceTokens,
-    deleteAccount
+    deleteAccount,
+    getOrganizers,
+    getOrganizer,
+    acceptOrganizer,
+    getUserById,
+    deactivateAccount
 }

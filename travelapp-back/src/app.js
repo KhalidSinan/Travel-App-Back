@@ -17,6 +17,12 @@ admin.initializeApp({
 // Cron Jobs
 const cron = require('./services/cron')
 
+var path = require('path');
+
+// Images
+app.use(express.static(path.resolve('./public')));
+app.use('/public', express.static(path.resolve('./public')));
+
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -33,11 +39,12 @@ app.use('/plane-reservations', require('./routes/Mobile/PlaneReservations/plane-
 app.use('/users', require('./routes/Mobile/Users/users.route'))
 app.use('/payment', require('./routes/Mobile/Payments/payments.route'))
 app.use('/notifications', require('./routes/Mobile/Notifications/notifications.route'))
-app.use('/hotels', require("./routes/Mobile/Hotel/hotels.route"))
+app.use('/hotels', require("./routes/Mobile/Hotels/hotels.route"))
 
 // Dashboard
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
 app.use('/dashboard', require('./routes/Dashboard/Announcements/announcements.route'))
+app.use('/dashboard', require('./routes/Dashboard/Organizers/organizers.route'))
 
 // Error Handling
 app.use(errorHandler);

@@ -26,6 +26,14 @@ const hotelSchema = new mongoose.Schema({
     rooms_number: {
         type: Number,
         required: true,
+    },
+    distance_from_city_center: {
+        type: Number,
+        required: true
+    },
+    images: {
+        type: [String],
+        required: true
     }
 })
 hotelSchema.index({ 'name': 1, 'location.city': 1 });
