@@ -42,7 +42,7 @@ const { faker } = require('@faker-js/faker');
 const hotelData = require('../../public/json/hotelData.json');
 const Hotel = require('../../models/hotels.mongo');
 let hotelImages = require('../../public/json/hotelImages.json')
-let roomImages = require('../../public/json/roomIages.json')
+let roomImages = require('../../public/json/roomImages.json')
 
 const roomCategories = [
     { type: 'Budget Room', priceMultiplier: 0.5, amenities: ['Free WiFi'], roomCountOptions: [50, 100, 150, 200] },
@@ -105,7 +105,7 @@ async function createHotels() {
     hotelData.forEach(data => {
         const room_types = createRoomTypes();
         const overall_rooms = room_types.reduce((sum, type) => sum + type.available_rooms, 0);
-        const distanceFromCityCenter = faker.datatype.number({ min: 1, max: 4 });
+        let distanceFromCityCenter = ((Math.random() * 4) + 1).toFixed(2);
 
         const hotel = {
             name: data.name,
