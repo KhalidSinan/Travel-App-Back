@@ -1,12 +1,18 @@
 
 const Joi = require('joi');
 
+
+
 const searchHotelsValidation = Joi.object({
     nameOrCity: Joi.string().required(),
-    startDate: Joi.date().optional(),
+    startDate: Joi.string().optional(),
     numDays: Joi.number().integer().min(1).optional(),
-    numRooms: Joi.number().integer().min(1).optional()
+    numRooms: Joi.number().integer().min(1).optional(),
+    sortField: Joi.string().valid('price', 'stars').optional(),
+    order: Joi.string().valid('asc', 'desc').optional(),
+    page: Joi.number().integer().min(1).optional()
 });
+
 
 const reservationValidation = Joi.object({
     hotelId: Joi.string().required(),

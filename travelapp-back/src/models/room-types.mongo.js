@@ -7,37 +7,40 @@ const roomTypeSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
+        required: true
     },
-    // type: {
-    //     type: String,
-    //     required: true,
-    // },
     price: {
         type: Number,
-        required: true,
+        required: true
     },
     bed_options: {
         type: String,
-        required: true,
+        required: true
     },
     sleeps_count: {
         type: Number,
-        required: true,
+        required: true
     },
     smoking_allowed: {
         type: Boolean,
-        required: true,
+        required: true
     },
     available_rooms: {
         type: Number,
-        required: true,
+        required: true
     },
     total_rooms: {
         type: Number,
-        required: true,
+        required: true
     },
-    tags: [String]
-})
+    view: {
+        type: String,
+        required: true
+    },
+    amenities: {
+        type: [String],
+        required: true
+    }
+});
 
-module.exports = roomTypeSchema
+module.exports = roomTypeSchema;

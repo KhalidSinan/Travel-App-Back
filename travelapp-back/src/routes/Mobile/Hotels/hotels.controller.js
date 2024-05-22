@@ -7,64 +7,19 @@ const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../mod
 const { getUserById } = require("../../../models/users.model")
 const HotelReservation = require('../../../models/hotel-reservations.mongo');
 const Hotel = require('../../../models/hotels.mongo');
-const { calculateTotalPrice } = require('./hotels.helper');
-
-// async function Reserve(req, res) {
-//     const { error } = validateReserveHotel(req.body);
-//     if (error) {
-//         return res.status(400).json({ message: validationErrors(error.details[0].message) });
-//     }
-
-//     const hotel = await getHotelById(req.body.hotel_id);
-//     if (!hotel) {
-//         return res.status(404).json({ message: "Hotel not found" });
-//     }
-
-//     const user = await getUserById(req.body.id);
-//     if (!user) {
-//         return res.status(404).json({ message: "User not found" });
-//     }
-
-//     const room = hotel.room_types.find(r => r._id.toString() === room_Id && r.available_rooms > 0);
-//     if (!room) {
-//         return res.status(400).json({ message: "Room type not available or is full" });
-//     }
-
-//     try {
-//         const roomIndex = hotel.room_types.findIndex(r => r._id.toString() === room_Id);
-//         if (roomIndex === -1 || hotel.room_types[roomIndex].available_rooms < req.body.room_number) {
-//             return res.status(400).json({ message: "Not enough rooms available" });
-//         }
-
-//         hotel.room_types[roomIndex].available_rooms -= req.body.room_number;
-
-//         const reservation = await postReservation({
-//             hotel_id: hotel._id,
-//             user_id: user._id,
-//             room_Id: req.body.room_Id,
-//             room_number: req.body.room_number,
-//             room_price: req.body.room_price
-//         });
-
-//         await hotel.save();
-
-//         res.status(201).json(reservation);
-//     } catch (error) {
-//         console.error("Error saving hotel:", error);
-//         res.status(500).json({ message: "Failed to create reservation", error: error.message });
-//     }
-// }
-
-
-// module.exports = { Reserve };
 
 async function searchHotels(req, res) {
-    const { nameOrCity, startDate, numDays, numRooms } = req.body;
+    const { nameOrCity, startDate, numDays, numRooms, sortField = '', order = 'asc', page = 1 } = req.body;
+
+    const { error } = searchHotelsValidation.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+
     if (!nameOrCity) {
         return res.status(400).json({ error: "You must provide either the hotel name or the city name." });
     }
 
-    // Date if not given then today is the date
     let effectiveStartDate;
     if (startDate) {
         const [day, month, year] = startDate.split('/').map(Number);
@@ -74,8 +29,6 @@ async function searchHotels(req, res) {
     }
     effectiveStartDate.setHours(0, 0, 0, 0);
 
-    console.log("Effective Start Date:", effectiveStartDate);
-
     let query = {
         $or: [
             { name: { $regex: new RegExp(nameOrCity, 'i') } },
@@ -83,7 +36,22 @@ async function searchHotels(req, res) {
         ]
     };
 
-    const hotels = await Hotel.find(query);
+    const { skip, limit } = getPagination({ page, limit: 10 });
+
+    let sortOptions = {};
+    if (sortField === 'price') {
+        sortOptions = { 'room_types.price': order === 'asc' ? 1 : -1 };
+    } else if (sortField === 'stars') {
+        sortOptions = { 'stars': order === 'asc' ? 1 : -1 };
+    }
+
+    const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
+
+    if (Object.keys(sortOptions).length > 0) {
+        hotelsQuery.sort(sortOptions);
+    }
+
+    const hotels = await hotelsQuery;
 
     console.log("Hotels found:", hotels.length);
 
@@ -125,6 +93,18 @@ async function searchHotels(req, res) {
         console.log("Available Hotels for startDate, numDays, and numRooms:", availableHotels.filter(Boolean).length);
         return res.json(availableHotels.filter(Boolean));
     }
+}
+
+function calculateTotalPrice(roomTypes, roomCodes, startDate, endDate) {
+    const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
+    let totalPrice = 0;
+    roomCodes.forEach(code => {
+        const roomType = roomTypes.find(room => room.code === code);
+        if (roomType) {
+            totalPrice += roomType.price * days;
+        }
+    });
+    return totalPrice;
 }
 
 async function makeReservation(req, res) {
@@ -187,5 +167,6 @@ async function makeReservation(req, res) {
 
 module.exports = {
     makeReservation,
-    searchHotels
+    searchHotels,
+
 };
