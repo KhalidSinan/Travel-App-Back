@@ -1,7 +1,8 @@
 const { userData } = require('./users.serializer');
 const { validationErrors } = require('../../../middlewares/validationErrors')
 const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount } = require('../../../models/users.model');
-const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount } = require('./users.validation')
+const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount, validateBecomeOrganizer } = require('./users.validation');
+const { addRequest, getRequest, getRequestByUserId } = require('../../../models/organizer-request.model');
 
 async function httpGetProfile(req, res) {
     const user = req.user;
@@ -106,6 +107,26 @@ async function httpDeleteAccount(req, res) {
     return res.status(200).json({ message: 'Account Has Been Deleted' })
 }
 
+async function httpBecomeOrganizer(req, res) {
+    const { error } = await validateBecomeOrganizer(req.body);
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
+    const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
+
+    const request = await getRequestByUserId(user._id)
+    if (!request || request.is_accepted == false) {
+        data = { name: req.body.name, years_of_experience: req.body.years_of_experience, user_id: user._id }
+        await addRequest(data)
+        return res.status(200).json({ message: 'Request To Become Organizer Has Been Sent' })
+    } else if (request.is_accepted == true) {
+        return res.status(200).json({ message: 'Already An Organizer' })
+    } else {
+        return res.status(200).json({ message: 'Already Sent A Request' })
+    }
+
+}
+
 
 module.exports = {
     httpPutName,
@@ -115,5 +136,6 @@ module.exports = {
     httpGetProfile,
     httpPutLocation,
     httpPutPassword,
-    httpDeleteAccount
+    httpDeleteAccount,
+    httpBecomeOrganizer
 }

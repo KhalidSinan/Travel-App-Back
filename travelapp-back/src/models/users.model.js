@@ -81,8 +81,8 @@ async function getOrganizer(_id) {
     return await User.find({ _id, is_guide: true });
 }
 
-async function acceptOrganizer(_id) {
-    return await User.findOneAndUpdate({ _id }, { is_guide: true });
+async function acceptOrganizer(id) {
+    return await User.findOneAndUpdate({ _id: id }, { is_guide: true });
 }
 
 // No need

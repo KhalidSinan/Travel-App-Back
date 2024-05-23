@@ -5,7 +5,7 @@ const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkObjectID = require('../../../middlewares/checkObjectID');
 
 const upload = require('../../../services/imageUploading');
-const { httpPutName, httpPutGender, httpPutDate, httpPutProfilePic, httpGetProfile, httpPutLocation, httpPutPassword, httpDeleteAccount } = require('./users.controller');
+const { httpPutName, httpPutGender, httpPutDate, httpPutProfilePic, httpGetProfile, httpPutLocation, httpPutPassword, httpDeleteAccount, httpBecomeOrganizer } = require('./users.controller');
 
 const userRouter = express.Router()
 
@@ -17,6 +17,7 @@ userRouter.put('/profile-pic', requireJwtAuth, upload.single('profile_pic'), asy
 userRouter.get('/profile', requireJwtAuth, asyncHandler(httpGetProfile))
 userRouter.put('/password', requireJwtAuth, asyncHandler(httpPutPassword))
 userRouter.delete('/delete-account', requireJwtAuth, asyncHandler(httpDeleteAccount))
+userRouter.post('/become-organizer', requireJwtAuth, asyncHandler(httpBecomeOrganizer))
 
 
 module.exports = userRouter

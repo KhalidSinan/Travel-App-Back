@@ -1,39 +1,14 @@
-const { getOrganizers, getOrganizer, getUserById, acceptOrganizer, deleteAccount } = require("../../../models/users.model")
-const { validationErrors } = require('../../../middlewares/validationErrors')
+const { getOrganizer, deleteAccount, getOrganizers, deactivateAccount } = require("../../../models/users.model")
 
 async function httpGetAllOrganizers(req, res) {
     const organizers = await getOrganizers();
-    return res.status(200).json({ organizers })
+    return res.status(200).json({ data: organizers })
 }
 
 async function httpGetOneOrganizer(req, res) {
     const organizer = await getOrganizer(req.params.id);
     if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
-    return res.status(200).json({ organizer })
-}
-
-async function httpAcceptOrganizer(req, res) {
-    const { error } = validateAcceptOrganizer(req.body)
-    if (error) return res.status(400).json({ message: validationErrors(error.details) });
-
-    const user = await getUserById(req.body.id);
-    if (!user) return res.status(400).json({ message: 'User Not Found' })
-
-    await acceptOrganizer(req.body.id)
-    return res.status(200).json({ message: 'Organizer Request Accepted' })
-}
-
-async function httpDenyOrganizer(req, res) {
-    const { error } = validateAcceptOrganizer(req.body)
-    if (error) return res.status(400).json({ message: validationErrors(error.details) });
-
-    const user = await getUserById(req.body.id);
-    if (!user) return res.status(400).json({ message: 'User Not Found' })
-
-    // await denyOrganizer(req.body.id)
-    // Delete from organizers requests
-
-    return res.status(200).json({ message: 'Organizer Request Denied' })
+    return res.status(200).json({ data: organizer })
 }
 
 async function httpDeleteOrganizer(req, res) {
@@ -53,8 +28,6 @@ async function httpDeactivateOrganizer(req, res) {
 module.exports = {
     httpGetAllOrganizers,
     httpGetOneOrganizer,
-    httpAcceptOrganizer,
-    httpDenyOrganizer,
     httpDeleteOrganizer,
     httpDeactivateOrganizer
 }

@@ -1,15 +1,17 @@
 
-const { validationErrors } = require('../../../middlewares/validationErrors');
+const { validationErrors } = require('../../middlewares/validationErrors');
 const { searchHotelsValidation, reservationValidation } = require('./hotels.validation');
-const { postReservation } = require("../../../models/hotel-reservations.model");
-const { getPagination } = require('../../../services/query');
-const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../models/hotels.model")
-const { getUserById } = require("../../../models/users.model")
-const HotelReservation = require('../../../models/hotel-reservations.mongo');
-const Hotel = require('../../../models/hotels.mongo');
+const { postReservation } = require("../../models/hotel-reservations.model");
+const { getPagination } = require('../../services/query');
+const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../models/hotels.model")
+const { getUserById } = require("../../models/users.model")
+const HotelReservation = require('../../models/hotel-reservations.mongo');
+const Hotel = require('../../models/hotels.mongo');
+const { calculateTotalPrice } = require('./hotel.helper');
+
 
 async function searchHotels(req, res) {
-    const { nameOrCity, startDate, numDays, numRooms, sortField = '', order = 'asc', page = 1 } = req.body;
+    const { nameOrCity, startDate, numDays, numRooms, stars, sortField = '', order = 'asc', page = 1 } = req.body;
 
     const { error } = searchHotelsValidation.validate(req.body);
     if (error) {
@@ -36,7 +38,11 @@ async function searchHotels(req, res) {
         ]
     };
 
-    const { skip, limit } = getPagination({ page, limit: 10 });
+    if (stars) {
+        query.stars = stars;
+    }
+
+    const { skip, limit } = getPagination({ page });
 
     let sortOptions = {};
     if (sortField === 'price') {
@@ -93,18 +99,6 @@ async function searchHotels(req, res) {
         console.log("Available Hotels for startDate, numDays, and numRooms:", availableHotels.filter(Boolean).length);
         return res.json(availableHotels.filter(Boolean));
     }
-}
-
-function calculateTotalPrice(roomTypes, roomCodes, startDate, endDate) {
-    const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
-    let totalPrice = 0;
-    roomCodes.forEach(code => {
-        const roomType = roomTypes.find(room => room.code === code);
-        if (roomType) {
-            totalPrice += roomType.price * days;
-        }
-    });
-    return totalPrice;
 }
 
 async function makeReservation(req, res) {
