@@ -45,6 +45,7 @@ app.use('/hotels', require("./routes/Mobile/Hotels/hotels.route"))
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
 app.use('/dashboard', require('./routes/Dashboard/Announcements/announcements.route'))
 app.use('/dashboard', require('./routes/Dashboard/Organizers/organizers.route'))
+app.use('/dashboard', require('./routes/Dashboard/Organizers Requests/organizers-requests.route'))
 
 // Error Handling
 app.use(errorHandler);
