@@ -1,12 +1,12 @@
 
-const { validationErrors } = require('../../middlewares/validationErrors');
+const { validationErrors } = require('../../../middlewares/validationErrors');
 const { searchHotelsValidation, reservationValidation } = require('./hotels.validation');
-const { postReservation } = require("../../models/hotel-reservations.model");
-const { getPagination } = require('../../services/query');
-const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../models/hotels.model")
-const { getUserById } = require("../../models/users.model")
-const HotelReservation = require('../../models/hotel-reservations.mongo');
-const Hotel = require('../../models/hotels.mongo');
+const { postReservation } = require("../../../models/hotel-reservations.model");
+const { getPagination } = require('../../../services/query');
+const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../models/hotels.model")
+const { getUserById } = require("../../../models/users.model")
+const HotelReservation = require('../../../models/hotel-reservations.mongo');
+const Hotel = require('../../../models/hotels.mongo');
 const { calculateTotalPrice } = require('./hotel.helper');
 
 
