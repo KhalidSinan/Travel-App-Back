@@ -6,14 +6,18 @@ const organizedTripSchema = new mongoose.Schema({
         ref: 'Trip',
         required: true
     },
+    overall_seats: {
+        type: Number,
+        required: true
+    },
     available_seats: {
         type: Number,
         required: true
     },
-    price: {
-        type: Number,
-        required: true
-    },
+    // price: {
+    //     type: Number,
+    //     required: true
+    // },
     commission: {
         type: Number,
         required: true
