@@ -14,10 +14,10 @@ const organizedTripSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    // price: {
-    //     type: Number,
-    //     required: true
-    // },
+    price: {
+        type: Number,
+        required: true
+    },
     commission: {
         type: Number,
         required: true

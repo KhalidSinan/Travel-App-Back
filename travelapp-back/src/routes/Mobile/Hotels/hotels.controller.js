@@ -111,7 +111,7 @@ async function searchHotels(req, res) {
         response.hotels = filteredHotels;
     }
 
-    return res.json(response);
+    return res.json({ data: response });
 }
 
 async function makeReservation(req, res) {
