@@ -52,6 +52,7 @@ async function searchHotels(req, res) {
     }
 
     const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
+    const hotelsCount = await Hotel.find(query)
 
     if (Object.keys(sortOptions).length > 0) {
         hotelsQuery.sort(sortOptions);
@@ -62,7 +63,7 @@ async function searchHotels(req, res) {
     console.log("Hotels found:", hotels.length);
 
     let response = {
-        totalHotelsFound: hotels.length,
+        totalHotelsFound: hotelsCount,
         hotels: []
     };
 
