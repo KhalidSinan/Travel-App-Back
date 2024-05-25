@@ -40,12 +40,14 @@ app.use('/users', require('./routes/Mobile/Users/users.route'))
 app.use('/payment', require('./routes/Mobile/Payments/payments.route'))
 app.use('/notifications', require('./routes/Mobile/Notifications/notifications.route'))
 app.use('/hotels', require("./routes/Mobile/Hotels/hotels.route"))
+app.use('/organized-trips', require("./routes/Mobile/OrganizedTrips/organized-trips.route")) // Not Done
+app.use('/trips-reservation', require("./routes/Mobile/OrganizedTripReservations/organized-trip-reservations.route")) // Not Done
 
 // Dashboard
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
 app.use('/dashboard', require('./routes/Dashboard/Announcements/announcements.route'))
 app.use('/dashboard', require('./routes/Dashboard/Organizers/organizers.route'))
-app.use('/dashboard', require('./routes/Dashboard/Organizers Requests/organizers-requests.route'))
+app.use('/dashboard', require('./routes/Dashboard/OrganizersRequests/organizers-requests.route'))
 
 // Error Handling
 app.use(errorHandler);

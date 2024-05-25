@@ -24,16 +24,6 @@ const tripSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    plane_reservation_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'PlaneReservation',
-        required: true,
-    },
-    hotel_reservation_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'HotelReservation',
-        required: true,
-    },
 })
 
 module.exports = mongoose.model('Trip', tripSchema)
