@@ -42,7 +42,7 @@ async function searchHotels(req, res) {
         query.stars = stars;
     }
 
-    const { skip, limit } = getPagination({ page });
+    const { skip, limit } = getPagination({ page, limit: 10 });
 
     let sortOptions = {};
     if (sortField === 'price') {
