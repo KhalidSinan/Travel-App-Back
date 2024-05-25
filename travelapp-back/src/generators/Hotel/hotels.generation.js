@@ -75,6 +75,7 @@ function createRoomTypes() {
                 total_rooms: totalRooms,
                 view: faker.helpers.arrayElement(viewOptions),
                 amenities: category.amenities,
+                images: getRoomImages()
             });
         }
     });
@@ -93,7 +94,7 @@ function getHotelImages() {
 
 function getRoomImages() {
     const images = new Set();
-    while (images.size < 5) {
+    while (images.size < 3) {
         const randomIndex = Math.floor(Math.random() * roomImages.length);
         images.add('/images/rooms/' + roomImages[randomIndex]);
     }
@@ -118,7 +119,8 @@ async function createHotels() {
             stars: data.stars,
             room_types: room_types,
             rooms_number: overall_rooms,
-            distance_from_city_center: distanceFromCityCenter
+            distance_from_city_center: distanceFromCityCenter,
+            images: getHotelImages()
         };
         hotels.push(hotel);
     });
