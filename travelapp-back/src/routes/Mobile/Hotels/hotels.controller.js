@@ -61,14 +61,20 @@ async function searchHotels(req, res) {
 
     console.log("Hotels found:", hotels.length);
 
+    let response = {
+        totalHotelsFound: hotels.length,
+        hotels: []
+    };
+
     if (!startDate && !numDays && !numRooms) {
-        return res.json(hotels);
+        response.hotels = hotels;
     } else if (numRooms && !numDays) {
         const suitableHotels = hotels.filter(hotel => {
             return hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
         });
         console.log("Suitable Hotels for numRooms:", suitableHotels.length);
-        return res.json(suitableHotels);
+        response.totalHotelsFound = suitableHotels.length;
+        response.hotels = suitableHotels;
     } else if (numDays && !numRooms) {
         const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
         const availableHotels = await Promise.all(hotels.map(async (hotel) => {
@@ -79,8 +85,10 @@ async function searchHotels(req, res) {
             });
             return reservations.length === 0 ? hotel : null;
         }));
-        console.log("Available Hotels for numDays:", availableHotels.filter(Boolean).length);
-        return res.json(availableHotels.filter(Boolean));
+        const filteredHotels = availableHotels.filter(Boolean);
+        console.log("Available Hotels for numDays:", filteredHotels.length);
+        response.totalHotelsFound = filteredHotels.length;
+        response.hotels = filteredHotels;
     } else if (startDate && numDays && numRooms) {
         const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
         const availableHotels = await Promise.all(hotels.map(async (hotel) => {
@@ -96,9 +104,13 @@ async function searchHotels(req, res) {
 
             return (totalAvailable >= numRooms && roomTypeAvailability) ? hotel : null;
         }));
-        console.log("Available Hotels for startDate, numDays, and numRooms:", availableHotels.filter(Boolean).length);
-        return res.json(availableHotels.filter(Boolean));
+        const filteredHotels = availableHotels.filter(Boolean);
+        console.log("Available Hotels for startDate, numDays, and numRooms:", filteredHotels.length);
+        response.totalHotelsFound = filteredHotels.length;
+        response.hotels = filteredHotels;
     }
+
+    return res.json(response);
 }
 
 async function makeReservation(req, res) {
