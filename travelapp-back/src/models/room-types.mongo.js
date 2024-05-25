@@ -40,6 +40,10 @@ const roomTypeSchema = new mongoose.Schema({
     amenities: {
         type: [String],
         required: true
+    },
+    images: {
+        type: [String],
+        required: true
     }
 });
 
