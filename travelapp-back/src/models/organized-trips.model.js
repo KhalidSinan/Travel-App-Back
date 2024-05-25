@@ -5,15 +5,21 @@ async function getAllOrganizedTrips() {
 }
 
 async function getOneOrganizedTrip(_id) {
-    return await OrganizedTrip.find({ _id });
+    return await OrganizedTrip.findOne({ _id });
 }
 
 async function postOrganizedtrip(data) {
     return await OrganizedTrip.create(data);
 }
 
+async function decrementSeats(trip, decrement) {
+    trip.available_seats -= decrement;
+    await trip.save();
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
-    postOrganizedtrip
+    postOrganizedtrip,
+    decrementSeats
 }

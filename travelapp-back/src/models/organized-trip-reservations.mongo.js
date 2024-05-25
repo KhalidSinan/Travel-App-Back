@@ -15,6 +15,14 @@ const tripReservationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    num_of_people: {
+        type: Number,
+        required: true
+    },
+    reservation_data: {
+        type: String,
+        required: true
+    }
 }, { timestamps: true })
 
 
