@@ -118,11 +118,11 @@ async function makeReservation(req, res) {
     const { error } = reservationValidation.validate(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
 
-    const { hotelId, roomCodes, userId, startDate, numDays } = req.body;
+    const { hotelId, roomCodes, startDate, numDays } = req.body;
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + numDays);
 
-
+    const userId = req.user.id;
     const hotel = await Hotel.findById(hotelId);
     if (!hotel) return res.status(404).json({ message: "Hotel not found" });
 
