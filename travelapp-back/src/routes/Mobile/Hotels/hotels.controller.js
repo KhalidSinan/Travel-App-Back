@@ -8,6 +8,8 @@ const { getUserById } = require("../../../models/users.model")
 const HotelReservation = require('../../../models/hotel-reservations.mongo');
 const Hotel = require('../../../models/hotels.mongo');
 const { calculateTotalPrice } = require('./hotel.helper');
+const { serializedData } = require('../../../services/serializeArray')
+const { hotelData } = require('./hotels.serializer')
 
 
 async function searchHotels(req, res) {
@@ -51,8 +53,8 @@ async function searchHotels(req, res) {
         sortOptions = { 'stars': order === 'asc' ? 1 : -1 };
     }
 
+    const hotelsCount = await Hotel.find(query).countDocuments();
     const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
-    const hotelsCount = await Hotel.find(query)
 
     if (Object.keys(sortOptions).length > 0) {
         hotelsQuery.sort(sortOptions);
@@ -60,7 +62,7 @@ async function searchHotels(req, res) {
 
     const hotels = await hotelsQuery;
 
-    console.log("Hotels found:", hotels.length);
+    console.log("Hotels found:", hotelsCount);
 
     let response = {
         totalHotelsFound: hotelsCount,
@@ -110,7 +112,8 @@ async function searchHotels(req, res) {
         response.totalHotelsFound = filteredHotels.length;
         response.hotels = filteredHotels;
     }
-
+    response.totalHotelsFound = hotelsCount
+    response.hotels = serializedData(response.hotels, hotelData)
     return res.json({ data: response });
 }
 
