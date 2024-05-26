@@ -13,7 +13,7 @@ const { hotelData } = require('./hotels.serializer')
 
 
 async function searchHotels(req, res) {
-    const { nameOrCity, startDate, numDays, numRooms, stars, sortField = '', order = 'asc', page = 1 } = req.body;
+    const { nameOrCity, startDate, numDays, numRooms, stars, sortField = 'nothing', order = 'asc', page = 1 } = req.body;
 
     const { error } = searchHotelsValidation.validate(req.body);
     if (error) {
@@ -39,11 +39,9 @@ async function searchHotels(req, res) {
             { 'location.city': { $regex: new RegExp(nameOrCity, 'i') } }
         ]
     };
-
-    if (stars) {
+    if (stars >= 1) {
         query.stars = stars;
     }
-
     const { skip, limit } = getPagination({ page, limit: 10 });
 
     let sortOptions = {};
@@ -52,7 +50,6 @@ async function searchHotels(req, res) {
     } else if (sortField === 'stars') {
         sortOptions = { 'stars': order === 'asc' ? 1 : -1 };
     }
-
     const hotelsCount = await Hotel.find(query).countDocuments();
     const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
 
