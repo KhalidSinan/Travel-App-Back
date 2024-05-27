@@ -14,7 +14,6 @@ const { hotelData } = require('./hotels.serializer')
 
 async function searchHotels(req, res) {
     const { nameOrCity, startDate, numDays, numRooms, stars, sortField = 'nothing', order = 'asc', page = 1 } = req.body;
-
     const { error } = searchHotelsValidation.validate(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
@@ -25,7 +24,7 @@ async function searchHotels(req, res) {
     }
 
     let effectiveStartDate;
-    if (startDate) {
+    if (startDate != '') {
         const [day, month, year] = startDate.split('/').map(Number);
         effectiveStartDate = new Date(year, month - 1, day);
     } else {
