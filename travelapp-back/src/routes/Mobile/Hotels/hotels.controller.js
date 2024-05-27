@@ -7,7 +7,7 @@ const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../mod
 const { getUserById } = require("../../../models/users.model")
 const HotelReservation = require('../../../models/hotel-reservations.mongo');
 const Hotel = require('../../../models/hotels.mongo');
-const { calculateTotalPrice } = require('./hotel.helper');
+const { calculateTotalPrice, hotelDataPriceSortHelper } = require('./hotel.helper');
 const { serializedData } = require('../../../services/serializeArray')
 const { hotelData } = require('./hotels.serializer')
 
@@ -43,11 +43,8 @@ async function searchHotels(req, res) {
         query.stars = stars;
     }
     const { skip, limit } = getPagination({ page, limit: 10 });
-
     let sortOptions = {};
-    if (sortField === 'price') {
-        sortOptions = { 'room_types.price': order === 'asc' ? 1 : -1 };
-    } else if (sortField === 'stars') {
+    if (sortField === 'stars') {
         sortOptions = { 'stars': order === 'asc' ? 1 : -1 };
     }
     const hotelsCount = await Hotel.find(query).countDocuments();
@@ -57,8 +54,10 @@ async function searchHotels(req, res) {
         hotelsQuery.sort(sortOptions);
     }
 
-    const hotels = await hotelsQuery;
-
+    let hotels = await hotelsQuery;
+    if (sortField === 'price') {
+        hotels = hotelDataPriceSortHelper(hotels, order)
+    }
     console.log("Hotels found:", hotelsCount);
 
     let response = {
