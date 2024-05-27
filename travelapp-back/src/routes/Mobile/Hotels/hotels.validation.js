@@ -1,9 +1,7 @@
-
-const Joi = require('joi');
-
-
+const Joi = require("joi");
 
 const searchHotelsValidation = Joi.object({
+<<<<<<< Updated upstream
     nameOrCity: Joi.string().required(),
     startDate: Joi.string().optional(),
     numDays: Joi.number().integer().min(1).optional(),
@@ -12,17 +10,26 @@ const searchHotelsValidation = Joi.object({
     sortField: Joi.string().valid('price', 'stars', 'nothing').optional(),
     order: Joi.string().valid('asc', 'desc').optional(),
     page: Joi.number().integer().min(1).optional()
+=======
+  nameOrCity: Joi.string().required(),
+  startDate: Joi.string().optional(),
+  numDays: Joi.number().integer().min(1).optional(),
+  numRooms: Joi.number().integer().min(1).optional(),
+  stars: Joi.number().integer().optional(),
+  sortField: Joi.string().valid("price", "stars").optional(),
+  order: Joi.string().valid("asc", "desc").optional(),
+  page: Joi.number().integer().min(1).optional(),
+>>>>>>> Stashed changes
 });
 
-
 const reservationValidation = Joi.object({
-    hotelId: Joi.string().required(),
-    roomCodes: Joi.array().items(Joi.string().required()).required(),
-    startDate: Joi.date().required(),
-    numDays: Joi.number().integer().min(1).required(),
+  hotelId: Joi.string().required(),
+  roomCodes: Joi.array().items(Joi.string().required()).required(),
+  startDate: Joi.date().required(),
+  numDays: Joi.number().integer().min(1).required(),
 });
 
 module.exports = {
-    searchHotelsValidation,
-    reservationValidation
+  searchHotelsValidation,
+  reservationValidation,
 };
