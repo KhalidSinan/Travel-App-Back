@@ -10,4 +10,29 @@ function calculateTotalPrice(roomTypes, roomCodes, startDate, endDate) {
     return totalPrice;
 }
 
-module.exports = { calculateTotalPrice }
+function hotelDataPriceSortHelper(hotels, order) {
+    const orderBy = order === 'asc' ? 1 : -1;
+    hotels.forEach(hotel => {
+        const minPrice = hotelDataGetMinPrice(hotel)
+        hotel.starts_from = minPrice
+    })
+    if (orderBy == 1) {
+        hotels.sort((a, b) => a.starts_from - b.starts_from)
+    } else {
+        hotels.sort((a, b) => b.starts_from - a.starts_from)
+    }
+    return hotels
+}
+
+function hotelDataGetMinPrice(hotel) {
+    let minRoomPrice = 10000
+    hotel.room_types.forEach(room => {
+        minRoomPrice = Math.min(room.price, minRoomPrice)
+    })
+    return minRoomPrice
+}
+
+module.exports = {
+    calculateTotalPrice,
+    hotelDataPriceSortHelper
+}
