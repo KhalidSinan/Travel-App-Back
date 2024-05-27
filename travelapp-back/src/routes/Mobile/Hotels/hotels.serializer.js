@@ -13,7 +13,7 @@ function hotelData(hotel) {
         rooms_number: hotel.rooms_number,
         distance_from_city_center: hotel.distance_from_city_center,
         images: hotel.images,
-        starts_from: hotel.starts_from ?? minRoomPrice
+        starts_from: hotel.starts_from ?? minRoomPrice,
     }
 }
 

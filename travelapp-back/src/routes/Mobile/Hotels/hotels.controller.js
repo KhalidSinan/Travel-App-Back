@@ -64,16 +64,16 @@ async function searchHotels(req, res) {
         hotels: []
     };
 
-    if (!startDate && !numDays && !numRooms) {
+    if (startDate == '' && numDays == 1 && numRooms == 1) {
         response.hotels = hotels;
-    } else if (numRooms && !numDays) {
+    } else if (numRooms && numDays == 1) {
         const suitableHotels = hotels.filter(hotel => {
             return hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
         });
         console.log("Suitable Hotels for numRooms:", suitableHotels.length);
         response.totalHotelsFound = suitableHotels.length;
         response.hotels = suitableHotels;
-    } else if (numDays && !numRooms) {
+    } else if (numDays && numRooms == 1) {
         const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
         const availableHotels = await Promise.all(hotels.map(async (hotel) => {
             const reservations = await HotelReservation.find({
