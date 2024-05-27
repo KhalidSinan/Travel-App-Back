@@ -18,7 +18,6 @@ async function searchHotels(req, res) {
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
-
     if (!nameOrCity) {
         return res.status(400).json({ error: "You must provide either the hotel name or the city name." });
     }
@@ -59,8 +58,10 @@ async function searchHotels(req, res) {
     }
     console.log("Hotels found:", hotelsCount);
 
+    const current_page = Math.min(10, 10 - ((page * 10) - hotelsCount));
     let response = {
         totalHotelsFound: hotelsCount,
+        current_page: current_page,
         hotels: []
     };
 
