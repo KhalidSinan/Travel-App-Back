@@ -1,5 +1,16 @@
 const mongoose = require('mongoose')
 
+const roomCodeSchema = new mongoose.Schema({
+    code: {
+        type: String,
+        required: true
+    },
+    count: {
+        type: Number,
+        required: true
+    },
+})
+
 const hotelReservationSchema = new mongoose.Schema({
     hotel_id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -10,7 +21,7 @@ const hotelReservationSchema = new mongoose.Schema({
         ref: 'User',
     },
     room_codes: {
-        type: [String],
+        type: [roomCodeSchema],
         required: true
     },
     start_date: {

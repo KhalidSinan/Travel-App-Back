@@ -125,36 +125,36 @@ async function makeReservation(req, res) {
     const hotel = await Hotel.findById(hotelId);
     if (!hotel) return res.status(404).json({ message: "Hotel not found" });
 
-    const roomTypes = roomCodes.map(code => hotel.room_types.find(room => room.code === code));
+    const roomCodeKeys = roomCodes.map(room => room.code)
+    const roomTypes = roomCodeKeys.map(code => hotel.room_types.find(room => room.code === code));
 
-    // if (roomTypes.some(roomType => !roomType || roomType.available_rooms < 1)) {
-    //     return res.status(404).json({ message: "One or more rooms are not available" });
-    // }
     if (roomTypes.some(roomType => !roomType)) {
         return res.status(404).json({ message: "One or more rooms are not available" });
     }
-    const conflicts = await findConflicts(hotelId, startDate, endDate, roomCodes);
-    // const conflictingReservations = await HotelReservation.find({
-    //     hotel_id: hotelId,
-    //     room_codes: { $in: roomCodes },
-    //     $or: [
-    //         { start_date: { $lt: endDate }, end_date: { $gt: startDate } },
-    //         { start_date: { $lt: endDate }, end_date: { $eq: startDate } },
-    //         { start_date: { $eq: startDate }, end_date: { $gt: startDate } }
-    //     ]
-    // });
-    // console.log(conflictingReservations)
 
+    const conflicts = await findConflicts(hotel, startDate, endDate, roomCodes);
+    
     if (conflicts.length > 0) {
-        let message = ''
+        let problems = []
         conflicts.forEach(conflict => {
-            message += conflict.code + ' only ' + conflict.total + ' available'
-            message += `\n`
+            let temp = {
+                code: conflict.code,
+                available: conflict.available,
+                message: `Room Code ${conflict.code} Has Only ${conflict.available} Room(s) Available, Cant Book ${conflict.count}`
+            }
+            problems.push(temp)
         })
-        return res.status(400).json({ message: "Rooms Cant Be Booked, Problem is: " + message });
+        return res.status(400).json({
+            message: "Rooms Cant Be Booked",
+            problems: problems,
+        });
     }
 
-    const calculatedTotalPrice = calculateTotalPrice(roomTypes, roomCodes, startDate, endDate);
+    const calculatedTotalPrice = calculateTotalPrice(roomTypes, roomCodeKeys, startDate, endDate);
+
+    const number_of_rooms = roomCodes.reduce((acc, room) => {
+        return acc + room.count
+    }, 0)
 
     const newReservation = new HotelReservation({
         hotel_id: hotelId,
@@ -163,14 +163,14 @@ async function makeReservation(req, res) {
         start_date: startDate,
         end_date: endDate,
         room_price: calculatedTotalPrice,
-        number_of_rooms: roomCodes.length
+        number_of_rooms: number_of_rooms
     });
 
     try {
-        for (const roomType of roomTypes) {
+        for (const roomType of roomCodes) {
             await Hotel.updateOne(
                 { _id: hotelId, "room_types.code": roomType.code },
-                { $inc: { "room_types.$.available_rooms": -1 } }
+                { $inc: { "room_types.$.available_rooms": -roomType.count } }
             );
         }
         await newReservation.save();
@@ -181,22 +181,23 @@ async function makeReservation(req, res) {
     }
 }
 
-async function findConflicts(hotelId, startDate, endDate, room_codes) {
+async function findConflicts(hotel, startDate, endDate, room_codes) {
     let data = [];
-    const hotel = await Hotel.findById(hotelId)
-    const rooms = hotel.room_types.map((room) => {
-        return { code: room.code, total: room.total_rooms }
-    })
-    await Promise.all(room_codes.map(async (code) => {
-        let reservedRoomsInThisDate = await HotelReservation.find({
-            hotel_id: hotelId,
-            room_codes: { $in: [code] },
+    await Promise.all(room_codes.map(async (room) => {
+        let roomsReservedInThisDate = await HotelReservation.find({
+            hotel_id: hotel._id,
+            'room_codes.code': room.code,
             $or: [
                 { start_date: { $lte: endDate }, end_date: { $gte: startDate } },
             ]
-        }).countDocuments();
-        const room = rooms.find(room => room.code == code)
-        if (room.total - reservedRoomsInThisDate - 1 < 0) {
+        });
+        let totalRoomsReserved = 0
+        roomsReservedInThisDate.forEach(reservation => {
+            totalRoomsReserved += reservation.room_codes.find(tempRoom => tempRoom.code == room.code).count
+        })
+        const tempRoomTotal = hotel.room_types.find(hotelRoom => hotelRoom.code == room.code).total_rooms
+        room.available = tempRoomTotal - totalRoomsReserved
+        if (tempRoomTotal - totalRoomsReserved - room.count < 0) {
             data.push(room)
         }
     }));

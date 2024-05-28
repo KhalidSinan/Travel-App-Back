@@ -14,7 +14,7 @@ const searchHotelsValidation = Joi.object({
 const reservationValidation = Joi.object({
   hotelId: Joi.string().hex().length(24).messages({ 'string.hex': 'ID Must Be Valid', 'string.length': 'ID Must Be Valid' }),
   // hotelId: Joi.string().required(),
-  roomCodes: Joi.array().items(Joi.string().required()).required(),
+  roomCodes: Joi.required(),
   startDate: Joi.date().required(),
   numDays: Joi.number().integer().min(1).required(),
 });
