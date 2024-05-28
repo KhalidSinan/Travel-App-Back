@@ -1,5 +1,5 @@
 const { validationErrors } = require("../../../middlewares/validationErrors")
-const { postReservation, getReservations, getReservationsForTrip } = require("../../../models/organized-trip-reservations.model")
+const { getOrganizedTripReservations, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation } = require("../../../models/organized-trip-reservations.model")
 const { getOneOrganizedTrip, decrementSeats } = require("../../../models/organized-trips.model")
 const { validateReserveTrip } = require("./organized-trip-reservations.validation")
 
@@ -21,27 +21,27 @@ async function httpMakeReservation(req, res) {
     }
 
     await decrementSeats(organized_trip, 4);
-    await postReservation(data)
+    await postOrganizedTripReservation(data)
 
     return res.status(200).json({ message: 'Reserved Successfully' })
 }
 
-// Not Done
 async function httpGetMyReservations(req, res) {
     const user = req.user
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
-    const reservations = await getReservations(user._id);
+    const reservations = await getOrganizedTripReservations(user._id);
     return res.status(200).json({
-        data: reservations
+        data: reservations,
     })
 }
+////////////////////
 
 async function httpGetReservationsForTrip(req, res) {
     const user = req.user
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
-    const reservations = await getReservationsForTrip(req.params.id);
+    const reservations = await getOrganizedTripReservationsForOneTrip(req.params.id);
     return res.status(200).json({
         data: reservations
     })

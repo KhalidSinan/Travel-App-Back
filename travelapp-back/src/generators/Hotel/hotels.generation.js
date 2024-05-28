@@ -116,7 +116,7 @@ async function createHotels() {
                 name: data.address ?? faker.address.streetAddress(),
             },
             description: data.overview,
-            stars: data.stars,
+            stars: Math.floor(data.stars),
             room_types: room_types,
             rooms_number: overall_rooms,
             distance_from_city_center: distanceFromCityCenter,
