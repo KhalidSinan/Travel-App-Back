@@ -35,7 +35,6 @@ async function httpGetMyReservations(req, res) {
         data: reservations,
     })
 }
-////////////////////
 
 async function httpGetReservationsForTrip(req, res) {
     const user = req.user

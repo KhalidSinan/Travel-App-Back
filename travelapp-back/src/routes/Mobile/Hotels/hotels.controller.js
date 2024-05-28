@@ -134,7 +134,6 @@ async function makeReservation(req, res) {
         return res.status(404).json({ message: "One or more rooms are not available" });
     }
     const conflicts = await findConflicts(hotelId, startDate, endDate, roomCodes);
-
     // const conflictingReservations = await HotelReservation.find({
     //     hotel_id: hotelId,
     //     room_codes: { $in: roomCodes },
@@ -147,7 +146,12 @@ async function makeReservation(req, res) {
     // console.log(conflictingReservations)
 
     if (conflicts.length > 0) {
-        return res.status(400).json({ message: "Rooms with Code (" + conflicts + ") are already booked for the specified dates" });
+        let message = ''
+        conflicts.forEach(conflict => {
+            message += conflict.code + ' only ' + conflict.total + ' available'
+            message += `\n`
+        })
+        return res.status(400).json({ message: "Rooms Cant Be Booked, Problem is: " + message });
     }
 
     const calculatedTotalPrice = calculateTotalPrice(roomTypes, roomCodes, startDate, endDate);
@@ -181,22 +185,19 @@ async function findConflicts(hotelId, startDate, endDate, room_codes) {
     let data = [];
     const hotel = await Hotel.findById(hotelId)
     const rooms = hotel.room_types.map((room) => {
-        return { code: room.code, available: room.available_rooms }
+        return { code: room.code, total: room.total_rooms }
     })
     await Promise.all(room_codes.map(async (code) => {
-        let temp = await HotelReservation.findOne({
+        let reservedRoomsInThisDate = await HotelReservation.find({
             hotel_id: hotelId,
             room_codes: { $in: [code] },
             $or: [
-                { start_date: { $lt: endDate }, end_date: { $gt: startDate } },
-                { start_date: { $lt: endDate }, end_date: { $eq: startDate } },
-                { start_date: { $eq: startDate }, end_date: { $gt: startDate } }
+                { start_date: { $lte: endDate }, end_date: { $gte: startDate } },
             ]
-        });
-
+        }).countDocuments();
         const room = rooms.find(room => room.code == code)
-        if (temp && room.available <= 0) {
-            data.push(room.code)
+        if (room.total - reservedRoomsInThisDate - 1 < 0) {
+            data.push(room)
         }
     }));
     return data;
