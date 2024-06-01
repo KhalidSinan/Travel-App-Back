@@ -42,12 +42,14 @@ app.use('/notifications', require('./routes/Mobile/Notifications/notifications.r
 app.use('/hotels', require("./routes/Mobile/Hotels/hotels.route"))
 app.use('/organized-trips', require("./routes/Mobile/OrganizedTrips/organized-trips.route")) // Not Done
 app.use('/trips-reservation', require("./routes/Mobile/OrganizedTripReservations/organized-trip-reservations.route")) // Not Done
+app.use('/report', require("./routes/Mobile/Reports/reports.route")) // Not Done
 
 // Dashboard
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
 app.use('/dashboard', require('./routes/Dashboard/Announcements/announcements.route'))
 app.use('/dashboard', require('./routes/Dashboard/Organizers/organizers.route'))
 app.use('/dashboard', require('./routes/Dashboard/OrganizersRequests/organizers-requests.route'))
+app.use('/dashboard', require('./routes/Dashboard/Reports/reports.route'))
 
 // Error Handling
 app.use(errorHandler);
