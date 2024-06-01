@@ -6,9 +6,7 @@ const getAllByCityValidation = Joi.object({
 });
 
 const getAllNearbyValidation = Joi.object({
-    userId: Joi.string().required(),
     category: Joi.string().optional(),
-
 });
 
 module.exports = {
