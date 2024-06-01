@@ -1,9 +1,11 @@
 
 const Place = require('../../../models/places.mongo');
-const User = require('../../../models/users.mongo');
+const { getAllByCityValidation, getAllNearbyValidation } = require('./places.validation');
 
 async function getAllByCity(req, res) {
-    const { city, category } = req.body;
+    const { error } = getAllByCityValidation.validate(req.query);
+    if (error) return res.status(400).json({ message: error.details[0].message });
+    const { city, category } = req.query;
     let query = {};
 
     if (!category) {
@@ -24,9 +26,11 @@ async function getAllByCity(req, res) {
 }
 
 async function getAllNearby(req, res) {
-    const { userId, category } = req.body;
+    const { error } = getAllNearbyValidation.validate(req.query);
+    if (error) return res.status(400).json({ message: error.details[0].message });
+    const { category } = req.query;
     try {
-        const user = await User.findById(userId);
+        const user = req.user;
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
