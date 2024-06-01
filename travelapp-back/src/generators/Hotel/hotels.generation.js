@@ -57,7 +57,7 @@ function createRoomTypes() {
     const bedOptions = ['Single Bed', 'Double Bed', 'King Size Bed', 'Queen Size Bed'];
 
     roomCategories.forEach((category, index) => {
-        const numberOfSubTypes = faker.datatype.number({ min: 1, max: 3 });
+        const numberOfSubTypes = faker.number.int({ min: 1, max: 3 });
         const roomCount = faker.helpers.arrayElement(category.roomCountOptions);
 
         for (let i = 0; i < numberOfSubTypes; i++) {
@@ -69,7 +69,7 @@ function createRoomTypes() {
                 description: `${category.type} with well-furnished, spacious rooms.`,
                 price: parseFloat((Math.random() * 100 + 100 * category.priceMultiplier).toFixed(2)),
                 bed_options: faker.helpers.arrayElement(bedOptions),
-                sleeps_count: faker.datatype.number({ min: 1, max: 4 }),
+                sleeps_count: faker.number.int({ min: 1, max: 4 }),
                 smoking_allowed: faker.datatype.boolean(),
                 available_rooms: totalRooms,
                 total_rooms: totalRooms,
@@ -112,8 +112,8 @@ async function createHotels() {
             name: data.name,
             location: {
                 country: data.country,
-                city: data.city ?? faker.address.city(),
-                name: data.address ?? faker.address.streetAddress(),
+                city: data.city ?? faker.location.city(),
+                name: data.address ?? faker.location.streetAddress(),
             },
             description: data.overview,
             stars: Math.floor(data.stars),
