@@ -28,7 +28,7 @@ function createRestaurants() {
             category: "Food",
             address: address,
             // work_time:  // Fix
-            description: rest.category,
+            description: faker.lorem.sentence(),
         }
         data.push(temp)
     })
@@ -60,7 +60,7 @@ function createStadiums() {
             category: "Sports",
             address: address,
             // work_time:  // Fix
-            description: faker.lorem.word(),
+            description: faker.lorem.sentence(),
         }
         data.push(temp)
     })
@@ -96,7 +96,7 @@ function createMusuems() {
             category: "Arts & History",
             address: address,
             // work_time:  // Fix
-            description: faker.word.noun(),
+            description: faker.lorem.sentence(),
         }
         data.push(temp)
     })
@@ -121,7 +121,7 @@ function createAdventure() {
             category: "Adventure",
             address: address,
             // work_time:  // Fix
-            description: faker.lorem.word(),
+            description: faker.lorem.sentence(),
         }
         data.push(temp)
     })
@@ -146,7 +146,7 @@ function createCinemasParks() {
             // Or Entertainment
             address: address,
             // work_time:  // Fix
-            description: faker.lorem.word(),
+            description: faker.lorem.sentence(),
         }
         i++;
         data.push(temp)
