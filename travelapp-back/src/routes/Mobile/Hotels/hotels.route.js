@@ -10,6 +10,7 @@ const { makeReservation, searchHotels, getHotels } = require('./hotels.controlle
 
 router.post('/reserve', requireJwtAuth, asyncHandler(makeReservation));
 router.post('/search', requireJwtAuth, asyncHandler(searchHotels));
+router.post('/pay', requireJwtAuth, asyncHandler(searchHotels));
 
 
 module.exports = router;

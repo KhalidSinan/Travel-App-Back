@@ -3,8 +3,8 @@ const { getFlight } = require('../../../models/flights.model');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { reservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservations.validation');
-const { reserveFlightHelper, findCancelRate, changeClassName } = require('./plane-reservations.helper')
-const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation } = require('../../../models/plane-reservation.model');
+const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReservations } = require('./plane-reservations.helper')
+const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation, getAllReservationsWithFlightData } = require('../../../models/plane-reservation.model');
 const sendPushNotification = require('../../../services/notifications');
 const { postNotification } = require('../../../models/notification.model');
 const { validationErrors } = require('../../../middlewares/validationErrors')
@@ -154,10 +154,21 @@ async function httpPayReservation(req, res) {
     paymentSheet(req, res)
 }
 
+async function httpGetNextDestination(req, res) {
+    // City Name & Date
+    const data = await getAllReservationsWithFlightData();
+    const destinations = getUpcomingReservations(data)
+
+    return res.status(200).json({
+        data: destinations
+    })
+}
+
 module.exports = {
     httpMakeReservation,
     httpConfirmReservation,
     httpCancelReservation,
     httpGetReservation,
-    httpPayReservation
+    httpPayReservation,
+    httpGetNextDestination
 }

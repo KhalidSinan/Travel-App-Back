@@ -32,7 +32,32 @@ function hotelDataGetMinPrice(hotel) {
     return minRoomPrice
 }
 
+async function findConflicts(hotel, startDate, endDate, room_codes) {
+    let data = [];
+    await Promise.all(room_codes.map(async (room) => {
+        let roomsReservedInThisDate = await HotelReservation.find({
+            hotel_id: hotel._id,
+            'room_codes.code': room.code,
+            $or: [
+                { start_date: { $lte: endDate }, end_date: { $gte: startDate } },
+            ]
+        });
+        let totalRoomsReserved = 0
+        roomsReservedInThisDate.forEach(reservation => {
+            totalRoomsReserved += reservation.room_codes.find(tempRoom => tempRoom.code == room.code).count
+        })
+        const tempRoomTotal = hotel.room_types.find(hotelRoom => hotelRoom.code == room.code).total_rooms
+        room.available = tempRoomTotal - totalRoomsReserved
+        if (tempRoomTotal - totalRoomsReserved - room.count < 0) {
+            data.push(room)
+        }
+    }));
+    return data;
+
+}
+
 module.exports = {
     calculateTotalPrice,
-    hotelDataPriceSortHelper
+    hotelDataPriceSortHelper,
+    findConflicts
 }
