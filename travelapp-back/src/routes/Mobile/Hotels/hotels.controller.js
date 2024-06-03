@@ -7,7 +7,7 @@ const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../mod
 const { getUserById } = require("../../../models/users.model")
 const HotelReservation = require('../../../models/hotel-reservations.mongo');
 const Hotel = require('../../../models/hotels.mongo');
-const { calculateTotalPrice, hotelDataPriceSortHelper } = require('./hotel.helper');
+const { calculateTotalPrice, hotelDataPriceSortHelper, findConflicts } = require('./hotel.helper');
 const { serializedData } = require('../../../services/serializeArray')
 const { hotelData } = require('./hotels.serializer')
 
@@ -133,7 +133,7 @@ async function makeReservation(req, res) {
     }
 
     const conflicts = await findConflicts(hotel, startDate, endDate, roomCodes);
-    
+
     if (conflicts.length > 0) {
         let problems = []
         conflicts.forEach(conflict => {
@@ -181,32 +181,22 @@ async function makeReservation(req, res) {
     }
 }
 
-async function findConflicts(hotel, startDate, endDate, room_codes) {
-    let data = [];
-    await Promise.all(room_codes.map(async (room) => {
-        let roomsReservedInThisDate = await HotelReservation.find({
-            hotel_id: hotel._id,
-            'room_codes.code': room.code,
-            $or: [
-                { start_date: { $lte: endDate }, end_date: { $gte: startDate } },
-            ]
-        });
-        let totalRoomsReserved = 0
-        roomsReservedInThisDate.forEach(reservation => {
-            totalRoomsReserved += reservation.room_codes.find(tempRoom => tempRoom.code == room.code).count
-        })
-        const tempRoomTotal = hotel.room_types.find(hotelRoom => hotelRoom.code == room.code).total_rooms
-        room.available = tempRoomTotal - totalRoomsReserved
-        if (tempRoomTotal - totalRoomsReserved - room.count < 0) {
-            data.push(room)
-        }
-    }));
-    return data;
-
+async function payReservation(req, res) {
+    // get hotel reservation
+    // check if not null
+    // create payment data 
+    // paymentsheet()
+    // const reservation = await getReservation(req.params.id)
+    // if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
+    // const data = reservation.reservations.data
+    // if (reservation.reservations_back.data.length > 0) data.push(...reservation.reservations_back.data)
+    // const payment_data = createPaymentData(data, reservation.overall_price, "flight")
+    // req.body.data = payment_data
+    // paymentSheet(req, res)
 }
 
 module.exports = {
     makeReservation,
     searchHotels,
-
+    payReservation
 };

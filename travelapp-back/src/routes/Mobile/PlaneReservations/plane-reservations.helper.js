@@ -37,8 +37,27 @@ function changeClassName(reservations, reservations_back) {
         }
 }
 
+function getUpcomingReservations(reservations) {
+    let data = [];
+    reservations.forEach(reservation => {
+        const flights = reservation.flights
+        flights.forEach(flight => {
+            if (flight.arrival_date.dateTime > new Date()) {
+                let temp = {
+                    city: flight.destination.city,
+                    date: flight.arrival_date.dateTime,
+                    date2: flight.arrival_date.date,
+                }
+                data.push(temp)
+            }
+        })
+    })
+    return data;
+}
+
 module.exports = {
     findCancelRate,
     reserveFlightHelper,
-    changeClassName
+    changeClassName,
+    getUpcomingReservations
 }

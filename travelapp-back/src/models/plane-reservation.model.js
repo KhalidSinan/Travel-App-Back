@@ -44,11 +44,16 @@ async function deleteReservation(reservation) {
     return await PlaneReservation.deleteOne(reservation)
 }
 
+async function getAllReservationsWithFlightData() {
+    return await PlaneReservation.find().populate('flights')
+}
+
 module.exports = {
     postReservation,
     getReservation,
     putConfirmation,
     removeReservation,
     getAllPlaneReservations,
-    deleteReservation
+    deleteReservation,
+    getAllReservationsWithFlightData
 }
