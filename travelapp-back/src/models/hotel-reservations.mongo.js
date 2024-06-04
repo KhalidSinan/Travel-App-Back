@@ -9,6 +9,14 @@ const roomCodeSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    },
+    overall_price: {
+        type: Number,
+        required: true
+    },
 })
 
 const hotelReservationSchema = new mongoose.Schema({

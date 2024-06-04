@@ -1,12 +1,16 @@
-function calculateTotalPrice(roomTypes, roomCodes, startDate, endDate) {
+const HotelReservation = require('../../../models/hotel-reservations.mongo');
+
+function calculateTotalPrice(room_data, startDate, endDate) {
     const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
+    console.log(days)
     let totalPrice = 0;
-    roomCodes.forEach(code => {
-        const roomType = roomTypes.find(room => room.code === code);
-        if (roomType) {
-            totalPrice += roomType.price * days;
-        }
+    room_data.forEach(room => {
+        let temp = room.price * days * room.count;
+        temp.toFixed(2)
+        totalPrice += temp;
+        room.overall_price = temp
     });
+    totalPrice = totalPrice.toFixed(2)
     return totalPrice;
 }
 
@@ -56,8 +60,24 @@ async function findConflicts(hotel, startDate, endDate, room_codes) {
 
 }
 
+function getPriceForRooms(hotel, room_codes) {
+    let data = []
+    const rooms = hotel.room_types
+    room_codes.forEach(room => {
+        const newRoom = rooms.find(tempRoom => tempRoom.code == room.code)
+        let temp = {
+            code: room.code,
+            count: room.count,
+            price: newRoom.price,
+        }
+        data.push(temp)
+    })
+    return data;
+}
+
 module.exports = {
     calculateTotalPrice,
     hotelDataPriceSortHelper,
-    findConflicts
+    findConflicts,
+    getPriceForRooms
 }
