@@ -4,8 +4,6 @@ const URL = process.env.URL;
 function createPaymentData(data, amount, type) {
     const currency = 'USD'
     let items = [];
-    let amount1 = 0
-        ;
     data.forEach(e => {
         let temp = {}
         if (type == 'flight') {
@@ -21,7 +19,7 @@ function createPaymentData(data, amount, type) {
             temp = {
                 name: e.code,
                 sku: type,
-                price: e.overall_price,
+                price: e.price,
                 currency: currency,
                 quantity: e.count
             }

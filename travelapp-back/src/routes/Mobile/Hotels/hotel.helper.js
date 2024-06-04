@@ -2,15 +2,13 @@ const HotelReservation = require('../../../models/hotel-reservations.mongo');
 
 function calculateTotalPrice(room_data, startDate, endDate) {
     const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
-    console.log(days)
     let totalPrice = 0;
     room_data.forEach(room => {
         let temp = room.price * days * room.count;
-        temp.toFixed(2)
         totalPrice += temp;
         room.overall_price = temp
+        room.overall_price = room.overall_price.toFixed(2)
     });
-    totalPrice = totalPrice.toFixed(2)
     return totalPrice;
 }
 
