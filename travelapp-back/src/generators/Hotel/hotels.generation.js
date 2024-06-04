@@ -66,6 +66,7 @@ function createRoomTypes() {
 
             roomTypes.push({
                 code: code,
+                type: category.type.split(' ')[0],
                 description: `${category.type} with well-furnished, spacious rooms.`,
                 price: parseFloat((Math.random() * 100 + 100 * category.priceMultiplier).toFixed(2)),
                 bed_options: faker.helpers.arrayElement(bedOptions),

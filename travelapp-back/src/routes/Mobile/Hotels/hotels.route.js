@@ -6,11 +6,11 @@ const express = require('express');
 const router = express.Router();
 
 
-const { makeReservation, searchHotels, getHotels } = require('./hotels.controller');
+const { makeReservation, searchHotels, payReservation } = require('./hotels.controller');
 
 router.post('/reserve', requireJwtAuth, asyncHandler(makeReservation));
 router.post('/search', requireJwtAuth, asyncHandler(searchHotels));
-router.post('/pay', requireJwtAuth, asyncHandler(searchHotels));
+router.get('/reservation/:id/pay', checkObjectID, asyncHandler(payReservation));
 
 
 module.exports = router;
