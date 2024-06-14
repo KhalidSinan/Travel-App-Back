@@ -44,8 +44,8 @@ async function deleteReservation(reservation) {
     return await PlaneReservation.deleteOne(reservation)
 }
 
-async function getAllReservationsWithFlightData() {
-    return await PlaneReservation.find().populate('flights')
+async function getAllReservationsWithFlightData(user_id) {
+    return await PlaneReservation.find({ user_id }).populate('flights')
 }
 
 module.exports = {

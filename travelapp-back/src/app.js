@@ -43,7 +43,8 @@ app.use('/hotels', require("./routes/Mobile/Hotels/hotels.route"))
 app.use('/organized-trips', require("./routes/Mobile/OrganizedTrips/organized-trips.route")) // Not Done
 app.use('/trips-reservation', require("./routes/Mobile/OrganizedTripReservations/organized-trip-reservations.route")) // Not Done
 app.use('/places', require("./routes/Mobile/Places/places.route"))
-app.use('/report', require("./routes/Mobile/Reports/reports.route"))
+app.use('/reports', require("./routes/Mobile/Reports/reports.route"))
+app.use('/trips', require("./routes/Mobile/Trips/trips.route"))
 
 // Dashboard
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))
