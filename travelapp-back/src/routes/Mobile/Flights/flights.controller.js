@@ -2,7 +2,7 @@ const { getPagination } = require('../../../services/query');
 const { serializedData } = require('../../../services/serializeArray');
 const { getFlights, getFlight, getFlightsCount } = require('../../../models/flights.model')
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { validateGetFlights, validateGetFlight } = require('./flights.validation');
+const { validateGetFlights, validateGetFlight, validateGetFlightsOptions } = require('./flights.validation');
 const { flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
 const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper');
 
@@ -67,41 +67,49 @@ async function httpGetFlight(req, res) {
     return res.status(200).json({ two_way: false, data: { flight: flightDataDetails(data) } })
 }
 
-// // Maybe Disabled Person
-// async function httpReserveFlight(req, res) {
-//     const { error } = validateReserveFlight(req.body)
-//     if (error) return res.status(400).json({ message: validationErrors(error.details) })
+async function httpGetFlightsOptions(req, res) {
+    const { error } = await validateGetFlightsOptions({ destinations: req.body.destinations, start_date: req.body.start_date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats })
+    if (error) return res.status(400).json({ message: validationErrors(error.details) });
 
-//     // Get Data
-//     const user_id = req.user._id
-//     const reservation_type = req.body.reservation_type
-//     const flights = req.params.id
+    const classes = ['A', 'B', 'C']
+    const classIndex = classes.indexOf(req.body.class_of_seats)
 
-//     const flight = await getFlight(flights);
-//     if (!flight) return res.status(404).json({ message: 'Flight Not Found' })
+    let days = 0;
+    let data = [];
+    const destinations = req.body.destinations;
+    for (let i = 1; i < destinations.length; i++) {
+        let [day, month, year] = req.body.start_date.split('/');
+        day = +day + days;
+        let departure_date = `${day}/${month}/${year}`;
+        const filter = { 'departure_date.date': departure_date, 'source.country': destinations[i - 1].country, 'destination.country': destinations[i].country }
+        let flights = await getFlights(0, 0, filter);
 
-//     const num_of_reservations = req.body.num_of_reservations
-//     if (num_of_reservations > flight.available_seats) return res.status(400).json({ message: 'Flight Seats Not Enough' })
+        flights = getFlightsOneWayDataHelper(flights, req.body.num_of_seats, classIndex, req.body.airline)
+        if (destinations[i].filter) {
+            let { time_start, time_end, min_price, max_price } = destinations[i].filter
+            if (time_start && time_end) flights = getFlightsTimeFilterHelper(departure_date, time_start, time_end, flights)
+            if (min_price && max_price) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
+        }
 
-//     // Ready Reservations
-//     const overall_price = await reserveFlightHelper(req.body.reservations, flight, user_id)
+        data.push({
+            country: destinations[i].country,
+            count: flights.length,
+            is_available: flights.length > 0 ?? false
+        })
 
-//     // Post Reservations
-//     const data = {
-//         user_id, flights, num_of_reservations: req.body.reservations.length,
-//         reservations: req.body.reservations, overall_price, reservation_type
-//     }
-//     const user_balance = await getWallet(user_id)
-//     if (user_balance.wallet_account < overall_price || user_balance.wallet_account == 0) return res.status(400).json({ message: 'Insufficient Balance' })
+        days += destinations[i - 1].days
+    }
 
-//     const reservation = await postReservation(data)
-//     await putWallet(user_id, -overall_price);
+    return res.status(200).json({ data: data, count: data.length })
 
-//     return res.status(200).json({ message: 'Flight Reserved Successfully', reservation })
-// }
+
+
+    // return res.status(200).json({ data: serializedData(data, flightData), count: count })
+}
 
 module.exports = {
     httpGetFlights,
     httpGetFlight,
     httpGetSearchPageData,
+    httpGetFlightsOptions
 }

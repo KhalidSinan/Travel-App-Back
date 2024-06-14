@@ -155,11 +155,13 @@ async function httpPayReservation(req, res) {
 }
 
 async function httpGetNextDestination(req, res) {
-    // City Name & Date
-    const data = await getAllReservationsWithFlightData();
+    const data = await getAllReservationsWithFlightData(req.user.id);
     const destinations = getUpcomingReservations(data)
 
+    const available_trips = destinations.length > 0 ? true : false
+
     return res.status(200).json({
+        available_trips: available_trips,
         data: destinations
     })
 }

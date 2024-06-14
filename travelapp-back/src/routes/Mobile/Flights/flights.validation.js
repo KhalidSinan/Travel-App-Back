@@ -20,7 +20,31 @@ async function validateGetFlight(data) {
     return schema.validate(data, { abortEarly: false });
 }
 
+async function validateGetFlightsOptions(data) {
+    const filterSchema = Joi.object({
+        time_start: Joi.string().default(null),
+        time_end: Joi.string().default(null),
+        min_price: Joi.number().default(-Infinity),
+        max_price: Joi.number().default(Infinity),
+    })
+
+    const destinationSchema = Joi.object({
+        country: Joi.string().required(),
+        days: Joi.number().required(),
+        filter: filterSchema
+    })
+
+    const schema = Joi.object({
+        destinations: Joi.array().items(destinationSchema).required().messages({ 'any.required': 'Destinations Required' }),
+        start_date: Joi.string().required().messages({ 'any.required': 'Date Required' }),
+        class_of_seats: Joi.string().required().messages({ 'any.required': 'Class Required' }),
+        num_of_seats: Joi.number().required().messages({ 'any.required': 'Number Of Seats Required' }),
+    })
+    return schema.validate(data, { abortEarly: false });
+}
+
 module.exports = {
     validateGetFlights,
-    validateGetFlight
+    validateGetFlight,
+    validateGetFlightsOptions
 }

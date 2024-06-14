@@ -15,7 +15,7 @@ const { paymentSheet } = require('../Payments/payments.controller');
 
 
 async function searchHotels(req, res) {
-    const { nameOrCity, startDate, numDays, numRooms, stars, sortField = 'nothing', order = 'asc', page = 1 } = req.body;
+    let { nameOrCity, startDate, numDays, numRooms, stars, sortField = 'nothing', order = 'asc', page = 1 } = req.body;
     const { error } = searchHotelsValidation.validate(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
@@ -67,16 +67,19 @@ async function searchHotels(req, res) {
         hotels: []
     };
 
-    if (startDate == '' && numDays == 1 && numRooms == 1) {
+    if (numDays == 0) numDays = null
+    if (numRooms == 0) numRooms = null
+
+    if (startDate == '' && !numDays && !numRooms) {
         response.hotels = hotels;
-    } else if (numRooms && numDays == 1) {
+    } else if (numRooms && !numDays) {
         const suitableHotels = hotels.filter(hotel => {
             return hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
         });
         console.log("Suitable Hotels for numRooms:", suitableHotels.length);
         response.totalHotelsFound = suitableHotels.length;
         response.hotels = suitableHotels;
-    } else if (numDays && numRooms == 1) {
+    } else if (numDays && !numRooms) {
         const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
         const availableHotels = await Promise.all(hotels.map(async (hotel) => {
             const reservations = await HotelReservation.find({
