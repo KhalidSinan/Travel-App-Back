@@ -12,7 +12,7 @@ const { serializedData } = require('../../../services/serializeArray')
 const { hotelData } = require('./hotels.serializer')
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
-
+const { getCities } = require('../../../services/locations')
 
 async function searchHotels(req, res) {
     let { nameOrCity, startDate, numDays, numRooms, stars, sortField = 'nothing', order = 'asc', page = 1 } = req.body;
@@ -196,8 +196,14 @@ async function payReservation(req, res) {
     paymentSheet(req, res)
 }
 
+async function getCountriesWithCities(req, res) {
+    const cities = getCities();
+    return res.status(200).json({ message: 'Data Retreived Successfully', cities })
+}
+
 module.exports = {
     makeReservation,
     searchHotels,
-    payReservation
+    payReservation,
+    getCountriesWithCities
 };

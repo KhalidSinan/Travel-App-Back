@@ -4,8 +4,8 @@ const { getFlights, getFlight, getFlightsCount } = require('../../../models/flig
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validateGetFlights, validateGetFlight, validateGetFlightsOptions } = require('./flights.validation');
 const { flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
-const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, getCountries, getAirlines, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper');
-
+const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper');
+const { getCities, getCountries, getAirlines } = require('../../../services/locations')
 
 // Done
 function httpGetSearchPageData(req, res) {
@@ -186,10 +186,19 @@ async function httpGetFlightsOptions2(req, res) {
     return res.status(200).json({ data: data, count: data.length })
 }
 
+// Done
+function httpGetCitiesAndAirlines(req, res) {
+    const cities = getCities();
+    const airlines = getAirlines();
+    return res.status(200).json({ message: 'Data Retreived Successfully', cities, airlines })
+}
+
 module.exports = {
     httpGetFlights,
     httpGetFlight,
     httpGetSearchPageData,
     httpGetFlightsOptions,
     httpGetFlightsOptions2,
+    httpGetFlightsOptions3,
+    httpGetCitiesAndAirlines
 }
