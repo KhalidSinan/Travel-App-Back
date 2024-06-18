@@ -68,7 +68,7 @@ async function httpGetFlight(req, res) {
 }
 
 async function httpGetFlightsOptions(req, res) {
-    const { error } = await validateGetFlightsOptions({ destinations: req.body.destinations, start_date: req.body.start_date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats })
+    const { error } = await validateGetFlightsOptions({ source: req.body.source, destinations: req.body.destinations, start_date: req.body.start_date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats, is_return: req.body.is_return })
     if (error) return res.status(400).json({ message: validationErrors(error.details) });
 
     const classes = ['A', 'B', 'C']
@@ -76,14 +76,17 @@ async function httpGetFlightsOptions(req, res) {
 
     let days = 0;
     let data = [];
+    let departure_date;
     const destinations = req.body.destinations;
-    for (let i = 1; i < destinations.length; i++) {
+    for (let i = 0; i < destinations.length; i++) {
         let [day, month, year] = req.body.start_date.split('/');
         day = +day + days;
-        let departure_date = `${day}/${month}/${year}`;
-        const filter = { 'departure_date.date': departure_date, 'source.country': destinations[i - 1].country, 'destination.country': destinations[i].country }
+        let newDate = new Date(year, month, day, 3)
+        const newMonth = newDate.getUTCMonth() < 10 ? `0${newDate.getUTCMonth()}` : newDate.getUTCMonth()
+        departure_date = `${newDate.getDate()}/${newMonth}/${newDate.getFullYear()}`;
+        const source = i != 0 ? destinations[i - 1].country : req.body.source
+        const filter = { 'departure_date.date': departure_date, 'source.country': source, 'destination.country': destinations[i].country }
         let flights = await getFlights(0, 0, filter);
-
         flights = getFlightsOneWayDataHelper(flights, req.body.num_of_seats, classIndex, req.body.airline)
         if (destinations[i].filter) {
             let { time_start, time_end, min_price, max_price } = destinations[i].filter
@@ -97,19 +100,96 @@ async function httpGetFlightsOptions(req, res) {
             is_available: flights.length > 0 ?? false
         })
 
-        days += destinations[i - 1].days
+        days += destinations[i].days;
+    }
+    if (req.body.is_return) {
+        let [day, month, year] = req.body.start_date.split('/');
+        day = +day + days;
+        let newDate = new Date(year, month, day, 3)
+        const newMonth = newDate.getUTCMonth() < 10 ? `0${newDate.getUTCMonth()}` : newDate.getUTCMonth()
+        departure_date = `${newDate.getDate()}/${newMonth}/${newDate.getFullYear()}`;
+        const filter = { 'departure_date.date': departure_date, 'source.country': destinations[destinations.length - 1].country, 'destination.country': req.body.source }
+        let flights = await getFlights(0, 0, filter);
+        flights = getFlightsOneWayDataHelper(flights, req.body.num_of_seats, classIndex, req.body.airline)
+        if (destinations[destinations.length - 1].filter) {
+            let { time_start, time_end, min_price, max_price } = destinations[i].filter
+            if (time_start && time_end) flights = getFlightsTimeFilterHelper(departure_date, time_start, time_end, flights)
+            if (min_price && max_price) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
+        }
+
+        data.push({
+            country: req.body.source,
+            count: flights.length,
+            is_available: flights.length > 0 ?? false
+        })
     }
 
     return res.status(200).json({ data: data, count: data.length })
+}
 
+async function httpGetFlightsOptions2(req, res) {
+    const { error } = await validateGetFlightsOptions({ source: req.body.source, destinations: req.body.destinations, start_date: req.body.start_date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats, is_return: req.body.is_return })
+    if (error) return res.status(400).json({ message: validationErrors(error.details) });
 
+    const classes = ['A', 'B', 'C']
+    const classIndex = classes.indexOf(req.body.class_of_seats)
 
-    // return res.status(200).json({ data: serializedData(data, flightData), count: count })
+    let days = 0;
+    let data = [];
+    let departure_date;
+    const destinations = req.body.destinations;
+    for (let i = 0; i < destinations.length; i++) {
+        let [day, month, year] = req.body.start_date.split('/');
+        day = +day + days;
+        let newDate = new Date(year, month, day, 3)
+        const newMonth = newDate.getUTCMonth() < 10 ? `0${newDate.getUTCMonth()}` : newDate.getUTCMonth()
+        departure_date = `${newDate.getDate()}/${newMonth}/${newDate.getFullYear()}`;
+        const source = i != 0 ? destinations[i - 1].country : req.body.source
+        const filter = { 'departure_date.date': departure_date, 'source.country': source, 'destination.country': destinations[i].country }
+        let flights = await getFlights(0, 0, filter);
+        flights = getFlightsOneWayDataHelper(flights, req.body.num_of_seats, classIndex, req.body.airline)
+        if (destinations[i].filter) {
+            let { time_start, time_end, min_price, max_price } = destinations[i].filter
+            if (time_start && time_end) flights = getFlightsTimeFilterHelper(departure_date, time_start, time_end, flights)
+            if (min_price && max_price) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
+        }
+        data.push({
+            country: destinations[i].country,
+            flight: flights.length > 0 ? flightData(flights[0]) : null,
+            is_available: flights.length > 0 ?? false
+        })
+
+        days += destinations[i].days;
+    }
+    if (req.body.is_return) {
+        let [day, month, year] = req.body.start_date.split('/');
+        day = +day + days;
+        let newDate = new Date(year, month, day, 3)
+        const newMonth = newDate.getUTCMonth() < 10 ? `0${newDate.getUTCMonth()}` : newDate.getUTCMonth()
+        departure_date = `${newDate.getDate()}/${newMonth}/${newDate.getFullYear()}`;
+        const filter = { 'departure_date.date': departure_date, 'source.country': destinations[destinations.length - 1].country, 'destination.country': req.body.source }
+        let flights = await getFlights(0, 0, filter);
+        flights = getFlightsOneWayDataHelper(flights, req.body.num_of_seats, classIndex, req.body.airline)
+        if (destinations[destinations.length - 1].filter) {
+            let { time_start, time_end, min_price, max_price } = destinations[i].filter
+            if (time_start && time_end) flights = getFlightsTimeFilterHelper(departure_date, time_start, time_end, flights)
+            if (min_price && max_price) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
+        }
+
+        data.push({
+            country: req.body.source,
+            flight: flights.length > 0 ? flightData(flights[0]) : null,
+            is_available: flights.length > 0 ?? false
+        })
+    }
+
+    return res.status(200).json({ data: data, count: data.length })
 }
 
 module.exports = {
     httpGetFlights,
     httpGetFlight,
     httpGetSearchPageData,
-    httpGetFlightsOptions
+    httpGetFlightsOptions,
+    httpGetFlightsOptions2,
 }

@@ -20,7 +20,7 @@ async function httpMakeReservation(req, res) {
         overall_price: req.body.num_of_people * organized_trip.price
     }
 
-    await decrementSeats(organized_trip, 4);
+    await decrementSeats(organized_trip, req.body.num_of_people);
     await postOrganizedTripReservation(data)
 
     return res.status(200).json({ message: 'Reserved Successfully' })
