@@ -35,10 +35,12 @@ async function validateGetFlightsOptions(data) {
     })
 
     const schema = Joi.object({
+        source: Joi.string().required().messages({ 'any.required': 'Source Required' }),
         destinations: Joi.array().items(destinationSchema).required().messages({ 'any.required': 'Destinations Required' }),
         start_date: Joi.string().required().messages({ 'any.required': 'Date Required' }),
         class_of_seats: Joi.string().required().messages({ 'any.required': 'Class Required' }),
         num_of_seats: Joi.number().required().messages({ 'any.required': 'Number Of Seats Required' }),
+        is_return: Joi.boolean().required().messages({ 'any.required': 'Return Required' })
     })
     return schema.validate(data, { abortEarly: false });
 }
