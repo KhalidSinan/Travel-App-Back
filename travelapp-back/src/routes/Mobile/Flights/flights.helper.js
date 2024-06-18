@@ -1,6 +1,4 @@
 const fs = require('fs')
-const countries = require('../../../public/json/countries-all.json')
-const airlines = require('../../../public/json/airlines.json')
 const { convertTime12to24, createDateTimeObject } = require('../../../services/convertTime');
 
 function getFlightsReqDataHelper(req) {
@@ -179,28 +177,11 @@ function twoWaySorter(sortBy = null, sort = null, data) {
     else if (sortBy == 'time') getTwoWayFlightsDateSortHelper(sort, data)
 }
 
-
-function getCountries() {
-    let data = []
-    countries.forEach(country => data.push(country.name))
-    return data;
-}
-
-function getAirlines() {
-    let data = []
-    airlines.forEach(airline => data.push(airline.name))
-    return data;
-}
-
-
-
 module.exports = {
     getFlightsReqDataHelper,
     getFlightsOneWayDataHelper,
     getFlightsTwoWayDataHelper,
     getFlightsTimeFilterHelper,
-    getCountries,
-    getAirlines,
     getFlightsPriceFilterHelper,
     oneWaySorter,
     twoWaySorter,
