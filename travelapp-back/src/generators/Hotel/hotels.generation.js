@@ -115,7 +115,7 @@ async function createHotels() {
             name: data.name,
             location: {
                 country: data.country,
-                city: data.city ?? location?.cities[Math.floor(Math.random() * location.cities.length)] ?? faker.location.city(),
+                city: location?.cities[Math.floor(Math.random() * location.cities.length)] ?? faker.location.city(),
                 name: data.address ?? faker.location.streetAddress(),
             },
             description: data.overview,
