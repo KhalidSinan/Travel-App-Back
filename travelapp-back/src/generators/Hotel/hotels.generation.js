@@ -43,6 +43,7 @@ const hotelData = require('../../public/json/hotelData.json');
 const Hotel = require('../../models/hotels.mongo');
 let hotelImages = require('../../public/json/hotelImages.json')
 let roomImages = require('../../public/json/roomImages.json')
+let locations = require('../../public/json/countries-all.json')
 
 const roomCategories = [
     { type: 'Budget Room', priceMultiplier: 0.5, amenities: ['Free WiFi'], roomCountOptions: [50, 100, 150, 200] },
@@ -109,11 +110,12 @@ async function createHotels() {
         const overall_rooms = room_types.reduce((sum, type) => sum + type.available_rooms, 0);
         let distanceFromCityCenter = ((Math.random() * 4) + 1).toFixed(2);
 
+        const location = locations.find(country => country.name == data.country)
         const hotel = {
             name: data.name,
             location: {
                 country: data.country,
-                city: data.city ?? faker.location.city(),
+                city: data.city ?? location?.cities[Math.floor(Math.random() * location.cities.length)] ?? faker.location.city(),
                 name: data.address ?? faker.location.streetAddress(),
             },
             description: data.overview,
