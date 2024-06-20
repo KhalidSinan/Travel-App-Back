@@ -10,7 +10,7 @@ const flightRouter = express.Router();
 // add jwtStrategy middleware
 flightRouter.get('/search', requireJwtAuth, asyncHandler(httpGetSearchPageData))
 flightRouter.post('/search', requireJwtAuth, asyncHandler(httpGetFlights))
-flightRouter.get('/options', requireJwtAuth, asyncHandler(httpGetFlightsForTrip))
+flightRouter.post('/options', requireJwtAuth, asyncHandler(httpGetFlightsForTrip))
 flightRouter.get('/cities', requireJwtAuth, asyncHandler(httpGetCitiesAndAirlines))
 flightRouter.get('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetFlight))
 
