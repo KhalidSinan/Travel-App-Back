@@ -129,7 +129,7 @@ async function httpGetFlightsOptions2(req, res) {
 
 // City
 async function httpGetFlightsForTrip(req, res) {
-    const { error } = await validateGetFlightsOptions({ source: req.body.source, destinations: req.body.destinations, start_date: req.body.start_date, num_of_seats: req.body.num_of_seats, class_of_seats: req.body.class_of_seats, is_return: req.body.is_return })
+    const { error } = await validateGetFlightsOptions(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) });
 
     const classes = ['A', 'B', 'C']
