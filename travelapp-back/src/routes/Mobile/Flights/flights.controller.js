@@ -103,9 +103,10 @@ async function httpGetFlightsForTrip(req, res) {
         }
         if (flights.length != lengthToCompare) reason = "The Filter Criteria Doesn't Match Flights"
 
+        reason = flights.length > 0 ? 'Flights Available' : reason
         data.push({
             city: destination,
-            flight: flights.length > 0 ? flightData(flights[0]) : null,
+            flight: flights.length > 0 ? flightData(flights[0]).flight : null,
             is_available: flights.length > 0 ?? false,
             reason: reason
         })
