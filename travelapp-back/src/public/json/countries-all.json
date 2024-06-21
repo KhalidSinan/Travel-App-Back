@@ -9,7 +9,9 @@
       "Rana",
       "Shar",
       "Sharif",
-      "Wazir Akbar Khan"
+      "Wazir Akbar Khan",
+      "Alaqadari Daman",
+      "Mazar-i-Sharif"
     ]
   },
   { "name": "Åland Islands", "cities": [] },
@@ -21,7 +23,8 @@
       "Pogradec",
       "Shkoder",
       "Tirana",
-      "Ura Vajgurore"
+      "Ura Vajgurore",
+      "Krna"
     ]
   },
   {
@@ -58,7 +61,23 @@
       "Tissemsilt",
       "Tizi",
       "Tizi Ouzou",
-      "Tlemcen"
+      "Tlemcen",
+      "Adrar",
+      "Bejaia",
+      "Batna",
+      "Bordj Badji Mokhtar",
+      "Biskra",
+      "Bechar",
+      "El Golea",
+      "El Oued",
+      "Ghardaia",
+      "In Salah",
+      "Oran Rp",
+      "Setif",
+      "Tebessa",
+      "Tindouf",
+      "Tamanrasset",
+      "Timimoun"
     ]
   },
   { "name": "American Samoa", "cities": [] },
@@ -101,11 +120,18 @@
       "Ondjiva",
       "Piri",
       "Saurimo",
-      "Talatona"
+      "Talatona",
+      "Catumbela",
+      "Dundo",
+      "Negage",
+      "Luena",
+      "M'banza Congo",
+      "Santo António do Zaire",
+      "Ongiva"
     ]
   },
-  { "name": "Anguilla", "cities": [] },
-  { "name": "Antarctica", "cities": [] },
+  { "name": "Anguilla", "cities": ["Anguilla"] },
+  { "name": "Antarctica", "cities": ["Teniente R. Marsh"] },
   {
     "name": "Antigua and Barbuda",
     "cities": [
@@ -114,7 +140,8 @@
       "Codrington",
       "Old Road",
       "Parham",
-      "Woods"
+      "Woods",
+      "Carlisle"
     ]
   },
   {
@@ -739,7 +766,8 @@
       "Wilde",
       "Winifreda",
       "Yerba Buena",
-      "Zenon Pereyra"
+      "Zenon Pereyra",
+      "La Caldera"
     ]
   },
   {
@@ -758,7 +786,8 @@
       "Kapan",
       "Tsaghkadzor",
       "Vanadzor",
-      "Yerevan"
+      "Yerevan",
+      "Gyumri"
     ]
   },
   {
@@ -774,7 +803,8 @@
       "Santa Cruz",
       "Sero Blanco",
       "Sint Nicolaas",
-      "Tanki Lender"
+      "Tanki Lender",
+      "Aruba"
     ]
   },
   {
@@ -2822,7 +2852,78 @@
       "Yorkeys Knob",
       "Young",
       "Yowie Bay",
-      "Zeehan"
+      "Zeehan",
+      "Seisia",
+      "Ayers Rock",
+      "Barcaldine",
+      "Badu Island",
+      "Bedourie",
+      "Mount Enniskillen",
+      "Baralaba",
+      "Boulia",
+      "Burketown",
+      "Birdsville",
+      "Doctors Rocks",
+      "Canbelego",
+      "Cunnamulla",
+      "Coonamble",
+      "Coconut Island",
+      "Cloncurry",
+      "Charleville",
+      "Apple Tree Flat",
+      "Doomadgee",
+      "Edward River",
+      "Gibson",
+      "Kubin Village",
+      "Gove",
+      "Granites",
+      "Argyle",
+      "Hughenden",
+      "Horn Island",
+      "Hayman Island",
+      "Hamilton Island",
+      "Julia Creek",
+      "Kalbarri",
+      "Kingscote",
+      "King Island",
+      "Durack",
+      "Kubin Island",
+      "Kowanyama",
+      "Lord Howe Island",
+      "Learmonth",
+      "Sir Samuel",
+      "Lightning Ridge",
+      "Leonora",
+      "Blessington",
+      "Mcarthur River",
+      "Milingimbi",
+      "Merimbula",
+      "Monkey Mia",
+      "Kumarina",
+      "Mount Magnet",
+      "Maningrida",
+      "Bingie",
+      "Murray Island",
+      "Bohena Creek",
+      "Naracoorte",
+      "Ferodale",
+      "Arthurville",
+      "Yorke Island",
+      "Roxby Downs",
+      "Paraburdoo",
+      "Brandy Creek",
+      "Bellfield",
+      "Blythdale",
+      "Ravensthorpe",
+      "Saibai Island",
+      "St George",
+      "Sue Island",
+      "Quilpie",
+      "Weipa",
+      "Corfield",
+      "Tanbar",
+      "Yam Island",
+      "Newman"
     ]
   },
   {
@@ -4227,7 +4328,11 @@
       "Zurndorf",
       "Zwentendorf",
       "Zwettl Stadt",
-      "Zwolfaxing"
+      "Zwolfaxing",
+      "Feldkirchen",
+      "Celovec",
+      "Hoersching",
+      "Klein-Neusiedl"
     ]
   },
   {
@@ -4240,7 +4345,9 @@
       "Sulutapa",
       "Sumqayit",
       "Xirdalan",
-      "Zurges"
+      "Zurges",
+      "Gyandzha",
+      "Nakhichevan"
     ]
   },
   {
@@ -4320,7 +4427,10 @@
       "Narayanganj",
       "Rajshahi",
       "Tejgaon",
-      "Uttara"
+      "Uttara",
+      "Cox's Bazar",
+      "Dinajpur",
+      "Sylhet"
     ]
   },
   {
@@ -5530,7 +5640,9 @@
       "Zwevegem",
       "Zwevezele",
       "Zwijnaarde",
-      "Zwijndrecht"
+      "Zwijndrecht",
+      "Bruxelles",
+      "Velroux"
     ]
   },
   {
@@ -5542,7 +5654,14 @@
       "Freetown Sibun",
       "Ladyville",
       "San Ignacio",
-      "San Pedro Town"
+      "San Pedro Town",
+      "Hattieville",
+      "Caye Caulker",
+      "Corozal",
+      "Dangriga",
+      "Placencia",
+      "Punta Gorda",
+      "San Pedro"
     ]
   },
   {
@@ -5559,10 +5678,11 @@
       "Mono",
       "Ouémé",
       "Plateau",
-      "Zou"
+      "Zou",
+      "Cotonou"
     ]
   },
-  { "name": "Bermuda", "cities": [] },
+  { "name": "Bermuda", "cities": ["St. George"] },
   {
     "name": "Bhutan",
     "cities": [
@@ -5607,7 +5727,13 @@
       "Santa Cruz",
       "Sucre",
       "Tarija",
-      "Trinidad"
+      "Trinidad",
+      "Guayaramerín",
+      "Puerto Suárez",
+      "Rurrenabaque",
+      "Santa Ana",
+      "San Borja",
+      "Santa Cruz de la Sierra"
     ]
   },
   { "name": "Bonaire", "cities": [] },
@@ -5653,12 +5779,22 @@
       "Vogosca",
       "Zenica",
       "Zepce",
-      "Zivinice"
+      "Zivinice",
+      "Ilidža"
     ]
   },
   {
     "name": "Botswana",
-    "cities": ["Francistown", "Gaborone", "Orapa", "Serowe", "Village"]
+    "cities": [
+      "Francistown",
+      "Gaborone",
+      "Orapa",
+      "Serowe",
+      "Village",
+      "Kasane",
+      "Tlokweng",
+      "Maun"
+    ]
   },
   { "name": "Bouvet Island", "cities": [] },
   {
@@ -5843,7 +5979,6 @@
       "Barbalha",
       "Barbosa",
       "Barcarena",
-      "Barra",
       "Barra",
       "Barra Bonita",
       "Barra da Tijuca",
@@ -7707,7 +7842,48 @@
       "Witmarsum",
       "Xanxere",
       "Xavantina",
-      "Xaxim"
+      "Xaxim",
+      "Araxá",
+      "Araçatuba",
+      "Araguaina",
+      "Lago Sul",
+      "Caçador",
+      "Cuiaba",
+      "Carajas",
+      "Corumba",
+      "Confins",
+      "Sao Jose dos Pinhais",
+      "Cruzeiro Do Sul",
+      "Vila dos Remédios",
+      "Florianopolis",
+      "Santo Angelo",
+      "Goiania",
+      "Foz do Iguacu",
+      "Ilhéus",
+      "Santana do Paraíso",
+      "Joaçaba",
+      "Ji-Paraná",
+      "Marabá",
+      "Macapá",
+      "Maceio",
+      "Macae",
+      "Maringa",
+      "Marilia",
+      "Sinop",
+      "Rera",
+      "Parintins",
+      "Pôrto Velho",
+      "Ribeirão Prêto",
+      "Rondonópolis",
+      "Sao Jose dos Campos",
+      "São José do Rio Prêto",
+      "Santarém",
+      "Trombetas",
+      "Tucuruí",
+      "Vitória da Conquista",
+      "Vitoria",
+      "Chapeco",
+      "Santo Antônio do Içá"
     ]
   },
   { "name": "British Indian Ocean Territory", "cities": [] },
@@ -7982,7 +8158,9 @@
       "Nord",
       "Plateau-Central",
       "Sahel",
-      "Sud-Ouest"
+      "Sud-Ouest",
+      "Bobo-Dioulasso",
+      "Ouagadougou"
     ]
   },
   {
@@ -8004,7 +8182,8 @@
       "Mwaro",
       "Ngozi",
       "Rutana",
-      "Ruyigi"
+      "Ruyigi",
+      "Bujumbura"
     ]
   },
   {
@@ -8023,7 +8202,9 @@
       "Phumi Vott Phnum",
       "Sihanoukville",
       "Tuol Kok",
-      "Vott Kampong Svay"
+      "Vott Kampong Svay",
+      "Pailin",
+      "Siemrap"
     ]
   },
   {
@@ -8037,7 +8218,11 @@
       "Kribi",
       "Kumba",
       "Ringo",
-      "Tibati"
+      "Tibati",
+      "Garoua",
+      "Maroua",
+      "Ngaoundéré",
+      "Yaounde"
     ]
   },
   {
@@ -10187,12 +10372,56 @@
       "Yorkton",
       "Youbou",
       "Young",
-      "Youngstown"
+      "Youngstown",
+      "Chisasibi",
+      "Keewaywin",
+      "Casummit Lake",
+      "Muskrat Dam",
+      "Summer Beaver",
+      "Lac Brochet",
+      "Nelson House",
+      "Alexis Creek",
+      "Winisk",
+      "Chesterfield Inlet",
+      "Gold River",
+      "Bedwell Harbor",
+      "Havre-St-Pierre",
+      "Dawson",
+      "Snare Lake",
+      "Saltspring Island",
+      "Gaspé",
+      "Fatima",
+      "Havre St Pierre",
+      "Fall River",
+      "Fort Chipewyan",
+      "Métabetchouan",
+      "Natuashish",
+      "Brownvale",
+      "Ste-Foy",
+      "Pincher",
+      "St. John",
+      "Mont Tremblant",
+      "Évain",
+      "Percé",
+      "Val-d'or",
+      "St. John's",
+      "Sept-Îles",
+      "Kelsey"
     ]
   },
   {
     "name": "Cape Verde",
-    "cities": ["Ilhas de Barlavento", "Ilhas de Sotavento"]
+    "cities": [
+      "Ilhas de Barlavento",
+      "Ilhas de Sotavento",
+      "Boa Vista",
+      "Vila do Maio",
+      "Praia",
+      "Sao Filipe",
+      "Santa Maria",
+      "Ribeira Brava",
+      "Mindelo"
+    ]
   },
   {
     "name": "Cayman Islands",
@@ -10203,7 +10432,10 @@
       "Newlands",
       "Savannah",
       "Spot Bay",
-      "West Bay"
+      "West Bay",
+      "Cayman Brac Is",
+      "Georgetown",
+      "Little Cayman"
     ]
   },
   {
@@ -10252,7 +10484,9 @@
       "Tānjilī",
       "Waddāy",
       "Wādī Fīrā",
-      "Ḥajjar Lamīs"
+      "Ḥajjar Lamīs",
+      "Abéché",
+      "N'Djamena"
     ]
   },
   {
@@ -10378,7 +10612,18 @@
       "Vallenar",
       "Villa Alemana",
       "Villarrica",
-      "Vitacura"
+      "Vitacura",
+      "Balmaceda",
+      "Hualpencillo",
+      "Copiapó",
+      "Diego de Almagro",
+      "Easter Island",
+      "Alto Hospicio",
+      "Compañía Alta",
+      "Los Quemas",
+      "Lo Amor",
+      "Pelchuquin",
+      "Padre Las Casas"
     ]
   },
   {
@@ -12181,11 +12426,53 @@
       "Zongxoi",
       "Zoucheng",
       "Zunyi",
-      "Zuxi"
+      "Zuxi",
+      "Altay",
+      "Qamdo",
+      "Daxian",
+      "Diqing",
+      "Dali City",
+      "Dunhuang",
+      "Dayong",
+      "Yan'an",
+      "Golmud",
+      "Zhi Jiang",
+      "Ulan Hot",
+      "Shenjiamen Town",
+      "Hotan",
+      "Liping City",
+      "Qiemo",
+      "Jiayuguan",
+      "Ji An",
+      "Jiujiang",
+      "Juzhou",
+      "Song Pan",
+      "Kuqa",
+      "Kashi",
+      "Lijiang City",
+      "LingLing",
+      "Luxi",
+      "Mian Yang",
+      "Meixian",
+      "Wuxu",
+      "Manzhouli",
+      "Shunyi",
+      "Huinan",
+      "Pan Zhi Hua",
+      "Xi'an",
+      "Chenghai",
+      "Wanggezhuang",
+      "Tanggu",
+      "Urumqi",
+      "Wu Hai",
+      "Wanxian",
+      "Xilin Hot",
+      "Huangpu",
+      "Humen"
     ]
   },
-  { "name": "Christmas Island", "cities": [] },
-  { "name": "Cocos (Keeling) Islands", "cities": [] },
+  { "name": "Christmas Island", "cities": ["The Settlement"] },
+  { "name": "Cocos (Keeling) Islands", "cities": ["West Island"] },
   {
     "name": "Colombia",
     "cities": [
@@ -12299,10 +12586,52 @@
       "Villavicencio",
       "Yopal",
       "Yotoco",
-      "Yumbo"
+      "Yumbo",
+      "San Andrés",
+      "Apartadó",
+      "La Tebaida",
+      "Fontibón",
+      "Bahía Solano",
+      "La Boquilla",
+      "Cúcuta",
+      "Morroa",
+      "Medellin",
+      "Guapí",
+      "La Chorrera",
+      "Leticia",
+      "San Juan de Arama",
+      "La Pedrera",
+      "Puerto Leguízamo",
+      "Ríonegro",
+      "Los Garzones",
+      "Villamaría",
+      "Nuquí",
+      "Puerto Carreño",
+      "Guaviare",
+      "Popayán",
+      "Chachagüí",
+      "Puerto Asís",
+      "Ríohacha",
+      "Saravena",
+      "San Jose del Guavuare",
+      "San Vicente del Caguán",
+      "Tumaco",
+      "Tame",
+      "Quibdó",
+      "Villagarzon"
     ]
   },
-  { "name": "Comoros", "cities": ["Anjouan", "Grande Comore", "Mohéli"] },
+  {
+    "name": "Comoros",
+    "cities": [
+      "Anjouan",
+      "Grande Comore",
+      "Mohéli",
+      "Hahaia",
+      "Moheli",
+      "Moroni"
+    ]
+  },
   {
     "name": "Republic of the Congo",
     "cities": [
@@ -12336,7 +12665,17 @@
       "Équateur"
     ]
   },
-  { "name": "Cook Islands", "cities": [] },
+  {
+    "name": "Cook Islands",
+    "cities": [
+      "Aitutaki",
+      "Atiu Island",
+      "Mangaia Island",
+      "Mitiaro Island",
+      "Mauke Island",
+      "Avarua"
+    ]
+  },
   {
     "name": "Costa Rica",
     "cities": [
@@ -12406,7 +12745,16 @@
       "Turrialba",
       "Turrucares",
       "Zapote",
-      "Zarcero"
+      "Zarcero",
+      "Colorado",
+      "Palmar Sur",
+      "Pto. Limon",
+      "Nosara",
+      "Coto 47",
+      "Punta Islita",
+      "Puerto Jiménez",
+      "Nicoya",
+      "Lepanto"
     ]
   },
   {
@@ -12554,7 +12902,10 @@
       "Zadar",
       "Zagreb",
       "Zapresic",
-      "Zlatar"
+      "Zlatar",
+      "Bol",
+      "Pluj",
+      "Nagygoricza"
     ]
   },
   {
@@ -12569,7 +12920,21 @@
       "Matanzas",
       "Santiago de Cuba",
       "Varadero",
-      "Villa"
+      "Villa",
+      "Baracoa",
+      "Santa Clara",
+      "Cayo Coco",
+      "Camagüey",
+      "Cayo Largo Del Sur",
+      "Guantanamo",
+      "Nueva Gerona",
+      "Wajay",
+      "San Pedro de Cacocum",
+      "Moa",
+      "Manzanillo",
+      "Caimanera",
+      "Esperanza",
+      "Becerra"
     ]
   },
   { "name": "Curaçao", "cities": [] },
@@ -13565,7 +13930,10 @@
       "Znojmo",
       "Zubri",
       "Zulova",
-      "Zvole"
+      "Zvole",
+      "Carlsbad",
+      "Mošnov",
+      "Prague 6"
     ]
   },
   {
@@ -14146,12 +14514,23 @@
       "Vojens",
       "Vorbasse",
       "Vordingborg",
-      "Vra"
+      "Vra",
+      "Kårup",
+      "Ronne",
+      "Sonderborg"
     ]
   },
   {
     "name": "Djibouti",
-    "cities": ["Ali Sabieh", "Arta", "Dikhil", "Djibouti", "Obock", "Tadjourah"]
+    "cities": [
+      "Ali Sabieh",
+      "Arta",
+      "Dikhil",
+      "Djibouti",
+      "Obock",
+      "Tadjourah",
+      "Djibouti City"
+    ]
   },
   {
     "name": "Dominica",
@@ -14165,7 +14544,9 @@
       "Saint Mark",
       "Saint Patrick",
       "Saint Paul",
-      "Saint Peter"
+      "Saint Peter",
+      "Portsmouth",
+      "Marigot"
     ]
   },
   {
@@ -14193,7 +14574,11 @@
       "San Jose de Ocoa",
       "Santa Cruz de Barahona",
       "Santiago de los Caballeros",
-      "Santo Domingo"
+      "Santo Domingo",
+      "Samana",
+      "San Felipe de Puerto Plata",
+      "Salvaleón de Higüey",
+      "La Lomota"
     ]
   },
   {
@@ -14267,7 +14652,14 @@
       "Vinces",
       "Zamora",
       "Zaruma",
-      "Zumba"
+      "Zumba",
+      "Tachina",
+      "Puerto Ayora",
+      "Lago Agrio",
+      "Chontapunta",
+      "Puerto Baquerizo Moreno",
+      "Urbina",
+      "Zúñac"
     ]
   },
   {
@@ -14317,7 +14709,8 @@
       "Taba",
       "Tanta",
       "Toukh",
-      "Zagazig"
+      "Zagazig",
+      "Marsa Alam"
     ]
   },
   {
@@ -14352,12 +14745,13 @@
       "Sonsonate",
       "Soyapango",
       "Usulutan",
-      "Zaragoza"
+      "Zaragoza",
+      "San Luis"
     ]
   },
   {
     "name": "Equatorial Guinea",
-    "cities": ["Región Continental", "Región Insular"]
+    "cities": ["Región Continental", "Región Insular", "Bata", "Malabo"]
   },
   {
     "name": "Eritrea",
@@ -14367,7 +14761,8 @@
       "Ansabā",
       "Janūbī al Baḩrī al Aḩmar",
       "Qāsh-Barkah",
-      "Shimālī al Baḩrī al Aḩmar"
+      "Shimālī al Baḩrī al Aḩmar",
+      "Asmara"
     ]
   },
   {
@@ -14439,7 +14834,9 @@
       "Venevere",
       "Viimsi",
       "Viljandi",
-      "Voka"
+      "Voka",
+      "Kerdlya",
+      "Kingissepa"
     ]
   },
   {
@@ -14455,10 +14852,28 @@
       "YeDebub Bihēroch Bihēreseboch na Hizboch",
       "Ādīs Ābeba",
       "Āfar",
-      "Āmara"
+      "Āmara",
+      "Kabri Dar",
+      "Addis Ababa",
+      "Arba Mintch",
+      "Assab",
+      "Asosa",
+      "Axum",
+      "Bahar Dar",
+      "Dire Dawa",
+      "Gode/Iddidole",
+      "Azezo",
+      "Gambela",
+      "Shillavo",
+      "Jijiga",
+      "Jimma",
+      "Lalibela",
+      "Makale",
+      "Massawa",
+      "Indaselassie"
     ]
   },
-  { "name": "Falkland Islands", "cities": [] },
+  { "name": "Falkland Islands", "cities": ["Mount Pleasant"] },
   {
     "name": "Faroe Islands",
     "cities": [
@@ -14469,12 +14884,34 @@
       "Leirvik",
       "Saltangara",
       "Signabour",
-      "Strendur"
+      "Strendur",
+      "Faroe Islands"
     ]
   },
   {
     "name": "Fiji",
-    "cities": ["Central", "Eastern", "Northern", "Rotuma", "Western"]
+    "cities": [
+      "Central",
+      "Eastern",
+      "Northern",
+      "Rotuma",
+      "Western",
+      "Cicia",
+      "Kandavu",
+      "Koro Island",
+      "Labasa",
+      "Bureta",
+      "Lakeba",
+      "Moala",
+      "Mana Island",
+      "Nadi",
+      "Ngau Island",
+      "Malololailai",
+      "Rotuma Island",
+      "Nausori",
+      "Taveuni",
+      "Vanuabalavu"
+    ]
   },
   {
     "name": "Finland",
@@ -14953,7 +15390,16 @@
       "Ylihaermae",
       "Ylitornio",
       "Ylivieska",
-      "Ypaejae"
+      "Ypaejae",
+      "Leppäjärvi",
+      "Ylämylly",
+      "Paltaniemi",
+      "Kruunupyy",
+      "Kittila",
+      "Maarianhamina",
+      "Saarenkylä",
+      "Seinajoki",
+      "Pitkäniemi"
     ]
   },
   {
@@ -14974,6 +15420,7 @@
       "Ablaincourt-Pressoir",
       "Ablainzevelle",
       "Ablis",
+      "Basel Mulhouse Freiburg",
       "Ablon-sur-Seine",
       "Abondance",
       "Abondant",
@@ -16392,7 +16839,6 @@
       "Bonson",
       "Bonzac",
       "Boos",
-      "Boos",
       "Boqueho",
       "Bor-et-Bar",
       "Boran-sur-Oise",
@@ -17774,7 +18220,6 @@
       "Colombelles",
       "Colombes",
       "Colombier",
-      "Colombier",
       "Colombier-Fontaine",
       "Colombier-le-Cardinal",
       "Colombier-le-Vieux",
@@ -18577,6 +19022,7 @@
       "Ecuille",
       "Ecuires",
       "Ecuisses",
+      "Coole",
       "Ecully",
       "Ecury-sur-Coole",
       "Edern",
@@ -18634,6 +19080,7 @@
       "Entressen",
       "Entzheim",
       "Enveig",
+      "Hyeres",
       "Envermeu",
       "Epagne-Epagnette",
       "Epagny",
@@ -20192,13 +20639,11 @@
       "Juillan",
       "Juilles",
       "Juilly",
-      "Juilly",
       "Jujurieux",
       "Julienas",
       "Julienne",
       "Jully-sur-Sarce",
       "Jumeauville",
-      "Jumelles",
       "Jumelles",
       "Jumilhac-le-Grand",
       "Junay",
@@ -21376,6 +21821,7 @@
       "Les Vigneaux",
       "Les Villedieu",
       "Lescar",
+      "Aix-les-milles",
       "Lescheraines",
       "Lescherolles",
       "Lesches",
@@ -21912,6 +22358,7 @@
       "Marcigny",
       "Marcilhac-sur-Cele",
       "Marcillac",
+      "St Jacques",
       "Marcillac-la-Croisille",
       "Marcillat-en-Combraille",
       "Marcilloles",
@@ -24075,7 +24522,6 @@
       "Primat",
       "Prin-Deyrancon",
       "Princay",
-      "Pringy",
       "Pringy",
       "Prinquiau",
       "Prisse",
@@ -27219,10 +27665,8 @@
       "Verniolle",
       "Vernioz",
       "Vernon",
-      "Vernon",
       "Vernosc-les-Annonay",
       "Vernou-sur-Brenne",
-      "Vernouillet",
       "Vernouillet",
       "Vernoux-en-Vivarais",
       "Verny",
@@ -27841,10 +28285,12 @@
       "Zinswiller",
       "Zittersheim",
       "Zouafques",
-      "Zutzendorf"
+      "Zutzendorf",
+      "Figari",
+      "St-Jacques"
     ]
   },
-  { "name": "French Guiana", "cities": [] },
+  { "name": "French Guiana", "cities": ["Cayenne"] },
   {
     "name": "French Polynesia",
     "cities": [
@@ -27854,13 +28300,60 @@
       "Paeau",
       "Papeete",
       "Pirae",
-      "Punaauia"
+      "Punaauia",
+      "Anaa",
+      "Ahe",
+      "Apataki",
+      "Atuona",
+      "Arutua",
+      "Fakarava",
+      "Fangatau",
+      "Fakahina",
+      "Gambier Is",
+      "Hikueru",
+      "Kauehi",
+      "Kaukura Atoll",
+      "Katiu",
+      "Makemo",
+      "Mataiva",
+      "Napuka Island",
+      "Nuku Hiva",
+      "Nukutavake",
+      "Puka Puka",
+      "Pukarua",
+      "Reao",
+      "Rurutu",
+      "Rairua",
+      "Tikehau Atoll",
+      "Takume",
+      "Takapoto",
+      "Tatakoto",
+      "Takaroa",
+      "Tubuai",
+      "Ua Huka",
+      "Ua Pou",
+      "Vahitahi",
+      "Manihi",
+      "Tureira"
     ]
   },
   { "name": "French Southern and Antarctic Lands", "cities": [] },
   {
     "name": "Gabon",
-    "cities": ["Gamba", "Libreville", "Mamagnia", "Moanda", "Port-Gentil"]
+    "cities": [
+      "Gamba",
+      "Libreville",
+      "Mamagnia",
+      "Moanda",
+      "Port-Gentil",
+      "Koulamoutou",
+      "Mouila",
+      "Makokou",
+      "Franceville",
+      "Omboue",
+      "Oyem",
+      "Tchibanga"
+    ]
   },
   {
     "name": "The Gambia",
@@ -27884,7 +28377,8 @@
       "Sukhumi",
       "Tbilisi",
       "Zemo-Avchala",
-      "Zugdidi"
+      "Zugdidi",
+      "Batumi"
     ]
   },
   {
@@ -28761,7 +29255,6 @@
       "Bonnigheim",
       "Bonningstedt",
       "Bonstetten",
-      "Boos",
       "Boos",
       "Boostedt",
       "Bopfingen",
@@ -35512,7 +36005,8 @@
       "Zwiesel",
       "Zwingenberg",
       "Zwingenberg",
-      "Zwonitz"
+      "Zwonitz",
+      "Mulheim"
     ]
   },
   {
@@ -35533,10 +36027,12 @@
       "Takoradi",
       "Tema",
       "Wa",
-      "Winneba"
+      "Winneba",
+      "New Tafo",
+      "Savelugu"
     ]
   },
-  { "name": "Gibraltar", "cities": [] },
+  { "name": "Gibraltar", "cities": ["Gibraltar"] },
   {
     "name": "Greece",
     "cities": [
@@ -35706,7 +36202,39 @@
       "Vouliagmeni",
       "Xanthi",
       "Xylokastro",
-      "Zakynthos"
+      "Zakynthos",
+      "Karpathos",
+      "Alexandroupolis",
+      "Corcyra",
+      "Canea",
+      "Dhilianata",
+      "Lakkopetra",
+      "Iraklio",
+      "Evdilos",
+      "Khios",
+      "Mikonos",
+      "Seteia",
+      "Ano Siros",
+      "Emborion",
+      "Astypalaea",
+      "Antimacheia",
+      "Potamos Kythiron",
+      "Kalamae",
+      "St. Marina",
+      "Argos Orestiko",
+      "Khrysoupolis",
+      "Kastelorizo",
+      "Lero",
+      "Moudhros",
+      "Mitilini",
+      "Apollonia",
+      "Levkai",
+      "Paliambela",
+      "Rodhos",
+      "Skiros",
+      "Pithagorion",
+      "Almiros",
+      "Zante"
     ]
   },
   {
@@ -35737,7 +36265,8 @@
       "Sisimiut",
       "Tasiilaq",
       "Upernavik",
-      "Uummannaq"
+      "Uummannaq",
+      "Qaarsut"
     ]
   },
   {
@@ -35749,7 +36278,8 @@
       "Saint John",
       "Saint Mark",
       "Saint Patrick",
-      "Southern Grenadine Islands"
+      "Southern Grenadine Islands",
+      "Grenada"
     ]
   },
   {
@@ -35782,7 +36312,9 @@
       "Terre-de-Bas",
       "Terre-de-Haut",
       "Trois-Rivieres",
-      "Village"
+      "Village",
+      "Trois-Rivières",
+      "Gustavia"
     ]
   },
   {
@@ -35858,7 +36390,7 @@
       "Sangaredi"
     ]
   },
-  { "name": "Guinea-Bissau", "cities": ["Leste", "Norte", "Sul"] },
+  { "name": "Guinea-Bissau", "cities": ["Leste", "Norte", "Sul", "Bissau"] },
   {
     "name": "Guyana",
     "cities": [
@@ -35871,7 +36403,8 @@
       "Pomeroon-Supenaam",
       "Potaro-Siparuni",
       "Upper Demerara-Berbice",
-      "Upper Takutu-Upper Essequibo"
+      "Upper Takutu-Upper Essequibo",
+      "Hyde Park"
     ]
   },
   {
@@ -35886,7 +36419,9 @@
       "Petionville",
       "Port-au-Prince",
       "Prince",
-      "Turgeau"
+      "Turgeau",
+      "Cap-Haïtien",
+      "Port Au Prince"
     ]
   },
   { "name": "Heard Island and McDonald Islands", "cities": [] },
@@ -35912,7 +36447,12 @@
       "San Pedro Sula",
       "Santa Barbara",
       "Sula",
-      "Tegucigalpa"
+      "Tegucigalpa",
+      "Auas",
+      "Brus Laguna",
+      "Guanaja",
+      "Roatán",
+      "Utila"
     ]
   },
   {
@@ -36743,7 +37283,8 @@
       "Zirc",
       "Zsambek",
       "Zsambok",
-      "Zsombo"
+      "Zsombo",
+      "Zalavár"
     ]
   },
   {
@@ -36766,7 +37307,10 @@
       "Skagastrond",
       "Stokkseyri",
       "Vestmannaeyjar",
-      "Vogar"
+      "Vogar",
+      "Egilsstadir",
+      "Isafjordur",
+      "Thorshofn"
     ]
   },
   {
@@ -37791,7 +38335,39 @@
       "Yanam",
       "Yavatmal",
       "Yeola",
-      "Yercaud"
+      "Yercaud",
+      "Agatti Island",
+      "Raja Sansi",
+      "Pallikkal",
+      "Dehra Dun",
+      "Dikhari",
+      "Diu",
+      "Gawahati",
+      "Vasco Da Gama",
+      "Khajuraho",
+      "Lilong (Imphal West)",
+      "Bagdogra",
+      "Bhabat",
+      "Mulur",
+      "Kangrali",
+      "Lilabari",
+      "Jammu Cantt",
+      "Leh",
+      "Harveypatti",
+      "Tarapur",
+      "Bilpura",
+      "Senchoa Gaon",
+      "Bhuntar",
+      "Kapavaram",
+      "Banarsi",
+      "Jutogh",
+      "Un",
+      "Tuticorin",
+      "Renigunta",
+      "Tiruchirapally",
+      "Debari",
+      "Manthena",
+      "Baragaon"
     ]
   },
   {
@@ -38069,7 +38645,35 @@
       "Wonogiri",
       "Wonosari",
       "Wonosobo",
-      "Yogyakarta"
+      "Yogyakarta",
+      "Ambon",
+      "Alor Island",
+      "Biak",
+      "Ende",
+      "Raba",
+      "Batam",
+      "Tangerang",
+      "Dili",
+      "Jambi",
+      "Fak Fak",
+      "Kendari",
+      "Kaimana",
+      "Larantuka",
+      "Langgur",
+      "Lewoleba",
+      "Merauke",
+      "Manokwari",
+      "Maumere",
+      "Nabire",
+      "Pangkalpinang",
+      "Ruteng",
+      "Sorong",
+      "Sumbawa Besar",
+      "Tanjungpandan",
+      "Tanjungkarang",
+      "Tambolaka",
+      "Ternate",
+      "Waingapu"
     ]
   },
   {
@@ -38093,7 +38697,8 @@
       "Sud-Comoé",
       "Vallée du Bandama",
       "Worodougou",
-      "Zanzan"
+      "Zanzan",
+      "Abidjan"
     ]
   },
   {
@@ -38331,7 +38936,28 @@
       "Zahra",
       "Zangiabad",
       "Zanjan",
-      "Zarand"
+      "Zarand",
+      "Yezd",
+      "Bandar Abbas",
+      "Bojnord",
+      "Bandar-e Bushehr",
+      "Bam",
+      "Shahre-Kord",
+      "Gheshm",
+      "Esfahan",
+      "Iran Shahr",
+      "Ilaam",
+      "Tehran",
+      "Khoy",
+      "Lar",
+      "Now Shahr",
+      "Urmieh",
+      "Parsabad",
+      "Asalouyeh",
+      "Ramsar",
+      "Sary",
+      "Yasouj",
+      "Dowzdab"
     ]
   },
   {
@@ -38356,8 +38982,21 @@
     ]
   },
   {
-    "name": "Republic of Ireland",
-    "cities": ["Connaught", "Leinster", "Munster", "Ulster"]
+    "name": "Ireland",
+    "cities": [
+      "Farranfore",
+      "Connaught",
+      "Leinster",
+      "Munster",
+      "Ulster",
+      "Cloghran",
+      "Carnmore",
+      "Mullaghduff",
+      "Fivemilebridge",
+      "Shannon",
+      "Larass",
+      "Waterford"
+    ]
   },
   {
     "name": "Isle of Man",
@@ -43022,7 +43661,19 @@
       "Zoldo Alto",
       "Zollino",
       "Zoppola",
-      "Zumaglia"
+      "Zumaglia",
+      "Grassobbio",
+      "Botzen",
+      "Sardara",
+      "Pianosa",
+      "Forli",
+      "Caltabellotta",
+      "Cardano al Campo",
+      "Terranova",
+      "Pantelleria",
+      "Reggio di Calabria",
+      "Case Cervi",
+      "San Domino Island"
     ]
   },
   {
@@ -44270,7 +44921,64 @@
       "Yutaka",
       "Yuzawa",
       "Zama",
-      "Zushi"
+      "Zushi",
+      "Asahikawa-shi",
+      "Aomori-shi",
+      "Amami O Shima",
+      "Akita-shi",
+      "Chitose-shi",
+      "Sukagawa-shi",
+      "Goto-shi",
+      "Fukuoka-shi",
+      "Higashine-shi",
+      "Hachijo-machi",
+      "Mihara-shi",
+      "Hakodate-shi",
+      "Hanamaki-shi",
+      "Saga",
+      "Ishigaki-shi",
+      "Itami-shi",
+      "Iwami",
+      "Hikawa-cho",
+      "Nankoku-shi",
+      "Niigata-shi",
+      "Tajiri-cho",
+      "Kita Kyushu",
+      "Kikuyo-machi",
+      "Komatsu-shi",
+      "Kirishima-shi",
+      "Monbetsu-shi",
+      "Ozora-cho",
+      "Miyako Jima",
+      "Misawa-shi",
+      "Miyake-mura",
+      "Matsuyama-shi",
+      "Tokoname-shi",
+      "Omura-shi",
+      "Toyoyama-cho",
+      "Narita-shi",
+      "Anamizu-machi",
+      "Obihiro-shi",
+      "Yonaguni-cho",
+      "Oshima-machi",
+      "Kunisaki-shi",
+      "Naha-shi",
+      "Sapporo-shi",
+      "Okayama-shi",
+      "Kitakita-shi",
+      "Rishirifuji-cho",
+      "Nakashibetsu-cho",
+      "Shirahama-cho",
+      "Shonai",
+      "Amagi-cho",
+      "Matsushige-cho",
+      "Tsushima-shi",
+      "Ube-shi",
+      "Kumejima-cho",
+      "Kobe-shi",
+      "Wakkanai-shi",
+      "Rail (Generic)",
+      "Sakaiminato-shi"
     ]
   },
   { "name": "Jersey", "cities": [] },
@@ -44336,7 +45044,17 @@
       "Uritskiy",
       "Ust-Kamenogorsk",
       "Vostok",
-      "Zyryanovsk"
+      "Zyryanovsk",
+      "Aqtobe",
+      "Shimkent",
+      "Zhezqazghan",
+      "Qostanay",
+      "Kzyl-Orda",
+      "Semipalatinsk",
+      "Petropavlovsk",
+      "Aktau",
+      "Aqmola",
+      "Ust-kamenogorsk"
     ]
   },
   {
@@ -44364,12 +45082,24 @@
       "Siaya",
       "Thika",
       "Turbo",
-      "Wote"
+      "Wote",
+      "Amboseli",
+      "Lamu",
+      "Lokichoggio",
+      "Mara Lodges",
+      "Nyeri",
+      "Samburu"
     ]
   },
   {
     "name": "Kiribati",
-    "cities": ["Gilbert Islands", "Line Islands", "Phoenix Islands"]
+    "cities": [
+      "Gilbert Islands",
+      "Line Islands",
+      "Phoenix Islands",
+      "Christmas Island",
+      "Tarawa"
+    ]
   },
   {
     "name": "Kuwait",
@@ -44425,7 +45155,10 @@
       "Xaignabouli",
       "Xaisômboun",
       "Xiangkhoang",
-      "Xékong"
+      "Xékong",
+      "Louangphrabang",
+      "Pakxe",
+      "Savannakhet"
     ]
   },
   {
@@ -44478,7 +45211,8 @@
       "Varsava",
       "Ventspils",
       "Zasa",
-      "Zilupe"
+      "Zilupe",
+      "Liepaya"
     ]
   },
   {
@@ -44536,12 +45270,27 @@
       "Nimba",
       "River Gee",
       "Rivercess",
-      "Sinoe"
+      "Sinoe",
+      "Monrovia",
+      "Harbelville"
     ]
   },
   {
     "name": "Libya",
-    "cities": ["Benghazi", "Misratah", "Sabha", "Tripoli", "Zliten"]
+    "cities": [
+      "Benghazi",
+      "Misratah",
+      "Sabha",
+      "Tripoli",
+      "Zliten",
+      "Kufrah",
+      "Ghat",
+      "Houn",
+      "Beida",
+      "Ghadames",
+      "Mitiga",
+      "Sert"
+    ]
   },
   {
     "name": "Liechtenstein",
@@ -44574,7 +45323,10 @@
       "Telšių Apskritis",
       "Utenos Apskritis",
       "Vilniaus Apskritis",
-      "Šiaulių Apskritis"
+      "Šiaulių Apskritis",
+      "Kovno",
+      "Klaipeda/Palanga",
+      "Vilnius"
     ]
   },
   {
@@ -44698,7 +45450,7 @@
       "Wormeldange"
     ]
   },
-  { "name": "Macau", "cities": [] },
+  { "name": "Macau", "cities": ["Macau"] },
   {
     "name": "Republic of Macedonia",
     "cities": [
@@ -44797,12 +45549,40 @@
       "Antsiranana",
       "Fianarantsoa",
       "Toamasina",
-      "Toliara"
+      "Toliara",
+      "Ambatomainty",
+      "Antalaha",
+      "Besalampy",
+      "Antseranana",
+      "Soalala",
+      "Faradofay",
+      "Analalava",
+      "Ankavandra",
+      "Manja",
+      "Mahajanga",
+      "Mananjary",
+      "Morondava",
+      "Morombe",
+      "Maintirano",
+      "Hell-Ville",
+      "Farafangana",
+      "Sambava",
+      "Ambohidratrimo",
+      "Antsalova",
+      "Maroantsetra",
+      "Mananara",
+      "Tsiroanomandidy"
     ]
   },
   {
     "name": "Malawi",
-    "cities": ["Central Region", "Northern Region", "Southern Region"]
+    "cities": [
+      "Central Region",
+      "Northern Region",
+      "Southern Region",
+      "Lunzu",
+      "Lumbadzi"
+    ]
   },
   {
     "name": "Malaysia",
@@ -45082,7 +45862,26 @@
       "Teronoh",
       "Tumpat",
       "Ulu Tiram",
-      "Victoria"
+      "Victoria",
+      "Nanga Medamit",
+      "Bakalalan",
+      "Senai",
+      "Kerteh",
+      "Gambang",
+      "Kudat",
+      "Long Banga",
+      "Long Lellang",
+      "Long Akah",
+      "Limbang",
+      "Lawas",
+      "Mulu",
+      "Long Seridan",
+      "Batu Maung",
+      "Pangkor",
+      "Redang",
+      "Kampong Baru Subang",
+      "Kampung Genting",
+      "Tanjung Pelepas"
     ]
   },
   {
@@ -45095,7 +45894,11 @@
       "South",
       "South Central",
       "Upper North",
-      "Upper South"
+      "Upper South",
+      "Hithadhoo",
+      "Hanimaadhoo",
+      "Kaadedhdhoo",
+      "Kadhdhoo"
     ]
   },
   {
@@ -45109,7 +45912,8 @@
       "Mopti",
       "Sikasso",
       "Ségou",
-      "Tombouctou"
+      "Tombouctou",
+      "Kalaban"
     ]
   },
   {
@@ -45180,10 +45984,24 @@
       "Xewkija",
       "Zabbar",
       "Zejtun",
-      "Zurrieq"
+      "Zurrieq",
+      "Curmi"
     ]
   },
-  { "name": "Marshall Islands", "cities": ["Ralik chain", "Ratak chain"] },
+  {
+    "name": "Marshall Islands",
+    "cities": [
+      "Ralik chain",
+      "Ratak chain",
+      "Bikini Atoll",
+      "Kwajalein Atoll",
+      "Jeh",
+      "Kwajalein",
+      "Majuro",
+      "Rongelap Island",
+      "Woja"
+    ]
+  },
   {
     "name": "Martinique",
     "cities": [
@@ -45222,7 +46040,11 @@
       "Nouakchott",
       "Tagant",
       "Tiris Zemmour",
-      "Trarza"
+      "Trarza",
+      "Atar",
+      "Kiffa",
+      "Port-Etienne",
+      "Zouerate"
     ]
   },
   {
@@ -45240,7 +46062,9 @@
       "Rose Hill",
       "Saint Jean",
       "Tamarin",
-      "Vacoas"
+      "Vacoas",
+      "Mahebourg",
+      "Rodrigues Is"
     ]
   },
   {
@@ -46010,12 +46834,52 @@
       "Zinapecuaro",
       "Zitlala",
       "Zongolica",
-      "Zumpango"
+      "Zumpango",
+      "Ciudad Obregón",
+      "Ciudad Juarez",
+      "Cuauhtémoc",
+      "Carmen Olorón",
+      "Culiacan",
+      "Cancun",
+      "Güémez",
+      "Tlajomulco de Zúñiga",
+      "Santo Domingo de Morelos",
+      "Comondú",
+      "Arteaga",
+      "Matamoros",
+      "Mérida",
+      "Álvaro Obregón",
+      "Minatitlan",
+      "Pesquería",
+      "Mazatlán",
+      "San Bernardo Mixtepec",
+      "Castillo de Teayo",
+      "Tlaltenango",
+      "Pto. Penasco",
+      "San Pedro Juchatengo",
+      "Queretaro",
+      "S. Jose del Cabo",
+      "S. Luis Potosi",
+      "General Cepeda",
+      "Toluca de Lerdo",
+      "Torreón",
+      "Teocelo",
+      "Pánuco",
+      "Petatlán"
     ]
   },
   {
     "name": "Federated States of Micronesia",
-    "cities": ["Chuuk", "Kosrae", "Pohnpei", "Yap"]
+    "cities": [
+      "Chuuk",
+      "Kosrae",
+      "Pohnpei",
+      "Yap",
+      "Tofol",
+      "Palikir",
+      "Weno",
+      "Colonia"
+    ]
   },
   {
     "name": "Moldova",
@@ -46056,7 +46920,8 @@
       "Tighina",
       "Ungheni",
       "Şoldăneşti",
-      "Ştefan Vodă"
+      "Ştefan Vodă",
+      "Chisinau"
     ]
   },
   {
@@ -46104,7 +46969,13 @@
       "Ulaan-Uul",
       "Ulan Bator",
       "Uliastay",
-      "Undurkhaan"
+      "Undurkhaan",
+      "Bayankhongor",
+      "Choibalsan",
+      "Dalanzadgad",
+      "Mörön",
+      "Tosontsengel",
+      "Ulaangom"
     ]
   },
   {
@@ -46119,7 +46990,8 @@
       "Pljevlja",
       "Podgorica",
       "Stari Bar",
-      "Ulcinj"
+      "Ulcinj",
+      "Teodo"
     ]
   },
   { "name": "Montserrat", "cities": [] },
@@ -46172,7 +47044,16 @@
       "Temara",
       "Tiflet",
       "Tiznit",
-      "Touissite"
+      "Touissite",
+      "Errachidia",
+      "Essaouira",
+      "Laayoune",
+      "Fez",
+      "Goulimime",
+      "Ouarzazate",
+      "Tangiers",
+      "Tan Tan",
+      "Tetouan"
     ]
   },
   {
@@ -46185,7 +47066,11 @@
       "Nampula",
       "Pemba",
       "Quelimane",
-      "Tete"
+      "Tete",
+      "Inhambane",
+      "Vilanculos",
+      "Chimoio",
+      "Lichinga"
     ]
   },
   {
@@ -46204,7 +47089,31 @@
       "Sagaing",
       "Shan",
       "Tanintharyi",
-      "Yangon"
+      "Yangon",
+      "Sittwe",
+      "Bhamo",
+      "Bassein",
+      "Heho",
+      "Kawthaung",
+      "Keng Tung",
+      "Khamti",
+      "Kalemyo",
+      "Kyaukpyu",
+      "Loi-kaw",
+      "Lashio",
+      "Mergui",
+      "Moulmein",
+      "Mong Hsat",
+      "Magwe",
+      "Myitkyina",
+      "Nyaung-u",
+      "Putao",
+      "Pakokku",
+      "Insein",
+      "Thandwe",
+      "Tachilek",
+      "Dawe",
+      "Meiktila"
     ]
   },
   {
@@ -46225,7 +47134,9 @@
       "Swakopmund",
       "Tsumeb",
       "Walvis Bay",
-      "Windhoek"
+      "Windhoek",
+      "Luderitz",
+      "Mpacha"
     ]
   },
   {
@@ -46255,7 +47166,24 @@
       "Kathmandu",
       "Lumbini",
       "Palpa",
-      "Patan"
+      "Patan",
+      "Bhadrapur",
+      "Biratnagur",
+      "Bhairawa",
+      "Dolpa",
+      "Simikot",
+      "Jumla",
+      "Nepalganj",
+      "Lamidanda",
+      "Solukhumbu",
+      "Meghauli",
+      "Pokhara",
+      "Phaplu",
+      "Rukumkot",
+      "Rumjatar",
+      "Simara",
+      "Surkhet",
+      "Taplejung"
     ]
   },
   {
@@ -47723,12 +48651,30 @@
       "Zwartsluis",
       "Zwijndrecht",
       "Zwinderen",
-      "Zwolle"
+      "Zwolle",
+      "Schiphol Zuid",
+      "Eelde",
+      "Maastricht-Airport"
     ]
   },
   {
     "name": "New Caledonia",
-    "cities": ["Dumbea", "Mont-Dore", "Noumea", "Nouville", "Paita"]
+    "cities": [
+      "Dumbea",
+      "Mont-Dore",
+      "Noumea",
+      "Nouville",
+      "Paita",
+      "Belep Island",
+      "Vao",
+      "Kone",
+      "Koumac",
+      "Wé",
+      "Tadine",
+      "Tiga",
+      "Touho",
+      "Fayaoué"
+    ]
   },
   {
     "name": "New Zealand",
@@ -48012,7 +48958,12 @@
       "Woodend",
       "Woolston",
       "Wyndham",
-      "Yaldhurst"
+      "Yaldhurst",
+      "Manukau City",
+      "Blenheim",
+      "Chatham Island",
+      "Kaitaia",
+      "Napier"
     ]
   },
   {
@@ -48030,7 +48981,8 @@
       "Matagalpa",
       "Ocotal",
       "Rivas",
-      "San Juan del Sur"
+      "San Juan del Sur",
+      "Tipitapa"
     ]
   },
   {
@@ -48135,11 +49087,16 @@
       "Warri",
       "Yaba",
       "Yola",
-      "Zaria"
+      "Zaria",
+      "Gwagwa",
+      "Duke Town",
+      "Afaka",
+      "Shunni",
+      "Zei"
     ]
   },
-  { "name": "Niue", "cities": [] },
-  { "name": "Norfolk Island", "cities": [] },
+  { "name": "Niue", "cities": ["Niue Island"] },
+  { "name": "Norfolk Island", "cities": ["Kingston"] },
   {
     "name": "North Korea",
     "cities": [
@@ -48153,10 +49110,11 @@
       "Ryanggang",
       "South Hamgyong",
       "South Hwanghae",
-      "South Pyongan"
+      "South Pyongan",
+      "Sunan"
     ]
   },
-  { "name": "Northern Mariana Islands", "cities": [] },
+  { "name": "Northern Mariana Islands", "cities": ["Tinian"] },
   {
     "name": "Norway",
     "cities": [
@@ -49064,7 +50022,37 @@
       "Voss",
       "Vossestrand",
       "Vraliosen",
-      "Ytre Alvik"
+      "Ytre Alvik",
+      "Vigra",
+      "Bardufoss",
+      "Blomsterdalen",
+      "Baasfjord",
+      "Bodo",
+      "Berlevaag",
+      "Tonsberg",
+      "Tarnstad",
+      "Avaldsnes",
+      "Hovdebygda",
+      "Honningsvåg",
+      "Hesseng",
+      "Kjevic",
+      "Kristiansund Nord",
+      "Lakeselv",
+      "Longyearbyen",
+      "Mehavn",
+      "Bolsøya",
+      "Skonseng",
+      "Orland",
+      "Sandene",
+      "Stokkmarknes",
+      "Sørkjosen",
+      "Rage",
+      "Svolvar",
+      "Tromso",
+      "Stjordal",
+      "Vardo",
+      "Vadso",
+      "Varoy"
     ]
   },
   {
@@ -49076,7 +50064,8 @@
       "Ruwi",
       "Saham",
       "Salalah",
-      "Samad"
+      "Samad",
+      "Khasab"
     ]
   },
   {
@@ -49151,7 +50140,22 @@
       "Toba Tek Singh",
       "Usman",
       "Wazirabad",
-      "Ziauddin"
+      "Ziauddin",
+      "Bahawalpur",
+      "Chitral",
+      "Dalbandin",
+      "Gawadar",
+      "Råwalpindi",
+      "Kadanwari",
+      "Skardu",
+      "Shah Faisalabad",
+      "Mohenjodaro",
+      "Panjgur",
+      "Rahim Yar Khan",
+      "Sawan",
+      "Saidu",
+      "Turbat",
+      "Nawabshah"
     ]
   },
   {
@@ -49185,7 +50189,12 @@
       "Jenin",
       "Jericho",
       "Nablus",
-      "Ramallah"
+      "Ramallah",
+      "Elat",
+      "Hefa",
+      "Tel Aviv Yafo",
+      "Petaẖ Tiqwa",
+      "Ovda"
     ]
   },
   {
@@ -49295,7 +50304,25 @@
       "Vanimo",
       "Wabag",
       "Waigani",
-      "Wewak"
+      "Wewak",
+      "Wanigela",
+      "Awaba",
+      "Buka",
+      "Bulolo",
+      "Alotau",
+      "Kokoda",
+      "Lake Murray",
+      "Lihir Island",
+      "Losuia",
+      "Misima Island",
+      "Moro",
+      "Obo",
+      "Balimo",
+      "Rabaul",
+      "Suki",
+      "Tabubil",
+      "Tufi",
+      "Wipim"
     ]
   },
   {
@@ -49417,7 +50444,10 @@
       "Trujillo",
       "Tumbes",
       "Ventanilla",
-      "Victoria"
+      "Victoria",
+      "San Sebastián",
+      "Callaria",
+      "Huanchaco"
     ]
   },
   {
@@ -49823,7 +50853,36 @@
       "West Triangle",
       "Wines",
       "Zamboanga City",
-      "Zamboanga City"
+      "Zamboanga City",
+      "Basco",
+      "Buenavista",
+      "Cebu",
+      "Camiguin",
+      "Catarman",
+      "Calbayog",
+      "Cuyo",
+      "Sibulan",
+      "Polanco",
+      "El Nido",
+      "General Santos City",
+      "Iloilo",
+      "Jolo",
+      "San Nicolas",
+      "Parañaque",
+      "Caticlan",
+      "Ormoc",
+      "Ozamis City",
+      "Puerto Princesa",
+      "Ivisan",
+      "Taytay Sandoval",
+      "Surigao City",
+      "Alcantara",
+      "Tuguegarao",
+      "Tawitawi",
+      "Coron",
+      "Virac",
+      "Pili",
+      "Zamboanga"
     ]
   },
   { "name": "Pitcairn Islands", "cities": [] },
@@ -51470,7 +52529,15 @@
       "Zukowo",
       "Zurawica",
       "Zwolen",
-      "Zyrakow"
+      "Zyrakow",
+      "Białe Błota",
+      "Gdansk",
+      "Zabierzów",
+      "Ożarowice",
+      "Lodz",
+      "Sianów",
+      "Goleniów",
+      "Wroclaw"
     ]
   },
   {
@@ -52176,7 +53243,16 @@
       "Vizela",
       "Vizela",
       "Zambujal",
-      "Zibreira"
+      "Zibreira",
+      "Corvo",
+      "Flores Island",
+      "Graciosa Island",
+      "Horta",
+      "Madalena",
+      "Porto Santo",
+      "Velas",
+      "Vila do Porto",
+      "Praia da Vitória"
     ]
   },
   {
@@ -52280,7 +53356,8 @@
       "Ar Rayyān",
       "Ash Shamāl",
       "Az̧ Za̧`āyin",
-      "Umm Şalāl"
+      "Umm Şalāl",
+      "Doha"
     ]
   },
   { "name": "Republic of Kosovo", "cities": [] },
@@ -52642,7 +53719,13 @@
       "Voluntari",
       "Voronet",
       "Zetea",
-      "Zimnicea"
+      "Zimnicea",
+      "Bacæu",
+      "Clausemburgo",
+      "Kustenje",
+      "Croiova",
+      "Ilasi",
+      "Oradea-Mare"
     ]
   },
   {
@@ -53683,19 +54766,60 @@
       "Zubovo",
       "Zvenigorod",
       "Zvenigovo",
-      "Zvezda"
+      "Zvezda",
+      "Nar'yan-Mar",
+      "Arkhangel'sk",
+      "Astrakhan'",
+      "Chokurdah",
+      "Podol'sk",
+      "Anadyr'",
+      "Eniseysk",
+      "Dzerzinsk",
+      "Groznyy",
+      "Igarka",
+      "Tiksi",
+      "Vel'sk",
+      "Syzran'",
+      "Komsomol'sk-na-Amure",
+      "Zelenodol'sk",
+      "Leshukonskoye",
+      "St. Petersburg",
+      "Mirnyj",
+      "Naberevnye Chelny",
+      "Nojabrxsk",
+      "Novgorod",
+      "Okhotsk",
+      "Perm'",
+      "Elizovo",
+      "Polyarnyj",
+      "Stavropol'",
+      "Tyumen'",
+      "Oufa",
+      "Kabansk",
+      "Semiluki"
     ]
   },
   {
     "name": "Rwanda",
-    "cities": ["Est", "Nord", "Ouest", "Sud", "Ville de Kigali"]
+    "cities": [
+      "Est",
+      "Nord",
+      "Ouest",
+      "Sud",
+      "Ville de Kigali",
+      "Kigali",
+      "Kamembe"
+    ]
   },
   { "name": "Saint Barthélemy", "cities": [] },
   {
     "name": "Saint Helena",
     "cities": ["Ascension", "Saint Helena", "Tristan da Cunha"]
   },
-  { "name": "Saint Kitts and Nevis", "cities": ["Nevis", "Saint Kitts"] },
+  {
+    "name": "Saint Kitts and Nevis",
+    "cities": ["Nevis", "Saint Kitts", "Basseterre"]
+  },
   {
     "name": "Saint Lucia",
     "cities": [
@@ -53708,7 +54832,7 @@
     ]
   },
   { "name": "Saint Martin", "cities": [] },
-  { "name": "Saint Pierre and Miquelon", "cities": [] },
+  { "name": "Saint Pierre and Miquelon", "cities": ["St Pierre"] },
   {
     "name": "Saint Vincent and the Grenadines",
     "cities": [
@@ -53717,7 +54841,9 @@
       "Saint Andrew",
       "Saint David",
       "Saint George",
-      "Saint Patrick"
+      "Saint Patrick",
+      "Canouan Island",
+      "Kingstown"
     ]
   },
   {
@@ -53733,7 +54859,8 @@
       "Satupa'itea",
       "Tuamasaga",
       "Va'a-o-Fonoti",
-      "Vaisigano"
+      "Vaisigano",
+      "Apia"
     ]
   },
   {
@@ -53788,7 +54915,27 @@
       "Sambah",
       "Sayhat",
       "Tabuk",
-      "Yanbu` al Bahr"
+      "Yanbu` al Bahr",
+      "Al Aqiq",
+      "Hajlah",
+      "Sakakah",
+      "Qaisumah",
+      "Bisha",
+      "Khuwaylidiyah",
+      "Dawadmi",
+      "Wedjh",
+      "Al Qara'",
+      "Ha'il",
+      "Hafr Albatin",
+      "Alahsa",
+      "Al Madinah",
+      "Arar",
+      "Rafha",
+      "As-Saraura",
+      "Turayf",
+      "Gurayat",
+      "Wadi Ad Dawasir",
+      "Yanbu al Bahr"
     ]
   },
   {
@@ -53805,7 +54952,11 @@
       "Madina Kokoun",
       "Saint-Louis",
       "Sama",
-      "Tanaf"
+      "Tanaf",
+      "Cap Skirring",
+      "Ngor",
+      "Tambacounda",
+      "Ziguinchor"
     ]
   },
   {
@@ -53903,7 +55054,10 @@
       "Zajecar",
       "Zemun Polje",
       "Zlatibor",
-      "Zrenjanin"
+      "Zrenjanin",
+      "Surčin",
+      "Nis",
+      "Prishtina"
     ]
   },
   {
@@ -53933,12 +55087,14 @@
       "Port Glaud",
       "Roche Caiman",
       "Saint Louis",
-      "Takamaka"
+      "Takamaka",
+      "Praslin Island",
+      "Victoria"
     ]
   },
   {
     "name": "Sierra Leone",
-    "cities": ["Eastern", "Northern", "Southern", "Western Area"]
+    "cities": ["Eastern", "Northern", "Southern", "Western Area", "Freetown"]
   },
   {
     "name": "Singapore",
@@ -54212,7 +55368,9 @@
       "Zikava",
       "Zlate",
       "Zuberec",
-      "Zvolen"
+      "Zvolen",
+      "Bytča",
+      "Kosice"
     ]
   },
   {
@@ -54384,7 +55542,28 @@
       "Malaita",
       "Rennell and Bellona",
       "Temotu",
-      "Western"
+      "Western",
+      "Afutara",
+      "Atoifi",
+      "Avu Avu",
+      "Balalae",
+      "Bellona",
+      "Choiseul Bay",
+      "Fera Island",
+      "Gatokae",
+      "Gizo",
+      "Honiara",
+      "Kirakira",
+      "Kagau",
+      "Mbambanakira",
+      "Munda",
+      "Santa Ana",
+      "Ramata",
+      "Arona",
+      "Rennell",
+      "Santa Cruz Is",
+      "Suavanao",
+      "Yandina"
     ]
   },
   {
@@ -54407,7 +55586,13 @@
       "Shabeellaha Hoose",
       "Sool",
       "Togdheer",
-      "Woqooyi Galbeed"
+      "Woqooyi Galbeed",
+      "Berbera",
+      "Bossaso",
+      "Burao",
+      "Gaalkacyo",
+      "Hargeysa",
+      "Mogadishu"
     ]
   },
   {
@@ -54740,7 +55925,11 @@
       "Wonderboom",
       "Worcester",
       "Wynberg",
-      "Zeerust"
+      "Zeerust",
+      "Mala Mala",
+      "Pietersburg",
+      "Umtata",
+      "Walvis Bay"
     ]
   },
   { "name": "South Georgia", "cities": [] },
@@ -54763,7 +55952,21 @@
       "Jeollanam-do",
       "Sejong",
       "Seoul-teukbyeolsi",
-      "Ulsan-gwangyeoksi"
+      "Ulsan-gwangyeoksi",
+      "Naesu-Eup",
+      "Jeju-Si",
+      "Seoul",
+      "Sacheon-Si",
+      "Incheon",
+      "Pohang-Si",
+      "Gunsan-Si",
+      "Gwangju",
+      "Busan",
+      "Yeosu-Si",
+      "Daegu",
+      "Ulsan",
+      "WonJu",
+      "Sonyang-Myeon"
     ]
   },
   {
@@ -57237,7 +58440,29 @@
       "Zubiri",
       "Zuera",
       "Zumaia",
-      "Zumarraga"
+      "Zumarraga",
+      "San Bartolomé",
+      "Malaga",
+      "Elx",
+      "El Prat de Llobregat",
+      "Loiu",
+      "Hondarribia",
+      "Alajeró",
+      "Vilobí d'Onyar",
+      "San José",
+      "S Esteban",
+      "Almeria",
+      "Leon",
+      "Mao",
+      "Castrillón",
+      "Palma",
+      "Noáin",
+      "Logrono",
+      "Villagonzalo de Tormes",
+      "Breña Alta",
+      "Granadilla",
+      "Vitoria",
+      "Jerez"
     ]
   },
   {
@@ -57284,7 +58509,23 @@
   },
   {
     "name": "Sudan",
-    "cities": ["Kassala", "Khartoum", "Nyala", "Shendi", "Thabit", "Umm Durman"]
+    "cities": [
+      "Kassala",
+      "Khartoum",
+      "Nyala",
+      "Shendi",
+      "Thabit",
+      "Umm Durman",
+      "Atbara",
+      "Dongola",
+      "Al Ubayyid",
+      "Geneina",
+      "El Fasher",
+      "Juba",
+      "Malakal",
+      "Port Sudan",
+      "Wadi Halfa"
+    ]
   },
   {
     "name": "Suriname",
@@ -57297,7 +58538,8 @@
       "Nieuw Amsterdam",
       "Onverwacht",
       "Paramaribo",
-      "Totness"
+      "Totness",
+      "Sabakoe"
     ]
   },
   { "name": "Svalbard and Jan Mayen", "cities": [] },
@@ -58530,7 +59772,27 @@
       "Yngsjo",
       "Ystad",
       "Ytterby",
-      "Zinkgruvan"
+      "Zinkgruvan",
+      "Angelholm",
+      "Märst",
+      "Borlange",
+      "Härryda",
+      "Hamstad",
+      "Hemavan",
+      "Jonkoping",
+      "Väring",
+      "Lulea",
+      "Linkoping",
+      "Lyoksele",
+      "Norrkoping",
+      "Nykoping",
+      "Orebro",
+      "Frösö",
+      "Fårbo",
+      "Skelleftea",
+      "Trollhatan",
+      "Umea",
+      "Vasteras"
     ]
   },
   {
@@ -58791,7 +60053,6 @@
       "Coeuve",
       "Cointrin",
       "Collombey",
-      "Colombier",
       "Colombier",
       "Concise",
       "Confignon",
@@ -59950,12 +61211,27 @@
       "Yunlin County",
       "Zhubei",
       "Zhunan",
-      "Zhuqi"
+      "Zhuqi",
+      "Chiayi City",
+      "Hualien City",
+      "Kinmen",
+      "Nangan",
+      "Makung City",
+      "Tainan City",
+      "Taoyuan City",
+      "Taipei City",
+      "Taitung City"
     ]
   },
   {
     "name": "Tajikistan",
-    "cities": ["Dushanbe", "Khatlon", "Kŭhistoni Badakhshon", "Sughd"]
+    "cities": [
+      "Dushanbe",
+      "Khatlon",
+      "Kŭhistoni Badakhshon",
+      "Sughd",
+      "Khudzhand"
+    ]
   },
   {
     "name": "Tanzania",
@@ -59969,7 +61245,18 @@
       "Njombe",
       "Raha",
       "Tanga",
-      "Zanzibar"
+      "Zanzibar",
+      "Sanya",
+      "Musoma",
+      "Mwadui",
+      "Ilemera",
+      "Ziwani",
+      "Pemba",
+      "Songea",
+      "Shinyanga",
+      "Tabora",
+      "Kigoma",
+      "Stone Town"
     ]
   },
   {
@@ -60140,7 +61427,19 @@
       "Watthana",
       "Wiphawadi",
       "Yala",
-      "Yasothon"
+      "Yasothon",
+      "Buri Ram",
+      "Lak Si",
+      "Don Muang",
+      "Nakhon Phanom",
+      "Phra Phrom",
+      "Sawankhalok",
+      "Muang Trang",
+      "Don Mot Daeng",
+      "Phun Phin",
+      "Ko Samui",
+      "Changwat Udon Thani; Udon Thani",
+      "Ban Chang"
     ]
   },
   {
@@ -60163,12 +61462,23 @@
   },
   {
     "name": "Togo",
-    "cities": ["Centre", "Kara", "Maritime", "Plateaux", "Savannes"]
+    "cities": ["Centre", "Kara", "Maritime", "Plateaux", "Savannes", "Lome"]
   },
   { "name": "Tokelau", "cities": [] },
   {
     "name": "Tonga",
-    "cities": ["'Eua", "Ha'apai", "Niuas", "Tongatapu", "Vava'u"]
+    "cities": [
+      "'Eua",
+      "Ha'apai",
+      "Niuas",
+      "Tongatapu",
+      "Vava'u",
+      "Eua",
+      "Pangai",
+      "Niuatoputapu",
+      "Nuku'alofa",
+      "Neiafu"
+    ]
   },
   {
     "name": "Trinidad and Tobago",
@@ -60221,7 +61531,9 @@
       "Valsayn",
       "Victoria",
       "Ward of Tacarigua",
-      "Woodbrook"
+      "Woodbrook",
+      "Trinidad",
+      "Plymouth"
     ]
   },
   {
@@ -60243,7 +61555,8 @@
       "Sousse",
       "Tunis",
       "Tatawin",
-      "Tawzar"
+      "Tawzar",
+      "Jundobah"
     ]
   },
   {
@@ -60525,12 +61838,36 @@
       "Yuregir",
       "Zekeriya",
       "Zeytinburnu",
-      "Zonguldak"
+      "Zonguldak",
+      "Azmir",
+      "Adiyaman",
+      "Agrı",
+      "Eskişehir",
+      "Canakkale",
+      "Diyaribakir",
+      "Ortaca",
+      "Çubuk",
+      "Elazığ",
+      "Oğuzeli",
+      "Bakırköy",
+      "Kahramanmaraş",
+      "Arga",
+      "Mush",
+      "Nevsehir",
+      "Usak"
     ]
   },
   {
     "name": "Turkmenistan",
-    "cities": ["Ahal", "Aşgabat", "Balkan", "Daşoguz", "Lebap", "Mary"]
+    "cities": [
+      "Ahal",
+      "Aşgabat",
+      "Balkan",
+      "Daşoguz",
+      "Lebap",
+      "Mary",
+      "Ashgabat"
+    ]
   },
   { "name": "Turks and Caicos Islands", "cities": [] },
   {
@@ -60546,7 +61883,20 @@
       "Vaitupu"
     ]
   },
-  { "name": "Uganda", "cities": ["Central", "Eastern", "Northern", "Western"] },
+  {
+    "name": "Uganda",
+    "cities": [
+      "Central",
+      "Eastern",
+      "Northern",
+      "Western",
+      "Entebbe",
+      "Moyo",
+      "Arua",
+      "Gulu",
+      "Zeu"
+    ]
+  },
   {
     "name": "Ukraine",
     "cities": [
@@ -60779,7 +62129,14 @@
       "Zlazne",
       "Zmiyiv",
       "Zolochiv",
-      "Zolotonosha"
+      "Zolotonosha",
+      "Dnipropetrovs'k",
+      "Donets'k",
+      "Ivano-Frankivs'k",
+      "L'viv",
+      "Zaporizhzhya",
+      "Simferopol'",
+      "Luhans'k"
     ]
   },
   {
@@ -60794,7 +62151,8 @@
       "Dubai",
       "Al Fujayrah",
       "Ras al-Khaimah",
-      "Sharjah"
+      "Sharjah",
+      "Ras Al Khaimah"
     ]
   },
   {
@@ -60826,6 +62184,7 @@
       "Addington",
       "Addington",
       "Addlestone",
+      "Barra",
       "Adlingfleet",
       "Aghalee",
       "Aintree",
@@ -63840,40 +65199,46 @@
       "Ystalyfera",
       "Ystrad Mynach",
       "Ystradgynlais",
-      "Zeals"
+      "Zeals",
+      "St. Peters Bay",
+      "St. Andrews",
+      "Isle of coll",
+      "Isle Of Colonsay",
+      "Doncaster Sheffield",
+      "St. Peter Port",
+      "Glenegedale",
+      "Castletown",
+      "Rams Valley",
+      "St. Peter",
+      "Hounslow",
+      "Shetland",
+      "Manston",
+      "Southend on Sea",
+      "Stansted Mountfitchet",
+      "Isle of lewis",
+      "Crossapol",
+      "Isles Of Scilly",
+      "Anglesey"
     ]
   },
   {
     "name": "United States",
     "cities": [
       "Abbeville",
-      "Abbeville",
-      "Abbeville",
-      "Abbeville",
-      "Abbeville",
       "Abbotsford",
       "Abbott",
       "Abbottstown",
       "Abercrombie",
       "Aberdeen",
-      "Aberdeen",
-      "Aberdeen",
-      "Aberdeen",
-      "Aberdeen",
-      "Aberdeen",
-      "Aberdeen",
       "Aberdeen Proving Ground",
       "Abernathy",
       "Abilene",
-      "Abilene",
       "Abingdon",
-      "Abingdon",
-      "Abingdon",
-      "Abington",
       "Abington Township",
       "Abiquiu",
       "Abita Springs",
       "Abrams",
+      "Napakiak",
       "Absarokee",
       "Absecon",
       "Acampo",
@@ -68040,9 +69405,9 @@
       "Corry",
       "Corryton",
       "Corsica",
-      "Corsica",
       "Corsicana",
       "Cortaro",
+      "Figari",
       "Corte Madera",
       "Cortez",
       "Cortland",
@@ -84781,7 +86146,165 @@
       "Zumbrota",
       "Zuni",
       "Zurich",
-      "Zwingle"
+      "Zwingle",
+      "Mckinleyville",
+      "Allakaket",
+      "Atka",
+      "Anaktuvuk Pass",
+      "Alitak",
+      "Anvik",
+      "Amook",
+      "Arctic Village",
+      "Atmautluak",
+      "Aguadilla",
+      "Bettles",
+      "Cold Bay",
+      "Chuathbaluk",
+      "Chalkyitsik",
+      "Kincheloe",
+      "Aniak",
+      "Clarks Point",
+      "Cody/Yellowstone",
+      "Culebra",
+      "Gakona",
+      "Eek",
+      "Egegik",
+      "Elim",
+      "Elfin Cove",
+      "Wildman Lake",
+      "Fort Yukon",
+      "Gambell",
+      "Pierceville",
+      "Golovin",
+      "Gustavus",
+      "Hagåtña",
+      "Havasupai",
+      "Healy Lake",
+      "Hoonah",
+      "Huslia",
+      "Hydaburg",
+      "Igiugig",
+      "Nikolski",
+      "Iliamna",
+      "Kaltag",
+      "Birch Creek",
+      "Chignik Lagoon",
+      "Chignik",
+      "Nanwalek",
+      "Ekwok",
+      "False Pass",
+      "New Koliganek",
+      "Kitoi Bay",
+      "Larsen Bay",
+      "King Khalid Mil. City",
+      "Moser Bay",
+      "Kakhonak",
+      "Kailua Kona",
+      "Olga Bay",
+      "Ouzinkie",
+      "Point Baker",
+      "Brevig Mission",
+      "Port Williams",
+      "Port Bailey",
+      "Teller Mission",
+      "Kasigluk",
+      "Kivalina",
+      "Kwigillingok",
+      "Quinhagak",
+      "Kasaan",
+      "Koyukuk",
+      "Zachar Bay",
+      "Lake Minchumina",
+      "Lanai City",
+      "Lopez Island",
+      "Kalaupapa",
+      "Mayaguez",
+      "Mcgrath",
+      "Mccook",
+      "Mcallen",
+      "Mather",
+      "Hoolehua",
+      "Manley Hot Springs",
+      "St. Paul",
+      "Kamuela",
+      "Mccall",
+      "New Chenega",
+      "Nikolai",
+      "Naukiti",
+      "Nelson Lagoon",
+      "Nightmute",
+      "Nuiqsut",
+      "Nulato",
+      "Nunapitchuk",
+      "Kobuk",
+      "Old Harbor",
+      "O'neill",
+      "Opa-Locka",
+      "Port Lions",
+      "Kotzebue",
+      "Painter Creek",
+      "Port Graham",
+      "Moselle",
+      "Napaskiak",
+      "Port Moller",
+      "Pago Pago",
+      "Port Protection",
+      "Coto Laurel",
+      "Port Alsworth",
+      "Port Heiden",
+      "Platinum",
+      "Brooks Lodge",
+      "Cinder River",
+      "Red Dog",
+      "Raleigh/Durham",
+      "Red Devil",
+      "Alessandro",
+      "Owls Head",
+      "Rampart",
+      "Rota",
+      "Olga",
+      "St. George",
+      "Skagway",
+      "Shishmaref",
+      "Shageluk",
+      "Shaktoolik",
+      "Sleetmute",
+      "St Michael",
+      "Saint Paul Island",
+      "Seldovia",
+      "Charlotte Amalie",
+      "Saipan",
+      "Stony River",
+      "Christiansted",
+      "St. Cloud",
+      "St George Island",
+      "St. Louis",
+      "Frederiksted",
+      "Savoonga",
+      "Stevens Village",
+      "Sheldon Point",
+      "Tanana",
+      "Takotna",
+      "Tenakee Springs",
+      "Tatalina",
+      "Tuluksak",
+      "Tin City",
+      "Tununak",
+      "Togiak Village",
+      "Twin Hills",
+      "Venetie",
+      "Eglin Village",
+      "Puerto Ferro",
+      "Aleknagik",
+      "Meyers Chuck",
+      "White Mountain",
+      "Wrangell",
+      "South Naknek",
+      "Westsound",
+      "Whale Pass",
+      "Newtok",
+      "Rail (Generic)",
+      "Yakutat"
     ]
   },
   {
@@ -84822,7 +86345,9 @@
       "Toshkent",
       "Xorazm",
       "Zarafshan",
-      "Urganch"
+      "Urganch",
+      "Qoraqalpoghiston",
+      "Urgench"
     ]
   },
   {
@@ -84940,7 +86465,23 @@
       "Valencia",
       "Valera",
       "Valle",
-      "Vargas"
+      "Vargas",
+      "Pariaguán",
+      "Catia la Mar",
+      "Cumaná",
+      "El Pilar",
+      "La Vela de Coro",
+      "Elorza",
+      "Las Piedras",
+      "Ejido",
+      "Aguasay",
+      "Maroa",
+      "San Fernando de Apure",
+      "Cantaura",
+      "Santa Ana del Tachira",
+      "Táriba",
+      "Siquisique",
+      "Santa Elena de Uairén"
     ]
   },
   {
@@ -85057,11 +86598,22 @@
       "Xom Thang",
       "Xom Truong Dinh",
       "Yen Bai",
-      "Yen Thanh"
+      "Yen Thanh",
+      "Banmethuot",
+      "Tourane",
+      "Lam Dong",
+      "Häi Phòng",
+      "Hue",
+      "Kien Giang",
+      "Gia Lai",
+      "Tuy Hoa",
+      "Tamky",
+      "Con Dao",
+      "Vinh City"
     ]
   },
   { "name": "Wallis and Futuna", "cities": [] },
-  { "name": "Western Sahara", "cities": [] },
+  { "name": "Western Sahara", "cities": ["Ad Dakhla"] },
   {
     "name": "Yemen",
     "cities": [
@@ -85101,7 +86653,9 @@
       "Mumbwa",
       "Ndola",
       "Siavonga",
-      "Solwezi"
+      "Solwezi",
+      "Chipata",
+      "Mfuwe"
     ]
   },
   {

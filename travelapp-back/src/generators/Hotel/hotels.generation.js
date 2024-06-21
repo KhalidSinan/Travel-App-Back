@@ -111,11 +111,15 @@ async function createHotels() {
         let distanceFromCityCenter = ((Math.random() * 4) + 1).toFixed(2);
 
         const location = locations.find(country => country.name == data.country)
+        let city;
+        if (location.cities.length == 0) city = faker.location.city();
+        else city = location?.cities[Math.floor(Math.random() * location.cities.length)];
+        
         const hotel = {
             name: data.name,
             location: {
                 country: data.country,
-                city: location?.cities[Math.floor(Math.random() * location.cities.length)] ?? faker.location.city(),
+                city: city,
                 name: data.address ?? faker.location.streetAddress(),
             },
             description: data.overview,
