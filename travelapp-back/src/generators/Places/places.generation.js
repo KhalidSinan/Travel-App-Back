@@ -11,16 +11,22 @@ const attractions = require('../../public/json/attractions.json')
 const random = require('../../public/json/random.json')
 const placesMongo = require('../../models/places.mongo')
 
+
+function createAddress() {
+    const tempCountry = location[Math.floor(Math.random() * location.length)]
+    const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
+    return address = {
+        country: tempCountry.name,
+        city: tempCity ?? faker.location.city(),
+        address: faker.location.streetAddress()
+    }
+}
+
+
 function createRestaurants() {
     let data = []
     restaurants.forEach(rest => {
-        const tempCountry = location[Math.floor(Math.random() * location.length)]
-        const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
-        const address = {
-            country: tempCountry.name,
-            city: tempCity ?? faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const phone_number = createPhoneNumber()
         const temp = {
             name: rest.name,
@@ -36,23 +42,10 @@ function createRestaurants() {
     return data;
 }
 
-function getNames() {
-    let data = []
-    data = places
-    // console.log(data)
-    // fs.writeFileSync('musuem-names.json', JSON.stringify(data))
-}
-
 function createStadiums() {
     let data = []
     stadiums.forEach(stad => {
-        const tempCountry = location[Math.floor(Math.random() * location.length)]
-        const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
-        const address = {
-            country: tempCountry.name,
-            city: tempCity ?? faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const number = createPhoneNumber()
         const temp = {
             name: stad.name,
@@ -82,13 +75,7 @@ function createPhoneNumber() {
 function createMusuems() {
     let data = []
     musuems.forEach(musuem => {
-        const tempCountry = location[Math.floor(Math.random() * location.length)]
-        const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
-        const address = {
-            country: tempCountry.name,
-            city: tempCity ?? faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const phone_number = createPhoneNumber()
         const temp = {
             name: musuem,
@@ -107,13 +94,7 @@ function createMusuems() {
 function createAdventure() {
     let data = []
     poi.forEach(place => {
-        const tempCountry = location[Math.floor(Math.random() * location.length)]
-        const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
-        const address = {
-            country: tempCountry.name,
-            city: tempCity ?? faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const number = createPhoneNumber()
         const temp = {
             name: place,
@@ -133,11 +114,7 @@ function createCinemasParks() {
     let data = []
     let i = 0;
     places.forEach(el => {
-        const address = {
-            country: el.address.country,
-            city: faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const number = createPhoneNumber()
         const temp = {
             name: el.name,
@@ -158,11 +135,7 @@ function createCinemasParks() {
 function createAttractions() {
     let data = []
     attractions.forEach(el => {
-        const address = {
-            country: el.address.country,
-            city: faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const number = createPhoneNumber()
         const temp = {
             name: el.name,
@@ -181,11 +154,7 @@ function createRandom() {
     let data = []
     let categories = ['Park', 'Attraction', 'Adventure', 'Arts & History']
     random.forEach(el => {
-        const address = {
-            country: faker.location.country(),
-            city: faker.location.city(),
-            address: faker.location.streetAddress()
-        }
+        const address = createAddress()
         const number = createPhoneNumber()
         const temp = {
             name: el.name,

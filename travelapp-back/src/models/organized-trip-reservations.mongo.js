@@ -1,5 +1,23 @@
 const mongoose = require('mongoose');
 
+const reservationDataSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    gender: {
+        type: String,
+        required: true,
+        enum: ["Male", "Female"]
+    },
+    passport_number: {
+        type: Number,
+        required: true,
+        minLength: 6,
+        maxLength: 9
+    }
+})
+
 const tripReservationSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -20,7 +38,7 @@ const tripReservationSchema = new mongoose.Schema({
         required: true
     },
     reservation_data: {
-        type: String,
+        type: [reservationDataSchema],
         required: true
     }
 }, { timestamps: true })

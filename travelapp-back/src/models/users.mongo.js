@@ -51,15 +51,13 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        default: null
+        enum: ["Male", "Female"]
     },
     date_of_birth: {
         type: Date,
-        default: null
     },
     profile_pic: {
         type: String,
-        default: null
     },
     is_guide: {
         type: Boolean,
@@ -68,7 +66,6 @@ const userSchema = new mongoose.Schema({
     },
     google_id: {
         type: String,
-        default: null
     },
     device_token: [{
         token: String,
@@ -81,11 +78,6 @@ const userSchema = new mongoose.Schema({
             }
         }
     }]
-    // trips: {
-    //     price: {
-    //         type:
-    //     }
-    // }
 }, { timestamps: true })
 
 userSchema.pre('save', async function (next) {

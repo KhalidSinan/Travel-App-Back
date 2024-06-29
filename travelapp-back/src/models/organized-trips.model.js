@@ -17,9 +17,15 @@ async function decrementSeats(trip, decrement) {
     await trip.save();
 }
 
+async function makeDiscount(trip, discount) {
+    trip.discount = discount;
+    await trip.save();
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
     postOrganizedtrip,
-    decrementSeats
+    decrementSeats,
+    makeDiscount
 }

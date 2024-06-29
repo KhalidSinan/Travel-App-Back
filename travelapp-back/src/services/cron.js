@@ -6,7 +6,7 @@ const { getFlight } = require('../models/flights.model');
 const sendPushNotification = require('./notifications');
 const { getDeviceTokens } = require('../models/users.model');
 const { getNotification, postNotification } = require('../models/notification.model');
-const HotelReservation = require('../models/hotel-reservations.mongo');
+const HotelReservation = require('../models/hotel-reservation.mongo');
 const Hotel = require('../models/hotels.mongo');
 
 // Just Remove Comment

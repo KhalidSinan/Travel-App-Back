@@ -1,3 +1,4 @@
+const { getReservation } = require("../../../models/plane-reservation.model");
 
 async function reserveFlightHelper(reservations, flight, user_id) {
     const classes = ['A', 'B', 'C'];
@@ -55,9 +56,21 @@ function getUpcomingReservations(reservations) {
     return data;
 }
 
+async function checkFlightsReservations(flights) {
+    let check = true
+    await Promise.all(
+        flights.map(async (flight) => {
+            let temp = await getReservation(flight)
+            if (!temp) check = false;
+        })
+    )
+    return check
+}
+
 module.exports = {
     findCancelRate,
     reserveFlightHelper,
     changeClassName,
-    getUpcomingReservations
+    getUpcomingReservations,
+    checkFlightsReservations
 }

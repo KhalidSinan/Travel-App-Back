@@ -28,7 +28,10 @@ const tripSchema = new mongoose.Schema({
         required: true,
     },
     starting_place: {
-        type: String,
+        type: {
+            country: String,
+            city: String,
+        },
         required: true,
     },
     destinations: [{
@@ -43,12 +46,12 @@ const tripSchema = new mongoose.Schema({
     }],
     flights: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Flight',
+        ref: 'PlaneReservation',
         required: true,
     }],
     hotels: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Hotel',
+        ref: 'HotelReservation',
         required: true,
     }],
     places_to_visit: [{
@@ -56,6 +59,16 @@ const tripSchema = new mongoose.Schema({
         ref: 'Place',
         required: true,
     }],
+    is_shared: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    is_canceled: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('Trip', tripSchema);

@@ -8,6 +8,14 @@ function validateCreateOrganizedTrip(organized_trip) {
     return schema.validate(organized_trip, { abortEarly: false });
 }
 
+function validateMakeDiscount(organized_trip) {
+    const schema = Joi.object({
+        discount: Joi.number().min(1).max(100).required().messages({ 'any.required': 'Discount Required' })
+    })
+    return schema.validate(organized_trip);
+}
+
 module.exports = {
-    validateCreateOrganizedTrip
+    validateCreateOrganizedTrip,
+    validateMakeDiscount
 }
