@@ -108,21 +108,6 @@ async function httpCancelReservation(req, res) {
     return res.status(200).json({
         message: 'Reservation Cancelled'
     })
-
-    // Delete All Reservations
-    // const reservation = await getReservation(req.params.id)
-    // const user_id = req.user._id
-    // if (!user_id.equals(reservation.user_id)) {
-    //     return res.status(400).json({
-    //         message: 'Cant Access This Reservation'
-    //     })
-    // }
-    // const fee = await findCancelRate(reservation)
-    // await putWallet(req.user.id, fee);
-    // await putConfirmation(reservation, false)
-    // return res.status(200).json({
-    //     message: 'Reservation Cancelled'
-    // })
 }
 
 // Done

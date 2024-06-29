@@ -48,6 +48,12 @@ async function getAllReservationsWithFlightData(user_id) {
     return await PlaneReservation.find({ user_id }).populate('flights')
 }
 
+async function putReservationData(id, data) {
+    const reservation = await PlaneReservation.findById(id)
+    reservation.reservations.data = data
+    return await reservation.save();
+}
+
 module.exports = {
     postReservation,
     getReservation,
@@ -55,5 +61,6 @@ module.exports = {
     removeReservation,
     getAllPlaneReservations,
     deleteReservation,
-    getAllReservationsWithFlightData
+    getAllReservationsWithFlightData,
+    putReservationData
 }

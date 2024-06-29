@@ -1,10 +1,16 @@
 const Joi = require('joi')
 
 function validateReserveTrip(reservation) {
+    const reservationDataSchema = Joi.object({
+        name: Joi.string().required().messages({ 'any.required': "Number Of People is Required" }),
+        gender: Joi.string().valid("Male", "Female").required().messages({ 'any.required': "Number Of People is Required" }),
+        passport_number: Joi.string().min(6).max(9).required().messages({
+            'any.required': 'Passport Number Required'
+        }),
+    })
     const schema = Joi.object({
-        trip_id: Joi.string().hex().length(24).required().messages({ 'any.required': 'Seats Num Required', 'string.hex': 'ID Must Be Valid', 'string.length': 'ID Must Be Valid' }),
-        overall_seats: Joi.number().min(1).required().messages({ 'any.required': 'Seats Num Required' }),
-        commission: Joi.number().min(1).max(30).required().messages({ 'any.required': 'Commission Required' })
+        num_of_people: Joi.number().required().messages({ 'any.required': "Number Of People is Required" }),
+        reservation_data: Joi.array().items(reservationDataSchema)
     })
     return schema.validate(reservation, { abortEarly: false });
 }

@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { convertTime12to24, createDateTimeObject } = require('../../../services/convertTime');
+const { getReservation } = require('../../../models/plane-reservation.model');
 
 function getFlightsReqDataHelper(req) {
     // Body

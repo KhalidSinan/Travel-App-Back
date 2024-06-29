@@ -19,7 +19,7 @@ async function getAllByCity(req, res) {
 
     try {
         const places = await Place.find(query);
-        res.status(200).json(places);
+        res.status(200).json({ data: places });
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving places', error });
     }
@@ -46,7 +46,7 @@ async function getAllNearby(req, res) {
         }
 
         const places = await Place.find(query);
-        res.status(200).json(places);
+        res.status(200).json({ data: places });
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving nearby places', error });
     }
