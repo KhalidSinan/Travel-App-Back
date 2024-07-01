@@ -1,6 +1,6 @@
 
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { searchHotelsValidation, reservationValidation } = require('./hotels.validation');
+const { searchHotelsValidation, reservationValidation, searchHotelsByCityValidation } = require('./hotels.validation');
 const { postReservation } = require("../../../models/hotel-reservation.model");
 const { getPagination } = require('../../../services/query');
 const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../models/hotels.model")
@@ -202,24 +202,115 @@ async function getCountriesWithCities(req, res) {
 }
 
 async function getHotelsByCities(req, res) {
-    const { cities } = req.body;
-
-    if (!cities || !Array.isArray(cities) || cities.length === 0) {
-        return res.status(400).json({ error: "You must provide an array of city names." });
+    let { city, startDate, numDays, numRooms, page = 1 } = req.body;
+    const { error } = searchHotelsByCityValidation.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    if (!city) {
+        return res.status(400).json({ error: "You must provide the city name." });
     }
 
-    try {
-        const hotelsByCityPromises = cities.map(async (city) => {
-            const hotels = await Hotel.find({ 'location.city': city });
-            return { city, hotels };
+    let effectiveStartDate;
+    if (startDate != '') {
+        const [day, month, year] = startDate.split('/').map(Number);
+        effectiveStartDate = new Date(year, month - 1, day);
+    } else {
+        effectiveStartDate = new Date();
+    }
+    effectiveStartDate.setHours(0, 0, 0, 0);
+
+    let query = {
+        'location.city': { $regex: new RegExp(city, 'i') }
+    }
+
+    const { skip, limit } = getPagination({ page, limit: 10 });
+
+    const hotelsCount = await Hotel.find(query).countDocuments();
+    const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
+
+    let hotels = await hotelsQuery;
+
+    console.log("Hotels found:", hotelsCount);
+
+    const current_page = Math.min(10, 10 - ((page * 10) - hotelsCount));
+    let response = {
+        totalHotelsFound: hotelsCount,
+        current_page: current_page,
+        hotels: []
+    };
+
+    // if (numDays == 0) numDays = null
+    // if (numRooms == 0) numRooms = null
+
+    if (startDate == '' && numDays == 1 && numRooms == 1) {
+        response.hotels = hotels;
+        console.log('All Hotels')
+    } else if (numRooms && numDays == 1) {
+        const suitableHotels = hotels.filter(hotel => {
+            return hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
         });
+        console.log("Suitable Hotels for numRooms:", suitableHotels.length);
+        response.totalHotelsFound = suitableHotels.length;
+        response.hotels = suitableHotels;
+    } else if (numDays && numRooms == 1) {
+        const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
+        const availableHotels = await Promise.all(hotels.map(async (hotel) => {
+            const reservations = await HotelReservation.find({
+                hotel_id: hotel._id,
+                start_date: { $lte: endDate },
+                end_date: { $gte: effectiveStartDate }
+            });
+            return reservations.length === 0 ? hotel : null;
+        }));
+        const filteredHotels = availableHotels.filter(Boolean);
+        console.log("Available Hotels for numDays:", filteredHotels.length);
+        response.totalHotelsFound = filteredHotels.length;
+        response.hotels = filteredHotels;
+    } else if (startDate && numDays && numRooms) {
+        const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
+        const availableHotels = await Promise.all(hotels.map(async (hotel) => {
+            const reservations = await HotelReservation.find({
+                hotel_id: hotel._id,
+                start_date: { $lte: endDate },
+                end_date: { $gte: effectiveStartDate }
+            });
+            let totalReserved = reservations.reduce((acc, curr) => acc + curr.number_of_rooms, 0);
+            let totalAvailable = hotel.rooms_number - totalReserved;
 
-        const hotelsByCity = await Promise.all(hotelsByCityPromises);
-        return res.json({ data: hotelsByCity });
-    } catch (error) {
-        return res.status(500).json({ error: 'Error fetching hotels' });
+            const roomTypeAvailability = hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
+
+            return (totalAvailable >= numRooms && roomTypeAvailability) ? hotel : null;
+        }));
+        const filteredHotels = availableHotels.filter(Boolean);
+        console.log("Available Hotels for startDate, numDays, and numRooms:", filteredHotels.length);
+        response.totalHotelsFound = filteredHotels.length;
+        response.hotels = filteredHotels;
     }
+    response.totalHotelsFound = hotelsCount
+    response.hotels = serializedData(response.hotels, hotelData)
+    return res.json({ data: response });
 }
+
+// async function getHotelsByCities(req, res) {
+//     const { cities } = req.body;
+
+//     if (!cities || !Array.isArray(cities) || cities.length === 0) {
+//         return res.status(400).json({ error: "You must provide an array of city names." });
+//     }
+
+//     try {
+//         const hotelsByCityPromises = cities.map(async (city) => {
+//             const hotels = await Hotel.find({ 'location.city': city });
+//             return { city, hotels };
+//         });
+
+//         const hotelsByCity = await Promise.all(hotelsByCityPromises);
+//         return res.json({ data: hotelsByCity });
+//     } catch (error) {
+//         return res.status(500).json({ error: 'Error fetching hotels' });
+//     }
+// }
 
 module.exports = {
     makeReservation,

@@ -19,7 +19,16 @@ const reservationValidation = Joi.object({
   numDays: Joi.number().integer().min(1).required(),
 });
 
+const searchHotelsByCityValidation = Joi.object({
+  city: Joi.string().required(),
+  startDate: Joi.string().allow('').optional(),
+  numDays: Joi.number().integer().min(0).optional(),
+  numRooms: Joi.number().integer().min(0).optional(),
+  page: Joi.number().integer().min(1).optional()
+});
+
 module.exports = {
   searchHotelsValidation,
   reservationValidation,
+  searchHotelsByCityValidation
 };
