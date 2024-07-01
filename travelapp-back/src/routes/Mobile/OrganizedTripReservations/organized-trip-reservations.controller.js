@@ -1,9 +1,9 @@
 const { validationErrors } = require("../../../middlewares/validationErrors")
-const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation } = require("../../../models/organized-trip-reservations.model")
-const { getOneOrganizedTrip, decrementSeats } = require("../../../models/organized-trips.model")
+const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation, getOrganizedTripReservation, updateReservationData, updateReservationDataOverallPrice } = require("../../../models/organized-trip-reservations.model")
+const { getOneOrganizedTrip, decrementSeats, incrementSeats } = require("../../../models/organized-trips.model")
 const { getReservation, putReservationData } = require("../../../models/plane-reservation.model")
 const { getTrip } = require("../../../models/trips.model")
-const { validateReserveTrip } = require("./organized-trip-reservations.validation")
+const { validateReserveTrip, validateCancelReservation } = require("./organized-trip-reservations.validation")
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -12,8 +12,11 @@ async function httpMakeReservation(req, res) {
 
     const organized_trip = await getOneOrganizedTrip(req.params.id);
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
-    // if (organized_trip.available_seats <= 0) return res.status(400).json({ message: 'Organized Trip Full' })
+    if (organized_trip.available_seats <= 0) return res.status(400).json({ message: 'Organized Trip Full' })
 
+    req.body.reservation_data.forEach(data => {
+        data.price = organized_trip.price
+    })
     const data = {
         user_id: req.user.id,
         num_of_people: req.body.num_of_people,
@@ -23,8 +26,7 @@ async function httpMakeReservation(req, res) {
     }
 
     // Get flights
-    const organized = await getOneOrganizedTrip(req.params.id);
-    const trip = await getTrip(organized.trip_id)
+    const trip = await getTrip(organized_trip.trip_id)
     const flights = trip.flights
 
     await decrementSeats(organized_trip, req.body.num_of_people);
@@ -32,14 +34,16 @@ async function httpMakeReservation(req, res) {
 
     flights.forEach(async flight => {
         const reservation_data = await getReservation(flight)
-        req.body.reservation_data.forEach(reservation => {
-            const data = reservation_data.reservations.data.find(reservation => reservation.person_name == 'Default')
-            if (data) {
-                data.person_name = reservation.name
-                data.person_passport = reservation.passport_number
-            }
-        })
-        await putReservationData(flight, reservation_data.reservations.data)
+        if (reservation_data) {
+            req.body.reservation_data.forEach(reservation => {
+                const data = reservation_data.reservations.data.find(reservation => reservation.person_name == 'Default')
+                if (data) {
+                    data.person_name = reservation.name
+                    data.person_passport = reservation.passport_number
+                }
+            })
+            await putReservationData(flight, reservation_data.reservations.data)
+        }
     })
     return res.status(200).json({ message: 'Reserved Successfully' })
 }
@@ -62,7 +66,14 @@ async function httpGetAllReservationsForTrip(req, res) {
     const user = req.user
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
-    // if (!trip.user_id.equals(user.id)) return res.status(400).json({ message: 'No Access To This Trip' })
+    const organized_trip = await getOneOrganizedTrip(req.params.id)
+    if (!organized_trip) {
+        return res.status(404).json({ message: 'Organized Trip Not found' });
+    }
+    const trip = await getTrip(organized_trip.trip_id)
+    if (!trip) return res.status(404).json({ message: 'Trip Not Found' });
+
+    if (!trip.user_id.equals(user.id)) return res.status(400).json({ message: 'No Access To This Trip' })
 
     const reservations = await getOrganizedTripReservationsForOneTrip(req.params.id);
     return res.status(200).json({
@@ -81,9 +92,55 @@ async function httpGetMyReservationsForTrip(req, res) {
     })
 }
 
+async function httpCancelReservation(req, res) {
+    const { error } = validateCancelReservation(req.body)
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
+    const reservation_data = await getOrganizedTripReservation(req.params.id);
+    const organized_trip = await getOneOrganizedTrip(reservation_data.trip_id)
+    const trip = await getTrip(organized_trip.trip_id)
+    let increment = 0;
+    let price = 0;
+    let reservation_data_new = []
+    const reservations = req.body.reservations
+    reservations.forEach(reservation => {
+        const temp = reservation_data.reservation_data.find(res => res._id == reservation)
+        if (temp) {
+            reservation_data.reservation_data.remove(temp)
+            reservation_data_new.push(temp.name)
+            increment++;
+            price += temp.price
+        }
+    })
+    price = reservation_data.overall_price - price
+    const flights = trip.flights
+    flights.forEach(async flight => {
+        const reservation_data = await getReservation(flight)
+        if (reservation_data) {
+            reservation_data_new.forEach(newData => {
+                const data = reservation_data.reservations.data.find(reservation => reservation.person_name == newData)
+                if (data)
+                    data.person_name = 'Default'
+            })
+            await putReservationData(flight, reservation_data.reservations.data)
+
+        }
+    })
+    await updateReservationData(reservation_data, reservation_data.reservation_data)
+    await updateReservationDataOverallPrice(reservation_data, price)
+    await incrementSeats(organized_trip, increment)
+
+    return res.status(200).json({
+        message: "Reservation Cancelled"
+    })
+}
+
+
+
 module.exports = {
     httpMakeReservation,
     httpGetMyReservationsUser,
     httpGetAllReservationsForTrip,
-    httpGetMyReservationsForTrip
+    httpGetMyReservationsForTrip,
+    httpCancelReservation
 }

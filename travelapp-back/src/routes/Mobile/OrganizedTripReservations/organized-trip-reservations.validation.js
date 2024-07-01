@@ -15,6 +15,17 @@ function validateReserveTrip(reservation) {
     return schema.validate(reservation, { abortEarly: false });
 }
 
+function validateCancelReservation(reservation) {
+    const schema = Joi.object({
+        reservations: Joi.array().items(
+            Joi.string().hex().length(24).required()
+        )
+    })
+    return schema.validate(reservation, { abortEarly: false });
+}
+
+
 module.exports = {
-    validateReserveTrip
+    validateReserveTrip,
+    validateCancelReservation
 }

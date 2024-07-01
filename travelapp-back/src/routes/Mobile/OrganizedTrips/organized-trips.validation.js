@@ -8,14 +8,31 @@ function validateCreateOrganizedTrip(organized_trip) {
     return schema.validate(organized_trip, { abortEarly: false });
 }
 
-function validateMakeDiscount(organized_trip) {
+function validateMakeDiscount(discount) {
     const schema = Joi.object({
         discount: Joi.number().min(1).max(100).required().messages({ 'any.required': 'Discount Required' })
     })
-    return schema.validate(organized_trip);
+    return schema.validate(discount);
+}
+
+function validateReviewOrganizedTrip(review) {
+    const schema = Joi.object({
+        stars: Joi.number().min(1).max(5).required().messages({ 'any.required': 'Review Required' })
+    })
+    return schema.validate(review);
+}
+
+function validateMakeOrganizedTripAnnouncement(announcement) {
+    const schema = Joi.object({
+        announcement_title: Joi.string().required().messages({ 'any.required': 'Title is Required' }),
+        announcement_body: Joi.string().required().messages({ 'any.required': 'Title is Required' })
+    })
+    return schema.validate(announcement);
 }
 
 module.exports = {
     validateCreateOrganizedTrip,
-    validateMakeDiscount
+    validateMakeDiscount,
+    validateReviewOrganizedTrip,
+    validateMakeOrganizedTripAnnouncement
 }

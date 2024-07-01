@@ -15,6 +15,11 @@ const reservationDataSchema = new mongoose.Schema({
         required: true,
         minLength: 6,
         maxLength: 9
+    },
+    price: {
+        type: Number,
+        required: true,
+        min: 0
     }
 })
 

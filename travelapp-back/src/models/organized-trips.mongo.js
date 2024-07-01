@@ -26,6 +26,19 @@ const organizedTripSchema = new mongoose.Schema({
         type: Number,
         default: 0,
         required: true
+    },
+    reviews: {
+        type: [{
+            user_id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            stars: {
+                type: Number,
+                required: true
+            }
+        }]
     }
 })
 
