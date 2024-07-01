@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const announcementSchema = new mongoose.Schema({
+const announcementRequestSchema = new mongoose.Schema({
     announcement_title: {
         type: String,
         required: true
@@ -9,15 +9,17 @@ const announcementSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    from_organizer: {
-        type: Boolean,
-        required: true,
-        default: false
+    organizer_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     organized_trip_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OrganizedTrip'
     },
+    is_accepted: {
+        type: Boolean,
+    }
 }, { timestamps: true })
 
-module.exports = mongoose.model('Announcement', announcementSchema)
+module.exports = mongoose.model('AnnouncementRequest', announcementRequestSchema)

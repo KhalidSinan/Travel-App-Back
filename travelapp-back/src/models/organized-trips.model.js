@@ -22,10 +22,25 @@ async function makeDiscount(trip, discount) {
     await trip.save();
 }
 
+async function addReview(user_id, stars, trip) {
+    trip.reviews.push({
+        user_id,
+        stars
+    })
+    await trip.save();
+}
+
+async function incrementSeats(trip, decrement) {
+    trip.available_seats += decrement;
+    await trip.save();
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
     postOrganizedtrip,
     decrementSeats,
-    makeDiscount
+    makeDiscount,
+    addReview,
+    incrementSeats
 }
