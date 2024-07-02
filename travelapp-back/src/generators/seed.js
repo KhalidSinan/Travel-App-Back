@@ -15,7 +15,7 @@ async function seedDB() {
     console.log('Seeding Database');
 
     // Admin
-    await createAdmin();
+    // await createAdmin();
     await adminsMongo.create({ username: 'elonMusk-22', password: '123123123', role: 'Super-Admin' })
 
     // Trips

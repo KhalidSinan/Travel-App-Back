@@ -21,6 +21,10 @@ const roomTypeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    bed_options_count: {
+        type: Number,
+        required: true
+    },
     sleeps_count: {
         type: Number,
         required: true
