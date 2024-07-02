@@ -218,7 +218,7 @@ async function getHotelsByCities(req, res) {
     } else {
         effectiveStartDate = new Date();
     }
-    effectiveStartDate.setHours(0, 0, 0, 0);
+    effectiveStartDate.setHours(3, 0, 0, 0);
 
     let query = {
         'location.city': { $regex: new RegExp(city, 'i') }
