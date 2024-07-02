@@ -48,7 +48,7 @@ async function searchHotels(req, res) {
         sortOptions = { 'stars': order === 'asc' ? 1 : -1 };
     }
     const hotelsCount = await Hotel.find(query).countDocuments();
-    const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
+    const hotelsQuery = Hotel.find(query);
 
     if (Object.keys(sortOptions).length > 0) {
         hotelsQuery.sort(sortOptions);
@@ -72,6 +72,7 @@ async function searchHotels(req, res) {
 
     if (startDate == '' && numDays == 1 && numRooms == 1) {
         response.hotels = hotels;
+        response.hotels = response.hotels.slice(skip, skip + 10)
         console.log('All Hotels')
     } else if (numRooms && numDays == 1) {
         const suitableHotels = hotels.filter(hotel => {
@@ -80,6 +81,7 @@ async function searchHotels(req, res) {
         console.log("Suitable Hotels for numRooms:", suitableHotels.length);
         response.totalHotelsFound = suitableHotels.length;
         response.hotels = suitableHotels;
+        response.hotels = response.hotels.slice(skip, skip + 10)
     } else if (numDays && numRooms == 1) {
         const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
         const availableHotels = await Promise.all(hotels.map(async (hotel) => {
@@ -94,6 +96,7 @@ async function searchHotels(req, res) {
         console.log("Available Hotels for numDays:", filteredHotels.length);
         response.totalHotelsFound = filteredHotels.length;
         response.hotels = filteredHotels;
+        response.hotels = response.hotels.slice(skip, skip + 10)
     } else if (startDate && numDays && numRooms) {
         const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
         const availableHotels = await Promise.all(hotels.map(async (hotel) => {
@@ -113,8 +116,10 @@ async function searchHotels(req, res) {
         console.log("Available Hotels for startDate, numDays, and numRooms:", filteredHotels.length);
         response.totalHotelsFound = filteredHotels.length;
         response.hotels = filteredHotels;
+        response.hotels = response.hotels.slice(skip, skip + 10)
     }
-    response.totalHotelsFound = hotelsCount
+    response.current_page = Math.max(Math.min(10, 10 - ((page * 10) - response.totalHotelsFound)), 0);
+
     response.hotels = serializedData(response.hotels, hotelData)
     return res.json({ data: response });
 }
@@ -211,84 +216,51 @@ async function getHotelsByCities(req, res) {
         return res.status(400).json({ error: "You must provide the city name." });
     }
 
-    let effectiveStartDate;
-    if (startDate != '') {
-        const [day, month, year] = startDate.split('/').map(Number);
-        effectiveStartDate = new Date(year, month - 1, day);
-    } else {
-        effectiveStartDate = new Date();
-    }
+    const [day, month, year] = startDate.split('/').map(Number);
+    let effectiveStartDate = new Date(year, month - 1, day);
     effectiveStartDate.setHours(3, 0, 0, 0);
 
     let query = {
-        'location.city': { $regex: new RegExp(city, 'i') }
+        'location.city': city,
     }
 
     const { skip, limit } = getPagination({ page, limit: 10 });
 
     const hotelsCount = await Hotel.find(query).countDocuments();
-    const hotelsQuery = Hotel.find(query).skip(skip).limit(limit);
+    const hotelsQuery = Hotel.find(query);
 
     let hotels = await hotelsQuery;
-
-    console.log("Hotels found:", hotelsCount);
-
-    const current_page = Math.min(10, 10 - ((page * 10) - hotelsCount));
+    let current_page = Math.min(10, 10 - ((page * 10) - hotelsCount));
     let response = {
         totalHotelsFound: hotelsCount,
         current_page: current_page,
         hotels: []
     };
 
-    // if (numDays == 0) numDays = null
-    // if (numRooms == 0) numRooms = null
+    console.log("Hotels found:", hotelsCount);
 
-    if (startDate == '' && numDays == 1 && numRooms == 1) {
-        response.hotels = hotels;
-        console.log('All Hotels')
-    } else if (numRooms && numDays == 1) {
-        const suitableHotels = hotels.filter(hotel => {
-            return hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
+    const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
+    const availableHotels = await Promise.all(hotels.map(async (hotel) => {
+        const reservations = await HotelReservation.find({
+            hotel_id: hotel._id,
+            start_date: { $lte: endDate },
+            end_date: { $gte: effectiveStartDate }
         });
-        console.log("Suitable Hotels for numRooms:", suitableHotels.length);
-        response.totalHotelsFound = suitableHotels.length;
-        response.hotels = suitableHotels;
-    } else if (numDays && numRooms == 1) {
-        const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
-        const availableHotels = await Promise.all(hotels.map(async (hotel) => {
-            const reservations = await HotelReservation.find({
-                hotel_id: hotel._id,
-                start_date: { $lte: endDate },
-                end_date: { $gte: effectiveStartDate }
-            });
-            return reservations.length === 0 ? hotel : null;
-        }));
-        const filteredHotels = availableHotels.filter(Boolean);
-        console.log("Available Hotels for numDays:", filteredHotels.length);
-        response.totalHotelsFound = filteredHotels.length;
-        response.hotels = filteredHotels;
-    } else if (startDate && numDays && numRooms) {
-        const endDate = new Date(effectiveStartDate.getTime() + numDays * 24 * 60 * 60 * 1000);
-        const availableHotels = await Promise.all(hotels.map(async (hotel) => {
-            const reservations = await HotelReservation.find({
-                hotel_id: hotel._id,
-                start_date: { $lte: endDate },
-                end_date: { $gte: effectiveStartDate }
-            });
-            let totalReserved = reservations.reduce((acc, curr) => acc + curr.number_of_rooms, 0);
-            let totalAvailable = hotel.rooms_number - totalReserved;
+        let totalReserved = reservations.reduce((acc, curr) => acc + curr.number_of_rooms, 0);
+        let totalAvailable = hotel.rooms_number - totalReserved;
 
-            const roomTypeAvailability = hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
+        const roomTypeAvailability = hotel.room_types.some(roomType => roomType.available_rooms >= numRooms);
 
-            return (totalAvailable >= numRooms && roomTypeAvailability) ? hotel : null;
-        }));
-        const filteredHotels = availableHotels.filter(Boolean);
-        console.log("Available Hotels for startDate, numDays, and numRooms:", filteredHotels.length);
-        response.totalHotelsFound = filteredHotels.length;
-        response.hotels = filteredHotels;
-    }
-    response.totalHotelsFound = hotelsCount
+        return (totalAvailable >= numRooms && roomTypeAvailability) ? hotel : null;
+    }));
+    const filteredHotels = availableHotels.filter(Boolean);
+    console.log("Available Hotels for startDate, numDays, and numRooms:", filteredHotels.length);
+    response.totalHotelsFound = filteredHotels.length;
+    response.hotels = filteredHotels;
+    response.hotels = response.hotels.slice(skip, skip + 10)
     response.hotels = serializedData(response.hotels, hotelData)
+
+    response.current_page = Math.max(Math.min(10, 10 - ((page * 10) - filteredHotels.length)), 0);
     return res.json({ data: response });
 }
 
