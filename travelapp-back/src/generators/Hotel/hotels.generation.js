@@ -71,6 +71,7 @@ function createRoomTypes() {
                 description: `${category.type} with well-furnished, spacious rooms.`,
                 price: parseFloat((Math.random() * 100 + 100 * category.priceMultiplier).toFixed(2)),
                 bed_options: faker.helpers.arrayElement(bedOptions),
+                bed_options_count: faker.number.int({ min: 1, max: 4 }),
                 sleeps_count: faker.number.int({ min: 1, max: 4 }),
                 smoking_allowed: faker.datatype.boolean(),
                 available_rooms: totalRooms,
@@ -114,7 +115,7 @@ async function createHotels() {
         let city;
         if (location.cities.length == 0) city = faker.location.city();
         else city = location?.cities[Math.floor(Math.random() * location.cities.length)];
-        
+
         const hotel = {
             name: data.name,
             location: {
