@@ -22,11 +22,11 @@ async function validateGetFlight(data) {
 
 async function validateGetFlightsOptions(data) {
     const filterSchema = Joi.object({
-        time_start: Joi.string().default(null),
-        time_end: Joi.string().default(null),
-        min_price: Joi.number().default(-Infinity),
-        max_price: Joi.number().default(Infinity),
-        airline: Joi.string().default(null)
+        time_start: Joi.string().default(null).allow(null),
+        time_end: Joi.string().default(null).allow(null),
+        min_price: Joi.number().default(-Infinity).allow(null),
+        max_price: Joi.number().default(Infinity).allow(null),
+        airline: Joi.string().default(null).allow(null)
     })
 
     const destinationSchema = Joi.object({

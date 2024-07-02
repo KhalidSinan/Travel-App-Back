@@ -7,17 +7,17 @@ const airportsNum = airports.length
 const airlinesNum = airlines.length
 
 const firstClassFeatures = [
-    "Comfort",
+    "Spa",
     "Beverages",
     "Buffet",
-    "Toiletries",
+    "Shower",
     "Bedding"
 ]
 const businessClassFeatures = [
     "Lie seats",
-    "Suite",
+    "Privacy",
     "Entertainment",
-    "Pajamas",
+    "Fast Food",
     "Wifi"
 ]
 const economyClassFeatures = [
@@ -27,6 +27,29 @@ const economyClassFeatures = [
     "Charging",
     "Backrest"
 ]
+
+
+// const firstClassFeatures = [
+//     "Comfort",
+//     "Beverages",
+//     "Buffet",
+//     "Toiletries",
+//     "Bedding"
+// ]
+// const businessClassFeatures = [
+//     "Lie seats",
+//     "Suite",
+//     "Entertainment",
+//     "Pajamas",
+//     "Wifi"
+// ]
+// const economyClassFeatures = [
+//     "Meal",
+//     "Drinks",
+//     "TV",
+//     "Charging",
+//     "Backrest"
+// ]
 
 // const firstClassFeatures = [
 //     "Premium Seats",
