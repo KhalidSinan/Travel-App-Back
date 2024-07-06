@@ -38,7 +38,9 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    phone: contactSchema,
+    phone: {
+        type: contactSchema
+    },
     location: {
         country: String,
         city: String
@@ -59,7 +61,7 @@ const userSchema = new mongoose.Schema({
     profile_pic: {
         type: String,
     },
-    is_guide: {
+    is_organizer: {
         type: Boolean,
         default: false,
         required: true

@@ -1,7 +1,7 @@
 const { userData } = require('./users.serializer');
 const { validationErrors } = require('../../../middlewares/validationErrors')
-const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount } = require('../../../models/users.model');
-const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount, validateBecomeOrganizer } = require('./users.validation');
+const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount, putPhoneNumber } = require('../../../models/users.model');
+const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount, validateBecomeOrganizer, validateChangePhoneNumber } = require('./users.validation');
 const { addRequest, getRequest, getRequestByUserId } = require('../../../models/organizer-request.model');
 
 async function httpGetProfile(req, res) {
@@ -81,6 +81,21 @@ async function httpPutProfilePic(req, res) {
     return res.status(200).json({ message: 'Profile Picture Updated Successfully' });
 }
 
+async function httpPutPhoneNumber(req, res) {
+    const { error } = await validateChangePhoneNumber(req.body)
+    if (error) {
+        return res.status(400).json({ message: validationErrors(error.details) })
+    }
+    const user = req.user;
+    if (!user) return res.status(400).json({ message: 'User Not Found' })
+    const data = {
+        country_code: req.body.country_code,
+        number: req.body.number,
+    }
+    await putPhoneNumber(user, data)
+    return res.status(200).json({ message: 'Phone Number Updated Successfully' });
+}
+
 async function httpPutPassword(req, res) {
     const { error } = await validateChangePassword(req.body);
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
@@ -133,6 +148,7 @@ module.exports = {
     httpPutGender,
     httpPutDate,
     httpPutProfilePic,
+    httpPutPhoneNumber,
     httpGetProfile,
     httpPutLocation,
     httpPutPassword,
