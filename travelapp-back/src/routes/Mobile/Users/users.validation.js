@@ -46,6 +46,18 @@ async function validateChangeLocation(data) {
     return schema.validate(data);
 }
 
+async function validateChangePhoneNumber(data) {
+    const schema = Joi.object({
+        country_code: Joi.string().required().messages({
+            'any.required': 'Country Code Required To Change'
+        }),
+        number: Joi.string().required().messages({
+            'any.required': 'Number Required To Change'
+        })
+    })
+    return schema.validate(data);
+}
+
 async function validateChangePassword(data) {
     const schema = Joi.object({
         old_password: Joi.string().min(8).max(25).required().label('Password').messages({
@@ -92,5 +104,6 @@ module.exports = {
     validateChangeLocation,
     validateChangePassword,
     validateDeleteAccount,
-    validateBecomeOrganizer
+    validateBecomeOrganizer,
+    validateChangePhoneNumber
 }

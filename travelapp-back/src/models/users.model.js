@@ -30,6 +30,11 @@ async function putProfilePic(user, profile_pic) {
     return await user.save();
 }
 
+async function putPhoneNumber(user, phone_number) {
+    user.phone = phone_number;
+    return await user.save();
+}
+
 async function getProfile(user) {
     return user
 }
@@ -74,20 +79,20 @@ async function deleteAccount(user_id) {
 }
 
 async function getOrganizers() {
-    return await User.find({ is_guide: true });
+    return await User.find({ is_organizer: true });
 }
 
 async function getOrganizer(_id) {
-    return await User.find({ _id, is_guide: true });
+    return await User.find({ _id, is_organizer: true });
 }
 
 async function acceptOrganizer(id) {
-    return await User.findOneAndUpdate({ _id: id }, { is_guide: true });
+    return await User.findOneAndUpdate({ _id: id }, { is_organizer: true });
 }
 
 // No need
 async function denyOrganizer(_id) {
-    return await User.findOneAndUpdate({ _id }, { is_guide: true });
+    return await User.findOneAndUpdate({ _id }, { is_organizer: true });
 }
 
 async function getUserById(_id) {
@@ -95,7 +100,7 @@ async function getUserById(_id) {
 }
 
 async function deactivateAccount(_id) {
-    return await User.findOneAndUpdate({ _id }, { is_guide: false });
+    return await User.findOneAndUpdate({ _id }, { is_organizer: false });
 }
 
 module.exports = {
@@ -105,6 +110,7 @@ module.exports = {
     putGender,
     putDate,
     putProfilePic,
+    putPhoneNumber,
     getProfile,
     putPassword,
     putLocation,
