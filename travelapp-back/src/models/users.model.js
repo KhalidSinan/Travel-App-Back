@@ -78,8 +78,8 @@ async function deleteAccount(user_id) {
     return await User.deleteOne({ _id: user_id });
 }
 
-async function getOrganizers() {
-    return await User.find({ is_organizer: true });
+async function getOrganizers(skip, limit) {
+    return await User.find({ is_organizer: true }).skip(skip).limit(limit);
 }
 
 async function getOrganizer(_id) {

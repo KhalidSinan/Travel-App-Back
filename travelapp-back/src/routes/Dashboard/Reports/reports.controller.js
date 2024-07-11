@@ -1,20 +1,21 @@
 const { getAllReportsOnApp, deleteReport, getOneReport, getAllReportsOnOrganizers } = require('../../../models/reports.model');
 const { serializedData } = require('../../../services/serializeArray');
 const { reportDataOnApp, reportDataOnOrganizer } = require('./reports.serializer');
+const { getPagination } = require('../../../services/query')
 
 async function httpGetAllReportsOnApp(req, res) {
-    const reports = await getAllReportsOnApp();
+    const { skip, limit } = getPagination(req.query)
+    const reports = await getAllReportsOnApp(skip, limit);
     return res.status(200).json({
         data: serializedData(reports, reportDataOnApp),
-        count: reports.length
     })
 }
 
 async function httpGetAllReportsOnOrganizers(req, res) {
-    const reports = await getAllReportsOnOrganizers();
+    const { skip, limit } = getPagination(req.query)
+    const reports = await getAllReportsOnOrganizers(skip, limit);
     return res.status(200).json({
         data: serializedData(reports, reportDataOnOrganizer),
-        count: reports.length
     })
 }
 

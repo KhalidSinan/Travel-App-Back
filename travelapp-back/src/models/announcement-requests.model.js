@@ -4,8 +4,8 @@ async function getAnnouncementRequest(id) {
     return await AnnouncementRequest.findById(id);
 }
 
-async function getAnnouncementRequests() {
-    return await AnnouncementRequest.find();
+async function getAnnouncementRequests(skip, limit) {
+    return await AnnouncementRequest.find().skip(skip).limit(limit);
 }
 
 async function postAnnouncementRequest(data) {

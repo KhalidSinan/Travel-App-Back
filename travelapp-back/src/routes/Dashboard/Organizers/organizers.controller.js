@@ -1,7 +1,9 @@
 const { getOrganizer, deleteAccount, getOrganizers, deactivateAccount } = require("../../../models/users.model")
+const { getPagination } = require('../../../services/query')
 
 async function httpGetAllOrganizers(req, res) {
-    const organizers = await getOrganizers();
+    const { skip, limit } = getPagination(req.query)
+    const organizers = await getOrganizers(skip, limit);
     return res.status(200).json({ data: organizers })
 }
 
