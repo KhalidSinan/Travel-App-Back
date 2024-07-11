@@ -26,7 +26,7 @@ async function login(req, res) {
 async function httpGetAllAdmins(req, res) {
     const { skip, limit } = getPagination(req.query)
     const admins = await getAdmins(skip, limit)
-    return res.status(200).json(admins)
+    return res.status(200).json({ data: admins })
 }
 
 async function httpPostAdmin(req, res) {

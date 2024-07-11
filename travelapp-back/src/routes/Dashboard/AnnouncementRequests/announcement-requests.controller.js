@@ -1,9 +1,9 @@
-const { validationErrors } = require('../../../middlewares/validationErrors')
 const { getAnnouncementRequest, getAnnouncementRequests, acceptAnnouncementRequest, denyAnnouncementRequest } = require('../../../models/announcement-requests.model')
-
+const { getPagination } = require('../../../services/query')
 
 async function httpGetAllAnnouncementRequests(req, res) {
-    const data = await getAnnouncementRequests()
+    const { skip, limit } = getPagination(req.query)
+    const data = await getAnnouncementRequests(skip, limit)
     return res.status(200).json({
         message: 'Announcement Requests Retrieved Successfully',
         data: data

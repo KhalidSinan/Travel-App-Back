@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkObjectID = require('../../../middlewares/checkObjectID');
 const checkAdmin = require('../../../middlewares/checkAdmin');
-const { httpGetAllOrganizers, httpGetOneOrganizer, httpAcceptOrganizer, httpDeleteOrganizer, httpDenyOrganizer, httpDeactivateOrganizer } = require('./organizers.controller');
+const { httpGetAllOrganizers, httpGetOneOrganizer, httpDeleteOrganizer, httpDeactivateOrganizer } = require('./organizers.controller');
 
 const organizersRouter = express.Router();
 

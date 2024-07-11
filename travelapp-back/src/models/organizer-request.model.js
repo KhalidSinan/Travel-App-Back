@@ -4,8 +4,8 @@ async function addRequest(data) {
     return await OrganizerRequest.create(data);
 }
 
-async function getRequests() {
-    return await OrganizerRequest.find();
+async function getRequests(skip, limit) {
+    return await OrganizerRequest.find().skip(skip).limit(limit);
 }
 
 async function getRequest(id) {
