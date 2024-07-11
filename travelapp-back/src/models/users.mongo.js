@@ -66,6 +66,11 @@ const userSchema = new mongoose.Schema({
         default: false,
         required: true
     },
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5
+    },
     google_id: {
         type: String,
     },

@@ -1,7 +1,11 @@
 const Report = require('./reports.mongo')
 
-async function getAllReports() {
-    return await Report.find().populate('user_id', 'name');
+async function getAllReportsOnApp() {
+    return await Report.find({ on_organizer: false }).populate('user_id', 'name');
+}
+
+async function getAllReportsOnOrganizers() {
+    return await Report.find({ on_organizer: true }).populate('user_id', 'name').populate('organizer_id', 'name');
 }
 
 async function getOneReport(id) {
@@ -18,7 +22,8 @@ async function deleteReport(_id) {
 
 
 module.exports = {
-    getAllReports,
+    getAllReportsOnApp,
+    getAllReportsOnOrganizers,
     getOneReport,
     postReport,
     deleteReport

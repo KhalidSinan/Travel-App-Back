@@ -12,6 +12,7 @@ opts.secretOrKey = process.env.SECRET_KEY;
 opts.passReqToCallback = true;
 passport.use(new JwtStrategy(opts, async (req, jwt_payload, done) => {
     try {
+
         const token = req.headers.authorization.split(' ')[1];
         const user = await User.findById(jwt_payload.id);
         const admin = await Admin.findById(jwt_payload.id);

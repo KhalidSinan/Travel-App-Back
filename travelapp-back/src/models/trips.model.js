@@ -21,10 +21,11 @@ async function getSharedTrips(city) {
         .populate('destinations.destination.cities.activities.place');
 }
 
+
 module.exports = {
     getTrip,
     deleteTrip,
     shareTrip,
     cancelTrip,
-    getSharedTrips
+    getSharedTrips,
 }

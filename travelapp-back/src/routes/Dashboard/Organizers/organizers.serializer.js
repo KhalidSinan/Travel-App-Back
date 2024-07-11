@@ -4,6 +4,7 @@ function organizersData(organizer) {
         user_id: organizer.user_id,
         name: organizer.name,
         years_of_experience: organizer.years_of_experience,
+        rating: organizer.rating,
         sent_at: organizer.updatedAt
     }
 }
