@@ -53,6 +53,7 @@ app.use('/dashboard', require('./routes/Dashboard/Organizers/organizers.route'))
 app.use('/dashboard', require('./routes/Dashboard/OrganizersRequests/organizers-requests.route'))
 app.use('/dashboard', require('./routes/Dashboard/Reports/reports.route'))
 app.use('/dashboard', require('./routes/Dashboard/AnnouncementRequests/announcement-requests.route'))
+app.use('/dashboard', require('./routes/Dashboard/Statistics/statistics.route'))
 
 // Error Handling
 app.use(errorHandler);

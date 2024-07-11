@@ -1,11 +1,20 @@
-const { getAllReports, deleteReport, getOneReport } = require('../../../models/reports.model');
+const { getAllReportsOnApp, deleteReport, getOneReport, getAllReportsOnOrganizers } = require('../../../models/reports.model');
 const { serializedData } = require('../../../services/serializeArray');
-const { reportData } = require('./reports.serializer');
+const { reportDataOnApp, reportDataOnOrganizer } = require('./reports.serializer');
 
-async function httpGetAllReports(req, res) {
-    const reports = await getAllReports();
+async function httpGetAllReportsOnApp(req, res) {
+    const reports = await getAllReportsOnApp();
     return res.status(200).json({
-        data: serializedData(reports, reportData),
+        data: serializedData(reports, reportDataOnApp),
+        count: reports.length
+    })
+}
+
+async function httpGetAllReportsOnOrganizers(req, res) {
+    const reports = await getAllReportsOnOrganizers();
+    return res.status(200).json({
+        data: serializedData(reports, reportDataOnOrganizer),
+        count: reports.length
     })
 }
 
@@ -18,6 +27,7 @@ async function httpDeleteReport(req, res) {
 
 
 module.exports = {
-    httpGetAllReports,
+    httpGetAllReportsOnApp,
+    httpGetAllReportsOnOrganizers,
     httpDeleteReport
 }

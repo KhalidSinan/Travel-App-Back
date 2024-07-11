@@ -103,6 +103,47 @@ async function deactivateAccount(_id) {
     return await User.findOneAndUpdate({ _id }, { is_organizer: false });
 }
 
+async function getUsersAge() {
+    return await User.aggregate([
+        {
+            $project: {
+                age: {
+                    $floor: {
+                        $divide: [
+                            { $subtract: [new Date(), "$date_of_birth"] },
+                            31557600000 // milliseconds in a year
+                        ]
+                    }
+                },
+                _id: 0 // Remove the default _id field
+            }
+        },
+        {
+            $group: {
+                _id: {
+                    $switch: {
+                        branches: [
+                            { case: { $lt: ['$age', 18] }, then: 'Under 18' },
+                            { case: { $and: [{ $gte: ['$age', 18] }, { $lt: ['$age', 25] }] }, then: '18-24' },
+                            { case: { $and: [{ $gte: ['$age', 25] }, { $lt: ['$age', 35] }] }, then: '25-34' },
+                            { case: { $gte: ['$age', 35] }, then: '35 and above' }
+                        ],
+                        default: 'Unknown'
+                    }
+                },
+                count: { $sum: 1 }
+            }
+        },
+        {
+            $project: {
+                _id: 0, // Remove the default _id field
+                ageGroup: '$_id',
+                count: 1
+            }
+        }
+    ]);
+}
+
 module.exports = {
     postUser,
     getUser,
@@ -124,5 +165,6 @@ module.exports = {
     getOrganizer,
     acceptOrganizer,
     getUserById,
-    deactivateAccount
+    deactivateAccount,
+    getUsersAge
 }
