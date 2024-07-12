@@ -20,5 +20,5 @@ module.exports = {
     getOrganizers,
     getOrganizer,
     deleteOrganizerAccount,
-    postOrganizerData
+    postOrganizerData,
 }

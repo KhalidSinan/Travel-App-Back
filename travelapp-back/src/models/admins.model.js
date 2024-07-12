@@ -20,9 +20,16 @@ async function deleteAdmin(id) {
     return await Admin.deleteOne({ _id: id })
 }
 
+async function searchAdmins(skip, limit, username) {
+    return await Admin.find({ username: { $regex: new RegExp(username, 'i') } })
+        .skip(skip)
+        .limit(limit);
+}
+
 module.exports = {
     findAdmin,
     getAdmins,
     postAdmin,
-    deleteAdmin
+    deleteAdmin,
+    searchAdmins
 }
