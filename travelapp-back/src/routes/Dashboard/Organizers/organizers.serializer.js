@@ -1,14 +1,29 @@
 function organizersData(organizer) {
+    //     id
+    // organizer name
+    // company name
+    // rating
+    // picture
     return {
         id: organizer._id,
-        user_id: organizer.user_id,
-        name: organizer.name,
-        years_of_experience: organizer.years_of_experience,
+        organizer_name: organizer.name,
+        company_name: o,
         rating: organizer.rating,
-        sent_at: organizer.updatedAt
+        profile_pic: organizer.image
+    }
+}
+
+function organizerData(organizer) {
+    return {
+        id: organizer._id,
+        name: organizer.name,
+        company_name: o,
+        rating: organizer.rating,
+        profile_pic: organizer.image
     }
 }
 
 module.exports = {
-    organizerRequestsData
+    organizersData,
+    organizerData,
 }
