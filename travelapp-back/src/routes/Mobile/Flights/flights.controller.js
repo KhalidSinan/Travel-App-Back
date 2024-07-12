@@ -98,8 +98,8 @@ async function httpGetFlightsForTrip(req, res) {
 
         if (destinations[i]?.filter) {
             let { time_start, time_end, min_price, max_price } = destinations[i].filter
-            if (time_start && time_end) flights = getFlightsTimeFilterHelper(departure_date, time_start, time_end, flights)
-            if (min_price && max_price) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
+            if (time_start != null && time_end != null) flights = getFlightsTimeFilterHelper(departure_date, time_start, time_end, flights)
+            if (min_price != null && max_price != null) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
         }
         if (flights.length != lengthToCompare) reason = "The Filter Criteria Doesn't Match Flights"
 

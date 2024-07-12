@@ -4,6 +4,7 @@ const { getPagination } = require('../../../services/query')
 async function httpGetAllOrganizers(req, res) {
     const { skip, limit } = getPagination(req.query)
     const organizers = await getOrganizers(skip, limit);
+    console.log(organizers[0])
     return res.status(200).json({ data: organizers })
 }
 
