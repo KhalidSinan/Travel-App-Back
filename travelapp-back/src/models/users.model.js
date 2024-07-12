@@ -78,14 +78,6 @@ async function deleteAccount(user_id) {
     return await User.deleteOne({ _id: user_id });
 }
 
-async function getOrganizers(skip, limit) {
-    return await User.find({ is_organizer: true }).skip(skip).limit(limit);
-}
-
-async function getOrganizer(_id) {
-    return await User.find({ _id, is_organizer: true });
-}
-
 async function acceptOrganizer(id) {
     return await User.findOneAndUpdate({ _id: id }, { is_organizer: true });
 }
@@ -161,8 +153,6 @@ module.exports = {
     checkConfirmed,
     getDeviceTokens,
     deleteAccount,
-    getOrganizers,
-    getOrganizer,
     acceptOrganizer,
     getUserById,
     deactivateAccount,

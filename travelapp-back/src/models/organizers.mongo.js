@@ -9,7 +9,9 @@ const organizerSchema = new mongoose.Schema({
     rating: {
         type: Number,
         min: 0,
-        max: 5
+        max: 5,
+        default: 0,
+        required: true
     },
     company_name: {
         type: String,
@@ -29,4 +31,4 @@ const organizerSchema = new mongoose.Schema({
 
 }, { timestamps: true })
 
-module.exports = mongoose.model('User', organizerSchema);
+module.exports = mongoose.model('Organizer', organizerSchema);

@@ -6,7 +6,7 @@ const organizerRequestSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    name: {
+    company_name: {
         type: String,
         required: true
     },
