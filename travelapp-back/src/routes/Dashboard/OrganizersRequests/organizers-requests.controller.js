@@ -3,15 +3,13 @@ const { validationErrors } = require('../../../middlewares/validationErrors');
 const { acceptRequest, denyRequest, getRequests, getRequest } = require("../../../models/organizer-request.model");
 const { serializedData } = require('../../../services/serializeArray')
 const { organizerRequestsData } = require('./organizer-requests.serializer')
-const { getPagination } = require('../../../services/query')
+const { getPagination } = require('../../../services/query');
+const { postOrganizerData } = require("../../../models/organizers.model");
 
 // Done
 async function httpGetOrganizersRequests(req, res) {
-    const user = await getUserById(req.body.id);
-    if (!user) return res.status(400).json({ message: 'User Not Found' })
     const { skip, limit } = getPagination(req.query)
     const requests = await getRequests(skip, limit)
-
     return res.status(200).json({ data: serializedData(requests, organizerRequestsData) })
 }
 
@@ -35,6 +33,13 @@ async function httpAcceptOrganizerRequest(req, res) {
     // Need id of request
     await acceptRequest(req.params.id)
     await acceptOrganizer(request.user_id)
+    const data = {
+        user_id: request.user_id,
+        company_name: request.company_name,
+        years_of_experience: request.years_of_experience
+        // pdfs
+    }
+    await postOrganizerData(data)
 
     return res.status(200).json({ message: 'Organizer Request Accepted' })
 }

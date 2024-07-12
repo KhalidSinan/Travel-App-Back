@@ -131,7 +131,7 @@ async function httpBecomeOrganizer(req, res) {
 
     const request = await getRequestByUserId(user._id)
     if (!request || request.is_accepted == false) {
-        data = { name: req.body.name, years_of_experience: req.body.years_of_experience, user_id: user._id }
+        data = { company_name: req.body.company_name, years_of_experience: req.body.years_of_experience, user_id: user._id }
         await addRequest(data)
         return res.status(200).json({ message: 'Request To Become Organizer Has Been Sent' })
     } else if (request.is_accepted == true) {
