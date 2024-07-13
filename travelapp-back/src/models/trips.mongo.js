@@ -19,6 +19,10 @@ const tripSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    price_per_person: {
+        type: Number,
+        required: true,
+    },
     start_date: {
         type: Date,
         required: true

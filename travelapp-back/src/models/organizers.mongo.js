@@ -32,7 +32,10 @@ const organizerSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    // papers_pdfs: 
+    proofs: {
+        type: [String],
+        required: true
+    }
 
 }, { timestamps: true })
 

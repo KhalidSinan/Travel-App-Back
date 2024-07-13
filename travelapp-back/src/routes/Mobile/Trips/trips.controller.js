@@ -29,12 +29,13 @@ async function makeTrip(req, res) {
         if (!await checkHotelsReservations(hotels)) return res.status(400).json({ message: 'Hotel Reservation Not Found' })
 
         let overall_price = await makeTripOverallPriceHelper(flights, hotels);
-
+        let price_per_person = (overall_price / num_of_people).toFixed(2)
         const trip = new Trip({
             user_id: userId,
             overall_num_of_days,
             num_of_people,
             overall_price,
+            price_per_person,
             start_date: new Date(start_date),
             end_date,
             starting_place,
