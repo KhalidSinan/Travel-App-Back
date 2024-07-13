@@ -27,6 +27,11 @@ const organizerSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    num_of_reports: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     // papers_pdfs: 
 
 }, { timestamps: true })

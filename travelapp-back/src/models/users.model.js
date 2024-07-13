@@ -74,6 +74,10 @@ async function getDeviceTokens(user_id) {
     return await User.find({ _id: user_id }).select('device_token -_id');
 }
 
+async function getAllDeviceTokens() {
+    return await User.find({}, 'device_token').select('device_token -_id');
+}
+
 async function deleteAccount(user_id) {
     return await User.deleteOne({ _id: user_id });
 }
@@ -156,5 +160,6 @@ module.exports = {
     acceptOrganizer,
     getUserById,
     deactivateAccount,
-    getUsersAge
+    getUsersAge,
+    getAllDeviceTokens
 }

@@ -7,6 +7,8 @@ async function sendPushNotification(title, body, token, data = null) {
     token.forEach(tok => {
         if (tok.expiry - Date.now() > 0) temp.push(tok.token)
     })
+    // temp = [token, token, token, token]
+    // loop over them and send
     const message = {
         notification: {
             title,
