@@ -20,9 +20,14 @@ async function putIsRead(notification_id, is_read) {
     await Notification.findByIdAndUpdate(notification_id, { is_read })
 }
 
+async function getNotifications() {
+    return await Notification.find()
+}
+
 module.exports = {
     postNotification,
     getNotificationsForUser,
     getNotification,
-    putIsRead
+    putIsRead,
+    getNotifications
 }
