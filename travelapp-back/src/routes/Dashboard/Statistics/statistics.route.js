@@ -11,5 +11,9 @@ const statisticsRouter = express.Router();
 statisticsRouter.get('/statistics/top-countries', requireJwtAuth, checkAdmin, asyncHandler(httpGetTop10Countries))
 // get age of users
 statisticsRouter.get('/statistics/users-age', requireJwtAuth, checkAdmin, asyncHandler(httpGetUsersAgeStatistics))
+// get top 10 hotels
+// statisticsRouter.get('/statistics/top-hotels', requireJwtAuth, checkAdmin, asyncHandler(httpGetUsersAgeStatistics))
+// get revenue
+// statisticsRouter.get('/statistics/revenue', requireJwtAuth, checkAdmin, asyncHandler(httpGetUsersAgeStatistics))
 
 module.exports = statisticsRouter;

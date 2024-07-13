@@ -1,12 +1,16 @@
 const { deleteAccount, deactivateAccount, getDeviceTokens } = require("../../../models/users.model")
 const { getPagination } = require('../../../services/query')
 const { getOrganizer, getOrganizers, deleteOrganizerAccount, searchOrganizers } = require("../../../models/organizers.model");
-const { organizersData, organizerData } = require("./organizers.serializer");
+const { organizersData, organizerData, tripDetailsData } = require("./organizers.serializer");
 const { serializedData } = require('../../../services/serializeArray');
 const { searchOrganizersHelper } = require("./organizers.helper");
 const sendPushNotification = require("../../../services/notifications");
 const { validationErrors } = require("../../../middlewares/validationErrors");
-const { validateAlertOrganizer } = require('./organizers.validation')
+const { validateAlertOrganizer } = require('./organizers.validation');
+const { getAllOrganizedTrips } = require("../../../models/organized-trips.model");
+const { getHotelReservationsWithDetails } = require("../../../models/hotel-reservation.model");
+const { getAllPlaneReservations } = require("../../../models/plane-reservation.model");
+const { getPlaces } = require("../../../models/places.model");
 
 async function httpGetAllOrganizers(req, res) {
     const { skip, limit } = getPagination(req.query)
@@ -17,8 +21,23 @@ async function httpGetAllOrganizers(req, res) {
 async function httpGetOneOrganizer(req, res) {
     const organizer = await getOrganizer(req.params.id);
     if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
-    // get trips
+    let data = await getAllOrganizedTrips()
+    organizer.trips = data.filter(trip => trip.trip_id.user_id.equals(organizer.user_id._id))
+    const { skip, limit } = getPagination(req.query)
+    organizer.trips = organizer.trips.slice(skip, skip + limit)
     return res.status(200).json({ data: organizerData(organizer) })
+}
+
+async function httpGetOneOrganizerTripDetails(req, res) {
+    const organizer = await getOrganizer(req.params.id);
+    if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
+    let data = await getAllOrganizedTrips()
+    organizer.trip = data.filter(trip => trip.trip_id.user_id.equals(organizer.user_id._id) && trip._id == req.params.id2)
+    let trip = organizer.trip[0]
+    trip.trip_id.hotels = await getHotelReservationsWithDetails(trip.trip_id.hotels);
+    trip.trip_id.places_to_visit = await getPlaces(trip.trip_id.places_to_visit)
+    trip.trip_id.flights = await getAllPlaneReservations(trip.trip_id.flights);
+    return res.status(200).json({ data: tripDetailsData(trip) })
 }
 
 async function httpSearchOrganizers(req, res) {
@@ -66,5 +85,6 @@ module.exports = {
     httpDeleteOrganizer,
     httpSearchOrganizers,
     httpDeactivateOrganizer,
-    httpAlertOrganizer
+    httpAlertOrganizer,
+    httpGetOneOrganizerTripDetails
 }

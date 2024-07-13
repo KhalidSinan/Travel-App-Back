@@ -5,10 +5,8 @@ async function findAdmin(username) {
     return await Admin.findOne({ username });
 }
 
-async function getAdmins(skip, limit) {
+async function getAdmins() {
     return await Admin.find({ role: { $ne: 'Super-Admin' } })
-        .skip(skip)
-        .limit(limit)
         .select('-_id -__v')
 }
 
@@ -20,10 +18,9 @@ async function deleteAdmin(id) {
     return await Admin.deleteOne({ _id: id })
 }
 
-async function searchAdmins(skip, limit, username) {
-    return await Admin.find({ username: { $regex: new RegExp(username, 'i') } })
-        .skip(skip)
-        .limit(limit);
+async function searchAdmins(username) {
+    return await Admin.find({ username: { $regex: new RegExp(username, 'i') }, role: { $ne: 'Super-Admin' } })
+
 }
 
 module.exports = {

@@ -10,6 +10,11 @@ async function getPlaceByCity(city, size) {
     ]);
 }
 
+async function getPlaces(ids) {
+    return await Place.find({ _id: ids })
+}
+
 module.exports = {
-    getPlaceByCity
+    getPlaceByCity,
+    getPlaces
 }

@@ -20,8 +20,26 @@ async function httpGetUsersAgeStatistics(req, res) {
     })
 }
 
+// async function httpGetTop10Hotels(req, res) {
+//     const data = await getTop10Hotels();
+//     return res.status(200).json({
+//         message: 'Top 10 Hotels Retrieved',
+//         data: data
+//     })
+// }
+
+// async function httpGetRevenue(req, res) {
+//     const data = await getRevenue();
+//     return res.status(200).json({
+//         message: 'Revenue Retrieved',
+//         data: data
+//     })
+// }
+
 
 module.exports = {
     httpGetTop10Countries,
-    httpGetUsersAgeStatistics
+    httpGetUsersAgeStatistics,
+    // httpGetTop10Hotels,
+    // httpGetRevenue
 }

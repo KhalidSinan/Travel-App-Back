@@ -54,6 +54,11 @@ async function putReservationData(id, data) {
     return await reservation.save();
 }
 
+async function getAllPlaneReservations(ids) {
+    return await PlaneReservation.find({ _id: ids }).populate('flights', '-source._id -destination._id')
+    //.select('-reservations._id')
+}
+
 module.exports = {
     postReservation,
     getReservation,
@@ -62,5 +67,6 @@ module.exports = {
     getAllPlaneReservations,
     deleteReservation,
     getAllReservationsWithFlightData,
-    putReservationData
+    putReservationData,
+    getAllPlaneReservations
 }
