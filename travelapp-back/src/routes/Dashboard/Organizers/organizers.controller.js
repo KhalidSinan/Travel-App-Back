@@ -13,6 +13,7 @@ const { getAllPlaneReservations } = require("../../../models/plane-reservation.m
 const { getPlaces } = require("../../../models/places.model");
 
 async function httpGetAllOrganizers(req, res) {
+    req.query.limit = 6
     const { skip, limit } = getPagination(req.query)
     const organizers = await getOrganizers(skip, limit);
     return res.status(200).json({ data: serializedData(organizers, organizersData) })
@@ -23,6 +24,7 @@ async function httpGetOneOrganizer(req, res) {
     if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
     let data = await getAllOrganizedTrips()
     organizer.trips = data.filter(trip => trip.trip_id.user_id.equals(organizer.user_id._id))
+    req.query.limit = 4
     const { skip, limit } = getPagination(req.query)
     organizer.trips = organizer.trips.slice(skip, skip + limit)
     return res.status(200).json({ data: organizerData(organizer) })

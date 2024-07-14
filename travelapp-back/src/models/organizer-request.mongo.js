@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { proofSchema } = require('./proofs.mongo')
 
 const organizerRequestSchema = new mongoose.Schema({
     user_id: {
@@ -14,11 +15,10 @@ const organizerRequestSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    // pdfs: {
-    //     type: String,
-    //     required: true,
-    //     default: ''
-    // },
+    proofs: {
+        type: proofSchema,
+        required: true
+    },
     is_accepted: {
         type: Boolean,
     }

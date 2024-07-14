@@ -5,11 +5,14 @@ async function addRequest(data) {
 }
 
 async function getRequests(skip, limit) {
-    return await OrganizerRequest.find().skip(skip).limit(limit);
+    return await OrganizerRequest.find({ is_accepted: { $exists: false } }) // Check for undefined is_accepted
+        .skip(skip)
+        .limit(limit)
+        .populate('user_id', '-email -password');
 }
 
 async function getRequest(id) {
-    return await OrganizerRequest.findById(id);
+    return await OrganizerRequest.findById(id).populate('user_id', '-email -password');;
 }
 
 async function acceptRequest(id) {

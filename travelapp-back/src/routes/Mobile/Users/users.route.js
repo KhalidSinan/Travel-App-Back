@@ -18,7 +18,12 @@ userRouter.put('/phone-number', requireJwtAuth, asyncHandler(httpPutPhoneNumber)
 userRouter.get('/profile', requireJwtAuth, asyncHandler(httpGetProfile))
 userRouter.put('/password', requireJwtAuth, asyncHandler(httpPutPassword))
 userRouter.delete('/delete-account', requireJwtAuth, asyncHandler(httpDeleteAccount))
-userRouter.post('/become-organizer', requireJwtAuth, asyncHandler(httpBecomeOrganizer))
+userRouter.post('/become-organizer', upload.fields([
+    { name: 'personal_picture', maxCount: 1 },
+    { name: 'last_certificate', maxCount: 1 },
+    { name: 'work_id', maxCount: 1 },
+    { name: 'personal_id', maxCount: 1 },
+]), requireJwtAuth, asyncHandler(httpBecomeOrganizer))
 
 
 module.exports = userRouter
