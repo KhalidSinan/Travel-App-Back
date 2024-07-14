@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { proofSchema } = require('./proofs.mongo');
 
 const organizerSchema = new mongoose.Schema({
     user_id: {
@@ -32,8 +33,13 @@ const organizerSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    num_of_warnings: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     proofs: {
-        type: [String],
+        type: proofSchema,
         required: true
     }
 

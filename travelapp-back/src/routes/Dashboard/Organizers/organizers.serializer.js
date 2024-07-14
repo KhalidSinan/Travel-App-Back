@@ -7,7 +7,7 @@ function organizersData(organizer) {
         organizer_name: name,
         company_name: organizer.company_name,
         rating: organizer.rating,
-        profile_pic: organizer.user_id.profile_pic
+        profile_pic: organizer.proofs.personal_picture
     }
 }
 
@@ -19,7 +19,6 @@ function organizerData(organizer) {
         organizer_name: name,
         company_name: organizer.company_name,
         rating: organizer.rating,
-        profile_pic: organizer.user_id.profile_pic,
         gender: organizer.user_id.gender,
         phone: phone,
         location: organizer.user_id.location.city + ', ' + organizer.user_id.location.country,

@@ -128,10 +128,16 @@ async function httpBecomeOrganizer(req, res) {
 
     const user = req.user;
     if (!user) return res.status(400).json({ message: 'User Not Found' })
-
+    const proofs = {
+        personal_id: req.files.personal_id[0].filename,
+        work_id: req.files.work_id[0].filename,
+        personal_picture: req.files.personal_picture[0].filename,
+        last_certificate: req.files.last_certificate[0].filename,
+        companies_worked_for: req.body.companies_worked_for
+    }
     const request = await getRequestByUserId(user._id)
     if (!request || request.is_accepted == false) {
-        data = { company_name: req.body.company_name, years_of_experience: req.body.years_of_experience, user_id: user._id }
+        data = { company_name: req.body.company_name, years_of_experience: req.body.years_of_experience, user_id: user._id, proofs: proofs }
         await addRequest(data)
         return res.status(200).json({ message: 'Request To Become Organizer Has Been Sent' })
     } else if (request.is_accepted == true) {
@@ -139,7 +145,6 @@ async function httpBecomeOrganizer(req, res) {
     } else {
         return res.status(200).json({ message: 'Already Sent A Request' })
     }
-
 }
 
 

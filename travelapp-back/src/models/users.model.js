@@ -88,7 +88,7 @@ async function acceptOrganizer(id) {
 
 // No need
 async function denyOrganizer(_id) {
-    return await User.findOneAndUpdate({ _id }, { is_organizer: true });
+    return await User.findOneAndUpdate({ _id }, { is_organizer: false });
 }
 
 async function getUserById(_id) {
