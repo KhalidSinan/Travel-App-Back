@@ -3,7 +3,7 @@ function organizerRequestsData(request) {
         id: request._id,
         user_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
-        personal_picture: request.proofs.personal_picture,
+        personal_picture: process.env.URL + request.proofs.personal_picture,
     }
 }
 
@@ -20,10 +20,10 @@ function organizerRequestDetailsData(request) {
         age: age.toFixed(0),
         years_of_experience: request.years_of_experience,
         previous_companies: request.proofs.companies_worked_for,
-        personal_id: request.proofs.personal_id,
-        personal_picture: request.proofs.personal_picture,
-        work_id: request.proofs.work_id,
-        last_certificate: request.proofs.last_certificate,
+        personal_id: process.env.URL + request.proofs.personal_id,
+        personal_picture: process.env.URL + request.proofs.personal_picture,
+        work_id: process.env.URL + request.proofs.work_id,
+        last_certificate: process.env.URL + request.proofs.last_certificate,
     }
 }
 

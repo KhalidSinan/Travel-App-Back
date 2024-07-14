@@ -1,4 +1,5 @@
 const { serializedData } = require("../../../services/serializeArray");
+require('dotenv').config()
 
 function organizersData(organizer) {
     const name = organizer.user_id.name.first_name + ' ' + organizer.user_id.name.last_name
@@ -7,7 +8,7 @@ function organizersData(organizer) {
         organizer_name: name,
         company_name: organizer.company_name,
         rating: organizer.rating,
-        profile_pic: organizer.proofs.personal_picture
+        profile_pic: process.env.URL + organizer.proofs.personal_picture
     }
 }
 
@@ -27,8 +28,17 @@ function organizerData(organizer) {
         years_of_experience: organizer.years_of_experience,
         num_of_reports: organizer.num_of_reports,
         num_of_warnings: organizer.num_of_warnings,
-        proofs: organizer.proofs,
+        proofs: proofData(organizer.proofs),
         trips: serializedData(organizer.trips, tripData)
+    }
+}
+
+function proofData(proof) {
+    return {
+        personal_picture: process.env.URL + proof.personal_picture,
+        work_id: process.env.URL + proof.work_id,
+        personal_id: process.env.URL + proof.personal_id,
+        last_certificate: process.env.URL + proof.last_certificate,
     }
 }
 

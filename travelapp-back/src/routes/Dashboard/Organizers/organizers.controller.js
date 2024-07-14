@@ -1,6 +1,6 @@
 const { deleteAccount, deactivateAccount, getDeviceTokens } = require("../../../models/users.model")
 const { getPagination } = require('../../../services/query')
-const { getOrganizer, getOrganizers, deleteOrganizerAccount, searchOrganizers } = require("../../../models/organizers.model");
+const { getOrganizer, getOrganizers, deleteOrganizerAccount, searchOrganizers, incrementWarnings } = require("../../../models/organizers.model");
 const { organizersData, organizerData, tripDetailsData } = require("./organizers.serializer");
 const { serializedData } = require('../../../services/serializeArray');
 const { searchOrganizersHelper } = require("./organizers.helper");
@@ -77,6 +77,7 @@ async function httpAlertOrganizer(req, res) {
 
     const tokens = await getDeviceTokens(organizer.user_id)
     await sendPushNotification(req.body.title, req.body.body, tokens[0].device_token)
+    await incrementWarnings(organizer)
 
     return res.status(200).json({ message: 'Organizer Has Been Alerted' });
 }
