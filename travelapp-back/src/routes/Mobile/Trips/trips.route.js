@@ -18,5 +18,7 @@ tripRouter.put('/:id/update', requireJwtAuth, checkObjectID, asyncHandler(update
 tripRouter.delete('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpDeleteTrip))
 tripRouter.get('/:id/share', requireJwtAuth, checkObjectID, asyncHandler(httpShareTrip))
 tripRouter.get('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelTrip))
+// review
+// tripRouter.get('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelTrip))
 
 module.exports = tripRouter;

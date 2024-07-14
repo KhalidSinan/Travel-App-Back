@@ -16,9 +16,16 @@ async function postOrganizerData(data) {
     return await Organizers.create(data);
 }
 
+async function incrementWarnings(organizer) {
+    organizer.num_of_warnings++;
+    return await organizer.save();
+}
+
+
 module.exports = {
     getOrganizers,
     getOrganizer,
     deleteOrganizerAccount,
     postOrganizerData,
+    incrementWarnings
 }
