@@ -107,11 +107,11 @@ async function getUsersAge() {
                     $floor: {
                         $divide: [
                             { $subtract: [new Date(), "$date_of_birth"] },
-                            31557600000 // milliseconds in a year
+                            31557600000
                         ]
                     }
                 },
-                _id: 0 // Remove the default _id field
+                _id: 0
             }
         },
         {
@@ -132,7 +132,7 @@ async function getUsersAge() {
         },
         {
             $project: {
-                _id: 0, // Remove the default _id field
+                _id: 0,
                 ageGroup: '$_id',
                 count: 1
             }
