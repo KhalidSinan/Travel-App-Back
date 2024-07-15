@@ -4,6 +4,10 @@ async function getOrganizers(skip, limit) {
     return await Organizers.find().skip(skip).limit(limit).populate('user_id', 'name profile_pic');
 }
 
+async function getOrganizersCount(skip, limit) {
+    return await Organizers.find().countDocuments()
+}
+
 async function getOrganizer(_id) {
     return await Organizers.findById(_id).populate('user_id', 'name profile_pic location phone date_of_birth gender');
 }
@@ -27,5 +31,6 @@ module.exports = {
     getOrganizer,
     deleteOrganizerAccount,
     postOrganizerData,
-    incrementWarnings
+    incrementWarnings,
+    getOrganizersCount
 }
