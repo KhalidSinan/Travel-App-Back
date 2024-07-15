@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkAdmin = require('../../../middlewares/checkAdmin');
-const { httpGetTop10Countries, httpGetUsersAgeStatistics } = require('./statistics.controller');
+const { httpGetTop10Countries, httpGetUsersAgeStatistics, httpGetTop10Hotels } = require('./statistics.controller');
 
 const statisticsRouter = express.Router();
 
@@ -12,7 +12,7 @@ statisticsRouter.get('/statistics/top-countries', requireJwtAuth, checkAdmin, as
 // get age of users
 statisticsRouter.get('/statistics/users-age', requireJwtAuth, checkAdmin, asyncHandler(httpGetUsersAgeStatistics))
 // get top 10 hotels
-// statisticsRouter.get('/statistics/top-hotels', requireJwtAuth, checkAdmin, asyncHandler(httpGetUsersAgeStatistics))
+statisticsRouter.get('/statistics/top-hotels', requireJwtAuth, checkAdmin, asyncHandler(httpGetTop10Hotels))
 // get revenue
 // statisticsRouter.get('/statistics/revenue', requireJwtAuth, checkAdmin, asyncHandler(httpGetUsersAgeStatistics))
 
