@@ -17,6 +17,7 @@ async function httpGetAllOrganizers(req, res) {
     const { skip, limit } = getPagination(req.query)
     const organizers = await getOrganizers(skip, limit);
     const organizersCount = await getOrganizersCount()
+    if (organizersCount == 0) return res.status(200).json({ data: [], count: organizersCount })
     return res.status(200).json({ data: serializedData(organizers, organizersData), count: organizersCount })
 }
 
@@ -50,6 +51,7 @@ async function httpSearchOrganizers(req, res) {
     organizers = searchOrganizersHelper(organizers, req.query.name)
     const organizersCount = organizers.length
     organizers = organizers.slice(skip, skip + limit)
+    if (organizersCount == 0) return res.status(200).json({ data: [], count: organizersCount })
     return res.status(200).json({ data: serializedData(organizers, organizersData), count: organizersCount })
 }
 
