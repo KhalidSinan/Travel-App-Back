@@ -12,6 +12,7 @@ async function httpGetOrganizersRequests(req, res) {
     const { skip, limit } = getPagination(req.query)
     const requests = await getRequests(skip, limit)
     const requestsCount = await getRequestsCount()
+    if (requestsCount == 0) return res.status(200).json({ data: [], count: requestsCount })
     return res.status(200).json({ data: serializedData(requests, organizerRequestsData), count: requestsCount })
 }
 
