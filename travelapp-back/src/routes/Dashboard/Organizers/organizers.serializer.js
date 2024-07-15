@@ -16,11 +16,13 @@ function organizerData(organizer) {
     const name = organizer.user_id.name.first_name + ' ' + organizer.user_id.name.last_name;
     const phone = '+' + organizer.user_id.phone.country_code + ' ' + organizer.user_id.phone.number;
     const age = (Date.now() - organizer.user_id.date_of_birth) / 1000 / 60 / 60 / 24 / 365
+    const previous_companies = organizer.proofs.companies_worked_for.join(' - ')
     return {
         organizer_name: name,
         company_name: organizer.company_name,
         rating: organizer.rating,
         gender: organizer.user_id.gender,
+        personal_picture: process.env.URL + organizer.proofs.personal_picture,
         phone: phone,
         location: organizer.user_id.location.city + ', ' + organizer.user_id.location.country,
         age: age.toFixed(0),
@@ -29,17 +31,17 @@ function organizerData(organizer) {
         num_of_reports: organizer.num_of_reports,
         num_of_warnings: organizer.num_of_warnings,
         proofs: proofData(organizer.proofs),
+        previous_companies: previous_companies,
         trips: serializedData(organizer.trips, tripData)
     }
 }
 
 function proofData(proof) {
-    return {
-        personal_picture: process.env.URL + proof.personal_picture,
-        work_id: process.env.URL + proof.work_id,
-        personal_id: process.env.URL + proof.personal_id,
-        last_certificate: process.env.URL + proof.last_certificate,
-    }
+    return [
+        { name: "work_id", picture: process.env.URL + proof.work_id },
+        { name: "personal_id", picture: process.env.URL + proof.personal_id },
+        { name: "last_certificate", picture: process.env.URL + proof.last_certificate },
+    ];
 }
 
 function tripData(trip) {
