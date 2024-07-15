@@ -1,6 +1,6 @@
 const { deleteAccount, deactivateAccount, getDeviceTokens } = require("../../../models/users.model")
 const { getPagination } = require('../../../services/query')
-const { getOrganizer, getOrganizers, deleteOrganizerAccount, searchOrganizers, incrementWarnings } = require("../../../models/organizers.model");
+const { getOrganizer, getOrganizers, deleteOrganizerAccount, searchOrganizers, incrementWarnings, getOrganizersCount } = require("../../../models/organizers.model");
 const { organizersData, organizerData, tripDetailsData } = require("./organizers.serializer");
 const { serializedData } = require('../../../services/serializeArray');
 const { searchOrganizersHelper } = require("./organizers.helper");
@@ -16,7 +16,8 @@ async function httpGetAllOrganizers(req, res) {
     req.query.limit = 6
     const { skip, limit } = getPagination(req.query)
     const organizers = await getOrganizers(skip, limit);
-    return res.status(200).json({ data: serializedData(organizers, organizersData) })
+    const organizersCount = await getOrganizersCount()
+    return res.status(200).json({ data: serializedData(organizers, organizersData), count: organizersCount })
 }
 
 async function httpGetOneOrganizer(req, res) {
@@ -26,8 +27,9 @@ async function httpGetOneOrganizer(req, res) {
     organizer.trips = data.filter(trip => trip.trip_id.user_id.equals(organizer.user_id._id))
     req.query.limit = 4
     const { skip, limit } = getPagination(req.query)
+    const tripsCount = organizer.trips.length
     organizer.trips = organizer.trips.slice(skip, skip + limit)
-    return res.status(200).json({ data: organizerData(organizer) })
+    return res.status(200).json({ data: organizerData(organizer), count: tripsCount })
 }
 
 async function httpGetOneOrganizerTripDetails(req, res) {
@@ -46,8 +48,9 @@ async function httpSearchOrganizers(req, res) {
     const { skip, limit } = getPagination(req.query)
     let organizers = await getOrganizers(0, 0);
     organizers = searchOrganizersHelper(organizers, req.query.name)
+    const organizersCount = organizers.length
     organizers = organizers.slice(skip, skip + limit)
-    return res.status(200).json({ data: serializedData(organizers, organizersData) })
+    return res.status(200).json({ data: serializedData(organizers, organizersData), count: organizersCount })
 }
 
 // Done

@@ -1,6 +1,6 @@
 const { getUserById, acceptOrganizer } = require("../../../models/users.model")
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { acceptRequest, denyRequest, getRequests, getRequest } = require("../../../models/organizer-request.model");
+const { acceptRequest, denyRequest, getRequests, getRequest, getRequestsCount } = require("../../../models/organizer-request.model");
 const { serializedData } = require('../../../services/serializeArray')
 const { organizerRequestsData, organizerRequestDetailsData } = require('./organizer-requests.serializer')
 const { getPagination } = require('../../../services/query');
@@ -11,7 +11,8 @@ async function httpGetOrganizersRequests(req, res) {
     req.query.limit = 6
     const { skip, limit } = getPagination(req.query)
     const requests = await getRequests(skip, limit)
-    return res.status(200).json({ data: serializedData(requests, organizerRequestsData) })
+    const requestsCount = await getRequestsCount()
+    return res.status(200).json({ data: serializedData(requests, organizerRequestsData), count: requestsCount })
 }
 
 // Done

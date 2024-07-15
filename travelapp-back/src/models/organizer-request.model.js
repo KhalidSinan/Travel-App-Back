@@ -11,6 +11,11 @@ async function getRequests(skip, limit) {
         .populate('user_id', '-email -password');
 }
 
+async function getRequestsCount(skip, limit) {
+    return await OrganizerRequest.find({ is_accepted: { $exists: false } }) // Check for undefined is_accepted
+        .countDocuments()
+}
+
 async function getRequest(id) {
     return await OrganizerRequest.findById(id).populate('user_id', '-email -password');;
 }
@@ -33,5 +38,6 @@ module.exports = {
     getRequest,
     acceptRequest,
     denyRequest,
-    getRequestByUserId
+    getRequestByUserId,
+    getRequestsCount
 }
