@@ -1,9 +1,9 @@
 function organizerRequestsData(request) {
     return {
         id: request._id,
-        user_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
+        organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
-        personal_picture: process.env.URL + request.proofs.personal_picture,
+        profile_pic: process.env.URL + request.proofs.personal_picture,
     }
 }
 
