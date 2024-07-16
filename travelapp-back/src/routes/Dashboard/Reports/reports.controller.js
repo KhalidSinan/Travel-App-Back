@@ -6,6 +6,7 @@ const { getPagination } = require('../../../services/query')
 async function httpGetAllReportsOnApp(req, res) {
     const { skip, limit } = getPagination(req.query)
     const reports = await getAllReportsOnApp(skip, limit);
+    if (reports.length == 0) return res.status(200).json({ data: [] })
     return res.status(200).json({
         data: serializedData(reports, reportDataOnApp),
     })
@@ -14,6 +15,7 @@ async function httpGetAllReportsOnApp(req, res) {
 async function httpGetAllReportsOnOrganizers(req, res) {
     const { skip, limit } = getPagination(req.query)
     const reports = await getAllReportsOnOrganizers(skip, limit);
+    if (reports.length == 0) return res.status(200).json({ data: [] })
     return res.status(200).json({
         data: serializedData(reports, reportDataOnOrganizer),
     })
