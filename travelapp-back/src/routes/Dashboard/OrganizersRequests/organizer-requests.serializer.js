@@ -12,7 +12,7 @@ function organizerRequestDetailsData(request) {
     const previous_companies = request.proofs.companies_worked_for.join(' - ')
     return {
         id: request._id,
-        user_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
+        organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
         profile_pic: process.env.URL + request.proofs.personal_picture,
         location: request.user_id.location.city + ', ' + request.user_id.location.country,
