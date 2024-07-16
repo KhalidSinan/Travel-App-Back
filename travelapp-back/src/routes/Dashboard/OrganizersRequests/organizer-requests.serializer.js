@@ -3,7 +3,7 @@ function organizerRequestsData(request) {
         id: request._id,
         organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
-        profile_pic: process.env.URL + request.proofs.personal_picture,
+        personal_picture: process.env.URL + request.proofs.personal_picture,
     }
 }
 
@@ -14,7 +14,7 @@ function organizerRequestDetailsData(request) {
         id: request._id,
         organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
-        profile_pic: process.env.URL + request.proofs.personal_picture,
+        personal_picture: process.env.URL + request.proofs.personal_picture,
         location: request.user_id.location.city + ', ' + request.user_id.location.country,
         gender: request.user_id.gender,
         phone_number: '+' + request.user_id.phone.country_code + ' ' + request.user_id.phone.number,

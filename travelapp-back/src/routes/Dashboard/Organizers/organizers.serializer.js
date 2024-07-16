@@ -8,7 +8,7 @@ function organizersData(organizer) {
         organizer_name: name,
         company_name: organizer.company_name,
         rating: organizer.rating,
-        profile_pic: process.env.URL + organizer.proofs.personal_picture
+        personal_picture: process.env.URL + organizer.proofs.personal_picture
     }
 }
 
