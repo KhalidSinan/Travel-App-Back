@@ -10,7 +10,7 @@ const organizersRequestsRouter = express.Router();
 
 organizersRequestsRouter.get('/organizers-requests', requireJwtAuth, checkAdmin, asyncHandler(httpGetOrganizersRequests))
 organizersRequestsRouter.get('/organizers-requests/:id', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpGetOrganizerRequest))
-organizersRequestsRouter.post('/organizers-requests/:id/accept', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpAcceptOrganizerRequest))
-organizersRequestsRouter.post('/organizers-requests/:id/deny', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpDenyOrganizerRequest))
+organizersRequestsRouter.get('/organizers-requests/:id/accept', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpAcceptOrganizerRequest))
+organizersRequestsRouter.get('/organizers-requests/:id/deny', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpDenyOrganizerRequest))
 
 module.exports = organizersRequestsRouter;
