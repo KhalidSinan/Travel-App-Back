@@ -81,7 +81,7 @@ async function httpAlertOrganizer(req, res) {
     if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
 
     const tokens = await getDeviceTokens(organizer.user_id)
-    await sendPushNotification(req.body.title, req.body.body, tokens[0].device_token)
+    // await sendPushNotification(req.body.title, req.body.body, tokens[0].device_token)
     await incrementWarnings(organizer)
 
     return res.status(200).json({ message: 'Organizer Has Been Alerted' });

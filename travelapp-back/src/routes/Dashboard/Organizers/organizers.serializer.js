@@ -38,9 +38,9 @@ function organizerData(organizer) {
 
 function proofData(proof) {
     return [
-        { name: "work_id", picture: process.env.URL + proof.work_id },
-        { name: "personal_id", picture: process.env.URL + proof.personal_id },
-        { name: "last_certificate", picture: process.env.URL + proof.last_certificate },
+        { name: "Work ID", picture: process.env.URL + proof.work_id },
+        { name: "Personal ID", picture: process.env.URL + proof.personal_id },
+        { name: "Last Certificate", picture: process.env.URL + proof.last_certificate },
     ];
 }
 
@@ -112,12 +112,6 @@ function flightTripDetails(flight) {
         price: flight.reservations.overall_price
     }
 }
-
-
-/* 
-
-*/
-
 
 module.exports = {
     organizersData,
