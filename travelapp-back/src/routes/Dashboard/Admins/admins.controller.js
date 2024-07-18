@@ -1,4 +1,4 @@
-const { findAdmin, getAdmins, postAdmin, deleteAdmin, searchAdmins } = require('../../../models/admins.model')
+const { findAdmin, getAdmins, postAdmin, deleteAdmin, searchAdmins, getAdmin } = require('../../../models/admins.model')
 const { validateLoginAdmin, validatePostAdmin, validateDeleteAdmin } = require('./admins.validation')
 const { generateToken } = require('../../../services/token')
 const { getPagination } = require('../../../services/query')
@@ -48,13 +48,13 @@ async function httpPostAdmin(req, res) {
 async function httpDeleteAdmin(req, res) {
     const { error } = validateDeleteAdmin(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) });
+    const admin = await getAdmin(req.params.id)
+    if (!admin) return res.status(400).json({ message: 'Admin Not Found' })
     const superAdmin = req.user;
-    const check = superAdmin.checkCredentials(superAdmin.password, req.body.password);
-    if (check) {
-        await deleteAdmin(req.params.id)
-        return res.status(200).json({ message: 'Admin Deleted' })
-    }
-    return res.status(400).json({ message: 'Not Authorized' })
+    const check = await superAdmin.checkCredentials(superAdmin.password, req.body.password);
+    if (!check) return res.status(400).json({ message: 'Not Authorized' })
+    await deleteAdmin(req.params.id)
+    return res.status(200).json({ message: 'Admin Deleted' })
 }
 
 // Think
