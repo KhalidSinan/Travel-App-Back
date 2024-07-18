@@ -7,7 +7,7 @@ async function findAdmin(username) {
 
 async function getAdmins() {
     return await Admin.find({ role: { $ne: 'Super-Admin' } })
-        .select('-_id -__v')
+        .select('-__v')
 }
 
 async function postAdmin(data) {
