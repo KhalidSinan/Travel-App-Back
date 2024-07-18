@@ -34,7 +34,7 @@ async function httpGetAllAdmins(req, res) {
 async function httpSearchAdmins(req, res) {
     // const { skip, limit } = getPagination(req.query)
     const admins = await searchAdmins(req.query.username)
-    return res.status(200).json({ data: admins })
+    return res.status(200).json({ data: serializedData(admins, adminsData) })
 }
 
 async function httpPostAdmin(req, res) {
