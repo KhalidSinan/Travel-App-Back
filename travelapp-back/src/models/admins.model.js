@@ -5,6 +5,10 @@ async function findAdmin(username) {
     return await Admin.findOne({ username });
 }
 
+async function getAdmin(id) {
+    return await Admin.findById(id);
+}
+
 async function getAdmins() {
     return await Admin.find({ role: { $ne: 'Super-Admin' } })
         .select('-__v')
@@ -28,5 +32,6 @@ module.exports = {
     getAdmins,
     postAdmin,
     deleteAdmin,
-    searchAdmins
+    searchAdmins,
+    getAdmin
 }
