@@ -46,6 +46,7 @@ async function httpGetOneOrganizerTripDetails(req, res) {
 }
 
 async function httpSearchOrganizers(req, res) {
+    req.query.limit = 6;
     const { skip, limit } = getPagination(req.query)
     let organizers = await getOrganizers(0, 0);
     organizers = searchOrganizersHelper(organizers, req.query.name)

@@ -1,7 +1,6 @@
 const { findAdmin, getAdmins, postAdmin, deleteAdmin, searchAdmins, getAdmin } = require('../../../models/admins.model')
 const { validateLoginAdmin, validatePostAdmin, validateDeleteAdmin } = require('./admins.validation')
 const { generateToken } = require('../../../services/token')
-const { getPagination } = require('../../../services/query')
 const { validationErrors } = require('../../../middlewares/validationErrors')
 const { postBlacklist } = require('../../../models/blacklist.model')
 const { serializedData } = require('../../../services/serializeArray')
@@ -26,13 +25,11 @@ async function login(req, res) {
 }
 
 async function httpGetAllAdmins(req, res) {
-    // const { skip, limit } = getPagination(req.query)
     const admins = await getAdmins()
     return res.status(200).json({ data: serializedData(admins, adminsData) })
 }
 
 async function httpSearchAdmins(req, res) {
-    // const { skip, limit } = getPagination(req.query)
     const admins = await searchAdmins(req.query.username)
     return res.status(200).json({ data: serializedData(admins, adminsData) })
 }
