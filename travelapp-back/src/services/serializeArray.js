@@ -1,6 +1,7 @@
 function serializedData(data, serializer) {
     let serializedData = [];
-    data.forEach(each => serializedData.push(serializer(each)));
+    if (data.length > 0)
+        data.forEach(each => serializedData.push(serializer(each)));
     return serializedData;
 }
 

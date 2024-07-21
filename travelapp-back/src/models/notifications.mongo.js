@@ -21,6 +21,11 @@ const notificationSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    is_global: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 }, { timestamps: true })
 

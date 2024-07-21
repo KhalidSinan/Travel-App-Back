@@ -1,5 +1,4 @@
 function reportDataOnApp(report) {
-    console.log(report.user_id)
     const name = report.user_id['name'].first_name + ' ' + report.user_id['name'].last_name
     return {
         id: report._id,

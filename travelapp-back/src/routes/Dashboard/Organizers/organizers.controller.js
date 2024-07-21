@@ -17,7 +17,6 @@ async function httpGetAllOrganizers(req, res) {
     const { skip, limit } = getPagination(req.query)
     const organizers = await getOrganizers(skip, limit);
     const organizersCount = await getOrganizersCount()
-    if (organizersCount == 0) return res.status(200).json({ data: [], count: organizersCount })
     return res.status(200).json({ data: serializedData(organizers, organizersData), count: organizersCount })
 }
 
@@ -52,7 +51,6 @@ async function httpSearchOrganizers(req, res) {
     organizers = searchOrganizersHelper(organizers, req.query.name)
     const organizersCount = organizers.length
     organizers = organizers.slice(skip, skip + limit)
-    if (organizersCount == 0) return res.status(200).json({ data: [], count: organizersCount })
     return res.status(200).json({ data: serializedData(organizers, organizersData), count: organizersCount })
 }
 
@@ -82,7 +80,8 @@ async function httpAlertOrganizer(req, res) {
     if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
 
     const tokens = await getDeviceTokens(organizer.user_id)
-    // await sendPushNotification(req.body.title, req.body.body, tokens[0].device_token)
+    // await sendPushNotification(req.body.title, req.body.body, tokens)
+
     await incrementWarnings(organizer)
 
     return res.status(200).json({ message: 'Organizer Has Been Alerted' });

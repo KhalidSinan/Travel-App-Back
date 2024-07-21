@@ -1,14 +1,18 @@
 const Report = require('./reports.mongo')
 
-async function getAllReportsOnApp(skip, limit) {
-    return await Report.find({ on_organizer: false })
+async function getAllReportsOnApp(skip, limit, filter = {}) {
+    let query = { on_organizer: false }
+    if (filter.createdAt) query.createdAt = filter.createdAt
+    return await Report.find(query)
         .populate('user_id', 'name')
         .skip(skip)
         .limit(limit);
 }
 
-async function getAllReportsOnOrganizers(skip, limit) {
-    return await Report.find({ on_organizer: true })
+async function getAllReportsOnOrganizers(skip, limit, filter = {}) {
+    let query = { on_organizer: true }
+    if (filter.createdAt) query.createdAt = filter.createdAt
+    return await Report.find(query)
         .populate('user_id', 'name').populate('organizer_id', 'name')
         .skip(skip)
         .limit(limit)

@@ -7,7 +7,12 @@ async function postNotification(data) {
 
 // get all notifications for user
 async function getNotificationsForUser(user_id) {
-    return await Notification.find({ user_id }).select('-user_id').sort({ 'created_at': -1 })
+    return await Notification.find({
+        $or: [
+            { user_id: user_id },
+            { is_global: true }
+        ]
+    }).select('-user_id').sort({ 'created_at': -1 })
 }
 
 // get one notification
@@ -21,7 +26,7 @@ async function putIsRead(notification_id, is_read) {
 }
 
 async function getNotifications() {
-    return await Notification.find()
+    return await Notification.find({ is_global: true })
 }
 
 module.exports = {
