@@ -5,11 +5,14 @@ require('dotenv').config();
 async function sendPushNotification(title, body, token, data = null) {
     let temp = [];
     token.forEach(tok => {
-        if (tok.expiry - Date.now() > 0) temp.push(tok.token)
+        tok.device_token.forEach(device => {
+            if (device.expiry - Date.now() > 0) temp.push(device.token)
+
+        })
     })
     // temp = [token, token, token, token]
     // loop over them and send
-    const message = {
+    let message = {
         notification: {
             title,
             body,
@@ -29,8 +32,11 @@ async function sendPushNotification(title, body, token, data = null) {
         },
         token: temp[0],
     };
+    temp.forEach(async token => {
+        message.token = token
+        await admin.messaging().send(message);
+    })
 
-    await admin.messaging().send(message);
 }
 
 // sendPushNotification('Test Title'+, 'Test Body, Hello All', 'cgiNZXHkShKC2_hEE1pIc5:APA91bFG5rO7jvAOrhGGVu49fvtBZvCX36HY16IdbKZ-hoTsALSXOA5ya-FrDirOM5LNvgzgxym-vyTqGI0vo8hW9LmubVALVXt10li5WDmByzjcphiRlxEWiclwnFX__ih4S6qiduKz');

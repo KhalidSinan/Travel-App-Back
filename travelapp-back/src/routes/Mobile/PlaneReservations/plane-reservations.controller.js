@@ -7,7 +7,8 @@ const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReserva
 const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation, getAllReservationsWithFlightData } = require('../../../models/plane-reservation.model');
 const sendPushNotification = require('../../../services/notifications');
 const { postNotification } = require('../../../models/notification.model');
-const { validationErrors } = require('../../../middlewares/validationErrors')
+const { validationErrors } = require('../../../middlewares/validationErrors');
+const { getDeviceTokens } = require('../../../models/users.model');
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -62,7 +63,7 @@ async function httpConfirmReservation(req, res) {
     const title = 'Reservation Confirmed'
     const body = 'Reservation Has Been Confirmed'
 
-    const tokens = req.user.device_token;
+    const tokens = await getDeviceTokens(req.user._id);
     // await sendPushNotification(title, body, tokens);
     await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: reservation._id });
 
@@ -101,7 +102,7 @@ async function httpCancelReservation(req, res) {
     const title = "Reservation Cancelled"
     const body = `${person_reservation.person_name} Reservation Has Been Cancelled`
 
-    const tokens = req.user.device_token;
+    const tokens = await getDeviceTokens(req.user._id);
     // await sendPushNotification(title, body, tokens);
     await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: person_reservation._id });
 
