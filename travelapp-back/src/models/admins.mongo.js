@@ -14,7 +14,7 @@ const adminSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['Super-Admin', 'Admin'],
+        enum: ['Super-Admin', 'Organizers-Admin', 'Reports-Admin', 'Notifications-Admin', 'Announcements-Admin'],
         required: true,
         trim: true,
     },
