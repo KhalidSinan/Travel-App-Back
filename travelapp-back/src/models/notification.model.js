@@ -29,10 +29,15 @@ async function getNotifications() {
     return await Notification.find({ is_global: true })
 }
 
+async function getNotificationByID(id) {
+    return await Notification.findById(id)
+}
+
 module.exports = {
     postNotification,
     getNotificationsForUser,
     getNotification,
     putIsRead,
-    getNotifications
+    getNotifications,
+    getNotificationByID
 }
