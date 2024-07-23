@@ -9,6 +9,12 @@ async function getAllReportsOnApp(skip, limit, filter = {}) {
         .limit(limit);
 }
 
+async function getAllReportsOnAppCount(filter = {}) {
+    let query = { on_organizer: false }
+    if (filter.createdAt) query.createdAt = filter.createdAt
+    return await Report.find(query).countDocuments()
+}
+
 async function getAllReportsOnOrganizers(skip, limit, filter = {}) {
     let query = { on_organizer: true }
     if (filter.createdAt) query.createdAt = filter.createdAt
@@ -16,6 +22,12 @@ async function getAllReportsOnOrganizers(skip, limit, filter = {}) {
         .populate('user_id', 'name').populate('organizer_id', 'name')
         .skip(skip)
         .limit(limit)
+}
+
+async function getAllReportsOnOrganizersCount(filter = {}) {
+    let query = { on_organizer: true }
+    if (filter.createdAt) query.createdAt = filter.createdAt
+    return await Report.find(query).countDocuments()
 }
 
 async function getOneReport(id) {
@@ -36,5 +48,8 @@ module.exports = {
     getAllReportsOnOrganizers,
     getOneReport,
     postReport,
-    deleteReport
+    deleteReport,
+    getAllReportsOnAppCount,
+    getAllReportsOnOrganizersCount
+
 }
