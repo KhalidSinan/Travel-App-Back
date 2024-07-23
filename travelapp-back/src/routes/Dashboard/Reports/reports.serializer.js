@@ -5,6 +5,7 @@ function reportDataOnApp(report) {
         user: name,
         report_title: report.report_title,
         report_message: report.report_message,
+        sent_at: new Date(report.createdAt).toLocaleDateString('en-GB').replace(/\//g, '-')
     }
 }
 
@@ -19,6 +20,7 @@ function reportDataOnOrganizer(report) {
         report_message: report.report_message,
         organizer_id: report.organizer_id._id,
         organizer_name: organizer_name,
+        sent_at: new Date(report.createdAt).toLocaleDateString('en-GB').replace(/\//g, '-')
     }
 }
 module.exports = {
