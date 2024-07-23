@@ -7,6 +7,7 @@ const { getUserById } = require('../../../models/users.model');
 const sendMail = require('../../../services/sendMail');
 
 async function httpGetAllReportsOnApp(req, res) {
+    req.query.limit = 6
     const { skip, limit } = getPagination(req.query)
     const filter = filterReportsHelper(req.query)
     const reports = await getAllReportsOnApp(skip, limit, filter);
@@ -16,6 +17,7 @@ async function httpGetAllReportsOnApp(req, res) {
 }
 
 async function httpGetAllReportsOnOrganizers(req, res) {
+    req.query.limit = 6
     const { skip, limit } = getPagination(req.query)
     const filter = filterReportsHelper(req.query)
     const reports = await getAllReportsOnOrganizers(skip, limit, filter);
