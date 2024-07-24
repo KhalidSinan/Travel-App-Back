@@ -3,6 +3,7 @@ function announcementData(announcement) {
     const lastName = announcement.organizer_id?.user_id?.name?.last_name || '';
     const name = firstName + ' ' + lastName;
     return {
+        id: announcement._id,
         announcement_title: announcement.announcement_title,
         announcement_body: announcement.announcement_body,
         from_organizer: announcement.from_organizer,
