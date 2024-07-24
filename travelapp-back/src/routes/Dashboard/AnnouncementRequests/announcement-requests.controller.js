@@ -1,4 +1,5 @@
 const { getAnnouncementRequest, getAnnouncementRequests, acceptAnnouncementRequest, denyAnnouncementRequest } = require('../../../models/announcement-requests.model')
+const { postAnnouncementForOrganizer } = require('../../../models/announcements.model')
 const { getPagination } = require('../../../services/query')
 
 async function httpGetAllAnnouncementRequests(req, res) {
@@ -18,6 +19,11 @@ async function httpGetOneAnnouncementRequest(req, res) {
 }
 async function httpAcceptAnnouncementRequest(req, res) {
     const data = await acceptAnnouncementRequest(req.params.id)
+    await postAnnouncementForOrganizer({
+        announcement_title: data.announcement_title,
+        announcement_body: data.announcement_body,
+        organized_trip_id: data.organized_trip_id
+    })
     return res.status(200).json({
         message: 'Announcement Request Accepted Successfully',
         data: data

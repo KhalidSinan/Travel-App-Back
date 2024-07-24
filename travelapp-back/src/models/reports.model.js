@@ -42,6 +42,9 @@ async function deleteReport(_id) {
     return await Report.deleteOne({ _id })
 }
 
+async function putRepliedTo(id) {
+    return await Report.findByIdAndUpdate(id, { replied_to: true })
+}
 
 module.exports = {
     getAllReportsOnApp,
@@ -50,6 +53,6 @@ module.exports = {
     postReport,
     deleteReport,
     getAllReportsOnAppCount,
-    getAllReportsOnOrganizersCount
-
+    getAllReportsOnOrganizersCount,
+    putRepliedTo
 }
