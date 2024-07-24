@@ -24,6 +24,7 @@ async function getTop10CountriesHelper(countries) {
                 lastMonthCount: tempCount
             })
         }))
+    data.sort((a, b) => b.count - a.count);
     return data;
 }
 
