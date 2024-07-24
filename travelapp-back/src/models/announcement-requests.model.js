@@ -5,7 +5,9 @@ async function getAnnouncementRequest(id) {
 }
 
 async function getAnnouncementRequests(skip, limit) {
-    return await AnnouncementRequest.find().skip(skip).limit(limit);
+    return await AnnouncementRequest.find({ is_accepted: { $ne: true } })
+        .skip(skip)
+        .limit(limit);
 }
 
 async function postAnnouncementRequest(data) {
