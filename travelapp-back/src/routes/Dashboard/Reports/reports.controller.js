@@ -1,4 +1,4 @@
-const { getAllReportsOnApp, deleteReport, getOneReport, getAllReportsOnOrganizers, getAllReportsOnAppCount, getAllReportsOnOrganizersCount } = require('../../../models/reports.model');
+const { getAllReportsOnApp, deleteReport, getOneReport, getAllReportsOnOrganizers, getAllReportsOnAppCount, getAllReportsOnOrganizersCount, putRepliedTo } = require('../../../models/reports.model');
 const { serializedData } = require('../../../services/serializeArray');
 const { reportDataOnApp, reportDataOnOrganizer } = require('./reports.serializer');
 const { getPagination } = require('../../../services/query');
@@ -44,7 +44,7 @@ async function httpReplyReport(req, res) {
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
     // await sendMail('Report Considered', user.email, { name, token, template_name: 'views/confirm_email.html' });
-
+    await putRepliedTo(req.params.id)
 
     return res.status(200).json({ message: 'Replied To User' })
 }

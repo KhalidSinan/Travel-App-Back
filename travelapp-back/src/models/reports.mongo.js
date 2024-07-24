@@ -22,6 +22,11 @@ const reportSchema = new mongoose.Schema({
     organizer_id: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
+    },
+    replied_to: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 }, { timestamps: true })
 
