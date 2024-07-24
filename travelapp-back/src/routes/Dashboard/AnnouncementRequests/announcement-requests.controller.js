@@ -1,13 +1,15 @@
 const { getAnnouncementRequest, getAnnouncementRequests, acceptAnnouncementRequest, denyAnnouncementRequest } = require('../../../models/announcement-requests.model')
 const { postAnnouncementForOrganizer } = require('../../../models/announcements.model')
 const { getPagination } = require('../../../services/query')
+const { serializedData } = require('../../../services/serializeArray')
+const { announcementRequestData } = require('./announcement-requests.serializer')
 
 async function httpGetAllAnnouncementRequests(req, res) {
     const { skip, limit } = getPagination(req.query)
     const data = await getAnnouncementRequests(skip, limit)
     return res.status(200).json({
         message: 'Announcement Requests Retrieved Successfully',
-        data: data
+        data: serializedData(data, announcementRequestData)
     })
 }
 async function httpGetOneAnnouncementRequest(req, res) {
@@ -22,7 +24,8 @@ async function httpAcceptAnnouncementRequest(req, res) {
     await postAnnouncementForOrganizer({
         announcement_title: data.announcement_title,
         announcement_body: data.announcement_body,
-        organized_trip_id: data.organized_trip_id
+        organized_trip_id: data.organized_trip_id,
+        organizer_id: data.organizer_id
     })
     return res.status(200).json({
         message: 'Announcement Request Accepted Successfully',

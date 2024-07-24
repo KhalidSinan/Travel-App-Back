@@ -3,11 +3,13 @@ const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validatePostAnnouncement } = require("./announcements.validation");
 const sendPushNotification = require('../../../services/notifications');
 const { getAllDeviceTokens } = require("../../../models/users.model");
+const { announcementData } = require("./announcements.serializer");
+const { serializedData } = require('../../../services/serializeArray')
 
 async function httpGetAllAnnouncements(req, res) {
     const announcements = await getAnnouncements();
     return res.status(200).json({
-        data: announcements
+        data: serializedData(announcements, announcementData)
     })
 }
 

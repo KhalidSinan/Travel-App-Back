@@ -7,7 +7,8 @@ const { addRequest, getRequest, getRequestByUserId } = require('../../../models/
 async function httpGetProfile(req, res) {
     const user = req.user;
     if (!user) return res.status(400).json({ message: 'User Not Found' })
-    const profile = await getProfile(user);
+    const profile = await getProfile(user._id);
+    console.log(profile)
     return res.status(200).json({
         message: 'Profile Retreived',
         profile: userData(profile)

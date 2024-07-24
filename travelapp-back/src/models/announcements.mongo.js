@@ -18,6 +18,10 @@ const announcementSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OrganizedTrip'
     },
+    organizer_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Organizer'
+    },
 }, { timestamps: true })
 
 module.exports = mongoose.model('Announcement', announcementSchema)

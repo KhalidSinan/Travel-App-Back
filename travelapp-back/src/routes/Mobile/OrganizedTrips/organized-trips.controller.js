@@ -5,6 +5,7 @@ const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip } = require('../../../models/organized-trip-reservations.model');
 const { postAnnouncementRequest } = require('../../../models/announcement-requests.model');
+const { getOrganizerID } = require('../../../models/organizers.model');
 
 // Serializer
 async function httpGetAllOrganizedTrips(req, res) {
@@ -89,10 +90,11 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     const trip = await getTrip(organized_trip.trip_id)
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
+    const organizer_id = await getOrganizerID(req.user.id)
     // postAnnouncemetRequest
     const data = {
         organized_trip_id: req.params.id,
-        organizer_id: req.user.id
+        organizer_id: organizer_id
     }
     Object.assign(data, req.body)
     await postAnnouncementRequest(data)

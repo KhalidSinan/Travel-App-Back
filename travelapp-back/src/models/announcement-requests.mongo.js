@@ -11,7 +11,7 @@ const announcementRequestSchema = new mongoose.Schema({
     },
     organizer_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Organizer'
     },
     organized_trip_id: {
         type: mongoose.Schema.Types.ObjectId,
