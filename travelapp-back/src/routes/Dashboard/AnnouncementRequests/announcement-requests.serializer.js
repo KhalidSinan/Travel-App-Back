@@ -7,6 +7,7 @@ function announcementRequestData(announcement_request) {
         announcement_title: announcement_request.announcement_title,
         announcement_body: announcement_request.announcement_body,
         organizer_name: name.trim() ? name : null,
+        organizer_id: announcement_request.organizer_id._id,
         organized_trip_id: announcement_request.organized_trip_id,
         created_at: announcement_request.createdAt
     }

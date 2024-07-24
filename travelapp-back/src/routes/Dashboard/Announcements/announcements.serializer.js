@@ -10,6 +10,7 @@ function announcementData(announcement) {
         organizer_name: name.trim() ? name : null,
         organizer_id: announcement.organizer_id?._id ?? null,
         organized_trip_id: announcement.organized_trip_id ?? null,
+        created_at: announcement.createdAt
     }
 }
 
