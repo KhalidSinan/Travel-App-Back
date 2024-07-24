@@ -5,7 +5,7 @@ async function postAnnouncement(data) {
 }
 
 async function getAnnouncements() {
-    return await Announcement.find().select('-_id').sort({ 'created_at': -1 });
+    return await Announcement.find().populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' } }).select('-_id').sort({ 'created_at': -1 });
 }
 
 async function postAnnouncementForOrganizer(data) {
@@ -13,7 +13,8 @@ async function postAnnouncementForOrganizer(data) {
         announcement_title: data.announcement_title,
         announcement_body: data.announcement_body,
         from_organizer: true,
-        organized_trip_id: data.organized_trip_id
+        organized_trip_id: data.organized_trip_id,
+        organizer_id: data.organizer_id
     })
 }
 

@@ -35,8 +35,8 @@ async function putPhoneNumber(user, phone_number) {
     return await user.save();
 }
 
-async function getProfile(user) {
-    return user
+async function getProfile(id) {
+    return await User.findById(id)
 }
 
 async function putPassword(user, password) {

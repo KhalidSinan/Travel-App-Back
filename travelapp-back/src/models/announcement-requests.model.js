@@ -6,6 +6,7 @@ async function getAnnouncementRequest(id) {
 
 async function getAnnouncementRequests(skip, limit) {
     return await AnnouncementRequest.find({ is_accepted: { $ne: true } })
+        .populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' } })
         .skip(skip)
         .limit(limit);
 }

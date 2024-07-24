@@ -25,6 +25,10 @@ async function incrementWarnings(organizer) {
     return await organizer.save();
 }
 
+async function getOrganizerID(user_id) {
+    return await Organizers.findOne({ user_id });
+}
+
 
 module.exports = {
     getOrganizers,
@@ -32,5 +36,6 @@ module.exports = {
     deleteOrganizerAccount,
     postOrganizerData,
     incrementWarnings,
-    getOrganizersCount
+    getOrganizersCount,
+    getOrganizerID
 }
