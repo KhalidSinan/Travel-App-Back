@@ -1,7 +1,7 @@
 const { getCountriesFlightsInAMonth } = require("../../../models/flights.model");
 
 
-async function getTop10CountriesHelper(countries) {
+async function getStatisticsCountriesHelper(countries) {
     const currentMonth = new Date().getMonth() + 1;
     const lastMonth = currentMonth === 1 ? 12 : currentMonth - 1;
     const lastMonthStart = new Date();
@@ -29,5 +29,5 @@ async function getTop10CountriesHelper(countries) {
 }
 
 module.exports = {
-    getTop10CountriesHelper
+    getStatisticsCountriesHelper
 }

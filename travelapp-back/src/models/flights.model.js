@@ -30,6 +30,15 @@ async function getTop10Countries() {
     ])
 }
 
+async function getAllCountries() {
+    return await Flight.aggregate([
+        { $group: { _id: '$destination.country', count: { $sum: 1 } } },
+        { $match: { count: { $gt: 1 } } },
+        { $sort: { count: -1 } },
+        { $project: { _id: 0, country: '$_id', count: 1 } }
+    ])
+}
+
 async function getCountriesFlightsInAMonth(country, lastMonthStart, lastMonthEnd) {
     return await Flight.find({ 'destination.country': country, 'departure_date.dateTime': { $gte: lastMonthStart, $lte: lastMonthEnd } }).countDocuments();
 }
@@ -40,5 +49,6 @@ module.exports = {
     addFlights,
     getFlightsCount,
     getTop10Countries,
+    getAllCountries,
     getCountriesFlightsInAMonth
 }
