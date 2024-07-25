@@ -1,16 +1,25 @@
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { getTop10Countries } = require('../../../models/flights.model');
+const { getTop10Countries, getAllCountries } = require('../../../models/flights.model');
 const { getTop10Hotels } = require('../../../models/hotel-reservation.model');
 const { getUsersAge } = require('../../../models/users.model');
 const { serializedData } = require('../../../services/serializeArray');
-const { getTop10CountriesHelper } = require('./statistics.helper');
+const { getStatisticsCountriesHelper } = require('./statistics.helper');
 const { top10HotelsData } = require('./statistics.serializer')
 
 async function httpGetTop10Countries(req, res) {
     const countries = await getTop10Countries();
-    const data = await getTop10CountriesHelper(countries);
+    const data = await getStatisticsCountriesHelper(countries);
     return res.status(200).json({
         message: 'Top 10 Countries Retrieved',
+        data: data
+    })
+}
+
+async function httpGetAllCountries(req, res) {
+    const countries = await getAllCountries();
+    const data = await getStatisticsCountriesHelper(countries);
+    return res.status(200).json({
+        message: 'All Countries Retrieved',
         data: data
     })
 }
@@ -42,6 +51,7 @@ async function httpGetTop10Hotels(req, res) {
 
 module.exports = {
     httpGetTop10Countries,
+    httpGetAllCountries,
     httpGetUsersAgeStatistics,
     httpGetTop10Hotels,
     // httpGetRevenue
