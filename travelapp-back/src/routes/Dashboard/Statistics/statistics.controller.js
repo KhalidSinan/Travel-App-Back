@@ -1,6 +1,8 @@
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { getTop10Countries, getAllCountries } = require('../../../models/flights.model');
 const { getTop10Hotels } = require('../../../models/hotel-reservation.model');
+const { getOrganizedTripsCount } = require('../../../models/organized-trips.model');
+const { getTripsCount } = require('../../../models/trips.model');
 const { getUsersAge } = require('../../../models/users.model');
 const { serializedData } = require('../../../services/serializeArray');
 const { getStatisticsCountriesHelper } = require('./statistics.helper');
@@ -40,6 +42,19 @@ async function httpGetTop10Hotels(req, res) {
     })
 }
 
+async function httpGetPercentageOfOrganizedTrips(req, res) {
+    const tripsCount = await getTripsCount();
+    const organizedTripsUnique = await getOrganizedTripsCount();
+    const percentage = organizedTripsUnique / tripsCount * 100
+
+    return res.status(200).json({
+        message: 'Percentage Of Organized Trips',
+        percentage: percentage,
+        tripsCount: tripsCount,
+        organizedTripsCount: organizedTripsUnique
+    })
+}
+
 // async function httpGetRevenue(req, res) {
 //     const data = await getRevenue();
 //     return res.status(200).json({
@@ -54,5 +69,6 @@ module.exports = {
     httpGetAllCountries,
     httpGetUsersAgeStatistics,
     httpGetTop10Hotels,
+    httpGetPercentageOfOrganizedTrips,
     // httpGetRevenue
 }

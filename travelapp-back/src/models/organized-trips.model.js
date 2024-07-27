@@ -35,6 +35,10 @@ async function incrementSeats(trip, decrement) {
     await trip.save();
 }
 
+async function getOrganizedTripsCount() {
+    return (await OrganizedTrip.distinct('trip_id')).length;
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
@@ -42,5 +46,6 @@ module.exports = {
     decrementSeats,
     makeDiscount,
     addReview,
-    incrementSeats
+    incrementSeats,
+    getOrganizedTripsCount
 }
