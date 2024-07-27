@@ -21,6 +21,10 @@ async function getSharedTrips(city) {
         .populate('destinations.destination.cities.activities.place');
 }
 
+async function getTripsCount() {
+    return Trip.find().countDocuments();
+}
+
 
 module.exports = {
     getTrip,
@@ -28,4 +32,5 @@ module.exports = {
     shareTrip,
     cancelTrip,
     getSharedTrips,
+    getTripsCount
 }

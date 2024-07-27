@@ -55,6 +55,7 @@ app.use('/dashboard', require('./routes/Dashboard/Reports/reports.route'))
 app.use('/dashboard', require('./routes/Dashboard/AnnouncementRequests/announcement-requests.route'))
 app.use('/dashboard', require('./routes/Dashboard/Statistics/statistics.route'))
 app.use('/dashboard', require('./routes/Dashboard/Notifications/notifications.route'))
+app.use('/dashboard', require('./routes/Dashboard/Hotels/hotels.route'))
 
 // Error Handling
 app.use(errorHandler);
