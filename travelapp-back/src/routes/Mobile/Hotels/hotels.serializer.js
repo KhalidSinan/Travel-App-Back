@@ -32,7 +32,6 @@ function hotelReservationData(reservation) {
 function hotelReservationDetailsData(reservation) {
     const location = reservation.hotel_id.location.name + ', ' + reservation.hotel_id.location.city + ', ' + reservation.hotel_id.location.country
     return {
-        id: reservation._id,
         name: reservation.hotel_id.name,
         location: location,
         stars: reservation.hotel_id.stars,
