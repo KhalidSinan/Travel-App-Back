@@ -3,10 +3,11 @@ function filterReportsHelper(data) {
     const filter = {};
     if (start_date && end_date) {
         filter.createdAt = {
-            $gte: new Date(start_date).toDateString(),
-            $lte: new Date(end_date).toDateString()
+            $gte: new Date(start_date),
+            $lte: new Date(end_date)
         }
     }
+    console.log(filter)
     return filter
 }
 

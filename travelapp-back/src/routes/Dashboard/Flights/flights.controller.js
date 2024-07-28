@@ -1,25 +1,27 @@
-const { getHotelById } = require("../../../models/hotels.model");
+const { getFlights, getFlightsCount } = require("../../../models/flights.model")
+const { getPagination } = require('../../../services/query')
+const { serializedData } = require('../../../services/serializeArray');
+const { flightFilterHelper } = require("./flights.helper");
+const { flightsData } = require("./flights.serializer");
 
 // make serializer
 async function httpGetFlights(req, res) {
-    const hotel = await getHotelById(req.params.id)
+    req.query.limit = 10
+    const { skip, limit } = getPagination(req.query);
+    const filter = flightFilterHelper(req.query.start_date ?? null, req.query.end_date ?? null, req.query.search ?? null)
+    const flightsCount = await getFlightsCount(filter);
+    const flights = await getFlights(skip, limit, filter);
+
+    let data = []
+    if (flightsCount != 0) data = serializedData(flights, flightsData)
+
     return res.status(200).json({
         message: 'Flights Found',
-        count: 4,
-        data: hotel
-    })
-}
-
-async function httpGetFlight(req, res) {
-    const flight = await getHotelById(req.params.id)
-    if (!flight) return res.status(400).json({ message: 'Flight Not Found' })
-
-    return res.status(200).json({
-        message: 'Flight Found',
-        data: flight
-    })
+        count: flightsCount,
+        data: data
+    });
 }
 
 module.exports = {
-    httpGetHotelData
+    httpGetFlights,
 };

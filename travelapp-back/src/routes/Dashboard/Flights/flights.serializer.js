@@ -1,22 +1,47 @@
-function flightData(flight) {
-    let minRoomPrice = 10000
-    hotel.room_types.forEach(room => {
-        minRoomPrice = Math.min(room.price, minRoomPrice)
-    })
+const { serializedData } = require("../../../services/serializeArray");
+
+function flightsData(flight) {
     return {
-        _id: hotel._id,
-        name: hotel.name,
-        location: hotel.location,
-        stars: hotel.stars,
-        description: hotel.description,
-        room_types: hotel.room_types,
-        rooms_number: hotel.rooms_number,
-        distance_from_city_center: hotel.distance_from_city_center,
-        images: hotel.images,
-        starts_from: hotel.starts_from ?? minRoomPrice,
+        source_country: flight.source.country,
+        source_city: flight.source.city,
+        source_airport: flight.source.name,
+        destination_country: flight.destination.country,
+        destination_city: flight.destination.city,
+        destination_airport: flight.destination.name,
+
+        arrival_date: flight.arrival_date.date,
+        departure_date: flight.departure_date.date,
+
+        airline_name: flight.airline.name,
+        airline_pic: flight.airline.logo,
+
+        available_seats: flight.available_seats,
+        classes: serializedData(flight.classes, classData)
+    }
+}
+
+function classData(class1) {
+    return {
+        name: class1.name,
+        price: class1.price,
+        weight: class1.weight,
+        available_seats: class1.available_seats,
+        features: class1.features
+    }
+}
+
+function flightData(flight) {
+    return {
+        id: flight._id,
+        source: flight.source,
+        destination: flight.destination,
+        arrival_date: flight.arrival_date,
+        departure_date: flight.departure_date,
+        airline: flight.airline
     }
 }
 
 module.exports = {
-    hotelData
+    flightsData,
+    flightData
 }
