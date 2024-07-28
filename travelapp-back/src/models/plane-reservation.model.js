@@ -59,6 +59,10 @@ async function getAllPlaneReservations(ids) {
     //.select('-reservations._id')
 }
 
+async function getPlaneReservationCountForFlight(flight_id) {
+    return await PlaneReservation.find({ flights: { $in: flight_id } }).countDocuments()
+}
+
 module.exports = {
     postReservation,
     getReservation,
@@ -68,5 +72,6 @@ module.exports = {
     deleteReservation,
     getAllReservationsWithFlightData,
     putReservationData,
-    getAllPlaneReservations
+    getAllPlaneReservations,
+    getPlaneReservationCountForFlight
 }

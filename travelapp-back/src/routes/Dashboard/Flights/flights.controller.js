@@ -1,7 +1,7 @@
 const { getFlights, getFlightsCount } = require("../../../models/flights.model")
 const { getPagination } = require('../../../services/query')
 const { serializedData } = require('../../../services/serializeArray');
-const { flightFilterHelper } = require("./flights.helper");
+const { flightFilterHelper, getFlightsHelper } = require("./flights.helper");
 const { flightsData } = require("./flights.serializer");
 
 // make serializer
@@ -10,7 +10,8 @@ async function httpGetFlights(req, res) {
     const { skip, limit } = getPagination(req.query);
     const filter = flightFilterHelper(req.query.start_date ?? null, req.query.end_date ?? null, req.query.search ?? null)
     const flightsCount = await getFlightsCount(filter);
-    const flights = await getFlights(skip, limit, filter);
+    let flights = await getFlights(skip, limit, filter);
+    flights = await getFlightsHelper(flights)
 
     let data = []
     if (flightsCount != 0) data = serializedData(flights, flightsData)

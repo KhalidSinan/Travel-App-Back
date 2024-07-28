@@ -15,8 +15,11 @@ function flightsData(flight) {
         airline_name: flight.airline.name,
         airline_pic: flight.airline.logo,
 
+        overall_seats: flight.overall_seats,
         available_seats: flight.available_seats,
-        classes: serializedData(flight.classes, classData)
+        classes: serializedData(flight.classes, classData),
+
+        reservationCount: flight.reservationCount
     }
 }
 
@@ -30,18 +33,6 @@ function classData(class1) {
     }
 }
 
-function flightData(flight) {
-    return {
-        id: flight._id,
-        source: flight.source,
-        destination: flight.destination,
-        arrival_date: flight.arrival_date,
-        departure_date: flight.departure_date,
-        airline: flight.airline
-    }
-}
-
 module.exports = {
     flightsData,
-    flightData
 }

@@ -181,10 +181,11 @@ async function createTrips(num_of_trips) {
             time: arrival_date.dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         }
         const available_seats = Math.floor(Math.random() * 300)
+        const overall_seats = available_seats
 
         const classes = createClasses(available_seats);
 
-        const trip = { source, destination, duration, airline, available_seats, departure_date, arrival_date, classes }
+        const trip = { source, destination, duration, airline, overall_seats, available_seats, departure_date, arrival_date, classes }
         trips.push(trip)
 
         // Trip Back
@@ -217,6 +218,7 @@ function revertTrip(trip) {
         destination: trip.source,
         duration: trip.duration,
         airline: trip.airline,
+        overall_seats: trip.overall_seats,
         available_seats: trip.available_seats,
         departure_date: departure_date,
         arrival_date: arrival_date,
