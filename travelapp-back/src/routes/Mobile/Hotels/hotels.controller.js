@@ -1,7 +1,7 @@
 
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { searchHotelsValidation, reservationValidation, searchHotelsByCityValidation } = require('./hotels.validation');
-const { postReservation, getMyHotelReservations } = require("../../../models/hotel-reservation.model");
+const { postReservation, getMyHotelReservations, getHotelReservation } = require("../../../models/hotel-reservation.model");
 const { getPagination } = require('../../../services/query');
 const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../models/hotels.model")
 const { getUserById } = require("../../../models/users.model")
@@ -9,7 +9,7 @@ const HotelReservation = require('../../../models/hotel-reservation.mongo');
 const Hotel = require('../../../models/hotels.mongo');
 const { calculateTotalPrice, hotelDataPriceSortHelper, findConflicts, getPriceForRooms } = require('./hotel.helper');
 const { serializedData } = require('../../../services/serializeArray')
-const { hotelData } = require('./hotels.serializer')
+const { hotelData, hotelReservationData, hotelReservationDetailsData } = require('./hotels.serializer')
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { getCities } = require('../../../services/locations')
@@ -266,7 +266,13 @@ async function getHotelsByCities(req, res) {
 
 async function httpGetHotelReservations(req, res) {
     const reservations = await getMyHotelReservations(req.user._id)
-    return res.status(200).json({ data: reservations });
+    return res.status(200).json({ data: serializedData(reservations, hotelReservationData) });
+}
+
+async function httpGetHotelReservation(req, res) {
+    const reservation = await getHotelReservation(req.params.id)
+    if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' });
+    return res.status(200).json({ data: hotelReservationDetailsData(reservation) });
 }
 
 module.exports = {
@@ -275,5 +281,6 @@ module.exports = {
     payReservation,
     getCountriesWithCities,
     getHotelsByCities,
-    httpGetHotelReservations
+    httpGetHotelReservations,
+    httpGetHotelReservation
 };

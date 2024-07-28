@@ -7,7 +7,7 @@ async function postReservation(data) {
 }
 
 async function getHotelReservation(id) {
-    return await HotelReservation.findById(id);
+    return await HotelReservation.findById(id).populate('hotel_id', '-location._id').select('-room_codes._id');
 }
 
 async function getHotelReservationsWithDetails(ids) {
@@ -36,7 +36,7 @@ async function getHotelReservationCount(hotel_id) {
 }
 
 async function getMyHotelReservations(user_id) {
-    return await HotelReservation.find({ user_id }).populate('hotel_id', 'name location stars -_id');
+    return await HotelReservation.find({ user_id }).populate('hotel_id', 'name location stars images -_id');
 }
 
 

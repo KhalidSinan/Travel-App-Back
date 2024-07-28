@@ -77,8 +77,8 @@ function getPriceForRooms(hotel, room_codes) {
 async function checkHotelsReservations(hotels) {
     let check = true
     await Promise.all(
-        hotels.map(async (flight) => {
-            let temp = await getHotelReservation(flight)
+        hotels.map(async (hotel) => {
+            let temp = await getHotelReservation(hotel)
             if (!temp) check = false;
         })
     )
