@@ -2,7 +2,7 @@ const Hotel = require("./hotels.mongo")
 
 
 async function getHotelById(id) {
-    return await Hotel.findById(id)
+    return await Hotel.findById(id).select('-_id -__v -room_types._id')
 }
 
 async function findHotelsInCountry(countryName) {
@@ -49,12 +49,19 @@ async function getHotels(options) {
     }));
 }
 
+async function getAllHotels(skip, limit, filter) {
+    return await Hotel.find(filter).skip(skip).limit(limit)
+}
 
+async function getAllHotelsCount(filter) {
+    return await Hotel.find(filter).countDocuments()
+}
 
 module.exports = {
     getHotels,
     getHotelById,
     findHotelsInCountry,
     findHotelsByPrice,
-
+    getAllHotels,
+    getAllHotelsCount
 }
