@@ -1,5 +1,5 @@
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { getTop10Countries, getAllCountries } = require('../../../models/flights.model');
+const { getTop10Countries, getAllCountries, getAllAirlines } = require('../../../models/flights.model');
 const { getTop10Hotels } = require('../../../models/hotel-reservation.model');
 const { getOrganizedTripsCount } = require('../../../models/organized-trips.model');
 const { getTripsCount } = require('../../../models/trips.model');
@@ -55,6 +55,15 @@ async function httpGetPercentageOfOrganizedTrips(req, res) {
     })
 }
 
+async function httpGetAirlinesFlights(req, res) {
+    const airlines = await getAllAirlines();
+
+    return res.status(200).json({
+        message: 'Airlines Flights Found',
+        data: airlines
+    })
+}
+
 // async function httpGetRevenue(req, res) {
 //     const data = await getRevenue();
 //     return res.status(200).json({
@@ -70,5 +79,6 @@ module.exports = {
     httpGetUsersAgeStatistics,
     httpGetTop10Hotels,
     httpGetPercentageOfOrganizedTrips,
+    httpGetAirlinesFlights
     // httpGetRevenue
 }
