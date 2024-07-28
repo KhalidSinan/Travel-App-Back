@@ -7,6 +7,10 @@ async function getFlights(skip, limit, filter) {
         .select('-source._id -destination._id')
 }
 
+async function getFlightsCount(filter) {
+    return await Flight.find(filter).countDocuments()
+}
+
 async function getFlight(id) {
     return await Flight.findById(id).select('-source._id -destination._id -classes._id')
 
@@ -50,5 +54,6 @@ module.exports = {
     getFlightsCount,
     getTop10Countries,
     getAllCountries,
-    getCountriesFlightsInAMonth
+    getCountriesFlightsInAMonth,
+    getFlightsCount
 }

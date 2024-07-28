@@ -4,12 +4,11 @@ const asyncHandler = require('express-async-handler');
 const checkObjectID = require('../../../middlewares/checkObjectID');
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkAdmin = require('../../../middlewares/checkAdmin');
-const { httpGetHotelData } = require('./hotels.controller');
+const { httpGetFlights, httpSearchFlight } = require('./flights.controller');
 
 const flightRouter = express.Router();
 
-flightRouter.get('/flights', requireJwtAuth, checkAdmin, asyncHandler(httpGetHotelData));
-flightRouter.get('/flights/search', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpGetHotelData));
-flightRouter.get('/flights/:id', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpGetHotelData));
+flightRouter.get('/flights', requireJwtAuth, checkAdmin, asyncHandler(httpGetFlights));
+flightRouter.get('/flights/search', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpSearchFlight));
 
 module.exports = flightRouter;

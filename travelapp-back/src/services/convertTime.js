@@ -43,4 +43,10 @@ function msToTime(remaining) {
     return { days, hours, minutes, seconds }
 }
 
-module.exports = { convertTime12to24, convertToTimeFormat, createDateTimeObject, msToTime }
+function convertDateStringToDate(date) {
+    const [day, month, year] = date.split('/').map(Number);
+    const dateObject = new Date(year, month - 1, day);
+    return dateObject;
+}
+
+module.exports = { convertTime12to24, convertToTimeFormat, createDateTimeObject, msToTime, convertDateStringToDate }
