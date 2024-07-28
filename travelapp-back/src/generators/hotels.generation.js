@@ -39,11 +39,11 @@
 
 const fs = require('fs');
 const { faker } = require('@faker-js/faker');
-const hotelData = require('../../public/json/hotelData.json');
-const Hotel = require('../../models/hotels.mongo');
-let hotelImages = require('../../public/json/hotelImages.json')
-let roomImages = require('../../public/json/roomImages.json')
-let locations = require('../../public/json/countries-all.json')
+const hotelData = require('../public/json/hotelData.json');
+const Hotel = require('../models/hotels.mongo');
+let hotelImages = require('../public/json/hotelImages.json')
+let roomImages = require('../public/json/roomImages.json')
+let locations = require('../public/json/countries-all.json')
 
 const roomCategories = [
     { type: 'Budget Room', priceMultiplier: 0.5, amenities: ['Free WiFi'], roomCountOptions: [50, 100, 150, 200] },

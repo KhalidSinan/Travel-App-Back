@@ -1,7 +1,7 @@
 const fs = require('fs')
-const airlines = require('../../public/json/airlines.json')
-const airports = require('../../public/json/airports.json')
-const flightsMongo = require('../../models/flights.mongo')
+const airlines = require('../public/json/airlines.json')
+const airports = require('../public/json/airports.json')
+const flightsMongo = require('../models/flights.mongo')
 
 const airportsNum = airports.length
 const airlinesNum = airlines.length
