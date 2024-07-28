@@ -27,7 +27,7 @@ async function getTop10Hotels() {
     ]);
     return await Hotel.populate(topHotels, {
         path: '_id',
-        select: 'name',
+        select: 'name location images',
     });
 }
 
@@ -35,11 +35,17 @@ async function getHotelReservationCount(hotel_id) {
     return await HotelReservation.find({ hotel_id }).countDocuments()
 }
 
+async function getMyHotelReservations(user_id) {
+    return await HotelReservation.find({ user_id }).populate('hotel_id', 'name location stars -_id');
+}
+
+
 module.exports = {
     postReservation,
     getHotelReservation,
     getHotelReservationsWithDetails,
     getTop10Hotels,
-    getHotelReservationCount
+    getHotelReservationCount,
+    getMyHotelReservations
 }
 
