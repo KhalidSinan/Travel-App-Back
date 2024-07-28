@@ -1,4 +1,5 @@
 const { convertDateStringToDate } = require("../../../services/convertTime");
+const { getPlaneReservationCountForFlight } = require('../../../models/plane-reservation.model')
 
 function flightFilterHelper(start_date = null, end_date = null, search = null) {
     let start_date1 = start_date;
@@ -35,6 +36,14 @@ function flightFilterHelper(start_date = null, end_date = null, search = null) {
     return filter;
 }
 
+async function getFlightsHelper(flights) {
+    await Promise.all(flights.map(async flight => {
+        flight.reservationCount = await getPlaneReservationCountForFlight(flight._id)
+    }))
+    return flights
+}
+
 module.exports = {
-    flightFilterHelper
+    flightFilterHelper,
+    getFlightsHelper
 };
