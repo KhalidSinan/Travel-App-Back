@@ -6,9 +6,8 @@ const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkAdmin = require('../../../middlewares/checkAdmin');
 const { httpGetHotelData } = require('./hotels.controller');
 
-const hotelRouter = express.Router();
+const flightRouter = express.Router();
 
-hotelRouter.get('/hotels', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpGetHotelData));
-hotelRouter.get('/hotels/:id', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpGetHotelData));
+flightRouter.get('/hotels/:id', requireJwtAuth, checkAdmin, checkObjectID, asyncHandler(httpGetHotelData));
 
-module.exports = hotelRouter;
+module.exports = flightRouter;

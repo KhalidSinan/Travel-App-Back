@@ -1,6 +1,6 @@
 const schedule = require('node-schedule')
 const mongoose = require('mongoose')
-const createTrips = require('../generators/Trips/trips.generation');
+const createTrips = require('../generators/trips.generation');
 const { getAllPlaneReservations } = require('../models/plane-reservation.model');
 const { getFlight } = require('../models/flights.model');
 const sendPushNotification = require('./notifications');
