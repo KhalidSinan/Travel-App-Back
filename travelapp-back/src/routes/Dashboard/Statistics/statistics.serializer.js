@@ -1,12 +1,12 @@
 function top10HotelsData(hotel) {
-    const location = hotel.location.name + ', ' + hotel.location.city + ', ' + hotel.location.country
+    const location = hotel._id.location.name + ', ' + hotel._id.location.city + ', ' + hotel._id.location.country
     return {
-        id: hotel._id,
-        name: hotel.name,
+        id: hotel._id._id,
+        name: hotel._id.name,
         location: location,
         reservationCount: hotel.reservationCount,
         stars: hotel.stars,
-        images: hotel.images[0]
+        images: hotel._id.images[0]
     }
 }
 

@@ -1,7 +1,7 @@
 
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { searchHotelsValidation, reservationValidation, searchHotelsByCityValidation } = require('./hotels.validation');
-const { postReservation } = require("../../../models/hotel-reservation.model");
+const { postReservation, getMyHotelReservations } = require("../../../models/hotel-reservation.model");
 const { getPagination } = require('../../../services/query');
 const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../models/hotels.model")
 const { getUserById } = require("../../../models/users.model")
@@ -264,30 +264,16 @@ async function getHotelsByCities(req, res) {
     return res.json({ data: response });
 }
 
-// async function getHotelsByCities(req, res) {
-//     const { cities } = req.body;
-
-//     if (!cities || !Array.isArray(cities) || cities.length === 0) {
-//         return res.status(400).json({ error: "You must provide an array of city names." });
-//     }
-
-//     try {
-//         const hotelsByCityPromises = cities.map(async (city) => {
-//             const hotels = await Hotel.find({ 'location.city': city });
-//             return { city, hotels };
-//         });
-
-//         const hotelsByCity = await Promise.all(hotelsByCityPromises);
-//         return res.json({ data: hotelsByCity });
-//     } catch (error) {
-//         return res.status(500).json({ error: 'Error fetching hotels' });
-//     }
-// }
+async function httpGetHotelReservations(req, res) {
+    const reservations = await getMyHotelReservations(req.user._id)
+    return res.status(200).json({ data: reservations });
+}
 
 module.exports = {
     makeReservation,
     searchHotels,
     payReservation,
     getCountriesWithCities,
-    getHotelsByCities
+    getHotelsByCities,
+    httpGetHotelReservations
 };
