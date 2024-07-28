@@ -61,6 +61,7 @@ function reservationData(reservation) {
 function allReservationData(reservation) {
     let price = reservation.reservations.overall_price + (reservation.reservations_back?.overall_price ?? 0)
     return {
+        id: reservation._id,
         source: reservation.flights[0].source.country,
         destination: reservation.flights[0].destination.country,
         reservation_type: reservation.reservation_type,
