@@ -13,13 +13,10 @@ async function httpGetFlights(req, res) {
     let flights = await getFlights(skip, limit, filter);
     flights = await getFlightsHelper(flights)
 
-    let data = []
-    if (flightsCount != 0) data = serializedData(flights, flightsData)
-
     return res.status(200).json({
         message: 'Flights Found',
         count: flightsCount,
-        data: data
+        data: serializedData(flights, flightsData)
     });
 }
 

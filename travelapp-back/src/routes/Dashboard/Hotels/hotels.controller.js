@@ -11,15 +11,11 @@ async function httpGetHotels(req, res) {
     const filter = { name: RegExp(req.query.search, 'i') ?? null }
     let hotels = await getAllHotels(skip, limit, filter)
     const hotelsCount = await getAllHotelsCount(filter)
-
     hotels = await getHotelsHelper(hotels)
-    let data = []
-    if (hotelsCount != 0) data = serializedData(hotels, hotelData)
-
     return res.status(200).json({
         message: 'Hotels Found',
         count: hotelsCount,
-        data: data
+        data: serializedData(hotels, hotelData)
     })
 }
 

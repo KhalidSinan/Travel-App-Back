@@ -62,7 +62,10 @@ async function getAllTrips(req, res) {
             .populate('hotels', 'name -_id')
             .populate('places_to_visit', 'name -_id')
             .exec();
-        res.status(200).json(trips);
+        res.status(200).json({
+            message: 'Trips Found',
+            data: trips
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -58,4 +58,15 @@ function reservationData(reservation) {
     return data
 }
 
-module.exports = { reservationData }
+function allReservationData(reservation) {
+    let price = reservation.reservations.overall_price + (reservation.reservations_back?.overall_price ?? 0)
+    return {
+        source: reservation.flights[0].source.country,
+        destination: reservation.flights[0].destination.country,
+        reservation_type: reservation.reservation_type,
+        num_of_reservations: reservation.num_of_reservations,
+        overall_price: price
+    }
+}
+
+module.exports = { reservationData, allReservationData }

@@ -1,7 +1,7 @@
 const createPaymentData = require('../../../services/payment');
 const { getFlight } = require('../../../models/flights.model');
 const { paymentSheet } = require('../Payments/payments.controller');
-const { reservationData } = require('./plane-reservations.serializer');
+const { reservationData, allReservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservations.validation');
 const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReservations } = require('./plane-reservations.helper')
 const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation, getAllReservationsWithFlightData } = require('../../../models/plane-reservation.model');
@@ -9,6 +9,8 @@ const sendPushNotification = require('../../../services/notifications');
 const { postNotification } = require('../../../models/notification.model');
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { getDeviceTokens } = require('../../../models/users.model');
+const { serializedData } = require('../../../services/serializeArray')
+
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -152,11 +154,20 @@ async function httpGetNextDestination(req, res) {
     })
 }
 
+async function httpGetMyReservations(req, res) {
+    const reservations = await getAllReservationsWithFlightData(req.user._id)
+    return res.status(200).json({
+        message: 'My Reservations Retrieved Successfully',
+        data: serializedData(reservations, allReservationData)
+    })
+}
+
 module.exports = {
     httpMakeReservation,
     httpConfirmReservation,
     httpCancelReservation,
     httpGetReservation,
     httpPayReservation,
-    httpGetNextDestination
+    httpGetNextDestination,
+    httpGetMyReservations
 }
