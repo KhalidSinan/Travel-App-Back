@@ -49,8 +49,10 @@ async function getHotels(options) {
     }));
 }
 
-async function getAllHotels(skip, limit, filter) {
-    return await Hotel.find(filter).skip(skip).limit(limit)
+async function getAllHotels(skip, limit, filter, sort) {
+    let hotels = Hotel.find(filter).skip(skip).limit(limit)
+    if (sort && (sort == 'asc' || sort == 'desc')) hotels = await hotels.sort({ stars: sort })
+    return hotels
 }
 
 async function getAllHotelsCount(filter) {
