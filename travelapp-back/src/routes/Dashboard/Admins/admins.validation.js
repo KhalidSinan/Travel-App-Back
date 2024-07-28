@@ -25,9 +25,11 @@ function validatePostAdmin(admin) {
             .required()
             .label('Confirm password')
             .messages({ 'any.only': '{{#label}} does not match' }),
-        role: Joi.string().min(3).required().messages({
-            'any.required': "Role Required",
-        }),
+        role: Joi.string().min(3).required()
+            .valid('Reports-Admin', 'Announcements-Admin', 'Notifications-Admin', 'Organizers-Admin')
+            .messages({
+                'any.required': "Role Required",
+            }),
     })
     return schema.validate(admin);
 }
