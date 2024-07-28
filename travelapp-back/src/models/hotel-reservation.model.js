@@ -31,12 +31,15 @@ async function getTop10Hotels() {
     });
 }
 
-
+async function getHotelReservationCount(hotel_id) {
+    return await HotelReservation.find({ hotel_id }).countDocuments()
+}
 
 module.exports = {
     postReservation,
     getHotelReservation,
     getHotelReservationsWithDetails,
-    getTop10Hotels
+    getTop10Hotels,
+    getHotelReservationCount
 }
 
