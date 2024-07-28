@@ -8,8 +8,14 @@ const { hotelData, hotelDetails } = require("./hotels.serializer");
 async function httpGetHotels(req, res) {
     req.query.limit = 10
     const { skip, limit } = getPagination(req.query);
-    const filter = { name: RegExp(req.query.search, 'i') ?? null }
-    let hotels = await getAllHotels(skip, limit, filter)
+    const filter = {};
+    if (req.query.stars) {
+        filter.stars = req.query.stars;
+    }
+    if (req.query.search) {
+        filter.name = RegExp(req.query.search, 'i');
+    }
+    let hotels = await getAllHotels(skip, limit, filter, req.query.sort)
     const hotelsCount = await getAllHotelsCount(filter)
     hotels = await getHotelsHelper(hotels)
     return res.status(200).json({
