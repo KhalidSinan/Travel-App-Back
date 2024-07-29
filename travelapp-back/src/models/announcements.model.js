@@ -4,8 +4,14 @@ async function postAnnouncement(data) {
     return await Announcement.create({ announcement_title: data.title, announcement_body: data.body })
 }
 
-async function getAnnouncements() {
-    return await Announcement.find().populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' } }).select('-_id').sort({ 'created_at': -1 });
+async function getAnnouncements(skip, limit, sort, filter) {
+    let announcements = Announcement.find(filter).skip(skip).limit(limit).populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' } }).select('-_id').sort({ 'created_at': -1 });
+    if (sort && (sort == 'asc' || sort == 'desc')) announcements = await announcements.sort({ createdAt: sort })
+    return announcements
+}
+
+async function getAnnouncementsCount() {
+    return await Announcement.find().countDocuments();
 }
 
 async function postAnnouncementForOrganizer(data) {
@@ -21,5 +27,6 @@ async function postAnnouncementForOrganizer(data) {
 module.exports = {
     postAnnouncement,
     getAnnouncements,
-    postAnnouncementForOrganizer
+    postAnnouncementForOrganizer,
+    getAnnouncementsCount
 }

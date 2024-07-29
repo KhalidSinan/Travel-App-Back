@@ -1,15 +1,21 @@
-const { getAnnouncementRequest, getAnnouncementRequests, acceptAnnouncementRequest, denyAnnouncementRequest } = require('../../../models/announcement-requests.model')
+const { getAnnouncementRequest, getAnnouncementRequests, acceptAnnouncementRequest, denyAnnouncementRequest, getAnnouncementRequestsCount } = require('../../../models/announcement-requests.model')
 const { postAnnouncementForOrganizer } = require('../../../models/announcements.model')
 const { getPagination } = require('../../../services/query')
 const { serializedData } = require('../../../services/serializeArray')
+const { filterAnnouncementRequestsHelper } = require('./announcement-requests.helper')
 const { announcementRequestData } = require('./announcement-requests.serializer')
 
 async function httpGetAllAnnouncementRequests(req, res) {
+    req.query.limit = 10
     const { skip, limit } = getPagination(req.query)
-    const data = await getAnnouncementRequests(skip, limit)
+    let filter = {}
+    filter = filterAnnouncementRequestsHelper(req.query)
+    const data = await getAnnouncementRequests(skip, limit, req.query.sort, filter)
+    const announcementRequestCount = await getAnnouncementRequestsCount(filter)
     return res.status(200).json({
         message: 'Announcement Requests Retrieved Successfully',
-        data: serializedData(data, announcementRequestData)
+        data: serializedData(data, announcementRequestData),
+        count: announcementRequestCount
     })
 }
 async function httpGetOneAnnouncementRequest(req, res) {

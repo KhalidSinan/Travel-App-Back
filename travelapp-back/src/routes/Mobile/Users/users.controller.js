@@ -1,8 +1,12 @@
+const crypto = require('crypto');
 const { userData } = require('./users.serializer');
 const { validationErrors } = require('../../../middlewares/validationErrors')
 const { putName, putGender, putDate, putProfilePic, getProfile, putLocation, putPassword, deleteAccount, putPhoneNumber } = require('../../../models/users.model');
-const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount, validateBecomeOrganizer, validateChangePhoneNumber } = require('./users.validation');
+const { validateChangeName, validateChangeGender, validateChangeDate, validateChangeLocation, validateChangePassword, validateDeleteAccount, validateBecomeOrganizer, validateChangePhoneNumber, validateCheckTokenToDelete } = require('./users.validation');
 const { addRequest, getRequest, getRequestByUserId } = require('../../../models/organizer-request.model');
+const { postRequest, deleteRequests } = require('../../../models/code_confirmation.model');
+const { confirmTokenHelper } = require('../Auth/auth.helper');
+const sendMail = require('../../../services/sendMail');
 
 async function httpGetProfile(req, res) {
     const user = req.user;
@@ -109,7 +113,7 @@ async function httpPutPassword(req, res) {
     return res.status(200).json({ message: 'Password Updated Successfully' })
 }
 
-async function httpDeleteAccount(req, res) {
+async function httpRequestDeleteAccount(req, res) {
     const { error } = await validateDeleteAccount(req.body);
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
@@ -117,9 +121,26 @@ async function httpDeleteAccount(req, res) {
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
     const check = await user.checkCredentials(user.password, req.body.password)
-    if (!check) return res.status(200).json({ message: 'Incorrect Password' })
 
+
+    const token = crypto.randomInt(100000, 999999)
+    await deleteRequests(user.id)
+    await postRequest({ user_id: user.id, token })
+    const name = user.name.first_name + ' ' + user.name.last_name
+    await sendMail('Delete Account Request', user.email, { name, token, template_name: 'views/delete_account.html' });
+
+    if (!check) return res.status(400).json({ message: 'Incorrect Password', check: false })
+    else return res.status(200).json({ message: 'An Email Has Been Sent', check: true })
+}
+
+async function httpDeleteAccount(req, res) {
+    const { error } = await validateCheckTokenToDelete(req.body);
+    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+
+    const user = req.user
+    if (!await confirmTokenHelper(user, req.body.token)) return res.status(400).json({ message: 'Code is Incorrect' })
     await deleteAccount(user._id);
+
     return res.status(200).json({ message: 'Account Has Been Deleted' })
 }
 
@@ -159,5 +180,6 @@ module.exports = {
     httpPutLocation,
     httpPutPassword,
     httpDeleteAccount,
-    httpBecomeOrganizer
+    httpBecomeOrganizer,
+    httpRequestDeleteAccount
 }

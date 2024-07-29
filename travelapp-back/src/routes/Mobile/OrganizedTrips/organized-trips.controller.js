@@ -94,7 +94,7 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     // postAnnouncemetRequest
     const data = {
         organized_trip_id: req.params.id,
-        organizer_id: organizer_id
+        organizer_id: organizer_id._id
     }
     Object.assign(data, req.body)
     await postAnnouncementRequest(data)

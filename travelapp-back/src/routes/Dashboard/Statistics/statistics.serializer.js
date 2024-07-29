@@ -10,6 +10,15 @@ function top10HotelsData(hotel) {
     }
 }
 
+function airlineData(airline) {
+    return {
+        airline: airline.airline,
+        count: airline.count,
+        logo: airline.logo
+    }
+}
+
 module.exports = {
-    top10HotelsData
+    top10HotelsData,
+    airlineData
 }

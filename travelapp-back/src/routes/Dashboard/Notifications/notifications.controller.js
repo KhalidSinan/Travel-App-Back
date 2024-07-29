@@ -1,15 +1,24 @@
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validatePostNotification } = require("./notifications.validation");
 const sendPushNotification = require('../../../services/notifications');
-const { getNotifications, postNotification, getNotification, getNotificationByID } = require('../../../models/notification.model');
+const { getNotifications, postNotification, getNotification, getNotificationByID, getNotificationsCount } = require('../../../models/notification.model');
 const { serializedData } = require('../../../services/serializeArray')
 const { getAllDeviceTokens } = require('../../../models/users.model');
 const { notificationData } = require('./notifications.serializer');
+const { filterNotificationsHelper } = require('./notifications.helper');
+const { getPagination } = require('../../../services/query');
 
 async function httpGetAllNotifications(req, res) {
-    const notifications = await getNotifications();
+    req.query.limit = 10
+    const { skip, limit } = getPagination(req.query)
+    let filter = {}
+    filter = filterNotificationsHelper(req.query)
+    console.log(filter)
+    const notifications = await getNotifications(skip, limit, req.query.sort, filter);
+    const notificationsCount = await getNotificationsCount(filter);
     return res.status(200).json({
-        data: serializedData(notifications, notificationData)
+        data: serializedData(notifications, notificationData),
+        count: notificationsCount
     })
 }
 
