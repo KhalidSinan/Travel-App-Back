@@ -59,6 +59,7 @@ function reservationData(reservation) {
 }
 
 function allReservationData(reservation) {
+    const date = reservation.flights[1] ? reservation.flights[1].arrival_date.dateTime : reservation.flights[0].arrival_date.dateTime
     let price = reservation.reservations.overall_price + (reservation.reservations_back?.overall_price ?? 0)
     return {
         id: reservation._id,
@@ -66,7 +67,8 @@ function allReservationData(reservation) {
         destination: reservation.flights[0].destination.country,
         reservation_type: reservation.reservation_type,
         num_of_reservations: reservation.num_of_reservations,
-        overall_price: price
+        overall_price: price,
+        completed: new Date(date) < Date.now()
     }
 }
 

@@ -26,6 +26,7 @@ function hotelReservationData(reservation) {
         num_of_days: num_of_days,
         reservation_date: reservation.start_date,
         overall_price: reservation.room_price,
+        completed: new Date(reservation.end_date) < Date.now()
     }
 }
 
