@@ -5,7 +5,7 @@ async function getHotelsHelper(hotels) {
         let temp = hotel
         temp.reservationCount = await getHotelReservationCount(hotel._id)
     }))
-    return hotels
+    return hotels;
 }
 
 module.exports = {
