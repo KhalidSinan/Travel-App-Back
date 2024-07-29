@@ -85,10 +85,32 @@ async function checkHotelsReservations(hotels) {
     return check
 }
 
+function getHotelReservationHelper(reservation) {
+    let data = []
+    reservation.room_codes.forEach(room => {
+        reservation.hotel_id.room_types.forEach(hotelRoom => {
+            if (room.code == hotelRoom.code) {
+                const newRoom = {
+                    type: hotelRoom.type,
+                    bed_options: hotelRoom.bed_options,
+                    sleeps_count: hotelRoom.sleeps_count,
+                    bed_options_count: hotelRoom.bed_options_count,
+                    view: hotelRoom.view,
+                    amenities: hotelRoom.amenities,
+                    num_of_rooms: room.count
+                }
+                data.push(newRoom)
+            }
+        })
+    })
+    return data
+}
+
 module.exports = {
     calculateTotalPrice,
     hotelDataPriceSortHelper,
     findConflicts,
     getPriceForRooms,
-    checkHotelsReservations
+    checkHotelsReservations,
+    getHotelReservationHelper
 }
