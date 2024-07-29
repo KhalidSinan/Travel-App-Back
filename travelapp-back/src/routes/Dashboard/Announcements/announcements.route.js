@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const { httpGetAllAnnouncements, httpPostAnnouncement } = require('./announcements.controller');
+const { httpGetAllAnnouncementsApp, httpPostAnnouncement, httpGetAllAnnouncementsOrganizer } = require('./announcements.controller');
 
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkAdmin = require('../../../middlewares/checkAdmin');
@@ -8,7 +8,8 @@ const checkAnnouncementsAdmin = require('../../../middlewares/checkAnnouncements
 
 const announcementRouter = express.Router();
 
-announcementRouter.get('/announcements', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpGetAllAnnouncements))
+announcementRouter.get('/announcements/app', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpGetAllAnnouncementsApp))
+announcementRouter.get('/announcements/organizers', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpGetAllAnnouncementsOrganizer))
 announcementRouter.post('/announcements', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpPostAnnouncement))
 
 module.exports = announcementRouter;
