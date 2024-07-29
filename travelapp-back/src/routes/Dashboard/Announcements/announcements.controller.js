@@ -1,22 +1,35 @@
-const { getAnnouncements, postAnnouncement, getAnnouncementsCount } = require("../../../models/announcements.model");
+const { postAnnouncement, getAnnouncementsApp, getAnnouncementsCountApp, getAnnouncementsOrganizer, getAnnouncementsCountOrganizer } = require("../../../models/announcements.model");
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validatePostAnnouncement } = require("./announcements.validation");
 const sendPushNotification = require('../../../services/notifications');
 const { getAllDeviceTokens } = require("../../../models/users.model");
-const { announcementData } = require("./announcements.serializer");
+const { announcementData, announcementOrganizerData, announcementAppData } = require("./announcements.serializer");
 const { serializedData } = require('../../../services/serializeArray')
 const { getPagination } = require('../../../services/query');
 const { filterAnnouncementsHelper } = require("./announcements.helper");
 
-async function httpGetAllAnnouncements(req, res) {
+async function httpGetAllAnnouncementsApp(req, res) {
     req.query.limit = 10
     const { skip, limit } = getPagination(req.query)
     let filter = {}
     filter = filterAnnouncementsHelper(req.query)
-    const announcements = await getAnnouncements(skip, limit, req.query.sort, filter);
-    const announcementsCount = await getAnnouncementsCount(filter);
+    const announcements = await getAnnouncementsApp(skip, limit, req.query.sort, filter);
+    const announcementsCount = await getAnnouncementsCountApp(filter);
     return res.status(200).json({
-        data: serializedData(announcements, announcementData),
+        data: serializedData(announcements, announcementAppData),
+        count: announcementsCount
+    })
+}
+
+async function httpGetAllAnnouncementsOrganizer(req, res) {
+    req.query.limit = 10
+    const { skip, limit } = getPagination(req.query)
+    let filter = {}
+    filter = filterAnnouncementsHelper(req.query)
+    const announcements = await getAnnouncementsOrganizer(skip, limit, req.query.sort, filter);
+    const announcementsCount = await getAnnouncementsCountOrganizer(filter);
+    return res.status(200).json({
+        data: serializedData(announcements, announcementOrganizerData),
         count: announcementsCount
     })
 }
@@ -42,6 +55,7 @@ async function httpPostAnnouncement(req, res) {
 
 
 module.exports = {
-    httpGetAllAnnouncements,
+    httpGetAllAnnouncementsApp,
+    httpGetAllAnnouncementsOrganizer,
     httpPostAnnouncement
 }
