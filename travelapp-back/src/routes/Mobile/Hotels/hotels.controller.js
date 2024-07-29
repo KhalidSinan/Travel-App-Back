@@ -273,7 +273,6 @@ async function httpGetHotelReservation(req, res) {
     let reservation = await getHotelReservation(req.params.id)
     if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' });
     reservation.rooms = getHotelReservationHelper(reservation)
-    console.log(reservation.rooms)
     return res.status(200).json({ data: hotelReservationDetailsData(reservation) });
 }
 
