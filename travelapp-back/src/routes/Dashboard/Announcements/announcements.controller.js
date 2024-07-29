@@ -14,7 +14,7 @@ async function httpGetAllAnnouncements(req, res) {
     let filter = {}
     filter = filterAnnouncementsHelper(req.query)
     const announcements = await getAnnouncements(skip, limit, req.query.sort, filter);
-    const announcementsCount = await getAnnouncementsCount();
+    const announcementsCount = await getAnnouncementsCount(filter);
     return res.status(200).json({
         data: serializedData(announcements, announcementData),
         count: announcementsCount
@@ -26,7 +26,9 @@ async function httpPostAnnouncement(req, res) {
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     // Saving Announcement in DB
-    const announcement = await postAnnouncement(req.body);
+    let data = req.body;
+    Object.assign(data, { expiry_date: new Date(Date.now() + (1000 * 60 * 60 * 24 * 3)) })
+    const announcement = await postAnnouncement(data);
 
     // Sending Notification For Announcements
     let tokens = await getAllDeviceTokens();

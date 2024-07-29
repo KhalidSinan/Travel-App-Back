@@ -18,27 +18,26 @@ function hotelData(hotel) {
 }
 
 function hotelReservationData(reservation) {
-    const location = reservation.hotel_id.location.name + ', ' + reservation.hotel_id.location.city + ', ' + reservation.hotel_id.location.country
+    const num_of_days = (reservation.end_date - reservation.start_date) / 1000 / 60 / 60 / 24
     return {
         id: reservation._id,
         name: reservation.hotel_id.name,
-        location: location,
-        stars: reservation.hotel_id.stars,
+        num_of_rooms: reservation.room_codes.length,
+        num_of_days: num_of_days,
+        reservation_date: reservation.start_date,
         overall_price: reservation.room_price,
-        image: reservation.hotel_id.images[0]
     }
 }
 
 function hotelReservationDetailsData(reservation) {
-    const location = reservation.hotel_id.location.name + ', ' + reservation.hotel_id.location.city + ', ' + reservation.hotel_id.location.country
+    console.log(reservation.rooms)
+    const num_of_days = (reservation.end_date - reservation.start_date) / 1000 / 60 / 60 / 24
     return {
-        name: reservation.hotel_id.name,
-        location: location,
-        stars: reservation.hotel_id.stars,
+        num_of_rooms: reservation.room_codes.length,
+        num_of_days: num_of_days,
+        reservation_date: reservation.start_date,
         overall_price: reservation.room_price,
-        start_date: reservation.start_date,
-        end_date: reservation.end_date,
-        rooms: reservation.room_codes
+        rooms: reservation.rooms
     }
 }
 

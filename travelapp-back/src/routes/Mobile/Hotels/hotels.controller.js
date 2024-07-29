@@ -7,7 +7,7 @@ const { getAllHotel, getHotelById, findHotelsInCountry } = require("../../../mod
 const { getUserById } = require("../../../models/users.model")
 const HotelReservation = require('../../../models/hotel-reservation.mongo');
 const Hotel = require('../../../models/hotels.mongo');
-const { calculateTotalPrice, hotelDataPriceSortHelper, findConflicts, getPriceForRooms } = require('./hotel.helper');
+const { calculateTotalPrice, hotelDataPriceSortHelper, findConflicts, getPriceForRooms, getHotelReservationHelper } = require('./hotel.helper');
 const { serializedData } = require('../../../services/serializeArray')
 const { hotelData, hotelReservationData, hotelReservationDetailsData } = require('./hotels.serializer')
 const createPaymentData = require('../../../services/payment');
@@ -270,8 +270,10 @@ async function httpGetHotelReservations(req, res) {
 }
 
 async function httpGetHotelReservation(req, res) {
-    const reservation = await getHotelReservation(req.params.id)
+    let reservation = await getHotelReservation(req.params.id)
     if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' });
+    reservation.rooms = getHotelReservationHelper(reservation)
+    console.log(reservation.rooms)
     return res.status(200).json({ data: hotelReservationDetailsData(reservation) });
 }
 

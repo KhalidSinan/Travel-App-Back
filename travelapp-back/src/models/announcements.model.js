@@ -1,7 +1,7 @@
 const Announcement = require('./announcements.mongo')
 
 async function postAnnouncement(data) {
-    return await Announcement.create({ announcement_title: data.title, announcement_body: data.body })
+    return await Announcement.create({ announcement_title: data.title, announcement_body: data.body, expiry_date: data.expiry_date })
 }
 
 async function getAnnouncements(skip, limit, sort, filter) {
@@ -10,23 +10,22 @@ async function getAnnouncements(skip, limit, sort, filter) {
     return announcements
 }
 
-async function getAnnouncementsCount() {
-    return await Announcement.find().countDocuments();
+async function getAnnouncementsForHomePage() {
+    return await Announcement.find({ expiry_date: { $gt: Date.now() } });
+}
+
+async function getAnnouncementsCount(filter) {
+    return await Announcement.find(filter).countDocuments();
 }
 
 async function postAnnouncementForOrganizer(data) {
-    return await Announcement.create({
-        announcement_title: data.announcement_title,
-        announcement_body: data.announcement_body,
-        from_organizer: true,
-        organized_trip_id: data.organized_trip_id,
-        organizer_id: data.organizer_id
-    })
+    return await Announcement.create(data)
 }
 
 module.exports = {
     postAnnouncement,
     getAnnouncements,
     postAnnouncementForOrganizer,
-    getAnnouncementsCount
+    getAnnouncementsCount,
+    getAnnouncementsForHomePage
 }

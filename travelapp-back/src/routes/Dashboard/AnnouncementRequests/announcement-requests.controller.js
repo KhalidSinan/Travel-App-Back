@@ -26,12 +26,15 @@ async function httpGetOneAnnouncementRequest(req, res) {
     })
 }
 async function httpAcceptAnnouncementRequest(req, res) {
+    const request = await getAnnouncementRequest(req.params.id)
+    if (request.is_accepted) return res.status(200).json({ message: 'Announcement Request Already Accepted' })
     const data = await acceptAnnouncementRequest(req.params.id)
     await postAnnouncementForOrganizer({
         announcement_title: data.announcement_title,
         announcement_body: data.announcement_body,
         organized_trip_id: data.organized_trip_id,
-        organizer_id: data.organizer_id
+        organizer_id: data.organizer_id,
+        expiry_date: new Date(Date.now() + (1000 * 60 * 60 * 24 * 3))
     })
     return res.status(200).json({
         message: 'Announcement Request Accepted Successfully',

@@ -22,6 +22,10 @@ const announcementSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Organizer'
     },
+    expiry_date: {
+        type: Date,
+        default: Date.now()
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('Announcement', announcementSchema)
