@@ -89,6 +89,13 @@ async function validateDeleteAccount(data) {
     return schema.validate(data);
 }
 
+async function validateCheckTokenToDelete(data) {
+    const schema = Joi.object({
+        token: Joi.number().required(),
+    })
+    return schema.validate(data);
+}
+
 async function validateBecomeOrganizer(data) {
     const schema = Joi.object({
         company_name: Joi.string().required().messages({ 'any.required': 'Company Name Required' }),
@@ -106,5 +113,6 @@ module.exports = {
     validateChangePassword,
     validateDeleteAccount,
     validateBecomeOrganizer,
-    validateChangePhoneNumber
+    validateChangePhoneNumber,
+    validateCheckTokenToDelete
 }

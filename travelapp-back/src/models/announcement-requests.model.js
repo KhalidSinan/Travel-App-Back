@@ -4,11 +4,21 @@ async function getAnnouncementRequest(id) {
     return await AnnouncementRequest.findById(id);
 }
 
-async function getAnnouncementRequests(skip, limit) {
-    return await AnnouncementRequest.find({ is_accepted: { $ne: true } })
+async function getAnnouncementRequests(skip, limit, sort, filter) {
+    const query = { is_accepted: { $ne: true } };
+    if (Object.keys(filter).length > 0) Object.assign(query, filter);
+    let requests = AnnouncementRequest.find(query)
         .populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' } })
         .skip(skip)
         .limit(limit);
+    if (sort && (sort == 'asc' || sort == 'desc')) requests = await requests.sort({ createdAt: sort })
+    return requests
+}
+
+async function getAnnouncementRequestsCount(filter) {
+    const query = { is_accepted: { $ne: true } };
+    if (Object.keys(filter).length > 0) Object.assign(query, filter);
+    return await AnnouncementRequest.find(query).countDocuments()
 }
 
 async function postAnnouncementRequest(data) {
@@ -28,5 +38,6 @@ module.exports = {
     getAnnouncementRequests,
     postAnnouncementRequest,
     acceptAnnouncementRequest,
-    denyAnnouncementRequest
+    denyAnnouncementRequest,
+    getAnnouncementRequestsCount
 }

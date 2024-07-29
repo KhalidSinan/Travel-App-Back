@@ -6,7 +6,7 @@ const { getTripsCount } = require('../../../models/trips.model');
 const { getUsersAge } = require('../../../models/users.model');
 const { serializedData } = require('../../../services/serializeArray');
 const { getStatisticsCountriesHelper } = require('./statistics.helper');
-const { top10HotelsData } = require('./statistics.serializer')
+const { top10HotelsData, airlineData } = require('./statistics.serializer')
 
 async function httpGetTop10Countries(req, res) {
     const countries = await getTop10Countries();
@@ -60,7 +60,7 @@ async function httpGetAirlinesFlights(req, res) {
 
     return res.status(200).json({
         message: 'Airlines Flights Found',
-        data: airlines
+        data: serializedData(airlines, airlineData)
     })
 }
 

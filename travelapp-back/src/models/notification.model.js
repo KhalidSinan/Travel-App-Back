@@ -25,8 +25,18 @@ async function putIsRead(notification_id, is_read) {
     await Notification.findByIdAndUpdate(notification_id, { is_read })
 }
 
-async function getNotifications() {
-    return await Notification.find({ is_global: true })
+async function getNotifications(skip, limit, sort, filter) {
+    let query = { is_global: true };
+    if (Object.keys(filter).length > 0) Object.assign(query, filter);
+    let notifications = Notification.find(query).skip(skip).limit(limit)
+    if (sort && (sort == 'asc' || sort == 'desc')) notifications = await notifications.sort({ createdAt: sort })
+    return notifications
+}
+
+async function getNotificationsCount(filter) {
+    let query = { is_global: true };
+    if (Object.keys(filter).length > 0) Object.assign(query, filter);
+    return Notification.find(query).countDocuments()
 }
 
 async function getNotificationByID(id) {
@@ -39,5 +49,6 @@ module.exports = {
     getNotification,
     putIsRead,
     getNotifications,
-    getNotificationByID
+    getNotificationByID,
+    getNotificationsCount
 }

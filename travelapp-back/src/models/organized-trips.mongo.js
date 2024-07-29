@@ -27,6 +27,11 @@ const organizedTripSchema = new mongoose.Schema({
         default: 0,
         required: true
     },
+    type_of_trip: {
+        type: String,
+        required: true,
+        enum: ["Entertainment", "Exploratory", "Therapeutic", "Artistic", "Educational"]
+    },
     reviews: {
         type: [{
             user_id: {

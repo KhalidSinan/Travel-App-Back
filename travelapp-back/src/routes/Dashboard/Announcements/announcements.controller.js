@@ -1,15 +1,23 @@
-const { getAnnouncements, postAnnouncement } = require("../../../models/announcements.model");
+const { getAnnouncements, postAnnouncement, getAnnouncementsCount } = require("../../../models/announcements.model");
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validatePostAnnouncement } = require("./announcements.validation");
 const sendPushNotification = require('../../../services/notifications');
 const { getAllDeviceTokens } = require("../../../models/users.model");
 const { announcementData } = require("./announcements.serializer");
 const { serializedData } = require('../../../services/serializeArray')
+const { getPagination } = require('../../../services/query');
+const { filterAnnouncementsHelper } = require("./announcements.helper");
 
 async function httpGetAllAnnouncements(req, res) {
-    const announcements = await getAnnouncements();
+    req.query.limit = 10
+    const { skip, limit } = getPagination(req.query)
+    let filter = {}
+    filter = filterAnnouncementsHelper(req.query)
+    const announcements = await getAnnouncements(skip, limit, req.query.sort, filter);
+    const announcementsCount = await getAnnouncementsCount();
     return res.status(200).json({
-        data: serializedData(announcements, announcementData)
+        data: serializedData(announcements, announcementData),
+        count: announcementsCount
     })
 }
 
