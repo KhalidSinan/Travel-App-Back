@@ -19,8 +19,14 @@ async function getAllReportsOnOrganizers(skip, limit, filter = {}) {
     let query = { on_organizer: true }
     if (filter.createdAt) query.createdAt = filter.createdAt
     return await Report.find(query)
-        .populate('user_id', 'name').populate('organizer_id', 'name')
-        .skip(skip)
+        .populate('user_id', 'name').populate({
+            path: 'organizer_id',
+            select: 'name user_id', // Include 'user_id' in the selection 
+            populate: {
+                path: 'user_id',
+                select: 'name'
+            }
+        }).skip(skip)
         .limit(limit)
 }
 

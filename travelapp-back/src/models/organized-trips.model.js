@@ -1,11 +1,14 @@
 const OrganizedTrip = require('./organized-trips.mongo')
 
-async function getAllOrganizedTrips() {
-    return await OrganizedTrip.find().populate('trip_id');
+async function getAllOrganizedTrips(filter) {
+    const query = { available_seats: { $gt: 0 } }
+    Object.assign(query, filter)
+    return await OrganizedTrip.find(filter)
+        .populate({ path: 'trip_id', populate: { path: 'user_id' } })
 }
 
 async function getOneOrganizedTrip(_id) {
-    return await OrganizedTrip.findOne({ _id });
+    return await OrganizedTrip.findOne({ _id }).populate('trip_id');
 }
 
 async function postOrganizedtrip(data) {

@@ -21,7 +21,7 @@ const reportSchema = new mongoose.Schema({
     },
     organizer_id: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'User',
+        ref: 'Organizer',
     },
     replied_to: {
         type: Boolean,

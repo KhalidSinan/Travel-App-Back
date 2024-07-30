@@ -6,11 +6,29 @@ const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip } = require('../../../models/organized-trip-reservations.model');
 const { postAnnouncementRequest } = require('../../../models/announcement-requests.model');
 const { getOrganizerID } = require('../../../models/organizers.model');
+const { getOrganizedTrips } = require('./organized-trips.serializer');
+const { serializedData } = require("../../../services/serializeArray");
+const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions } = require('./organized-trips.helper');
+const { getPagination } = require('../../../services/query');
 
 // Serializer
 async function httpGetAllOrganizedTrips(req, res) {
-    const trips = await getAllOrganizedTrips();
-    return res.status(200).json({ data: trips })
+    // make validation
+    req.query.limit = 10
+    const { skip, limit } = getPagination(req.query)
+    const starting_country = req.body.starting_country ?? null;
+    let filter = getFilterForOrganizedTrips(req.body.filterType, req.body.filter)
+    let trips = await getAllOrganizedTrips(filter);
+    trips = removeOldOrganizedTrips(trips)
+    trips = getAllOrganizedByCountry(trips, starting_country)
+    trips = filterOrganizedTrips(trips, req.body.filterType, req.body.filter)
+    trips = await filterOrganizedTripsShown(trips, req.body.organizedTripsShown)
+    const allLength = trips.length
+    trips = trips.slice(skip, skip + limit)
+    return res.status(200).json({
+        data: serializedData(trips, getOrganizedTrips),
+        count: allLength
+    })
 }
 
 // Serializer
@@ -39,7 +57,7 @@ async function httpCreateOrganizedTrip(req, res) {
 // Serializer
 async function httpGetMyOrganizedTrips(req, res) {
     let data = await getAllOrganizedTrips()
-    data = data.filter(trip => trip.trip_id.user_id == req.user.id)
+    data = data.filter(trip => trip.trip_id.user_id.equals(req.user.id))
     return res.status(200).json({ message: 'Your Organized Trips Retrieved Successfully', data: data })
 }
 
@@ -81,6 +99,16 @@ async function httpReviewOrganizedTrip(req, res) {
     return res.status(200).json({ message: 'Trip Reviewed Successfully' })
 }
 
+async function httpGetOrganizedTripAnnouncementOption(req, res) {
+    const organized_trip = await getOneOrganizedTrip(req.params.id);
+    if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
+    const trip = await getTrip(organized_trip.trip_id)
+    if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
+
+    const options = calculateAnnouncementOptions(organized_trip.trip_id)
+    return res.status(200).json({ message: 'Announcement Option Retreieved Successfully', options })
+}
+
 async function httpMakeOrganizedTripAnnouncement(req, res) {
     const { error } = validateMakeOrganizedTripAnnouncement(req.body)
     if (error) return res.status(404).json({ errors: validationErrors(error.details) })
@@ -109,5 +137,6 @@ module.exports = {
     httpMakeDiscountOrganizedTrip,
     httpCancelOrganizedTrip,
     httpReviewOrganizedTrip,
-    httpMakeOrganizedTripAnnouncement
+    httpMakeOrganizedTripAnnouncement,
+    httpGetOrganizedTripAnnouncementOption
 }

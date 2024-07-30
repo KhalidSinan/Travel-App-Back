@@ -150,13 +150,17 @@ function createClasses(available_seats) {
     ]
 }
 
-async function createTrips(num_of_trips) {
+async function createFlights(num_of_trips, sourceSent = null, lastDepartureDate = null) {
     let trips = []
     for (let i = 0; i < num_of_trips; i++) {
         //source
         let source = createPlace()
         while (source.name == '' || source.country == '' || source.city == '') {
             source = createPlace()
+        }
+        if (sourceSent) {
+            let { name, city, country } = airports.find(airport => airport.country == sourceSent)
+            source = { name, city, country }
         }
 
         //destination
@@ -170,6 +174,16 @@ async function createTrips(num_of_trips) {
         const airline = createAirline()
 
         let departure_date = createDate()
+        if (lastDepartureDate) {
+            tempDate = new Date(lastDepartureDate)
+            tempDate.setUTCDate(tempDate.getDate() + 1);
+            departure_date = {
+                dateTime: tempDate,
+                date: tempDate.toLocaleDateString('en-GB'),
+                time: tempDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+            }
+        }
+
         let arrival_date = new Date(departure_date.dateTime)
         arrival_date = {
             dateTime: arrival_date,
@@ -193,7 +207,8 @@ async function createTrips(num_of_trips) {
         trips.push(trip_back)
     }
     // fs.writeFileSync('trips.json', JSON.stringify(trips))
-    await flightsMongo.insertMany(trips)
+    const insertedTrips = await flightsMongo.insertMany(trips)
+    return insertedTrips
 }
 
 function revertTrip(trip) {
@@ -229,4 +244,4 @@ function revertTrip(trip) {
 
 // createTrips(1);
 
-module.exports = createTrips;
+module.exports = createFlights;
