@@ -13,7 +13,7 @@ function reportDataOnApp(report) {
 // report on organizer
 function reportDataOnOrganizer(report) {
     const name = report.user_id['name'].first_name + ' ' + report.user_id['name'].last_name
-    const organizer_name = report.organizer_id['name'].first_name + ' ' + report.organizer_id['name'].last_name
+    const organizer_name = report.organizer_id.user_id.name.first_name + ' ' + report.organizer_id.user_id.name.last_name
     return {
         id: report._id,
         user: name,

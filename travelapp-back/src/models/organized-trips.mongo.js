@@ -28,7 +28,7 @@ const organizedTripSchema = new mongoose.Schema({
         required: true
     },
     type_of_trip: {
-        type: String,
+        type: [String],
         required: true,
         enum: ["Entertainment", "Exploratory", "Therapeutic", "Artistic", "Educational"]
     },
