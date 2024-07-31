@@ -4,7 +4,7 @@ const messageSchema = require('./messages.mongo');
 const chatSchema = new mongoose.Schema({
     organizer_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Organizer',
         required: true,
     },
     trip_id: { // Organized Trip

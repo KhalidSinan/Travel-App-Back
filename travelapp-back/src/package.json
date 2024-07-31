@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "seed": "node generators/seed.js"
+    "seed": "node generators/seed.js",
+    "getUser": "node generators/scripts/getRandomUser.js",
+    "getOrganizer": "node generators/scripts/getRandomUser.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
