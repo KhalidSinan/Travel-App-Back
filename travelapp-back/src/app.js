@@ -46,6 +46,7 @@ app.use('/places', require("./routes/Mobile/Places/places.route"))
 app.use('/reports', require("./routes/Mobile/Reports/reports.route"))
 app.use('/trips', require("./routes/Mobile/Trips/trips.route"))
 app.use('/announcements', require("./routes/Mobile/Announcements/announcements.route"))
+app.use('/chats', require("./routes/Mobile/Chat/chats.route"))
 
 // Dashboard
 app.use('/dashboard', require('./routes/Dashboard/Admins/admins.route'))

@@ -1,4 +1,6 @@
 const http = require('http');
+const socketio = require('socket.io');
+
 const app = require('./app');
 const { mongoConnect } = require('./services/mongo');
 const socketFunctionality = require('./routes/Mobile/Chat');
@@ -6,6 +8,11 @@ require('dotenv').config();
 
 const PORT = process.env.PORT;
 const server = http.createServer(app);
+const io = socketio(server, {
+    cors: {
+        origin: '*'
+    }
+});
 
 async function startServer() {
     try {
