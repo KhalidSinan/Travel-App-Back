@@ -97,11 +97,35 @@ function calculateAnnouncementOptions(trip) {
     }
 }
 
+function getCountriesInOrganizedTrip(trip) {
+    const destinations = trip.trip_id.destinations
+    return destinations.map(dest => dest.destination.country_name)
+}
+
+function getOrganizedTripStatus(trip) {
+    let status = 'On Going';
+    const start_date = trip.start_date;
+    const end_date = trip.end_date;
+    const now = new Date();
+    if (start_date > now) status = 'Waiting'
+    else if (end_date < now) status = 'Finished'
+    return status
+}
+
+function getOrganizedTripReservationHelper(reservations) {
+    let data = []
+    reservations.forEach(res => data.push(...res.reservation_data))
+    return data
+}
+
 module.exports = {
     getAllOrganizedByCountry,
     getFilterForOrganizedTrips,
     filterOrganizedTrips,
     filterOrganizedTripsShown,
     removeOldOrganizedTrips,
-    calculateAnnouncementOptions
+    calculateAnnouncementOptions,
+    getCountriesInOrganizedTrip,
+    getOrganizedTripStatus,
+    getOrganizedTripReservationHelper
 }

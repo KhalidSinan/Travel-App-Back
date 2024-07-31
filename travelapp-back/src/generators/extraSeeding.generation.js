@@ -259,7 +259,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         lastDestinationCountry = flights[0].destination.country
 
         const { temp, overall_price } = await createReservationData(num_of_reservations, flights[0]._id)
-        overallPriceFlights = overall_price
+        overallPriceFlights = overall_price.toFixed(2)
         const reservations = { data: temp, overall_price }
         const reservation_type = 'One-Way'
         const is_confirmed = true
@@ -327,9 +327,9 @@ async function createHotelReservation(hotels, num_of_people, userID) {
         let end_date = new Date(hotels[i].date)
         end_date.setDate(start_date.getDate() + 1);
         const { rooms, overall_price } = await createRoomCodes(hotel_id)
-        overallPrice = overall_price
+        overallPrice = overall_price.toFixed(2)
         const room_codes = rooms
-        const room_price = overall_price
+        const room_price = overallPrice
         const data = {
             _id,
             hotel_id,
@@ -546,11 +546,11 @@ async function createOrganizedTripReservations() {
 
         const num_of_people = faker.number.int({ min: 0, max: overall_seats })
         const overall_price = num_of_people * price_per_person
+        overall_price = overall_price.toFixed(2)
         const reservation_data = createOrganizedTripReservationDataHelper(num_of_people, price_per_person)
         if (reservation_data.length == 0) continue;
         await updatePlaneReservations(organizedTrip.trip_id, reservation_data)
         await updateOrganizedTripData(organizedTrip._id, overall_seats, num_of_people)
-        // update plane reservation data
         const data = {
             user_id,
             trip_id,

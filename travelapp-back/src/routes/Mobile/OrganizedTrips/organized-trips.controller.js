@@ -3,10 +3,10 @@ const { validationErrors } = require('../../../middlewares/validationErrors');
 const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscount, addReview } = require('../../../models/organized-trips.model');
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
-const { getOrganizedTripReservationsForUserInTrip } = require('../../../models/organized-trip-reservations.model');
+const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
 const { postAnnouncementRequest } = require('../../../models/announcement-requests.model');
 const { getOrganizerID } = require('../../../models/organizers.model');
-const { getOrganizedTrips } = require('./organized-trips.serializer');
+const { getOrganizedTrips, getOrganizedTripDetails } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
@@ -35,7 +35,9 @@ async function httpGetAllOrganizedTrips(req, res) {
 async function httpGetOneOrganizedTrip(req, res) {
     const trip = await getOneOrganizedTrip(req.params.id);
     if (!trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
-    return res.status(200).json({ data: trip })
+    const reservations = await getOrganizedTripReservationsForOneTrip(trip._id)
+    trip.reservations = reservations
+    return res.status(200).json({ data: getOrganizedTripDetails(trip) })
 }
 
 // Need to know price logic
