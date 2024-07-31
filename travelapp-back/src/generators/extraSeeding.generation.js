@@ -126,7 +126,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 1200, userID = null) {
+async function createTrips(count = 1250, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -141,7 +141,7 @@ async function createTrips(count = 1200, userID = null) {
         const { start_date, end_date, destinations, starting_place, places, hotelsIDs } = await createTripHelper(flights);
         const overall_num_of_days = Math.floor((end_date - start_date) / 1000 / 60 / 60 / 24);
         const { hotels, overallPrice } = await createHotelReservation(hotelsIDs, num_of_people, user_id);
-        const overall_price = overallPrice + overallPriceFlights;
+        const overall_price = +overallPrice + +overallPriceFlights;
         const price_per_person = (overall_price / num_of_people).toFixed(2);
         const data = {
             user_id,
@@ -545,7 +545,7 @@ async function createOrganizedTripReservations() {
         const price_per_person = organizedTrip.price
 
         const num_of_people = faker.number.int({ min: 0, max: overall_seats })
-        const overall_price = num_of_people * price_per_person
+        let overall_price = num_of_people * price_per_person
         overall_price = overall_price.toFixed(2)
         const reservation_data = createOrganizedTripReservationDataHelper(num_of_people, price_per_person)
         if (reservation_data.length == 0) continue;

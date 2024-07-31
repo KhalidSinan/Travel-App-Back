@@ -9,7 +9,7 @@ const createFlights = require('./trips.generation');
 
 async function seedDB() {
     await mongoConnect();
-    const count = 20000;
+    const count = 15000;
 
     // Delete All Tables
     console.log('Dropping Database')
