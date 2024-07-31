@@ -11,7 +11,6 @@ const Place = require('../models/places.mongo')
 const Hotel = require('../models/hotels.mongo')
 const HotelReservation = require('../models/hotel-reservation.mongo')
 const OrganizedTrip = require('../models/organized-trips.mongo')
-const Promise = require('bluebird');
 const AnnouncementRequest = require('../models/announcement-requests.mongo')
 const bcrypt = require('bcrypt');
 const createFlights = require('./trips.generation')
