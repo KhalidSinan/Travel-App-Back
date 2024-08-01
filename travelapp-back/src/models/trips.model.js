@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Trip = require('./trips.mongo')
 
 async function getTrip(id) {
@@ -32,6 +33,31 @@ async function removeActivityFromSchedule(trip_id, activity_id) {
     );
 }
 
+async function addActivityToSchedule(trip_id, country_id, city_id, place_id, description) {
+    const data = {
+        _id: new mongoose.Types.ObjectId(),
+        place: place_id,
+        description: description
+    };
+
+    return await Trip.findOneAndUpdate(
+        {
+            _id: trip_id, // Match the specific trip
+            "destinations._id": country_id, // Match the specific destination (country)
+            "destinations.destination.cities._id": city_id // Match the specific city
+        },
+        {
+            $push: { "destinations.$[dest].destination.cities.$[city].activities": data }
+        },
+        {
+            arrayFilters: [
+                { "dest._id": country_id }, // Filter for the correct destination
+                { "city._id": city_id } // Filter for the correct city
+            ]
+        }
+    );
+}
+
 
 module.exports = {
     getTrip,
@@ -40,5 +66,6 @@ module.exports = {
     cancelTrip,
     getSharedTrips,
     getTripsCount,
-    removeActivityFromSchedule
+    removeActivityFromSchedule,
+    addActivityToSchedule
 }
