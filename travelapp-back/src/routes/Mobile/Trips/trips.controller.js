@@ -1,6 +1,6 @@
 const Trip = require('../../../models/trips.mongo');
-const { getTrip, deleteTrip, shareTrip } = require('../../../models/trips.model');
-const { updateScheduleValidation, makeTripValidation, validateAutogenerateSchedule } = require("./trips.validation");
+const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule } = require('../../../models/trips.model');
+const { makeTripValidation, validateAutogenerateSchedule } = require("./trips.validation");
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { getReservation } = require('../../../models/plane-reservation.model');
@@ -94,32 +94,14 @@ async function getOneTrip(req, res) {
 };
 
 // Done
-async function updateSchedule(req, res) {
-    const { error } = updateScheduleValidation(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message });
+// remove from schedule
+async function httpRemoveActivityFromSchedule(req, res) {
+    const trip = await getTrip(req.params.id)
+    if (!trip) return res.status(404).json({ message: 'Trip not found' });
+    console.log(trip)
 
-    try {
-        const tripId = req.params.id;
-        const destinations = req.body.destinations;
-
-        const trip = await Trip.findById(tripId)
-        if (!trip) {
-            return res.status(404).json({ message: 'Trip not found' });
-        }
-
-        destinations.forEach(async (destination) => {
-            const country = trip.destinations.find(c => c.destination.country_name == destination.country_name)
-            if (!country) return res.status(404).json({ message: 'Country not found' });
-            const city = country.destination.cities.find(c => c.city_name == destination.city_name)
-            if (!city) return res.status(404).json({ message: 'City not found' });
-            city.activities = destination.activities
-        })
-
-        await trip.save()
-        res.status(200).json({ message: 'Schedule updated successfully' });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    await removeActivityFromSchedule(trip._id, req.params.activityID)
+    res.status(200).json({ message: 'Schedule Updated Successfully' });
 };
 
 // Done
@@ -236,10 +218,10 @@ module.exports = {
     makeTrip,
     getAllTrips,
     getOneTrip,
-    updateSchedule,
     payTrip,
     httpDeleteTrip,
     httpShareTrip,
     httpCancelTrip,
     httpAutogenerateScheduleForTrip,
+    httpRemoveActivityFromSchedule
 };

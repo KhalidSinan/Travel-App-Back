@@ -36,16 +36,9 @@ const makeTripValidation = (data) => {
 };
 
 const updateScheduleValidation = (data) => {
-    const activitiesSchema = Joi.object({
+    const schema = Joi.object({
         description: Joi.string().required(),
         place: Joi.string().hex().length(24),
-    })
-    const schema = Joi.object({
-        destinations: Joi.array().items(Joi.object({
-            country_name: Joi.string().required(),
-            city_name: Joi.string().required(),
-            activities: Joi.array().items(activitiesSchema)
-        })),
     });
     return schema.validate(data);
 };
