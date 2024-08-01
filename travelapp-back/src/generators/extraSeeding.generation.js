@@ -187,7 +187,7 @@ async function createTripHelper(plane_reservations) {
         const hotel = await getHotelInCity(flight.source.city, flight.source.country)
         hotelsIDs.push({ id: hotel._id, date: flight.arrival_date.dateTime })
         const allPlaces = await createPlacesWithDescription(flight.source.city, flight.source.country)
-        places = allPlaces.map(place => place.place)
+        places.push(...allPlaces.map(place => place.place))
         const destination = {
             destination: {
                 country_name: flight.source.country,
