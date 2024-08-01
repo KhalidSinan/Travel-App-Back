@@ -1,6 +1,6 @@
 const Trip = require('../../../models/trips.mongo');
-const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule } = require('../../../models/trips.model');
-const { makeTripValidation, validateAutogenerateSchedule } = require("./trips.validation");
+const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule, addActivityToSchedule } = require('../../../models/trips.model');
+const { makeTripValidation, validateAutogenerateSchedule, addActivityToScheduleValidation } = require("./trips.validation");
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { getReservation } = require('../../../models/plane-reservation.model');
@@ -94,15 +94,23 @@ async function getOneTrip(req, res) {
 };
 
 // Done
-// remove from schedule
 async function httpRemoveActivityFromSchedule(req, res) {
     const trip = await getTrip(req.params.id)
     if (!trip) return res.status(404).json({ message: 'Trip not found' });
-    console.log(trip)
-
     await removeActivityFromSchedule(trip._id, req.params.activityID)
     res.status(200).json({ message: 'Schedule Updated Successfully' });
-};
+}
+
+// Done
+async function httpAddActivityToSchedule(req, res) {
+    const { error } = addActivityToScheduleValidation(req.body);
+    if (error) return res.status(400).json({ error: error.details[0].message });
+    const trip = await getTrip(req.params.id)
+    if (!trip) return res.status(404).json({ message: 'Trip not found' });
+    const { country_id, city_id, place_id, description } = req.body
+    await addActivityToSchedule(trip._id, country_id, city_id, place_id, description)
+    res.status(200).json({ message: 'Activity Added Successfully' });
+}
 
 // Done
 async function payTrip(req, res) {
@@ -223,5 +231,6 @@ module.exports = {
     httpShareTrip,
     httpCancelTrip,
     httpAutogenerateScheduleForTrip,
-    httpRemoveActivityFromSchedule
+    httpRemoveActivityFromSchedule,
+    httpAddActivityToSchedule
 };

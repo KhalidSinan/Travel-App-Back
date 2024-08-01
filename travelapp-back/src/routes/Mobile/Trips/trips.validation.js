@@ -35,10 +35,12 @@ const makeTripValidation = (data) => {
     return schema.validate(data);
 };
 
-const updateScheduleValidation = (data) => {
+const addActivityToScheduleValidation = (data) => {
     const schema = Joi.object({
+        country_id: Joi.string().hex().length(24).required(),
+        city_id: Joi.string().hex().length(24).required(),
+        place_id: Joi.string().hex().length(24).required(),
         description: Joi.string().required(),
-        place: Joi.string().hex().length(24),
     });
     return schema.validate(data);
 };
@@ -57,6 +59,6 @@ const validateAutogenerateSchedule = (data) => {
 
 module.exports = {
     makeTripValidation,
-    updateScheduleValidation,
+    addActivityToScheduleValidation,
     validateAutogenerateSchedule
 }
