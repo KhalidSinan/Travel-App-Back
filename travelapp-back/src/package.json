@@ -8,7 +8,7 @@
     "start": "nodemon server.js",
     "seed": "node generators/seed.js",
     "getUser": "node generators/scripts/getRandomUser.js",
-    "getOrganizer": "node generators/scripts/getRandomUser.js"
+    "getOrganizer": "node generators/scripts/getRandomOrganizer.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

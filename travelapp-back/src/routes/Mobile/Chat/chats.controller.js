@@ -34,7 +34,6 @@ async function httpPostChat(req, res) {
     const organizer_id = organizer._id
     const trip_id = req.params.id
     const users_id = await getOrganizedTripReservationsForOneTrip(trip_id);
-    console.log(user_id)
     const name = req.body.name
     const data = {
         organizer_id,
@@ -42,13 +41,36 @@ async function httpPostChat(req, res) {
         trip_id,
         name
     }
-    await postChat(data)
+    // await postChat(data)
     return res.status(200).json({ message: 'Chat Successfully Created' })
 }
 
+async function httpPostMessage(req, res) {
+    // const organized_trip = await getOneOrganizedTrip(trip_id)
+    // if (!organized_trip.trip_id.user_id.equals(req.user._id)) {
+    //     return res.status(400).json({
+    //         message: 'Not Authorized To Create A Chat Group For This Trip'
+    //     })
+    // }
+    // const organizer = await getOrganizerID(req.user._id)
+    // const organizer_id = organizer._id
+    // const trip_id = req.params.id
+    // const users_id = await getOrganizedTripReservationsForOneTrip(trip_id);
+    // console.log(user_id)
+    // const name = req.body.name
+    // const data = {
+    //     organizer_id,
+    //     users_id,
+    //     trip_id,
+    //     name
+    // }
+    // await postMessage(data)
+    // return res.status(200).json({ message: 'Chat Successfully Created' })
+}
 
 module.exports = {
     httpGetAllChats,
     httpGetOneChat,
-    httpPostChat
+    httpPostChat,
+    httpPostMessage
 }
