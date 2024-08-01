@@ -22,6 +22,11 @@ const destinationCitySchema = new mongoose.Schema({
         },
         description: {
             type: String,
+        },
+        notifiable: {
+            type: Boolean,
+            required: true,
+            default: false
         }
     }]
 })

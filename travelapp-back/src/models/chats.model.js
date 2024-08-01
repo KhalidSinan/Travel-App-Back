@@ -13,12 +13,17 @@ async function getChat(id, user_id) {
     return await Chat.findOne({ trip_id: id, users_id: { $in: user_id } })
 }
 
-async function postChat(id) {
-
+async function getChatByTripID(trip_id) {
+    return await Chat.findOne({ trip_id: trip_id })
 }
 
-async function postChatMessage(id, message) {
+async function postChat(data) {
+    return await Chat.create(data)
+}
 
+async function postChatMessage(chat, message) {
+    chat.messages.push(message)
+    await chat.save()
 }
 
 module.exports = {
@@ -26,5 +31,6 @@ module.exports = {
     getChatsCount,
     getChat,
     postChat,
-    postChatMessage
+    postChatMessage,
+    getChatByTripID
 }

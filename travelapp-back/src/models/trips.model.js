@@ -25,6 +25,13 @@ async function getTripsCount() {
     return Trip.find().countDocuments();
 }
 
+async function removeActivityFromSchedule(trip_id, activity_id) {
+    return await Trip.findOneAndUpdate(
+        { _id: trip_id, "destinations.destination.cities.activities._id": activity_id },
+        { $pull: { "destinations.$[].destination.cities.$[].activities": { _id: activity_id } } }
+    );
+}
+
 
 module.exports = {
     getTrip,
@@ -32,5 +39,6 @@ module.exports = {
     shareTrip,
     cancelTrip,
     getSharedTrips,
-    getTripsCount
+    getTripsCount,
+    removeActivityFromSchedule
 }

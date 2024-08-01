@@ -186,10 +186,10 @@ async function makeReservation(req, res) {
             );
         }
         await newReservation.save();
-        res.status(201).json(newReservation);
+        return res.status(201).json(newReservation);
     } catch (err) {
         console.error("Error making reservation:", err);
-        res.status(500).json({ message: "Failed to make reservation", error: err.message });
+        return res.status(500).json({ message: "Failed to make reservation", error: err.message });
     }
 }
 
