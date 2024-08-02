@@ -61,7 +61,6 @@ function reservationData(reservation) {
 function allReservationData(reservation) {
     const date = reservation.flights[1] ? reservation.flights[1].arrival_date.dateTime : reservation.flights[0].arrival_date.dateTime
     let price = reservation.reservations.overall_price + (reservation.reservations_back?.overall_price ?? 0)
-    console.log(reservation)
     return {
         id: reservation._id,
         source: reservation.flights[0].source.country,

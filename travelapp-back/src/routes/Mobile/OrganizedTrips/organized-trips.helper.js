@@ -49,7 +49,6 @@ function filterOrganizedTrips(trips, filterDate, filterDestinations) {
             if (commonDestinations.length == destinations.length) data2.push(trip)
         })
     }
-    console.log(data1)
     if ((filterDate.start_date == "" || filterDate.end_date == "") && filterDestinations.length == 0) return trips
     return data1.filter(trip => data2.includes(trip));
 }

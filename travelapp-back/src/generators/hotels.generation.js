@@ -104,7 +104,7 @@ function getRoomImages() {
     return Array.from(images);
 }
 
-async function createHotels() {
+async function createHotels(count) {
     let hotels = [];
     hotelData.forEach(data => {
         const room_types = createRoomTypes();
@@ -132,6 +132,32 @@ async function createHotels() {
         };
         hotels.push(hotel);
     });
+    for (let i = 0; i < count; i++) {
+        const room_types = createRoomTypes();
+        const overall_rooms = room_types.reduce((sum, type) => sum + type.available_rooms, 0);
+        let distanceFromCityCenter = ((Math.random() * 4) + 1).toFixed(2);
+
+        const location = locations[Math.floor(Math.random() * locations.length)]
+        let city;
+        if (location.cities.length == 0) city = faker.location.city();
+        else city = location?.cities[Math.floor(Math.random() * location.cities.length)];
+
+        const hotel = {
+            name: faker.company.name() + ' Hotel',
+            location: {
+                country: location.name,
+                city: city,
+                name: faker.location.streetAddress(),
+            },
+            description: faker.lorem.sentence(),
+            stars: faker.number.int({ min: 1, max: 5 }),
+            room_types: room_types,
+            rooms_number: overall_rooms,
+            distance_from_city_center: distanceFromCityCenter,
+            images: getHotelImages()
+        };
+        hotels.push(hotel);
+    }
 
     try {
         const createdHotels = await Hotel.insertMany(hotels);

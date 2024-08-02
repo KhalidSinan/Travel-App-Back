@@ -37,7 +37,6 @@ async function httpSearchAdmins(req, res) {
 async function httpPostAdmin(req, res) {
     const { error } = validatePostAdmin(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) });
-    console.log(req.body)
     const data = { username: req.body.username, password: req.body.password, role: req.body.role }
     await postAdmin(data);
     return res.status(200).json({ message: 'Admin Created', data: data });
