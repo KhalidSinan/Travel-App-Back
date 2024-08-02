@@ -22,14 +22,6 @@ async function httpGetAllChats(req, res) {
     })
 }
 
-// Done
-async function httpGetOneChat(req, res) {
-    const chatID = req.params.id
-    const user_id = req.user._id
-    const chat = await getChat(chatID, user_id)
-    if (!chat) return res.status(400).json({ data: "No Chat Found" })
-    return res.status(200).json({ data: chatDetailsData(chat, user_id) })
-}
 
 // Done
 async function httpPostChat(req, res) {
@@ -56,25 +48,7 @@ async function httpPostChat(req, res) {
     return res.status(200).json({ message: 'Chat Successfully Created' })
 }
 
-// Done
-async function httpPostMessage(req, res) {
-    const { error } = validateSendMessage(req.body)
-    if (error) return res.status(400).json({ message: error.details[0].message })
-    const chatID = req.params.id
-    const user_id = req.user._id
-    const chat = await getChat(chatID, user_id)
-    if (!chat) return res.status(400).json({ data: "No Chat Found" })
-    const data = {
-        content: req.body.message,
-        sender_id: user_id
-    }
-    await postChatMessage(chat, data)
-    return res.status(200).json({ message: 'Message Sent' })
-}
-
 module.exports = {
     httpGetAllChats,
-    httpGetOneChat,
     httpPostChat,
-    httpPostMessage
 }
