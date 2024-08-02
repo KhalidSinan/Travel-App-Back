@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
-const { httpGetAllChats, httpGetOneChat, httpPostChat, httpPostMessage } = require('./chats.controller');
+const { httpGetAllChats, httpPostChat } = require('./chats.controller');
 const checkOrganizer = require('../../../middlewares/checkOrganizer');
 const checkObjectID = require('../../../middlewares/checkObjectID');
 

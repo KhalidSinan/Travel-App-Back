@@ -1,5 +1,6 @@
 const countries = require('../public/json/countries-all.json')
 const airlines = require('../public/json/airlines.json')
+const countriesContinents = require('../public/json/countries-with-continents.json')
 
 function getCountries() {
     let data = []
@@ -19,8 +20,13 @@ function getCities() {
     return countries;
 }
 
+function getCountriesWithContinents() {
+    return countriesContinents;
+}
+
 module.exports = {
     getCountries,
     getCities,
-    getAirlines
+    getAirlines,
+    getCountriesWithContinents
 }

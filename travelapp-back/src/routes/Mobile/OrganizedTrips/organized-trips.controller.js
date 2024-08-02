@@ -10,6 +10,7 @@ const { getOrganizedTrips, getOrganizedTripDetails } = require('./organized-trip
 const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
+const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
 
 // Serializer
 async function httpGetAllOrganizedTrips(req, res) {
@@ -132,6 +133,20 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     return res.status(200).json({ message: 'Announcement Requested Successfully' })
 }
 
+function httpGetCountriesWithContinents(req, res) {
+    const countries = getCountriesWithContinents()
+    return res.status(200).json({
+        data: countries
+    })
+}
+
+function httpGetCountries(req, res) {
+    const countries = getCountries()
+    return res.status(200).json({
+        data: countries
+    })
+}
+
 module.exports = {
     httpGetAllOrganizedTrips,
     httpGetOneOrganizedTrip,
@@ -141,5 +156,7 @@ module.exports = {
     httpCancelOrganizedTrip,
     httpReviewOrganizedTrip,
     httpMakeOrganizedTripAnnouncement,
-    httpGetOrganizedTripAnnouncementOption
+    httpGetOrganizedTripAnnouncementOption,
+    httpGetCountriesWithContinents,
+    httpGetCountries
 }
