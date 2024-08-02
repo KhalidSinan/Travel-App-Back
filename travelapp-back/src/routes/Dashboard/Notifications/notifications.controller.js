@@ -13,7 +13,6 @@ async function httpGetAllNotifications(req, res) {
     const { skip, limit } = getPagination(req.query)
     let filter = {}
     filter = filterNotificationsHelper(req.query)
-    console.log(filter)
     const notifications = await getNotifications(skip, limit, req.query.sort, filter);
     const notificationsCount = await getNotificationsCount(filter);
     return res.status(200).json({

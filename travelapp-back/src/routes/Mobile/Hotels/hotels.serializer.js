@@ -31,7 +31,6 @@ function hotelReservationData(reservation) {
 }
 
 function hotelReservationDetailsData(reservation) {
-    console.log(reservation.rooms)
     const num_of_days = (reservation.end_date - reservation.start_date) / 1000 / 60 / 60 / 24
     return {
         num_of_rooms: reservation.room_codes.length,
