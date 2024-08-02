@@ -20,37 +20,38 @@ function getAllOrganizedByCountry(trips, country) {
     else return trips
 }
 
-function getFilterForOrganizedTrips(filterType, filter) {
+function getFilterForOrganizedTrips(filterType, filterPrice) {
     let data = {};
-    if (filterType == 'TripType') {
-        data = { type_of_trip: { $in: filter.start } }
+    if (filterType.length > 0) {
+        Object.assign(data, { type_of_trip: { $all: filterType } })
     }
-    else if (filterType == 'Price') {
-        data = { price: { $gt: filter.start, $lt: filter.last } }
+    if (filterPrice.start_price != "" && filterPrice.end_price != "") {
+        Object.assign(data, { price: { $gt: filterPrice.start_price, $lt: filterPrice.end_price } })
     }
     return data
 }
 
-function filterOrganizedTrips(trips, filterType, filter) {
-    let data = []
-    if (filterType == 'Date') {
-        filter.start = convertDateStringToDate(filter.start)
-        filter.last = convertDateStringToDate(filter.last)
+function filterOrganizedTrips(trips, filterDate, filterDestinations) {
+    let data1 = []
+    let data2 = []
+    if (filterDate.start_date != "" && filterDate.end_date != "") {
+        filterDate.start_date = convertDateStringToDate(filterDate.start_date)
+        filterDate.end_date = convertDateStringToDate(filterDate.end_date)
         trips.forEach(trip => {
-            if (trip.trip_id.start_date > filter.start && trip.trip_id.start < filter.last) data.push(trip)
+            if (trip.trip_id.start_date >= filterDate.start_date && trip.trip_id.start_date <= filterDate.end_date) data1.push(trip)
         })
     }
-    else if (filterType == 'Destinations') {
-        const destinations = filter.start
+    if (filterDestinations) {
+        const destinations = filterDestinations
         trips.forEach(trip => {
             const tripDestinations = trip.trip_id.destinations.map(destination => destination.destination.country_name)
             const commonDestinations = tripDestinations.filter(destination => destinations.includes(destination));
-            if (commonDestinations.length == destinations.length) data.push(trip)
+            if (commonDestinations.length == destinations.length) data2.push(trip)
         })
-    } else {
-        data = trips
     }
-    return data
+    console.log(data1)
+    if ((filterDate.start_date == "" || filterDate.end_date == "") && filterDestinations.length == 0) return trips
+    return data1.filter(trip => data2.includes(trip));
 }
 
 function filterOrganizedTripsShown(trips, organizedTripsShown) {

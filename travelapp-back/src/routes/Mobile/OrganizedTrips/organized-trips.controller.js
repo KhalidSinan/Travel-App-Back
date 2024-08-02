@@ -18,11 +18,12 @@ async function httpGetAllOrganizedTrips(req, res) {
     req.query.limit = 10
     const { skip, limit } = getPagination(req.query)
     const starting_country = req.body.starting_country ?? null;
-    let filter = getFilterForOrganizedTrips(req.body.filterType, req.body.filter)
+    const { filterPrice, filterDate, filterType, filterDestinations } = req.body
+    let filter = getFilterForOrganizedTrips(filterType, filterPrice)
     let trips = await getAllOrganizedTrips(filter);
     trips = removeOldOrganizedTrips(trips)
     trips = getAllOrganizedByCountry(trips, starting_country)
-    trips = filterOrganizedTrips(trips, req.body.filterType, req.body.filter)
+    trips = filterOrganizedTrips(trips, filterDate, filterDestinations)
     trips = await assignTypesToOrganizedTrips(trips)
     trips = filterOrganizedTripsShown(trips, req.body.organizedTripsShown)
     const allLength = trips.length
