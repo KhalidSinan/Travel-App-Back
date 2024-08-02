@@ -8,7 +8,7 @@ const { postAnnouncementRequest } = require('../../../models/announcement-reques
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getOrganizedTrips, getOrganizedTripDetails } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
-const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions } = require('./organized-trips.helper');
+const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
 
 // Serializer
@@ -22,7 +22,8 @@ async function httpGetAllOrganizedTrips(req, res) {
     trips = removeOldOrganizedTrips(trips)
     trips = getAllOrganizedByCountry(trips, starting_country)
     trips = filterOrganizedTrips(trips, req.body.filterType, req.body.filter)
-    trips = await filterOrganizedTripsShown(trips, req.body.organizedTripsShown)
+    trips = await assignTypesToOrganizedTrips(trips)
+    trips = filterOrganizedTripsShown(trips, req.body.organizedTripsShown)
     const allLength = trips.length
     trips = trips.slice(skip, skip + limit)
     return res.status(200).json({

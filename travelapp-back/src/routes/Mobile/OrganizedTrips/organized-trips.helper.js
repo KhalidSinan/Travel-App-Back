@@ -1,5 +1,6 @@
 const { convertDateStringToDate } = require("../../../services/convertTime");
 const { getAnnouncementForOrganizedTrip } = require('../../../models/announcements.model')
+
 function removeOldOrganizedTrips(trips) {
     let data = []
     trips.forEach(trip => {
@@ -52,23 +53,15 @@ function filterOrganizedTrips(trips, filterType, filter) {
     return data
 }
 
-async function filterOrganizedTripsShown(trips, organizedTripsShown) {
+function filterOrganizedTripsShown(trips, organizedTripsShown) {
     let data = []
     if (organizedTripsShown == 'AnnouncedTrips') {
-        for (const trip of trips) {
-            const checkAnnounced = await getAnnouncementForOrganizedTrip(trip._id);
-            if (checkAnnounced.length > 0) data.push(trip);
-        }
+        data = trips.filter(trip => trip.is_announced == true)
     }
     else if (organizedTripsShown == 'AlmostComplete') {
-        trips.forEach(trip => {
-            const taken = trip.overall_seats - trip.available_seats
-            const percentage = taken / trip.overall_seats * 100
-            if (percentage >= 70) data.push(trip)
-        })
+        data = trips.filter(trip => trip.is_almost_complete == true)
     }
     else data = trips
-
     return data
 }
 
@@ -118,6 +111,23 @@ function getOrganizedTripReservationHelper(reservations) {
     return data
 }
 
+async function assignTypesToOrganizedTrips(trips) {
+    let data = []
+    for (let trip of trips) {
+        let temp = JSON.parse(JSON.stringify(trip))
+        temp.is_announced = false
+        temp.is_almost_complete = false
+        const taken = trip.overall_seats - trip.available_seats
+        const percentage = taken / trip.overall_seats * 100
+        const checkAnnounced = await getAnnouncementForOrganizedTrip(trip._id);
+        if (checkAnnounced.length > 0) temp.is_announced = true;
+        if (percentage >= 70) temp.is_almost_complete = true;
+        temp.destinations = getCountriesInOrganizedTrip(temp)
+        data.push(temp)
+    }
+    return data
+}
+
 module.exports = {
     getAllOrganizedByCountry,
     getFilterForOrganizedTrips,
@@ -127,5 +137,6 @@ module.exports = {
     calculateAnnouncementOptions,
     getCountriesInOrganizedTrip,
     getOrganizedTripStatus,
-    getOrganizedTripReservationHelper
+    getOrganizedTripReservationHelper,
+    assignTypesToOrganizedTrips
 }

@@ -133,7 +133,7 @@ async function createTrips(count = 1250, userID = null) {
         const user = await User.find().skip(randomSkip).limit(1);
         let user_id = user[0]._id;
         if (userID) user_id = userID
-        const num_of_people = faker.number.int({ min: 1, max: 15 });
+        const num_of_people = faker.number.int({ min: 3, max: 15 });
         const is_shared = faker.datatype.boolean();
         const is_canceled = false;
         const { flights, overallPriceFlights } = await createOneWayFlightReservations(faker.number.int({ min: 2, max: 7 }), num_of_people, user_id);

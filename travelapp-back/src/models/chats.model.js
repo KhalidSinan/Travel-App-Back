@@ -10,7 +10,7 @@ async function getChatsCount(user_id, skip, limit) {
 }
 
 async function getChat(id, user_id) {
-    return await Chat.findOne({ trip_id: id, users_id: { $in: user_id } })
+    return await Chat.findOne({ trip_id: id, users_id: { $in: user_id } }).populate('messages.sender_id', 'name')
 }
 
 async function getChatByTripID(trip_id) {

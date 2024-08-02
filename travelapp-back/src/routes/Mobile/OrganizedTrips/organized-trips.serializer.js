@@ -10,10 +10,13 @@ function getOrganizedTrips(organized_trip) {
         id: organized_trip._id,
         organizer_name: organizer_name,
         starting_place: starting_place,
-        trip_type: organized_trip.type_of_trip,
+        trip_type: organized_trip.is_announced ? organized_trip.type_of_trip.slice(0, 3) : organized_trip.type_of_trip.slice(0, 2),
+        destinations: organized_trip.is_announced ? organized_trip.destinations.slice(0, 3) : organized_trip.destinations.slice(0, 2),
         price: organized_trip.price.toFixed(2),
         starting_date: start_date.toLocaleDateString('en-GB'),
-        num_of_people_participating: num_of_people_participating
+        num_of_people_participating: `${num_of_people_participating}/${organized_trip.overall_seats}`,
+        is_almost_complete: organized_trip.is_almost_complete,
+        is_announced: organized_trip.is_announced,
     }
 }
 
