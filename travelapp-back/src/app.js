@@ -7,9 +7,7 @@ const app = express();
 
 // FCM 
 var admin = require("firebase-admin");
-
 var serviceAccount = require('./config/push-notification-key.json');
-
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
@@ -18,7 +16,6 @@ admin.initializeApp({
 const cron = require('./services/cron')
 
 var path = require('path');
-
 // Images
 app.use(express.static(path.resolve('./public')));
 app.use('/public', express.static(path.resolve('./public')));

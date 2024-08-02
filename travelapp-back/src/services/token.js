@@ -8,7 +8,12 @@ function generateToken(payload, secret = SECRET_KEY) {
 }
 
 function verifyToken(token, secret) {
-    return jwt.verify(token, secret)
+    try {
+        const data = jwt.verify(token, secret)
+        return data
+    } catch (e) {
+        return null;
+    }
 }
 
 module.exports = {

@@ -1,56 +1,66 @@
-const { httpGetAllChats, httpPostChat, httpPostMessage, httpGetOneChat, httpPutMessage, httpDeleteMessage } = require('./chats.controller');
-
-// use this
-// socket.broadcast.emit
+const { validateCreateChat, validateSendMessage } = require('./chat.validation');
+const { getChat, postChat, getChatByTripID, postChatMessage } = require('../../../models/chats.model');
+const { getOneOrganizedTrip } = require('../../../models/organized-trips.model');
+const { getOrganizerID } = require('../../../models/organizers.model');
+const { getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
+const { getUsersID, checkMessageFromWho } = require('./chat.helper');
+const { verifyToken } = require('../../../services/token');
+const { getUserById } = require('../../../models/users.model');
 
 async function socketFunctionality(io, socket) {
-    // Handle joining a chat room
-    socket.on('join-chat', async (data) => {
-        const { tripId, userId } = data;
-        const chat = await Chat.findOne({ trip_id: tripId });
-        if (chat) {
-            if (!chat.users_id.includes(userId)) {
-                chat.users_id.push(userId);
-                await chat.save();
-            }
-            socket.join(tripId.toString());
-            const messages = await Chat.findById(chat._id).populate('messages.sender_id', 'name').select('messages');
-            socket.emit('chat-messages', messages.messages);
-        } else {
-            // Create a new chat room
-            const newChat = new Chat({
-                trip_id: tripId,
-                users_id: [userId],
-                name: 'Organized Trip Chat',
-                organizer_id: tripId.organizer_id
-            });
-            const savedChat = await newChat.save();
-
-            socket.join(tripId.toString());
+    const token = socket.handshake.query.token;
+    const checkUser = verifyToken(token, process.env.SECRET_KEY)
+    if (!checkUser) {
+        return socket.disconnect();
+    }
+    const userID = checkUser.id
+    let mainChatID;
+    socket.on('join-chat', async (chatId) => {
+        socket.join(chatId);
+        console.log(`User ${userID} joined chat ${chatId}`);
+        const chat = await getChat(chatId, userID);
+        if (!chat) {
+            socket.emit('chat-error', { message: "Chat not found or access denied." });
+            return
         }
+        mainChatID = chatId
+        let messages = []
+        for (let i = 0; i < chat.messages.length; i++) {
+            let temp = {
+                content: chat.messages[i].content,
+                timestamps: chat.messages[i].timestamp,
+                username: chat.messages[i].sender_id.name.first_name + ' ' + chat.messages[i].sender_id.name.last_name,
+                from_me: chat.messages[i].sender_id._id == userID,
+            }
+            messages.push(temp)
+        }
+        socket.emit('chat-history', messages);
     });
 
-    // Handle new messages
-    socket.on('new-message', async (data) => {
-        const { tripId, message, userId } = data;
+    socket.on('send-message', async (message) => {
+        const { error } = validateSendMessage({ message });
+        if (error) {
+            socket.emit('message-error', { message: error.details[0].message });
+            return;
+        }
 
-        const newMessage = {
+        const chat = await getChat(mainChatID, userID);
+        if (!chat) {
+            socket.emit('message-error', { message: "No Chat Found" });
+            return;
+        }
+
+        let messageData = {
             content: message,
-            sender_id: userId
+            sender_id: userID
         };
-
-        const chat = await Chat.findOneAndUpdate(
-            { trip_id: tripId },
-            { $push: { messages: newMessage } },
-            { new: true }
-        ).populate('messages.sender_id', 'name');
-
-        io.to(tripId.toString()).emit('chat-message', { message: newMessage, sender: chat.messages[chat.messages.length - 1].sender_id });
+        await postChatMessage(chat, messageData);
+        messageData = checkMessageFromWho(messageData, userID)
+        io.to(mainChatID).emit('receive-message', messageData);
     });
 
     socket.on('disconnect', () => {
-        console.log('A user disconnected');
+        console.log('User Disconnected');
     });
 }
-
 module.exports = socketFunctionality;
