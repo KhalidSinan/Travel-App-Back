@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const tripDestinationSchema = require('./trip-destinations.mongo');
+const destinationCitySchema = require('./destination-cities.mongo');
 
 const tripSchema = new mongoose.Schema({
     user_id: {
@@ -38,16 +39,10 @@ const tripSchema = new mongoose.Schema({
         },
         required: true,
     },
-    destinations: [{
-        destination: {
-            type: tripDestinationSchema,
-            required: true,
-        },
-        num_of_days: {
-            type: Number,
-            required: true,
-        }
-    }],
+    destinations: {
+        type: [destinationCitySchema],
+        required: true
+    },
     flights: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PlaneReservation',

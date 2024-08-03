@@ -108,8 +108,8 @@ async function httpAddActivityToSchedule(req, res) {
     if (error) return res.status(400).json({ error: error.details[0].message });
     const trip = await getTrip(req.params.id)
     if (!trip) return res.status(404).json({ message: 'Trip not found' });
-    const { country_id, city_id, place_id, description } = req.body
-    await addActivityToSchedule(trip._id, country_id, city_id, place_id, description)
+    const { destination_id, place_id, description } = req.body
+    await addActivityToSchedule(trip._id, destination_id, place_id, description)
     res.status(200).json({ message: 'Activity Added Successfully' });
 }
 
