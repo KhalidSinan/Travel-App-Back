@@ -125,7 +125,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 1250, userID = null) {
+async function createTrips(count = 150, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -189,16 +189,9 @@ async function createTripHelper(plane_reservations) {
         const allPlaces = await createPlacesWithDescription(flight.source.city, flight.source.country)
         places.push(...allPlaces.map(place => place.place))
         const destination = {
-            destination: {
-                country_name: flight.source.country,
-                cities: [{
-                    city_name: flight.source.city,
-                    hotel: hotel,
-                    num_of_days: 1,
-                    activities: allPlaces
-                }]
-            },
-            num_of_days: 1
+            city_name: flight.source.city,
+            num_of_days: faker.number.int({ min: 1, max: 3 }), // fix
+            activities: allPlaces
         }
         destinations.push(destination)
     }

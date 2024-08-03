@@ -9,7 +9,7 @@ const createFlights = require('./trips.generation');
 
 async function seedDB() {
     await mongoConnect();
-    
+
     // Delete All Tables
     console.log('Dropping Database')
     await dropDatabase()
@@ -21,10 +21,10 @@ async function seedDB() {
     await createAdmins();
     // Trips
     console.log('Seeding Flights')
-    await createFlights(15000);
+    await createFlights(1000);
     // Hotels
     console.log('Seeding Hotels')
-    await createHotels(2000)
+    await createHotels(0)
     // Places
     console.log('Seeding Places')
     await createPlaces()
