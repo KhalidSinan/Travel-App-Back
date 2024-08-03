@@ -7,7 +7,9 @@ const { getReservation } = require('../../../models/plane-reservation.model');
 const { makeTripPlacesToVisitHelper, makeTripOverallPriceHelper, autogenerateScheduleForTripHelper, cancelTripHelper } = require('./trips.helper');
 const { getHotelReservation } = require("../../../models/hotel-reservation.model");
 const { checkFlightsReservations } = require('../PlaneReservations/plane-reservations.helper')
-const { checkHotelsReservations } = require('../Hotels/hotel.helper')
+const { checkHotelsReservations } = require('../Hotels/hotel.helper');
+const { tripData } = require('./trips.serializer');
+const { serializedData } = require('../../../services/serializeArray')
 require('dotenv').config()
 
 
@@ -57,15 +59,10 @@ async function makeTrip(req, res) {
 // Serializer Needed
 async function getAllTrips(req, res) {
     try {
-        const trips = await Trip.find({ user_id: req.user.id })
-            .populate('user_id', 'name.first_name -_id')
-            .populate('flights', 'airline.name -_id')
-            .populate('hotels', 'name -_id')
-            .populate('places_to_visit', 'name -_id')
-            .exec();
+        const trips = await Trip.find({ user_id: req.user.id }).select('-destinations._id')
         res.status(200).json({
             message: 'Trips Found',
-            data: trips
+            data: serializedData(trips, tripData)
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
