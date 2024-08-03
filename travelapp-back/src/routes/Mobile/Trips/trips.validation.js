@@ -7,17 +7,8 @@ const makeTripValidation = (data) => {
     })
     const citySchema = Joi.object({
         city_name: Joi.string().required(),
-        hotel: Joi.string().hex().length(24),
         num_of_days: Joi.number().required(),
         activities: Joi.array().items(activitiesSchema)
-    })
-    const destinationSchema = Joi.object({
-        country_name: Joi.string().required(),
-        cities: Joi.array().items(citySchema)
-    })
-    const destinationsSchema = Joi.object({
-        num_of_days: Joi.number().required(),
-        destination: destinationSchema
     })
     const startingPlaceSchema = Joi.object({
         country: Joi.string().required(),
@@ -28,7 +19,7 @@ const makeTripValidation = (data) => {
         num_of_people: Joi.number().required(),
         start_date: Joi.date().required(),
         starting_place: startingPlaceSchema,
-        destinations: Joi.array().items(destinationsSchema),
+        destinations: Joi.array().items(citySchema),
         flights: Joi.array().items(Joi.string().hex().length(24)),
         hotels: Joi.array().items(Joi.string().hex().length(24)),
     });
@@ -37,8 +28,7 @@ const makeTripValidation = (data) => {
 
 const addActivityToScheduleValidation = (data) => {
     const schema = Joi.object({
-        country_id: Joi.string().hex().length(24).required(),
-        city_id: Joi.string().hex().length(24).required(),
+        destination_id: Joi.string().hex().length(24).required(),
         place_id: Joi.string().hex().length(24).required(),
         description: Joi.string().required(),
     });

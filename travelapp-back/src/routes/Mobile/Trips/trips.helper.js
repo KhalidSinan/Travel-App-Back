@@ -8,10 +8,8 @@ function makeTripPlacesToVisitHelper(destinations) {
     let places_to_visit = [];
 
     destinations.forEach(destination => {
-        destination.destination.cities.forEach(city => {
-            city.activities.forEach(activity => {
-                places_to_visit.push(activity.place);
-            })
+        destination.activities.forEach(activity => {
+            places_to_visit.push(activity.place);
         })
     })
     return places_to_visit
@@ -33,15 +31,13 @@ async function getSharedTripsActivitiesHelper(cityName) {
     const trips = await getSharedTrips(cityName);
 
     trips.forEach(trip => {
-        trip.destinations.forEach(destination => {
-            const city = destination.destination.cities.find(city => city.city_name == cityName)
-            city.activities.forEach(activity => {
-                activities.add({
-                    place_id: activity.place._id,
-                    place_name: activity.place.name,
-                });
+        const destination = trip.destinations.find(city => city.city_name == cityName)
+        destination.activities.forEach(activity => {
+            activities.add({
+                place_id: activity.place._id,
+                place_name: activity.place.name,
             });
-        });
+        })
     });
     return [...activities];
 }
@@ -75,7 +71,6 @@ async function autogenerateScheduleForTripHelper(destinations) {
                                 place_id: activity._id,
                                 place_name: activity.name,
                             });
-                            // Delete from uniqueActivities ONLY if added to selectedActivities:
                             uniqueActivities.delete(activityId);
                         }
                     }

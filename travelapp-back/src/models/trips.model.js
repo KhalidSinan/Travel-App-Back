@@ -28,12 +28,12 @@ async function getTripsCount() {
 
 async function removeActivityFromSchedule(trip_id, activity_id) {
     return await Trip.findOneAndUpdate(
-        { _id: trip_id, "destinations.destination.cities.activities._id": activity_id },
-        { $pull: { "destinations.$[].destination.cities.$[].activities": { _id: activity_id } } }
+        { _id: trip_id, "destinations.activities._id": activity_id },
+        { $pull: { "destinations.$[].activities": { _id: activity_id } } }
     );
 }
 
-async function addActivityToSchedule(trip_id, country_id, city_id, place_id, description) {
+async function addActivityToSchedule(trip_id, destination_id, place_id, description) {
     const data = {
         _id: new mongoose.Types.ObjectId(),
         place: place_id,
@@ -41,23 +41,15 @@ async function addActivityToSchedule(trip_id, country_id, city_id, place_id, des
     };
 
     return await Trip.findOneAndUpdate(
-        {
-            _id: trip_id, // Match the specific trip
-            "destinations._id": country_id, // Match the specific destination (country)
-            "destinations.destination.cities._id": city_id // Match the specific city
-        },
-        {
-            $push: { "destinations.$[dest].destination.cities.$[city].activities": data }
-        },
+        { _id: trip_id, "destinations._id": destination_id },
+        { $push: { "destinations.$[dest].activities": data } },
         {
             arrayFilters: [
-                { "dest._id": country_id }, // Filter for the correct destination
-                { "city._id": city_id } // Filter for the correct city
+                { "dest._id": destination_id }, // Filter for the correct destination
             ]
         }
-    );
+    )
 }
-
 
 module.exports = {
     getTrip,
