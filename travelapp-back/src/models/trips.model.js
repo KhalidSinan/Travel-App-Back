@@ -18,8 +18,8 @@ async function cancelTrip(id) {
 }
 
 async function getSharedTrips(city) {
-    return Trip.find({ is_shared: true, 'destinations.destination.cities.city_name': city })
-        .populate('destinations.destination.cities.activities.place');
+    return Trip.find({ is_shared: true, 'destinations.city_name': city })
+        .populate('destinations.activities.place');
 }
 
 async function getTripsCount() {
@@ -45,7 +45,7 @@ async function addActivityToSchedule(trip_id, destination_id, place_id, descript
         { $push: { "destinations.$[dest].activities": data } },
         {
             arrayFilters: [
-                { "dest._id": destination_id }, // Filter for the correct destination
+                { "dest._id": destination_id }
             ]
         }
     )

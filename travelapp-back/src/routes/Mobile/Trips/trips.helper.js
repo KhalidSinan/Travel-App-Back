@@ -29,7 +29,6 @@ async function makeTripOverallPriceHelper(flights, hotels) {
 async function getSharedTripsActivitiesHelper(cityName) {
     const activities = new Set()
     const trips = await getSharedTrips(cityName);
-
     trips.forEach(trip => {
         const destination = trip.destinations.find(city => city.city_name == cityName)
         destination.activities.forEach(activity => {
@@ -50,32 +49,10 @@ async function autogenerateScheduleForTripHelper(destinations) {
         if (activities.length > 0) {
             let uniqueActivities = new Set(activities.map(activity => activity.place_id.toString()));
             for (let i = 0; i < destination.num_of_days; i++) {
-                let selectedActivities = [];
-                const number_of_activities = Math.floor(Math.random() * 5) + 2;
-                while (selectedActivities.length < number_of_activities && uniqueActivities.size > 0) {
-                    const randomActivityId = [...uniqueActivities][Math.floor(Math.random() * uniqueActivities.size)];
-                    const activity = activities.find(activity => activity.place_id.toString() === randomActivityId);
-                    if (activity) {
-                        selectedActivities.push(activity);
-                        uniqueActivities.delete(randomActivityId);
-                    }
-                }
-                while (selectedActivities.length < number_of_activities) {
-                    const remainingActivitiesNeeded = number_of_activities - selectedActivities.length;
-                    const additionalActivities = await getPlaceByCity(destination.city_name, 3 * remainingActivitiesNeeded);
-                    for (let j = 0; j < additionalActivities.length && selectedActivities.length < number_of_activities; j++) {
-                        const activity = additionalActivities[j];
-                        const activityId = activity._id.toString();
-                        if (!selectedActivities.some(a => a.place_id.toString() === activityId)) {
-                            selectedActivities.push({
-                                place_id: activity._id,
-                                place_name: activity.name,
-                            });
-                            uniqueActivities.delete(activityId);
-                        }
-                    }
-                }
-                temp.days.push(selectedActivities);
+                let selectedActivities = uniqueActivities;
+                const additionalActivities = await getPlaceByCity(destination.city_name, 5);
+                selectedActivities.add(additionalActivities)
+                temp.days.push(additionalActivities.map(activity => activity._id));
             }
         }
         data.push(temp);
