@@ -45,8 +45,9 @@ async function makeTrip(req, res) {
             places_to_visit: places_to_visit,
         });
 
-        await trip.save();
-        res.status(201).json({ message: 'Trip created successfully' });
+        let data = await trip.save();
+        data = await Trip.findOne(data)
+        res.status(201).json({ message: 'Trip created successfully', data: { id: data._id } });
     } catch (error) {
         console.error("Error saving trip:", error);
         res.status(500).json({ error: error.message });
