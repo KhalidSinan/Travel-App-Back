@@ -185,13 +185,13 @@ async function createTripHelper(plane_reservations) {
     for (let i = 0; i < plane_reservations.length; i++) {
         const temp = await PlaneReservation.findById(plane_reservations[i]);
         const flight = await Flight.findById(temp.flights[0]._id)
-        const hotel = await getHotelInCity(flight.source.city, flight.source.country)
+        const hotel = await getHotelInCity(flight.destination.city, flight.destination.country)
         hotelsIDs.push({ id: hotel._id, date: flight.arrival_date.dateTime })
-        const allPlaces = await createPlacesWithDescription(flight.source.city, flight.source.country)
+        const allPlaces = await createPlacesWithDescription(flight.destination.city, flight.destination.country)
         places.push(...allPlaces.map(place => place.place))
         const destination = {
-            country_name: flight.source.country,
-            city_name: flight.source.city,
+            country_name: flight.destination.country,
+            city_name: flight.destination.city,
             num_of_days: faker.number.int({ min: 1, max: 3 }), // fix
             activities: allPlaces
         }
