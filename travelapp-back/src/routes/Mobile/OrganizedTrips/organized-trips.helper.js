@@ -138,6 +138,17 @@ async function assignTypesToOrganizedTrips(trips) {
     return data
 }
 
+function putTypeChosenFirst(trips, filterType) {
+    trips.forEach(trip => {
+        const commonTypes = trip.type_of_trip.filter(type => filterType.includes(type));
+        const remainingTypes = trip.type_of_trip.filter(type => !filterType.includes(type));
+        console.log([...commonTypes, ...remainingTypes])
+        trip.type_of_trip = [...commonTypes, ...remainingTypes]
+    });
+    return trips
+}
+
+
 module.exports = {
     getAllOrganizedByCountry,
     getFilterForOrganizedTrips,
@@ -148,5 +159,6 @@ module.exports = {
     getCountriesInOrganizedTrip,
     getOrganizedTripStatus,
     getOrganizedTripReservationHelper,
-    assignTypesToOrganizedTrips
+    assignTypesToOrganizedTrips,
+    putTypeChosenFirst
 }
