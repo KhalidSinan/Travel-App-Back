@@ -65,9 +65,34 @@ function flightDataDetails(flight) {
     }
 }
 
+function flightDataForCheck(flight) {
+    return {
+        id: flight._id,
+        airline: flight.airline,
+        source: {
+            city: flight.source.city,
+            airport: flight.source.name
+        },
+        destination: {
+            city: flight.destination.city,
+            airport: flight.destination.name
+        },
+        departure_date: {
+            date: flight.departure_date.date,
+            time: flight.departure_date.time,
+        },
+        arrival_date: {
+            date: flight.arrival_date.date
+        },
+        duration: convertToTimeFormat(flight.duration),
+        price: flight.overall_price,
+    }
+}
+
 module.exports = {
     flightData,
     twoWayFlightData,
     flightDataDetails,
-    twoWayFlightDataDetails
+    twoWayFlightDataDetails,
+    flightDataForCheck
 }
