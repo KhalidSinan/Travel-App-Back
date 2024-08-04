@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const destinationCitySchema = new mongoose.Schema({
+    country_name: {
+        type: String,
+        required: true
+    },
     city_name: {
         type: String,
         required: true

@@ -6,6 +6,7 @@ const makeTripValidation = (data) => {
         place: Joi.string().hex().length(24),
     })
     const citySchema = Joi.object({
+        country_name: Joi.string().required(),
         city_name: Joi.string().required(),
         num_of_days: Joi.number().required(),
         activities: Joi.array().items(activitiesSchema)

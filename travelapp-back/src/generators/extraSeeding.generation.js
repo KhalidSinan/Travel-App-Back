@@ -189,6 +189,7 @@ async function createTripHelper(plane_reservations) {
         const allPlaces = await createPlacesWithDescription(flight.source.city, flight.source.country)
         places.push(...allPlaces.map(place => place.place))
         const destination = {
+            country_name: flight.source.country,
             city_name: flight.source.city,
             num_of_days: faker.number.int({ min: 1, max: 3 }), // fix
             activities: allPlaces

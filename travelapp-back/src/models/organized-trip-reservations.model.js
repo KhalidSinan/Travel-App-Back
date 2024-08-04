@@ -5,7 +5,7 @@ async function postOrganizedTripReservation(data) {
 }
 
 async function getOrganizedTripReservationsForUser(user_id) {
-    return await OrganizedTripReservations.find({ user_id })
+    return await OrganizedTripReservations.find({ user_id }).populate({ path: 'trip_id', populate: { path: 'trip_id', populate: 'user_id' } })
 }
 
 async function getOrganizedTripReservationsForUserInTrip(user_id, trip_id) {
