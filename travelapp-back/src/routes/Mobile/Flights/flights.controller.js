@@ -3,7 +3,7 @@ const { serializedData } = require('../../../services/serializeArray');
 const { getFlights, getFlight, getFlightsCount } = require('../../../models/flights.model')
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { validateGetFlights, validateGetFlight, validateGetFlightsOptions } = require('./flights.validation');
-const { flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails } = require('./flights.serializer');
+const { flightData, twoWayFlightData, twoWayFlightDataDetails, flightDataDetails, flightDataForCheck } = require('./flights.serializer');
 const { getFlightsReqDataHelper, getFlightsOneWayDataHelper, getFlightsTwoWayDataHelper, getFlightsTimeFilterHelper, getFlightsPriceFilterHelper, oneWaySorter, twoWaySorter, getTwoWayFlightsTimeFilterHelper } = require('./flights.helper');
 const { getCities, getCountries, getAirlines } = require('../../../services/locations')
 
@@ -106,7 +106,7 @@ async function httpGetFlightsForTrip(req, res) {
         reason = flights.length > 0 ? 'Flights Available' : reason
         data.push({
             city: destination,
-            flight: flights.length > 0 ? flightData(flights[0]).flight : null,
+            flight: flights.length > 0 ? flightDataForCheck(flights[0]) : null,
             is_available: flights.length > 0 ?? false,
             reason: reason
         })
