@@ -15,6 +15,7 @@ const AnnouncementRequest = require('../models/announcement-requests.mongo')
 const bcrypt = require('bcrypt');
 const createFlights = require('./trips.generation')
 const OrganizedTripReservation = require('../models/organized-trip-reservations.mongo')
+const OrganizerRequest = require('../models/organizer-request.mongo')
 
 
 // Done
@@ -506,6 +507,7 @@ async function createAnnouncementsOrganizer() {
 }
 
 async function createOrganizersRequests() {
+    let data1 = []
     const organizers = await Organizer.find();
     organizers.forEach(organizer => {
         const user_id = organizer.user_id
@@ -519,7 +521,9 @@ async function createOrganizersRequests() {
             proofs,
             is_accepted: true
         }
+        data1.push(data)
     })
+    await OrganizerRequest.insertMany(data1)
 }
 
 // organized trip reservation

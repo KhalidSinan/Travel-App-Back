@@ -161,7 +161,7 @@ async function httpBecomeOrganizer(req, res) {
         data = { company_name: req.body.company_name, years_of_experience: req.body.years_of_experience, user_id: user._id, proofs: proofs }
         await addRequest(data)
         return res.status(200).json({ message: 'Request To Become Organizer Has Been Sent' })
-    } else if (request.is_accepted == true) {
+    } else if (request.is_accepted == true || user.is_organizer == true) {
         return res.status(400).json({ message: 'Already An Organizer' })
     } else {
         return res.status(400).json({ message: 'Already Sent A Request' })
