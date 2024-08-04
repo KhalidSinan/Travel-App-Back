@@ -32,9 +32,10 @@ function getFilterForOrganizedTrips(filterType, filterPrice) {
 }
 
 function filterOrganizedTrips(trips, filterDate, filterDestinations) {
-    let data1 = []
-    let data2 = []
+    let data1 = trips
+    let data2 = trips
     if (filterDate.start_date != "" || filterDate.end_date != "") {
+        data1 = []
         if (filterDate.start_date != "") filterDate.start_date = convertDateStringToDate(filterDate.start_date)
         if (filterDate.end_date != "") filterDate.end_date = convertDateStringToDate(filterDate.end_date)
         data1 = trips.filter(trip => {
@@ -52,6 +53,7 @@ function filterOrganizedTrips(trips, filterDate, filterDestinations) {
         });
     }
     if (filterDestinations.length > 0) {
+        data2 = []
         const destinations = filterDestinations
         trips.forEach(trip => {
             const tripDestinations = trip.trip_id.destinations.map(destination => destination.country_name)
@@ -142,7 +144,6 @@ function putTypeChosenFirst(trips, filterType) {
     trips.forEach(trip => {
         const commonTypes = trip.type_of_trip.filter(type => filterType.includes(type));
         const remainingTypes = trip.type_of_trip.filter(type => !filterType.includes(type));
-        console.log([...commonTypes, ...remainingTypes])
         trip.type_of_trip = [...commonTypes, ...remainingTypes]
     });
     return trips
