@@ -125,7 +125,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 150, userID = null) {
+async function createTrips(count = 1500, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -241,10 +241,10 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
             filter = { 'source.country': lastDestinationCountry, 'classes.available_seats': { $gt: num_of_reservations } }
         }
         const randomCountFlight = await Flight.countDocuments(filter);
-        const randomSkip = Math.floor(Math.random() * randomCountFlight);
+        const randomSkip = Math.max(Math.floor(Math.random() * randomCountFlight) - 1, 0);
 
         flights = await Flight.find(filter).skip(randomSkip).limit(1);
-        if (!flights || flights[0].departure_date.dateTime < lastDepartureDate) {
+        if (!flights || !flights[0] || flights[0].departure_date.dateTime < lastDepartureDate) {
             flights = await createFlights(1, lastDestinationCountry, lastDepartureDate)
         }
 

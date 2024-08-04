@@ -34,14 +34,24 @@ function getFilterForOrganizedTrips(filterType, filterPrice) {
 function filterOrganizedTrips(trips, filterDate, filterDestinations) {
     let data1 = []
     let data2 = []
-    if (filterDate.start_date != "" && filterDate.end_date != "") {
-        filterDate.start_date = convertDateStringToDate(filterDate.start_date)
-        filterDate.end_date = convertDateStringToDate(filterDate.end_date)
-        trips.forEach(trip => {
-            if (trip.trip_id.start_date >= filterDate.start_date && trip.trip_id.start_date <= filterDate.end_date) data1.push(trip)
-        })
+    if (filterDate.start_date != "" || filterDate.end_date != "") {
+        if (filterDate.start_date != "") filterDate.start_date = convertDateStringToDate(filterDate.start_date)
+        if (filterDate.end_date != "") filterDate.end_date = convertDateStringToDate(filterDate.end_date)
+        data1 = trips.filter(trip => {
+            let matchesStartDate = true;
+            let matchesEndDate = true;
+
+            if (filterDate.start_date != "") {
+                matchesStartDate = trip.trip_id.start_date >= filterDate.start_date;
+            }
+
+            if (filterDate.end_date != "") {
+                matchesEndDate = trip.trip_id.start_date <= filterDate.end_date;
+            }
+            return matchesStartDate && matchesEndDate;
+        });
     }
-    if (filterDestinations) {
+    if (filterDestinations.length > 0) {
         const destinations = filterDestinations
         trips.forEach(trip => {
             const tripDestinations = trip.trip_id.destinations.map(destination => destination.country_name)
@@ -49,7 +59,7 @@ function filterOrganizedTrips(trips, filterDate, filterDestinations) {
             if (commonDestinations.length == destinations.length) data2.push(trip)
         })
     }
-    if ((filterDate.start_date == "" || filterDate.end_date == "") && filterDestinations.length == 0) return trips
+    if ((filterDate.start_date == "" && filterDate.end_date == "") && filterDestinations.length == 0) return trips
     return data1.filter(trip => data2.includes(trip));
 }
 

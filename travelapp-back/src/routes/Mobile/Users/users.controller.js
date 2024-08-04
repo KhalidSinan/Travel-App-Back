@@ -162,9 +162,9 @@ async function httpBecomeOrganizer(req, res) {
         await addRequest(data)
         return res.status(200).json({ message: 'Request To Become Organizer Has Been Sent' })
     } else if (request.is_accepted == true) {
-        return res.status(200).json({ message: 'Already An Organizer' })
+        return res.status(400).json({ message: 'Already An Organizer' })
     } else {
-        return res.status(200).json({ message: 'Already Sent A Request' })
+        return res.status(400).json({ message: 'Already Sent A Request' })
     }
 }
 
