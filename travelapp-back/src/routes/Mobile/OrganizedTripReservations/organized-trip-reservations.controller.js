@@ -3,7 +3,9 @@ const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneT
 const { getOneOrganizedTrip, decrementSeats, incrementSeats } = require("../../../models/organized-trips.model")
 const { getReservation, putReservationData } = require("../../../models/plane-reservation.model")
 const { getTrip } = require("../../../models/trips.model")
+const { organizedTripReservationData } = require("./organized-trip-reservations.serializer")
 const { validateReserveTrip, validateCancelReservation } = require("./organized-trip-reservations.validation")
+const { serializedData } = require("../../../services/serializeArray");
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -57,7 +59,7 @@ async function httpGetMyReservationsUser(req, res) {
 
     const reservations = await getOrganizedTripReservationsForUser(user.id);
     return res.status(200).json({
-        data: reservations,
+        data: serializedData(reservations, organizedTripReservationData),
     })
 }
 

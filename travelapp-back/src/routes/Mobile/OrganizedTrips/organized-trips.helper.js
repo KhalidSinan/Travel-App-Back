@@ -44,7 +44,7 @@ function filterOrganizedTrips(trips, filterDate, filterDestinations) {
     if (filterDestinations) {
         const destinations = filterDestinations
         trips.forEach(trip => {
-            const tripDestinations = trip.trip_id.destinations.map(destination => destination.destination.country_name)
+            const tripDestinations = trip.trip_id.destinations.map(destination => destination.country_name)
             const commonDestinations = tripDestinations.filter(destination => destinations.includes(destination));
             if (commonDestinations.length == destinations.length) data2.push(trip)
         })
@@ -92,7 +92,7 @@ function calculateAnnouncementOptions(trip) {
 
 function getCountriesInOrganizedTrip(trip) {
     const destinations = trip.trip_id.destinations
-    return destinations.map(dest => dest.destination.country_name)
+    return destinations.map(dest => dest.country_name)
 }
 
 function getOrganizedTripStatus(trip) {
