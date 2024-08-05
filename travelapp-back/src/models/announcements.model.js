@@ -21,7 +21,8 @@ async function getAnnouncementsOrganizer(skip, limit, sort, filter) {
 }
 
 async function getAnnouncementsForHomePage() {
-    return await Announcement.find({ expiry_date: { $gt: Date.now() }, location: 'Home' });
+    return await Announcement.find({ expiry_date: { $gt: new Date() }, location: 'Home' })
+        .populate({ path: 'organizer_id', populate: 'user_id' })
 }
 
 async function getAnnouncementsCountApp(filter) {

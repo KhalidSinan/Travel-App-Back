@@ -100,7 +100,7 @@ async function validateBecomeOrganizer(data) {
     const schema = Joi.object({
         company_name: Joi.string().required().messages({ 'any.required': 'Company Name Required' }),
         years_of_experience: Joi.number().required().messages({ 'any.required': 'Years Required' }),
-        companies_worked_for: Joi.array().items(String).required(),
+        companies_worked_for: Joi.array().items(Joi.string()).required({ 'any.required': 'Companies Required Required' }),
     })
     return schema.validate(data);
 }

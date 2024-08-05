@@ -144,6 +144,12 @@ async function httpDeleteAccount(req, res) {
 }
 
 async function httpBecomeOrganizer(req, res) {
+    req.body.companies_worked_for = Array.isArray(req.body.companies_worked_for)
+        ? req.body.companies_worked_for
+        : typeof req.body.companies_worked_for === 'string'
+            ? [req.body.companies_worked_for]
+            : [];
+            
     const { error } = await validateBecomeOrganizer(req.body);
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
