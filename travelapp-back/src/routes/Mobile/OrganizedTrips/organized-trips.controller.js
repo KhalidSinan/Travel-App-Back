@@ -4,11 +4,9 @@ const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscou
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
-const { postAnnouncementRequest } = require('../../../models/announcement-requests.model');
-const { getOrganizerID } = require('../../../models/organizers.model');
 const { getOrganizedTrips, getOrganizedTripDetails } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
-const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst, calculatePriceForAnnouncement } = require('./organized-trips.helper');
+const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
 const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
 
@@ -106,41 +104,6 @@ async function httpReviewOrganizedTrip(req, res) {
     return res.status(200).json({ message: 'Trip Reviewed Successfully' })
 }
 
-async function httpGetOrganizedTripAnnouncementOption(req, res) {
-    const organized_trip = await getOneOrganizedTrip(req.params.id);
-    if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
-    const trip = await getTrip(organized_trip.trip_id)
-    if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
-
-    const options = calculateAnnouncementOptions(organized_trip.trip_id)
-    return res.status(200).json({ message: 'Announcement Option Retreieved Successfully', options })
-}
-
-async function httpMakeOrganizedTripAnnouncement(req, res) {
-    const { error } = validateMakeOrganizedTripAnnouncement(req.body)
-    if (error) return res.status(404).json({ errors: validationErrors(error.details) })
-
-    const organized_trip = await getOneOrganizedTrip(req.params.id);
-    if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
-    const trip = await getTrip(organized_trip.trip_id)
-    if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
-
-    const organizer_id = await getOrganizerID(req.user.id)
-    let expiry_date = new Date();
-    expiry_date.setUTCDate(expiry_date.getUTCDate() + req.body.num_of_days)
-    const price = calculatePriceForAnnouncement(req.body.num_of_days, req.body.location, trip)
-    delete req.body.num_of_days
-    const data = {
-        organized_trip_id: req.params.id,
-        organizer_id: organizer_id._id,
-        expiry_date: expiry_date,
-        price: price
-    }
-    Object.assign(data, req.body)
-    await postAnnouncementRequest(data)
-    return res.status(200).json({ message: 'Announcement Requested Successfully' })
-}
-
 function httpGetCountriesWithContinents(req, res) {
     const countries = getCountriesWithContinents()
     return res.status(200).json({
@@ -163,8 +126,6 @@ module.exports = {
     httpMakeDiscountOrganizedTrip,
     httpCancelOrganizedTrip,
     httpReviewOrganizedTrip,
-    httpMakeOrganizedTripAnnouncement,
-    httpGetOrganizedTripAnnouncementOption,
     httpGetCountriesWithContinents,
     httpGetCountries
 }

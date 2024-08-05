@@ -20,9 +20,8 @@ const announcementRequestSchema = new mongoose.Schema({
     is_accepted: {
         type: Boolean,
     },
-    expiry_date: {
-        type: Date,
-        default: Date.now(),
+    num_of_days: {
+        type: Number,
         required: true
     },
     location: {
@@ -30,10 +29,6 @@ const announcementRequestSchema = new mongoose.Schema({
         enum: ['Home', 'Organized'],
         required: true
     },
-    price: {
-        type: Number,
-        required: true
-    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('AnnouncementRequest', announcementRequestSchema)

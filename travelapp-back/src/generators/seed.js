@@ -49,7 +49,7 @@ async function extraSeeding() {
     await createOrganizedTrips()
     console.log('Seeding Reports On Organizers')
     await createReportsOrganizers()
-    console.log('Seeding Announcements For Request')
+    console.log('Seeding Announcements Requests')
     await createAnnouncementsRequests()
     console.log('Seeding Announcements For Organizers')
     await createAnnouncementsOrganizer()

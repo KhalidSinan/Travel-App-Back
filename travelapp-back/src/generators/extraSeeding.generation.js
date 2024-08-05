@@ -454,24 +454,46 @@ async function createAnnouncementsRequests() {
         const announcement_body = faker.word.words({ count: { min: 10, max: 40 } });
         const trip = await Trip.findById(organizedTrip.trip_id);
         const user_id = trip.user_id;
-        const organizer_id = user_id;
+        const organizer_id = await Organizer.findOne({ user_id: user_id });
         const organized_trip_id = organizedTrip._id;
         const rand = Math.random();
-        let is_accepted;
+        const num_of_days = faker.helpers.arrayElement([1, 3, 7, -1]);
+        const location = faker.helpers.arrayElement(["Home", "Organized"]);
 
+        let is_accepted;
+        let data;
         if (rand < 0.33) {
             is_accepted = true;
+            data = {
+                announcement_title,
+                announcement_body,
+                organizer_id,
+                organized_trip_id,
+                is_accepted,
+                num_of_days,
+                location,
+            };
         } else if (rand < 0.66) {
             is_accepted = false;
+            data = {
+                announcement_title,
+                announcement_body,
+                organizer_id,
+                organized_trip_id,
+                is_accepted,
+                num_of_days,
+                location,
+            };
+        } else {
+            data = {
+                announcement_title,
+                announcement_body,
+                organizer_id,
+                organized_trip_id,
+                num_of_days,
+                location,
+            };
         }
-        const data = {
-            announcement_title,
-            announcement_body,
-            organizer_id,
-            organized_trip_id,
-            is_accepted
-        };
-
         return data;
     });
 
@@ -480,17 +502,49 @@ async function createAnnouncementsRequests() {
     return await AnnouncementRequest.insertMany(data1);
 }
 
+function calculatePriceForAnnouncement(num_of_days, location, trip) {
+    const homePageMultiplier = 1.5;
+    const endingOfAnnouncement = Math.floor((trip.start_date - new Date()) / 1000 / 60 / 60 / 24)
+    const oneDay = 200
+    const threeDays = 550
+    const oneWeek = 1150
+    const tillTheStartOfTheTrip = Math.floor(endingOfAnnouncement * oneDay - endingOfAnnouncement * (oneDay / 1.5))
+    if (location == 'Home') {
+        if (num_of_days == 1) return oneDay * homePageMultiplier
+        if (num_of_days == 3) return threeDays * homePageMultiplier
+        if (num_of_days == 7) return oneWeek * homePageMultiplier
+        if (num_of_days == -1) return tillTheStartOfTheTrip * homePageMultiplier
+    } else {
+        if (num_of_days == 1) return oneDay
+        if (num_of_days == 3) return threeDays
+        if (num_of_days == 7) return oneWeek
+        if (num_of_days == -1) return tillTheStartOfTheTrip
+    }
+}
+
+function expiryDateHelper(trip, num_of_days) {
+    let expiry_date = new Date();
+    expiry_date.setUTCDate(expiry_date.getUTCDate() + num_of_days)
+    return num_of_days == -1 ?
+        Math.floor((trip.start_date - new Date()) / 1000 / 60 / 60 / 24) :
+        expiry_date
+}
+
 // Done
 async function createAnnouncementsOrganizer() {
     let data1 = []
     const announcementRequests = await AnnouncementRequest.find({ is_accepted: true })
-    announcementRequests.forEach(request => {
-        const announcement_title = request.announcement_title
-        const announcement_body = request.announcement_body
-        const from_organizer = true
-        const organized_trip_id = request.organized_trip_id
-        const organizer_id = request.organizer_id
-        const expiry_date = faker.date.future()
+    await Promise.all(announcementRequests.map(async (request) => {
+        const announcement_title = request.announcement_title;
+        const announcement_body = request.announcement_body;
+        const from_organizer = true;
+        const organized_trip_id = request.organized_trip_id;
+        const organizer_id = request.organizer_id;
+        const organized_trip = await OrganizedTrip.findById(organized_trip_id);
+        const trip = await Trip.findById(organized_trip.trip_id);
+        const expiry_date = expiryDateHelper(trip, request.num_of_days);
+        const location = request.location;
+        const price = calculatePriceForAnnouncement(request.num_of_days, request.location, trip);
 
         const data = {
             announcement_title,
@@ -498,10 +552,13 @@ async function createAnnouncementsOrganizer() {
             from_organizer,
             organized_trip_id,
             organizer_id,
-            expiry_date
-        }
-        data1.push(data)
-    })
+            expiry_date,
+            location,
+            price,
+        };
+
+        data1.push(data);
+    }));
 
     return await Announcements.insertMany(data1)
 }
