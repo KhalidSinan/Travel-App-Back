@@ -95,6 +95,7 @@ async function createAnnouncementsApp(count = 1000) {
             announcement_title,
             announcement_body,
             from_organizer,
+            location: 'Home'
         }
         data1.push(data)
     }
