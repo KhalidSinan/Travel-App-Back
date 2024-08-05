@@ -30,11 +30,9 @@ const announcementSchema = new mongoose.Schema({
     location: {
         type: String,
         enum: ['Home', 'Organized'],
-        required: true
     },
     price: {
         type: Number,
-        required: true
     }
 }, { timestamps: true })
 
