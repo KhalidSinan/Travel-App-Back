@@ -8,7 +8,7 @@ async function getAllOrganizedTrips(filter) {
 }
 
 async function getOneOrganizedTrip(_id) {
-    return await OrganizedTrip.findOne({ _id }).populate('trip_id');
+    return await OrganizedTrip.findOne({ _id }).populate({ path: 'trip_id', populate: { path: 'destinations.activities', populate: 'place' } });
 }
 
 async function postOrganizedtrip(data) {

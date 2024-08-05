@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkObjectID = require('../../../middlewares/checkObjectID');
 const checkOrganizer = require('../../../middlewares/checkOrganizer');
-const { httpGetAllOrganizedTrips, httpCreateOrganizedTrip, httpGetOneOrganizedTrip, httpGetMyOrganizedTrips, httpMakeDiscountOrganizedTrip, httpCancelOrganizedTrip, httpReviewOrganizedTrip, httpGetCountriesWithContinents, httpGetCountries } = require('./organized-trips.controller');
+const { httpGetAllOrganizedTrips, httpCreateOrganizedTrip, httpGetOneOrganizedTrip, httpGetMyOrganizedTrips, httpMakeDiscountOrganizedTrip, httpCancelOrganizedTrip, httpReviewOrganizedTrip, httpGetCountriesWithContinents, httpGetCountries, httpGetOneOrganizedTripSchedule } = require('./organized-trips.controller');
 
 const organizedTripRouter = express.Router();
 
@@ -20,6 +20,8 @@ organizedTripRouter.get('/countries-continents', requireJwtAuth, asyncHandler(ht
 organizedTripRouter.get('/countries', requireJwtAuth, asyncHandler(httpGetCountries))
 // Get Trip Details (Both)
 organizedTripRouter.get('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpGetOneOrganizedTrip))
+// Get Trip Schedule (Both)
+organizedTripRouter.get('/:id/schedule', requireJwtAuth, checkObjectID, asyncHandler(httpGetOneOrganizedTripSchedule))
 // Cancel Trip (Organizer)
 organizedTripRouter.delete('/:id', requireJwtAuth, checkObjectID, checkOrganizer, asyncHandler(httpCancelOrganizedTrip))
 // make discount (organizer)

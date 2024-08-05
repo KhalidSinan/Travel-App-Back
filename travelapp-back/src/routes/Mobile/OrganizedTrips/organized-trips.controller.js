@@ -4,7 +4,7 @@ const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscou
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
-const { getOrganizedTrips, getOrganizedTripDetails } = require('./organized-trips.serializer');
+const { getOrganizedTrips, getOrganizedTripDetails, getOrganizedTripScheduleDetails } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
@@ -34,13 +34,19 @@ async function httpGetAllOrganizedTrips(req, res) {
     })
 }
 
-// Serializer
 async function httpGetOneOrganizedTrip(req, res) {
     const trip = await getOneOrganizedTrip(req.params.id);
     if (!trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     const reservations = await getOrganizedTripReservationsForOneTrip(trip._id)
     trip.reservations = reservations
     return res.status(200).json({ data: getOrganizedTripDetails(trip) })
+}
+
+async function httpGetOneOrganizedTripSchedule(req, res) {
+    const trip = await getOneOrganizedTrip(req.params.id);
+    if (!trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
+
+    return res.status(200).json({ data: serializedData(trip.trip_id.destinations, getOrganizedTripScheduleDetails) })
 }
 
 // Need to know price logic
@@ -127,5 +133,6 @@ module.exports = {
     httpCancelOrganizedTrip,
     httpReviewOrganizedTrip,
     httpGetCountriesWithContinents,
-    httpGetCountries
+    httpGetCountries,
+    httpGetOneOrganizedTripSchedule
 }
