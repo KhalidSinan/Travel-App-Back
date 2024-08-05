@@ -79,7 +79,7 @@ function filterOrganizedTripsShown(trips, organizedTripsShown) {
 
 function getCountriesInOrganizedTrip(trip) {
     const destinations = trip.trip_id.destinations
-    return destinations.map(dest => dest.country_name)
+    return destinations.map(dest => ({ country: dest.country_name, city: dest.city_name }))
 }
 
 function getOrganizedTripStatus(trip) {
