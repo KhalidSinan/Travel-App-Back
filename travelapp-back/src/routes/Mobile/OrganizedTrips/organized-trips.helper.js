@@ -41,7 +41,7 @@ function filterOrganizedTrips(trips, filterDate, filterDestinations) {
         data1 = trips.filter(trip => {
             let matchesStartDate = true;
             let matchesEndDate = true;
-
+            trip.trip_id.start_date.setHours(0, 0, 0, 0)
             if (filterDate.start_date != "") {
                 matchesStartDate = trip.trip_id.start_date >= filterDate.start_date;
             }
@@ -102,6 +102,26 @@ function calculateAnnouncementOptions(trip) {
     }
 }
 
+function calculatePriceForAnnouncement(num_of_days, location, trip) {
+    const homePageMultiplier = 1.5;
+    const endingOfAnnouncement = Math.floor((trip.start_date - new Date()) / 1000 / 60 / 60 / 24)
+    const oneDay = 200
+    const threeDays = 550
+    const oneWeek = 1150
+    const tillTheStartOfTheTrip = Math.floor(endingOfAnnouncement * oneDay - endingOfAnnouncement * (oneDay / 1.5))
+    if (location == 'Home') {
+        if (num_of_days == 1) return oneDay * homePageMultiplier
+        if (num_of_days == 3) return threeDays * homePageMultiplier
+        if (num_of_days == 7) return oneWeek * homePageMultiplier
+        if (num_of_days == -1) return tillTheStartOfTheTrip * homePageMultiplier
+    } else {
+        if (num_of_days == 1) return oneDay
+        if (num_of_days == 3) return threeDays
+        if (num_of_days == 7) return oneWeek
+        if (num_of_days == -1) return tillTheStartOfTheTrip
+    }
+}
+
 function getCountriesInOrganizedTrip(trip) {
     const destinations = trip.trip_id.destinations
     return destinations.map(dest => dest.country_name)
@@ -149,6 +169,15 @@ function putTypeChosenFirst(trips, filterType) {
     return trips
 }
 
+function putDestinationsChosenFirst(trips, filterDestinations) {
+    trips.forEach(trip => {
+        const commonDestinations = trip.destinations.filter(destination => filterDestinations.includes(destination));
+        const remainingDestinations = trip.destinations.filter(destination => !filterDestinations.includes(destination));
+        trip.destinations = [...commonDestinations, ...remainingDestinations]
+    });
+    return trips
+}
+
 
 module.exports = {
     getAllOrganizedByCountry,
@@ -161,5 +190,7 @@ module.exports = {
     getOrganizedTripStatus,
     getOrganizedTripReservationHelper,
     assignTypesToOrganizedTrips,
-    putTypeChosenFirst
+    putTypeChosenFirst,
+    putDestinationsChosenFirst,
+    calculatePriceForAnnouncement,
 }

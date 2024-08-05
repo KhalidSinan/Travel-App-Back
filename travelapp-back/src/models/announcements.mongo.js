@@ -24,7 +24,17 @@ const announcementSchema = new mongoose.Schema({
     },
     expiry_date: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
+        required: true
+    },
+    location: {
+        type: String,
+        enum: ['Home', 'Organized'],
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true })
 

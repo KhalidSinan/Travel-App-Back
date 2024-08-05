@@ -19,6 +19,20 @@ const announcementRequestSchema = new mongoose.Schema({
     },
     is_accepted: {
         type: Boolean,
+    },
+    expiry_date: {
+        type: Date,
+        default: Date.now(),
+        required: true
+    },
+    location: {
+        type: String,
+        enum: ['Home', 'Organized'],
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true })
 
