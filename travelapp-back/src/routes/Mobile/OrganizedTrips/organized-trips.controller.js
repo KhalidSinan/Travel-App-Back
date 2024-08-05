@@ -8,7 +8,7 @@ const { postAnnouncementRequest } = require('../../../models/announcement-reques
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getOrganizedTrips, getOrganizedTripDetails } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
-const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst } = require('./organized-trips.helper');
+const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst, calculatePriceForAnnouncement } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
 const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
 
@@ -27,6 +27,7 @@ async function httpGetAllOrganizedTrips(req, res) {
     trips = await assignTypesToOrganizedTrips(trips)
     trips = filterOrganizedTripsShown(trips, req.body.organizedTripsShown)
     trips = putTypeChosenFirst(trips, filterType)
+    trips = putDestinationsChosenFirst(trips, filterDestinations)
     const allLength = trips.length
     trips = trips.slice(skip, skip + limit)
     return res.status(200).json({
@@ -125,10 +126,15 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
     const organizer_id = await getOrganizerID(req.user.id)
-    // postAnnouncemetRequest
+    let expiry_date = new Date();
+    expiry_date.setUTCDate(expiry_date.getUTCDate() + req.body.num_of_days)
+    const price = calculatePriceForAnnouncement(req.body.num_of_days, req.body.location, trip)
+    delete req.body.num_of_days
     const data = {
         organized_trip_id: req.params.id,
-        organizer_id: organizer_id._id
+        organizer_id: organizer_id._id,
+        expiry_date: expiry_date,
+        price: price
     }
     Object.assign(data, req.body)
     await postAnnouncementRequest(data)
