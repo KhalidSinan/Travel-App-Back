@@ -374,6 +374,7 @@ async function createOrganizedTrips() {
     const organizers = await User.find({ is_organizer: true });
     const promises = organizers.map(async organizer => {
         const trips = await Trip.find({ user_id: organizer._id });
+        const organizerData = await Organizer.findOne({ user_id: organizer._id })
         if (trips.length > 0) {
             trips.forEach(async trip => {
                 const trip_id = trip._id
@@ -387,6 +388,7 @@ async function createOrganizedTrips() {
                 const type_of_trip = faker.helpers.arrayElements(["Entertainment", "Exploratory", "Therapeutic", "Artistic", "Educational"])
                 const reviews = []
                 const data = {
+                    organizer_id: organizerData._id,
                     trip_id,
                     overall_seats,
                     available_seats,

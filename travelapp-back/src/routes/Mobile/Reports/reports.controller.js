@@ -2,6 +2,9 @@ const { postReport } = require('../../../models/reports.model')
 const { validatePostReport } = require('./reports.validation')
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { getUserById } = require('../../../models/users.model');
+const { getOrganizedTripReservationsForUser } = require('../../../models/organized-trip-reservations.model');
+const { organizerDataDetails } = require('./reports.serializer');
+const { serializedData } = require('../../../services/serializeArray')
 
 async function httpPostReport(req, res) {
     const { error } = validatePostReport(req.body);
@@ -19,6 +22,15 @@ async function httpPostReport(req, res) {
     return res.status(200).json({ message: 'Report Successfully Sent' })
 }
 
+async function httpGetOrganizers(req, res) {
+    const data = await getOrganizedTripReservationsForUser(req.user._id)
+    return res.status(200).json({
+        message: 'Organizers Retrieved Successfully',
+        data: serializedData(data, organizerDataDetails)
+    })
+}
+
 module.exports = {
     httpPostReport,
+    httpGetOrganizers
 }

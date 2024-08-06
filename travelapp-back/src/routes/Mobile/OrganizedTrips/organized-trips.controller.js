@@ -9,6 +9,7 @@ const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
 const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
+const { getOrganizerID } = require('../../../models/organizers.model');
 
 // Serializer
 async function httpGetAllOrganizedTrips(req, res) {
@@ -49,17 +50,17 @@ async function httpGetOneOrganizedTripSchedule(req, res) {
     return res.status(200).json({ data: serializedData(trip.trip_id.destinations, getOrganizedTripScheduleDetails) })
 }
 
-// Need to know price logic
+// Done
 async function httpCreateOrganizedTrip(req, res) {
     const { error } = validateCreateOrganizedTrip(req.body);
     if (error) return res.status(404).json({ errors: validationErrors(error.details) })
 
-    // Num of seats and overall prcie from trip_id
     const trip = await getTrip(req.body.trip_id)
     if (!trip) res.status(200).json({ message: 'Trip Not Found' })
 
     let price = trip.price_per_person + trip.price_per_person * (req.body.commission / 100)
-    let data = { overall_seats: trip.num_of_people, available_seats: trip.num_of_people, price: price }
+    let organizer_id = await getOrganizerID(req.user._id)
+    let data = { organizer_id, overall_seats: trip.num_of_people, available_seats: trip.num_of_people, price: price }
     Object.assign(data, req.body)
     await postOrganizedtrip(data)
     return res.status(200).json({ message: 'Organized Trip Created Successfully' })

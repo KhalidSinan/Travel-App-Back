@@ -19,7 +19,7 @@ async function seedDB() {
     // Admin
     console.log('Seeding Admins');
     await createAdmins();
-    // Trips
+    // Flights
     console.log('Seeding Flights')
     await createFlights(10000);
     // Hotels
