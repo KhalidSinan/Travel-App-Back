@@ -7,6 +7,7 @@ const { announcementData, announcementOrganizerData, announcementAppData } = req
 const { serializedData } = require('../../../services/serializeArray')
 const { getPagination } = require('../../../services/query');
 const { filterAnnouncementsHelper } = require("./announcements.helper");
+const { convertDateStringToDate } = require("../../../services/convertTime");
 
 async function httpGetAllAnnouncementsApp(req, res) {
     req.query.limit = 10
@@ -40,7 +41,7 @@ async function httpPostAnnouncement(req, res) {
 
     // Saving Announcement in DB
     let data = req.body;
-    Object.assign(data, { expiry_date: new Date(Date.now() + (1000 * 60 * 60 * 24 * 3)) })
+    Object.assign(data, { expiry_date: convertDateStringToDate(req.body.expiry_date) })
     const announcement = await postAnnouncement(data);
 
     // Sending Notification For Announcements

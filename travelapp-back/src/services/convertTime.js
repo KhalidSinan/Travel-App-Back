@@ -45,7 +45,7 @@ function msToTime(remaining) {
 
 function convertDateStringToDate(date) {
     const [day, month, year] = date.split('/').map(Number);
-    const dateObject = new Date(year, month - 1, day);
+    const dateObject = new Date(year, month - 1, day, 3, 0, 0);
     return dateObject;
 }
 

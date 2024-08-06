@@ -1,6 +1,6 @@
 const { msToTime } = require("../../../services/convertTime")
 const { serializedData } = require("../../../services/serializeArray")
-const { getCountriesInOrganizedTrip, getOrganizedTripStatus, getOrganizedTripReservationHelper } = require("./organized-trips.helper")
+const { getCountriesInOrganizedTrip, getOrganizedTripStatus, getOrganizedTripReservationHelper, putHotelReservationWithRoomData } = require("./organized-trips.helper")
 
 function getOrganizedTrips(organized_trip) {
     const start_date = new Date(organized_trip.trip_id.start_date)
@@ -22,31 +22,74 @@ function getOrganizedTrips(organized_trip) {
 }
 
 function getOrganizedTripDetails(organized_trip) {
+    console.log(organized_trip)
     let remaining = organized_trip.trip_id.start_date.valueOf() - Date.now()
     let remaining_time = msToTime(remaining)
     if (remaining_time.seconds < 0) remaining_time = { days: 0, hours: 0, minutes: 0, seconds: 0 };
     const start_date = new Date(organized_trip.trip_id.start_date)
+    const end_date = new Date(organized_trip.trip_id.end_date)
     const num_of_people_participating = organized_trip.overall_seats - organized_trip.available_seats
     const destinations = getCountriesInOrganizedTrip(organized_trip)
     const status_of_trip = getOrganizedTripStatus(organized_trip)
-    const reservation_data = getOrganizedTripReservationHelper(organized_trip.reservations)
     return {
         destinations: destinations,
-        num_of_countries: destinations.length,
+        num_of_destination: destinations.length,
         starting_date: start_date.toLocaleDateString('en-GB'),
         trip_type: organized_trip.type_of_trip,
         num_of_people_participating: num_of_people_participating,
+        start_date: start_date.toLocaleDateString('en-GB'),
+        end_date: end_date.toLocaleDateString('en-GB'),
+        num_of_days: organized_trip.trip_id.overall_num_of_days,
         overall_seats: organized_trip.overall_seats,
         status_of_trip: status_of_trip,
-        price: organized_trip.price.toFixed(2),
-        reservations: serializedData(reservation_data, getOrganizedTripReservationDetails),
-        remaining_time: remaining_time,
+        price: organized_trip.price,
+        flights: serializedData(organized_trip.trip_id.flights, getOrganizedTripFlightDetails),
+        hotels: serializedData(organized_trip.trip_id.hotels, getOrganizedTripHotelDetails),
     }
 }
 
-function getOrganizedTripReservationDetails(reservation) {
+function hotelLocationData(location) {
     return {
-        name: reservation.name,
+        address: location.name,
+        city: location.city,
+        country: location.country,
+    }
+}
+
+function getOrganizedTripHotelDetails(hotel) {
+    return {
+        hotel_id: hotel.hotel_id._id,
+        hotel_name: hotel.hotel_id.name,
+        hotel_location: hotelLocationData(hotel.hotel_id.location),
+        overall_price: hotel.overall_price,
+        start_date: hotel.start_date.toLocaleDateString('en-GB'),
+        end_date: hotel.end_date.toLocaleDateString('en-GB'),
+        rooms_reserved: putHotelReservationWithRoomData(hotel.room_codes, hotel.hotel_id.room_types)
+    }
+}
+
+function sourceDestinationData(source) {
+    return {
+        name: source.name,
+        city: source.city,
+        country: source.country,
+    }
+}
+
+function dateData(date) {
+    return {
+        date: date.date,
+        time: date.time,
+    }
+}
+
+function getOrganizedTripFlightDetails(flight) {
+    return {
+        source: sourceDestinationData(flight.flights[0].source),
+        destination: sourceDestinationData(flight.flights[0].destination),
+        duration: flight.flights[0].duration,
+        departure_date: dateData(flight.flights[0].departure_date),
+        arrival_date: dateData(flight.flights[0].arrival_date),
     }
 }
 
