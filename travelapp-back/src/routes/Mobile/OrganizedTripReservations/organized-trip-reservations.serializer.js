@@ -7,6 +7,7 @@ function organizedTripReservationData(organized_trip) {
         num_of_people: organized_trip.num_of_people,
         type_of_trip: organized_trip.trip_id.type_of_trip,
         organizer_name: organized_trip.trip_id.trip_id.user_id.name.first_name + ' ' + organized_trip.trip_id.trip_id.user_id.name.last_name,
+        completed: organized_trip.trip_id.trip_id.end_date < new Date() ? true : false
     }
 }
 

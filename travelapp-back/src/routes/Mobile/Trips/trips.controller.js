@@ -56,7 +56,7 @@ async function makeTrip(req, res) {
     }
 }
 
-// Serializer Needed
+// Done
 async function getAllTrips(req, res) {
     try {
         const trips = await Trip.find({ user_id: req.user.id }).select('-destinations._id')
