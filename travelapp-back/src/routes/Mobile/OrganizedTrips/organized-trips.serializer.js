@@ -22,7 +22,6 @@ function getOrganizedTrips(organized_trip) {
 }
 
 function getOrganizedTripDetails(organized_trip) {
-    console.log(organized_trip)
     let remaining = organized_trip.trip_id.start_date.valueOf() - Date.now()
     let remaining_time = msToTime(remaining)
     if (remaining_time.seconds < 0) remaining_time = { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -32,9 +31,9 @@ function getOrganizedTripDetails(organized_trip) {
     const destinations = getCountriesInOrganizedTrip(organized_trip)
     const status_of_trip = getOrganizedTripStatus(organized_trip)
     return {
+        source: { city: organized_trip.trip_id.starting_place.city, country: organized_trip.trip_id.starting_place.country },
         destinations: destinations,
         num_of_destination: destinations.length,
-        starting_date: start_date.toLocaleDateString('en-GB'),
         trip_type: organized_trip.type_of_trip,
         num_of_people_participating: num_of_people_participating,
         start_date: start_date.toLocaleDateString('en-GB'),
