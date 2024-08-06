@@ -102,7 +102,7 @@ async function httpPutPhoneNumber(req, res) {
 
 async function httpPutPassword(req, res) {
     const { error } = await validateChangePassword(req.body);
-    if (error) return res.status(400).json({ message: validationErrors(error.details) })
+    if (error) return res.status(400).json({ message: error.details[0].message })
 
     const user = req.user
     if (!user) return res.status(400).json({ message: 'User Not Found' })
@@ -149,7 +149,7 @@ async function httpBecomeOrganizer(req, res) {
         : typeof req.body.companies_worked_for === 'string'
             ? [req.body.companies_worked_for]
             : [];
-            
+
     const { error } = await validateBecomeOrganizer(req.body);
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
