@@ -70,9 +70,8 @@ async function validateChangePassword(data) {
         }),
         new_password_confirmation: Joi.any().equal(Joi.ref('new_password'))
             .required()
-            .label('Confirm password')
             .messages({
-                'any.only': '{{#label}} does not match',
+                'any.only': 'Confirm Password does not match',
                 'any.required': "New Password Confirmation Required",
             })
     })
