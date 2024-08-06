@@ -4,7 +4,8 @@ function announcementAppData(announcement) {
         announcement_title: announcement.announcement_title,
         announcement_body: announcement.announcement_body,
         from_organizer: announcement.from_organizer,
-        created_at: announcement.createdAt
+        expiry_date: announcement.expiry_date,
+        created_at: announcement.createdAt,
     }
 }
 
@@ -20,7 +21,9 @@ function announcementOrganizerData(announcement) {
         organizer_name: name.trim() ? name : null,
         organizer_id: announcement.organizer_id?._id ?? null,
         organized_trip_id: announcement.organized_trip_id ?? null,
-        created_at: announcement.createdAt
+        location: announcement.location,
+        expiry_date: announcement.expiry_date,
+        created_at: announcement.createdAt,
     }
 }
 

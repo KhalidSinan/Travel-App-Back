@@ -133,6 +133,27 @@ function putDestinationsChosenFirst(trips, filterDestinations) {
     return trips
 }
 
+function putHotelReservationWithRoomData(reservations, room_types) {
+    let data = []
+    reservations.forEach(reservation => {
+        const room = room_types.find(room => room.code == reservation.code)
+        let temp = {
+            code: room.code,
+            type: room.type,
+            description: room.description,
+            bed_options: room.bed_options,
+            bed_options_count: room.bed_options_count,
+            sleeps_count: room.sleeps_count,
+            smoking_allowed: room.smoking_allowed,
+            view: room.view,
+            amenities: room.amenities,
+            images: room.images,
+            count_reserved: reservation.count,
+        }
+        data.push(temp)
+    })
+    return data;
+}
 
 module.exports = {
     getAllOrganizedByCountry,
@@ -146,4 +167,5 @@ module.exports = {
     assignTypesToOrganizedTrips,
     putTypeChosenFirst,
     putDestinationsChosenFirst,
+    putHotelReservationWithRoomData
 }

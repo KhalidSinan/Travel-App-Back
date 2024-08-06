@@ -142,7 +142,8 @@ async function createTrips(count = 1500, userID = null) {
         const { start_date, end_date, destinations, starting_place, places, hotelsIDs } = await createTripHelper(flights);
         const overall_num_of_days = Math.floor((end_date - start_date) / 1000 / 60 / 60 / 24);
         const { hotels, overallPrice } = await createHotelReservation(hotelsIDs, num_of_people, user_id);
-        const overall_price = +overallPrice + +overallPriceFlights;
+        let overall_price = +overallPrice + +overallPriceFlights;
+        overall_price = overall_price.toFixed(2)
         const price_per_person = (overall_price / num_of_people).toFixed(2);
         const data = {
             user_id,
@@ -349,7 +350,7 @@ async function createRoomCodes(hotel_id) {
     const randNumofRoomTypes = faker.number.int({ min: 1, max: 3 })
     for (let i = 0; i < randNumofRoomTypes; i++) {
         const room = faker.helpers.arrayElement(room_types)
-        const count = Math.min(faker.number.int({ count: { min: 1, max: 4 } }), room.available_rooms)
+        const count = Math.min(faker.number.int({ min: 1, max: 4 }), room.available_rooms)
         const temp = {
             code: room.code,
             count: count,
