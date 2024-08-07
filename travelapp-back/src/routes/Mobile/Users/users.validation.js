@@ -1,6 +1,4 @@
 const Joi = require('joi')
-Joi.objectId = require('joi-objectid')(Joi)
-
 
 async function validateChangeName(data) {
     const schema = Joi.object({
