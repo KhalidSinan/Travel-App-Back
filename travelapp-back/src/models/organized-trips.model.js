@@ -12,6 +12,7 @@ async function getOneOrganizedTrip(_id) {
         .populate({ path: 'trip_id', populate: { path: 'destinations.activities', populate: 'place' } })
         .populate({ path: 'trip_id', populate: { path: 'flights', populate: 'flights' } })
         .populate({ path: 'trip_id', populate: { path: 'hotels', populate: 'hotel_id' } })
+        .populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' }, select: 'user_id' })
 
 }
 
