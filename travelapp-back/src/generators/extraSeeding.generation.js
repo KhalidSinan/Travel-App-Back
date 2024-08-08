@@ -256,7 +256,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
 
         const { temp, overall_price } = await createReservationData(num_of_reservations, flights[0]._id)
         overallPriceFlights = overall_price.toFixed(2)
-        const reservations = { data: temp, overall_price }
+        const reservations = { data: temp, overall_price: overallPriceFlights }
         const reservation_type = 'One-Way'
         const is_confirmed = true
         const data = {
