@@ -153,8 +153,24 @@ function activitiesDetails(activity) {
     }
 }
 
+function myOrganizedTripsData(organized_trip) {
+    const start_date = new Date(organized_trip.trip_id.start_date)
+    const num_of_people_participating = organized_trip.overall_seats - organized_trip.available_seats
+    const starting_place = organized_trip.trip_id.starting_place.city + ', ' + organized_trip.trip_id.starting_place.country
+    return {
+        id: organized_trip._id,
+        starting_place: starting_place,
+        destinations: organized_trip.trip_id.destinations.map(dest => dest.city_name).join(' - '),
+        price: organized_trip.price,
+        starting_date: start_date.toLocaleDateString('en-GB'),
+        num_of_people_participating: `${num_of_people_participating}/${organized_trip.overall_seats}`,
+        is_complete: organized_trip.trip_id.end_date < new Date() ? true : false,
+    }
+}
+
 module.exports = {
     getOrganizedTrips,
     getOrganizedTripDetails,
-    getOrganizedTripScheduleDetails
+    getOrganizedTripScheduleDetails,
+    myOrganizedTripsData
 }

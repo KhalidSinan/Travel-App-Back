@@ -50,7 +50,6 @@ async function httpMakeReservation(req, res) {
     return res.status(200).json({ message: 'Reserved Successfully' })
 }
 
-// Serializers Needed For All 3 Below
 
 // User Gets all organized trips reservations
 async function httpGetMyReservationsUser(req, res) {
