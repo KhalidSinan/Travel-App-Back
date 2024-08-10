@@ -214,7 +214,7 @@ async function getHotelInCity(city_name, country_name) {
 //Done
 async function createPlacesWithDescription(city_name, country_name) {
     let places = []
-    const count = faker.number.int({ min: 1, max: 5 });
+    const count = faker.number.int({ min: 3, max: 5 });
     for (let i = 0; i < count; i++) {
         let place = await Place.findOne({ 'address.city': city_name })
         if (!place) place = await Place.findOne({ 'address.country': country_name })

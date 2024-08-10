@@ -1,10 +1,12 @@
 const Joi = require('joi')
 
 const makeTripValidation = (data) => {
-    const activitiesSchema = Joi.object({
-        description: Joi.string().required(),
-        place: Joi.string().hex().length(24),
-    })
+    const activitiesSchema = Joi.array().items(
+        Joi.object({
+            description: Joi.string().required(),
+            place: Joi.string().hex().length(24),
+        })
+    )
     const citySchema = Joi.object({
         country_name: Joi.string().required(),
         city_name: Joi.string().required(),
@@ -13,7 +15,7 @@ const makeTripValidation = (data) => {
     })
     const startingPlaceSchema = Joi.object({
         country: Joi.string().required(),
-        city: Joi.string().required(24),
+        city: Joi.string().required(),
     })
     const schema = Joi.object({
         overall_num_of_days: Joi.number().required(),

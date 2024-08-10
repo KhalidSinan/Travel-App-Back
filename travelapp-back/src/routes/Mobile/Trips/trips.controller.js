@@ -4,7 +4,7 @@ const { makeTripValidation, validateAutogenerateSchedule, addActivityToScheduleV
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { getReservation } = require('../../../models/plane-reservation.model');
-const { makeTripPlacesToVisitHelper, makeTripOverallPriceHelper, autogenerateScheduleForTripHelper, cancelTripHelper } = require('./trips.helper');
+const { makeTripPlacesToVisitHelper, makeTripOverallPriceHelper, autogenerateScheduleForTripHelper, cancelTripHelper, addDaysToActivities } = require('./trips.helper');
 const { getHotelReservation } = require("../../../models/hotel-reservation.model");
 const { checkFlightsReservations } = require('../PlaneReservations/plane-reservations.helper')
 const { checkHotelsReservations } = require('../Hotels/hotel.helper');
@@ -18,7 +18,7 @@ async function makeTrip(req, res) {
     const { error } = makeTripValidation(req.body);
     if (error) return res.status(400).json({ error: error.details[0].message });
 
-    const { overall_num_of_days, num_of_people, start_date, starting_place, destinations, flights, hotels } = req.body;
+    let { overall_num_of_days, num_of_people, start_date, starting_place, destinations, flights, hotels } = req.body;
 
     try {
         const userId = req.user.id;
@@ -26,6 +26,7 @@ async function makeTrip(req, res) {
         end_date.setDate(end_date.getDate() + overall_num_of_days);
 
         const places_to_visit = makeTripPlacesToVisitHelper(destinations)
+        destinations = addDaysToActivities(destinations)
 
         if (!await checkFlightsReservations(flights)) return res.status(400).json({ message: 'Flight Reservation Not Found' })
         if (!await checkHotelsReservations(hotels)) return res.status(400).json({ message: 'Hotel Reservation Not Found' })

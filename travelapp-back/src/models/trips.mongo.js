@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const tripDestinationSchema = require('./trip-destinations.mongo');
 const destinationCitySchema = require('./destination-cities.mongo');
 
 const tripSchema = new mongoose.Schema({

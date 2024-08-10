@@ -142,7 +142,7 @@ function createAttractions() {
             phone_number: number,
             category: 'Attraction',
             address: address,
-            description: faker.lorem.word(),
+            description: faker.lorem.sentence(),
         }
         data.push(temp)
     })
@@ -161,10 +161,29 @@ function createRandom() {
             phone_number: number,
             category: categories[Math.floor(Math.random() * categories.length)],
             address: address,
-            description: faker.lorem.word(),
+            description: faker.lorem.sentence(),
         }
         data.push(temp)
     })
+    // fs.writeFileSync('random.json', JSON.stringify(data))
+    return data;
+}
+
+function createRandom2() {
+    let data = []
+    let categories = ['Park', 'Attraction', 'Adventure', 'Arts & History']
+    for (let i = 0; i < 20000; i++) {
+        const address = createAddress()
+        const number = createPhoneNumber()
+        const temp = {
+            name: faker.commerce.department() + ' ' + 'Park',
+            phone_number: number,
+            category: categories[Math.floor(Math.random() * categories.length)],
+            address: address,
+            description: faker.lorem.sentence(),
+        }
+        data.push(temp)
+    }
     // fs.writeFileSync('random.json', JSON.stringify(data))
     return data;
 }
@@ -185,6 +204,8 @@ async function createPlaces() {
     data = data.concat(createAttractions());
     // Create Remaining Random Data
     data = data.concat(createRandom());
+    // Create Remaining Random Data1
+    data = data.concat(createRandom2());
 
     await placesMongo.insertMany(data);
 }
