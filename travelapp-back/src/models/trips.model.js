@@ -27,9 +27,13 @@ async function getTripsCount() {
 }
 
 async function removeActivityFromSchedule(trip_id, activity_id) {
-    return await Trip.findOneAndUpdate(
-        { _id: trip_id, "destinations.activities._id": activity_id },
-        { $pull: { "destinations.$[].activities": { _id: activity_id } } }
+    await Trip.findOneAndUpdate(
+        { _id: trip_id, "destinations.activities.place": activity_id },
+        { $pull: { "destinations.$[].activities": { place: activity_id } } }
+    );
+    await Trip.findOneAndUpdate(
+        { _id: trip_id },
+        { $pull: { "places_to_visit": activity_id } }
     );
 }
 
@@ -40,7 +44,7 @@ async function addActivityToSchedule(trip_id, destination_id, place_id, descript
         description: description
     };
 
-    return await Trip.findOneAndUpdate(
+    await Trip.findOneAndUpdate(
         { _id: trip_id, "destinations._id": destination_id },
         { $push: { "destinations.$[dest].activities": data } },
         {
@@ -48,6 +52,10 @@ async function addActivityToSchedule(trip_id, destination_id, place_id, descript
                 { "dest._id": destination_id }
             ]
         }
+    )
+    return await Trip.findOneAndUpdate(
+        { _id: trip_id },
+        { $push: { "places_to_visit": place_id } },
     )
 }
 

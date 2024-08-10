@@ -1,5 +1,5 @@
 const { validateSendMessage } = require('./chat.validation');
-const { getChat, postChatMessage } = require('../../../models/chats.model');
+const { getChat, postChatMessage, getUserChatColor } = require('../../../models/chats.model');
 const { checkMessageFromWho } = require('./chat.helper');
 const { verifyToken } = require('../../../services/token');
 
@@ -23,10 +23,14 @@ async function socketFunctionality(io, socket) {
         mainChatID = chatId
         let messages = []
         for (let i = 0; i < chat.messages.length; i++) {
+            let color = chat.users_id.find(user => user.id == chat.messages[i].sender_id.id).color
+            if (chat.messages[i].sender_id.id == userID) color = '0xff205E61'
             let temp = {
                 content: chat.messages[i].content,
                 timestamps: chat.messages[i].timestamp,
                 username: chat.messages[i].sender_id.name.first_name + ' ' + chat.messages[i].sender_id.name.last_name,
+                user_profile_pic: chat.messages[i].sender_id.profile_pic ?? '/default_profile_pic.jpg',
+                user_color: color,
                 from_me: chat.messages[i].sender_id._id == userID,
             }
             messages.push(temp)

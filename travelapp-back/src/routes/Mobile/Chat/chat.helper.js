@@ -1,3 +1,5 @@
+const { faker } = require('@faker-js/faker')
+
 function getUsersID(reservations, organizer_id) {
     let temp = reservations.map(reservation => reservation.user_id)
     temp.push(organizer_id)
@@ -12,7 +14,20 @@ function checkMessageFromWho(message, user_id) {
     return message
 }
 
+function assignColorToUser(users_id) {
+    let data = []
+    users_id.forEach(user => {
+        const temp = {
+            id: user,
+            color: faker.color.rgb({ prefix: '0xff' })
+        }
+        data.push(temp)
+    })
+    return data
+}
+
 module.exports = {
     getUsersID,
-    checkMessageFromWho
+    checkMessageFromWho,
+    assignColorToUser
 }

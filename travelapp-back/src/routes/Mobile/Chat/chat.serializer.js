@@ -6,15 +6,6 @@ function chatData(chat) {
     }
 }
 
-function chatDetailsData(chat, user_id) {
-    return {
-        id: chat._id,
-        chat_name: chat.name,
-        messages: chat.messages
-    }
-}
-
 module.exports = {
     chatData,
-    chatDetailsData
 }
