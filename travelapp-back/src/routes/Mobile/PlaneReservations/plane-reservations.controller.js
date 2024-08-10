@@ -1,9 +1,9 @@
 const createPaymentData = require('../../../services/payment');
 const { getFlight } = require('../../../models/flights.model');
 const { paymentSheet } = require('../Payments/payments.controller');
-const { reservationData, allReservationData } = require('./plane-reservations.serializer');
+const { reservationData, allReservationData, nearestReservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservations.validation');
-const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReservations } = require('./plane-reservations.helper')
+const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReservations, getNearestReservationHelper } = require('./plane-reservations.helper')
 const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation, getAllReservationsWithFlightData } = require('../../../models/plane-reservation.model');
 const sendPushNotification = require('../../../services/notifications');
 const { postNotification } = require('../../../models/notification.model');
@@ -162,6 +162,16 @@ async function httpGetMyReservations(req, res) {
     })
 }
 
+async function httpGetNearestReservation(req, res) {
+    let data = await getAllReservationsWithFlightData(req.user._id)
+    data = getNearestReservationHelper(data)
+
+    return res.status(200).json({
+        message: 'Nearest Reservation Retrieved Successfully',
+        data: nearestReservationData(data)
+    })
+}
+
 module.exports = {
     httpMakeReservation,
     httpConfirmReservation,
@@ -169,5 +179,6 @@ module.exports = {
     httpGetReservation,
     httpPayReservation,
     httpGetNextDestination,
-    httpGetMyReservations
+    httpGetMyReservations,
+    httpGetNearestReservation
 }

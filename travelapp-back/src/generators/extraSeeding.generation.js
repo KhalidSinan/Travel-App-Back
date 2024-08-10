@@ -267,7 +267,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
             reservations,
             reservation_type,
             is_confirmed,
-            overall_price
+            overall_price: overallPriceFlights
         }
         data1.push(data)
     }

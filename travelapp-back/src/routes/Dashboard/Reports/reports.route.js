@@ -9,8 +9,8 @@ const { httpGetAllReportsOnApp, httpDeleteReport, httpGetAllReportsOnOrganizers,
 
 const reportRouter = express.Router();
 
-reportRouter.get('/reports/app', requireJwtAuth, checkAdmin, checkReportsAdmin, asyncHandler(httpGetAllReportsOnApp));
-reportRouter.get('/reports/organizers', requireJwtAuth, checkAdmin, checkReportsAdmin, asyncHandler(httpGetAllReportsOnOrganizers));
+reportRouter.get('/reports/app', requireJwtAuth, checkAdmin, asyncHandler(httpGetAllReportsOnApp));
+reportRouter.get('/reports/organizers', requireJwtAuth, checkAdmin, asyncHandler(httpGetAllReportsOnOrganizers));
 reportRouter.delete('/reports/:id', requireJwtAuth, checkAdmin, checkReportsAdmin, checkObjectID, asyncHandler(httpDeleteReport));
 reportRouter.get('/reports/:id/reply', requireJwtAuth, checkAdmin, checkReportsAdmin, checkObjectID, asyncHandler(httpReplyReport));
 

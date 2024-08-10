@@ -8,8 +8,8 @@ const checkAnnouncementsAdmin = require('../../../middlewares/checkAnnouncements
 
 const announcementRouter = express.Router();
 
-announcementRouter.get('/announcements/app', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpGetAllAnnouncementsApp))
-announcementRouter.get('/announcements/organizers', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpGetAllAnnouncementsOrganizer))
+announcementRouter.get('/announcements/app', requireJwtAuth, checkAdmin, asyncHandler(httpGetAllAnnouncementsApp))
+announcementRouter.get('/announcements/organizers', requireJwtAuth, checkAdmin, asyncHandler(httpGetAllAnnouncementsOrganizer))
 announcementRouter.post('/announcements', requireJwtAuth, checkAdmin, checkAnnouncementsAdmin, asyncHandler(httpPostAnnouncement))
 
 module.exports = announcementRouter;

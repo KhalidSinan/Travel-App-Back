@@ -1,4 +1,3 @@
-const { validationErrors } = require('../../../middlewares/validationErrors');
 const { getChat, postChat, getChats, getChatsCount, getChatByTripID, postChatMessage } = require('../../../models/chats.model');
 const { getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
 const { getOneOrganizedTrip } = require('../../../models/organized-trips.model');

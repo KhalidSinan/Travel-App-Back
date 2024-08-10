@@ -74,4 +74,13 @@ function allReservationData(reservation) {
     }
 }
 
-module.exports = { reservationData, allReservationData }
+function nearestReservationData(reservation) {
+    let remaining = reservation.flights[0].departure_date.dateTime.valueOf() - Date.now()
+    let remaining_time = msToTime(remaining)
+    if (remaining_time.seconds < 0) remaining_time = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    return {
+        ...remaining_time
+    }
+}
+
+module.exports = { reservationData, allReservationData, nearestReservationData }
