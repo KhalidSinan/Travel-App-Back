@@ -4,7 +4,7 @@ const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscou
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
-const { getOrganizedTrips, getOrganizedTripDetails, getOrganizedTripScheduleDetails } = require('./organized-trips.serializer');
+const { getOrganizedTrips, getOrganizedTripDetails, getOrganizedTripScheduleDetails, myOrganizedTripsData } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
@@ -70,7 +70,7 @@ async function httpCreateOrganizedTrip(req, res) {
 async function httpGetMyOrganizedTrips(req, res) {
     let data = await getAllOrganizedTrips()
     data = data.filter(trip => trip.trip_id.user_id.equals(req.user.id))
-    return res.status(200).json({ message: 'Your Organized Trips Retrieved Successfully', data: data })
+    return res.status(200).json({ message: 'Your Organized Trips Retrieved Successfully', data: serializedData(data, myOrganizedTripsData) })
 }
 
 // Done
