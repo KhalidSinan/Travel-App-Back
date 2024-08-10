@@ -126,12 +126,20 @@ function getOrganizedTripFlightDetails(flight) {
 }
 
 function getOrganizedTripScheduleDetails(schedule) {
-    return {
+    let organizedSchedule = {
         country: schedule.country_name,
         city: schedule.city_name,
         num_of_days: schedule.num_of_days,
-        activities: serializedData(schedule.activities, activitiesDetails),
-    }
+        activities: {}
+    };
+    schedule.activities.forEach(activity => {
+        const day = activity.day;
+        if (!organizedSchedule.activities[day]) {
+            organizedSchedule.activities[day] = [];
+        }
+        organizedSchedule.activities[day].push(activitiesDetails(activity));
+    });
+    return organizedSchedule;
 }
 
 function activitiesDetails(activity) {
@@ -141,7 +149,7 @@ function activitiesDetails(activity) {
         place_description: activity.place.description,
         place_location: address,
         description: activity.description,
-        notifiable: activity.notifiable
+        notifiable: activity.notifiable,
     }
 }
 
