@@ -1,12 +1,12 @@
-const { getChat, postChat, getChats, getChatsCount, getChatByTripID, postChatMessage } = require('../../../models/chats.model');
+const { postChat, getChats, getChatsCount, getChatByTripID, postChatMessage } = require('../../../models/chats.model');
 const { getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
 const { getOneOrganizedTrip } = require('../../../models/organized-trips.model');
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getPagination } = require('../../../services/query');
 const { serializedData } = require('../../../services/serializeArray');
-const { getUsersID, getMessageSender } = require('./chat.helper');
-const { chatData, chatDetailsData } = require('./chat.serializer');
-const { validateCreateChat, validateSendMessage } = require('./chat.validation');
+const { getUsersID, assignColorToUser } = require('./chat.helper');
+const { chatData } = require('./chat.serializer');
+const { validateCreateChat } = require('./chat.validation');
 
 // Done
 async function httpGetAllChats(req, res) {
@@ -35,7 +35,8 @@ async function httpPostChat(req, res) {
     const organizer = await getOrganizerID(req.user._id)
     const organizer_id = organizer._id
     const trip_reservations = await getOrganizedTripReservationsForOneTrip(trip_id);
-    const users_id = getUsersID(trip_reservations, req.user._id)
+    let users_id = getUsersID(trip_reservations, req.user._id)
+    users_id = assignColorToUser(users_id)
     const name = req.body.chat_name
     const data = {
         organizer_id,

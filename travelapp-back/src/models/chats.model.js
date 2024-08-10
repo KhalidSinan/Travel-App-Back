@@ -1,16 +1,15 @@
 const Chat = require('./chats.mongo');
 
-
 async function getChats(user_id, skip, limit) {
-    return await Chat.find({ users_id: { $in: user_id } }).skip(skip).limit(limit)
+    return await Chat.find({ users_id: { $elemMatch: { id: user_id } } }).skip(skip).limit(limit)
 }
 
 async function getChatsCount(user_id, skip, limit) {
-    return await Chat.find({ users_id: { $in: user_id } }).countDocuments()
+    return await Chat.find({ users_id: { $elemMatch: { id: user_id } } }).countDocuments()
 }
 
 async function getChat(id, user_id) {
-    return await Chat.findOne({ trip_id: id, users_id: { $in: user_id } }).populate('messages.sender_id', 'name')
+    return await Chat.findOne({ trip_id: id, users_id: { $elemMatch: { id: user_id } } }).populate('messages.sender_id', 'name')
 }
 
 async function getChatByTripID(trip_id) {
@@ -32,5 +31,5 @@ module.exports = {
     getChat,
     postChat,
     postChatMessage,
-    getChatByTripID
+    getChatByTripID,
 }
