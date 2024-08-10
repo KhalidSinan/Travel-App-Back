@@ -67,10 +67,22 @@ async function checkFlightsReservations(flights) {
     return check
 }
 
+function getNearestReservationHelper(data) {
+    let nearestReservation = data[0]
+    for (const reservation of data) {
+        const departureDate = new Date(reservation.flights[0].departure_date.dateTime); // Replace with actual property name for departure date
+        if (departureDate < new Date(nearestReservation.flights[0].departure_date.dateTime) && departureDate > new Date()) {
+            nearestReservation = reservation;
+        }
+    }
+    return nearestReservation
+}
+
 module.exports = {
     findCancelRate,
     reserveFlightHelper,
     changeClassName,
     getUpcomingReservations,
-    checkFlightsReservations
+    checkFlightsReservations,
+    getNearestReservationHelper
 }

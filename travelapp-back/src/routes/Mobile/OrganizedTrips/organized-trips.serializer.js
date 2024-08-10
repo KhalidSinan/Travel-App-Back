@@ -87,6 +87,7 @@ function getOrganizedTripHotelDetails(hotel) {
         hotel_description: hotel.hotel_id.description,
         hotel_stars: hotel.hotel_id.stars,
         hotel_location: hotelLocationData(hotel.hotel_id.location),
+        image: hotel.hotel_id.images[0],
         overall_price: hotel.room_price,
         start_date: hotel.start_date.toLocaleDateString('en-GB'),
         end_date: hotel.end_date.toLocaleDateString('en-GB'),

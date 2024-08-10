@@ -10,8 +10,8 @@ const checkObjectID = require('../../../middlewares/checkObjectID');
 const adminRouter = express.Router();
 
 adminRouter.post('/login', asyncHandler(login));
-adminRouter.get('/admins', requireJwtAuth, checkAdmin, checkSuperAdmin, asyncHandler(httpGetAllAdmins));
-adminRouter.get('/admins/search', requireJwtAuth, checkAdmin, checkSuperAdmin, asyncHandler(httpSearchAdmins));
+adminRouter.get('/admins', requireJwtAuth, checkAdmin, asyncHandler(httpGetAllAdmins));
+adminRouter.get('/admins/search', requireJwtAuth, checkAdmin, asyncHandler(httpSearchAdmins));
 adminRouter.post('/admin', requireJwtAuth, checkAdmin, checkSuperAdmin, asyncHandler(httpPostAdmin));
 adminRouter.delete('/admin/:id', requireJwtAuth, checkAdmin, checkSuperAdmin, checkObjectID, asyncHandler(httpDeleteAdmin));
 adminRouter.post('/logout', requireJwtAuth, checkAdmin, asyncHandler(logout));

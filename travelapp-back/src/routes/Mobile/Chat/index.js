@@ -1,11 +1,7 @@
-const { validateCreateChat, validateSendMessage } = require('./chat.validation');
-const { getChat, postChat, getChatByTripID, postChatMessage } = require('../../../models/chats.model');
-const { getOneOrganizedTrip } = require('../../../models/organized-trips.model');
-const { getOrganizerID } = require('../../../models/organizers.model');
-const { getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
-const { getUsersID, checkMessageFromWho } = require('./chat.helper');
+const { validateSendMessage } = require('./chat.validation');
+const { getChat, postChatMessage } = require('../../../models/chats.model');
+const { checkMessageFromWho } = require('./chat.helper');
 const { verifyToken } = require('../../../services/token');
-const { getUserById } = require('../../../models/users.model');
 
 async function socketFunctionality(io, socket) {
     const token = socket.handshake.query.token;
@@ -14,7 +10,8 @@ async function socketFunctionality(io, socket) {
         return socket.disconnect();
     }
     const userID = checkUser.id
-    let mainChatID;
+    let mainChatID = null;
+
     socket.on('join-chat', async (chatId) => {
         socket.join(chatId);
         console.log(`User ${userID} joined chat ${chatId}`);
@@ -46,7 +43,7 @@ async function socketFunctionality(io, socket) {
 
         const chat = await getChat(mainChatID, userID);
         if (!chat) {
-            socket.emit('message-error', { message: "No Chat Found" });
+            socket.emit('chat-error', { message: "No Chat Found" });
             return;
         }
 
