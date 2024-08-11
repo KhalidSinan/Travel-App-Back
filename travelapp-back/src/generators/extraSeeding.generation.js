@@ -678,6 +678,31 @@ async function updateOrganizedTripData(organizedTripID, overall_seats, num_of_pe
     await OrganizedTrip.findByIdAndUpdate(organizedTripID, { available_seats })
 }
 
+async function createOrganizersRequestsNotAccepted() {
+    let data1 = []
+    const users = await User.find({ is_organizer: false }).limit(350);
+    users.forEach(user => {
+        const user_id = user._id
+        const company_name = faker.company.name()
+        const years_of_experience = faker.number.int({ min: 0, max: 20 })
+        const proofs = {
+            personal_id: faker.image.url(),
+            personal_picture: faker.image.url(),
+            work_id: faker.image.url(),
+            last_certificate: faker.image.url(),
+            companies_worked_for: faker.lorem.words(5).split(' ').map(word => faker.company.name()),
+        };
+        const data = {
+            user_id,
+            company_name,
+            years_of_experience,
+            proofs
+        }
+        data1.push(data)
+    })
+    await OrganizerRequest.insertMany(data1)
+}
+
 module.exports = {
     createUsers,
     createAnnouncementsApp,
@@ -688,5 +713,6 @@ module.exports = {
     createAnnouncementsRequests,
     createAnnouncementsOrganizer,
     createOrganizersRequests,
-    createOrganizedTripReservations
+    createOrganizedTripReservations,
+    createOrganizersRequestsNotAccepted
 }
