@@ -7,9 +7,9 @@ async function sendPushNotification(title, body, token, data = null) {
     token.forEach(tok => {
         tok.device_token.forEach(device => {
             if (device.expiry - Date.now() > 0) temp.push(device.token)
-
         })
     })
+    // token = [ { device_token: [{token: 1231231223 }] } ]
     // temp = [token, token, token, token]
     // loop over them and send
     let message = {
@@ -38,7 +38,5 @@ async function sendPushNotification(title, body, token, data = null) {
     })
 
 }
-
-// sendPushNotification('Test Title'+, 'Test Body, Hello All', 'cgiNZXHkShKC2_hEE1pIc5:APA91bFG5rO7jvAOrhGGVu49fvtBZvCX36HY16IdbKZ-hoTsALSXOA5ya-FrDirOM5LNvgzgxym-vyTqGI0vo8hW9LmubVALVXt10li5WDmByzjcphiRlxEWiclwnFX__ih4S6qiduKz');
 
 module.exports = sendPushNotification;
