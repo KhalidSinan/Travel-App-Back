@@ -43,7 +43,6 @@ async function httpPostAnnouncement(req, res) {
     let data = req.body;
     Object.assign(data, { expiry_date: convertDateStringToDate(req.body.expiry_date) })
     const announcement = await postAnnouncement(data);
-
     // Sending Notification For Announcements
     let tokens = await getAllDeviceTokens();
     //await sendPushNotification(req.body.title, req.body.body, tokens)

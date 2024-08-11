@@ -16,7 +16,7 @@ const bcrypt = require('bcrypt');
 const createFlights = require('./trips.generation')
 const OrganizedTripReservation = require('../models/organized-trip-reservations.mongo')
 const OrganizerRequest = require('../models/organizer-request.mongo')
-
+const locations = require('../public/json/countries-all.json')
 
 // Done
 async function createUsers(count = 2000) {
@@ -33,6 +33,13 @@ async function createUsers(count = 2000) {
         const password = await bcrypt.hash('12345678', 1)
         const gender = faker.datatype.boolean() ? 'Male' : 'Female'
         const is_organizer = faker.datatype.boolean()
+        const tempCountry = locations[Math.floor(Math.random() * locations.length)]
+        const tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
+        const location = {
+            country: tempCountry.name,
+            city: tempCity
+        }
+        const date_of_birth = faker.date.birthdate({ min: 18, max: 65, mode: 'age' })
         const data = {
             _id,
             name,
@@ -41,7 +48,9 @@ async function createUsers(count = 2000) {
             phone,
             password,
             gender,
-            is_organizer
+            is_organizer,
+            location,
+            date_of_birth
         }
         data1.push(data)
     }
@@ -127,7 +136,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 1500, userID = null) {
+async function createTrips(count = 1000, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -191,10 +200,16 @@ async function createTripHelper(plane_reservations) {
         hotelsIDs.push({ id: hotel._id, date: flight.arrival_date.dateTime })
         const allPlaces = await createPlacesWithDescription(flight.destination.city, flight.destination.country)
         places.push(...allPlaces.map(place => place.place))
+        let num_of_days = 0;
+        if (i < plane_reservations.length - 1) {
+            const temp2 = await PlaneReservation.findById(plane_reservations[i + 1]);
+            const flight2 = await Flight.findById(temp2.flights[0]._id)
+            num_of_days = Math.floor((flight2.departure_date.dateTime - flight.arrival_date.dateTime) / 1000 / 60 / 60 / 24)
+        }
         const destination = {
             country_name: flight.destination.country,
             city_name: flight.destination.city,
-            num_of_days: faker.number.int({ min: 1, max: 3 }), // fix
+            num_of_days: num_of_days,
             activities: allPlaces
         }
         destinations.push(destination)

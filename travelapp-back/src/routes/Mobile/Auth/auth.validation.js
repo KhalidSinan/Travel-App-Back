@@ -78,10 +78,18 @@ function validateGoogleContinue(user) {
     return schema.validate(user); s
 }
 
+function validateResendCode(data) {
+    const schema = Joi.object({
+        email: Joi.string().min(3).required(),
+    })
+    return schema.validate(data);
+}
+
 module.exports = {
     validateRegisterUser,
     validateLoginUser,
     validateForgotPassword,
     validateResetPassword,
-    validateGoogleContinue
+    validateGoogleContinue,
+    validateResendCode
 }

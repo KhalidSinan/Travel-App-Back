@@ -3,7 +3,7 @@ const fs = require('fs')
 const handlebars = require('handlebars')
 require('dotenv').config();
 
-async function sendMail(title, receivers, data) {
+async function sendMail(title, receivers, data, attachments = null) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         port: 465,
@@ -21,7 +21,8 @@ async function sendMail(title, receivers, data) {
         },
         to: receivers,
         subject: title,
-        html: emailTemplate(data.template_name, data)
+        html: emailTemplate(data.template_name, data),
+        attachments
     }
 
     transporter.sendMail(mailOptions)

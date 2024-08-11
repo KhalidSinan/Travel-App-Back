@@ -12,10 +12,6 @@ async function mongoDisconnect() {
 
 async function dropDatabase() {
     await mongoose.connection.db.dropDatabase();
-    // const collections = mongoose.connection.collections;
-    // await Promise.all(Object.values(collections).map((collection) =>
-    //     collection.deleteMany({})
-    // ));
 }
 
 module.exports = {

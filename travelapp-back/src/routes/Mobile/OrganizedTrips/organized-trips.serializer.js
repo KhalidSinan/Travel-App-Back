@@ -58,9 +58,6 @@ function destinationData(destination, flight, hotel, start_date, days) {
     end_date.setUTCDate(start_date2.getUTCDate() + destination.num_of_days)
     let ticket = getOrganizedTripFlightDetails(flight)
     let hotelData = getOrganizedTripHotelDetails(hotel)
-
-    console.log()
-
     return {
         destination: { country: destination.country, city: destination.city },
         num_of_days: destination.num_of_days,

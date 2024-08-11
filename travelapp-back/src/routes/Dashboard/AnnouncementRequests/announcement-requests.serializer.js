@@ -1,5 +1,4 @@
 function announcementRequestData(announcement_request) {
-    console.log(announcement_request)
     const firstName = announcement_request.organizer_id?.user_id?.name?.first_name || '';
     const lastName = announcement_request.organizer_id?.user_id?.name?.last_name || '';
     const name = firstName + ' ' + lastName;

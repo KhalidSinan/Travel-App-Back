@@ -1,10 +1,11 @@
-const { getUserById, acceptOrganizer } = require("../../../models/users.model")
+const { getUserById, acceptOrganizer, getDeviceTokens } = require("../../../models/users.model")
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { acceptRequest, denyRequest, getRequests, getRequest, getRequestsCount } = require("../../../models/organizer-request.model");
 const { serializedData } = require('../../../services/serializeArray')
 const { organizerRequestsData, organizerRequestDetailsData } = require('./organizer-requests.serializer')
 const { getPagination } = require('../../../services/query');
 const { postOrganizerData } = require("../../../models/organizers.model");
+const sendPushNotification = require('../../../services/notifications');
 
 // Done
 async function httpGetOrganizersRequests(req, res) {
@@ -32,9 +33,10 @@ async function httpAcceptOrganizerRequest(req, res) {
 
     if (request.is_accepted) return res.status(200).json({ message: 'Organizer Request Already Accepted' })
 
-    // Need id of request
     await acceptRequest(req.params.id)
     await acceptOrganizer(request.user_id)
+    const tokens = await getDeviceTokens(request.user_id)
+    await sendPushNotification('Request Accepted', 'You are now an organizer', tokens)
     const data = {
         user_id: request.user_id,
         company_name: request.company_name,

@@ -15,8 +15,6 @@ function getAirlines() {
 }
 
 function getCities() {
-    // let data = []
-    // countries.forEach(country => data.push(country.name))
     return countries;
 }
 

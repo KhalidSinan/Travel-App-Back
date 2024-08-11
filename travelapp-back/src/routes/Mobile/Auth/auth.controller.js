@@ -1,3 +1,4 @@
+var path = require('path');
 const crypto = require('crypto');
 const sendMail = require('../../../services/sendMail');
 const { confirmTokenHelper } = require('./auth.helper');
@@ -7,7 +8,7 @@ const { generateToken } = require('../../../services/token')
 const { validationErrors } = require('../../../middlewares/validationErrors')
 const { postRequest, deleteRequests } = require('../../../models/code_confirmation.model');
 const { postUser, getUser, putPassword, putEmailConfirmation, addDeviceToken, removeDeviceToken, checkConfirmed } = require('../../../models/users.model');
-const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue } = require('./auth.validation')
+const { validateRegisterUser, validateLoginUser, validateForgotPassword, validateResetPassword, validateGoogleContinue, validateResendCode } = require('./auth.validation')
 
 require('dotenv').config();
 
@@ -30,7 +31,12 @@ async function register(req, res) {
     await deleteRequests(user.id)
     await postRequest({ user_id: user.id, token })
     const name = user.name.first_name + ' ' + user.name.last_name
-    await sendMail('Confirm Email', req.body.email, { name, token, template_name: 'views/confirm_email.html' });
+    const attachments = [{
+        filename: 'logo.jpg',
+        path: path.join(__dirname, '../../../', 'public', 'images', 'mails', 'logo.png'),
+        cid: 'logo'
+    }];
+    await sendMail('Confirm Email', req.body.email, { name, token, template_name: 'views/confirm_email.html' }, attachments);
 
     return res.status(200).json({
         message: 'Confirm Your Email'
@@ -106,6 +112,7 @@ async function forgotPassword(req, res) {
     await postRequest({ user_id: user.id, token })
 
     const name = user.name.first_name + ' ' + user.name.last_name
+
     await sendMail('Forgot Password', req.body.email, { name, token, template_name: 'views/forgot_password.html' });
 
     res.status(200).json({ message: 'Check Your Email' })
@@ -168,6 +175,31 @@ async function logout(req, res) {
     return res.status(200).json({ message: 'Logged Out Successfully' })
 }
 
+async function resendCode(req, res) {
+    const { error } = validateResendCode(req.body)
+    if (error) return res.status(400).json({ errors: validationErrors(error.details) })
+
+    const user = await getUser(req.body.email)
+    if (!user) return res.status(400).json({ message: "User Not Registered" })
+    if (user.email_confirmed) return res.status(400).json({ message: "Email Already Confirmed" })
+
+    const token = crypto.randomInt(100000, 999999)
+    await deleteRequests(user.id)
+    await postRequest({ user_id: user.id, token })
+    const name = user.name.first_name + ' ' + user.name.last_name
+
+    const attachments = [{
+        filename: 'logo.jpg',
+        path: path.join(__dirname, '../../../', 'public', 'images', 'mails', 'logo.png'),
+        cid: 'logo'
+    }];
+    await sendMail('Confirm Email', req.body.email, { name, token, template_name: 'views/confirm_email.html' }, attachments);
+
+    return res.status(200).json({
+        message: 'Confirm Your Email'
+    });
+}
+
 
 module.exports = {
     register,
@@ -176,5 +208,6 @@ module.exports = {
     forgotPassword,
     resetPassword,
     continueWithGoogle,
-    logout
+    logout,
+    resendCode
 }
