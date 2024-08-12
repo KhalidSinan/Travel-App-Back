@@ -17,7 +17,7 @@ const createFlights = require('./trips.generation')
 const OrganizedTripReservation = require('../models/organized-trip-reservations.mongo')
 const OrganizerRequest = require('../models/organizer-request.mongo')
 const locations = require('../public/json/countries-all.json')
-
+const Chat = require('../models/chats.mongo')
 // Done
 async function createUsers(count = 2000) {
     let data1 = []
@@ -748,6 +748,46 @@ async function createOrganizersRequestsNotAccepted() {
     await OrganizerRequest.insertMany(data1)
 }
 
+function assignColorToUser(users_id) {
+    let data = []
+    users_id.forEach(user => {
+        const temp = {
+            id: user,
+            color: faker.color.rgb({ prefix: '0xff' })
+        }
+        data.push(temp)
+    })
+    return data
+}
+
+function getUsersID(reservations, organizer_id) {
+    let temp = reservations.map(reservation => reservation.user_id)
+    temp.push(organizer_id)
+    return temp
+}
+
+async function createChats() {
+    let data = []
+    const organized_trips = await OrganizedTrip.find();
+    for (const trip of organized_trips) {
+        let organizer_id = trip.organizer_id
+        let trip_id = trip._id
+        let name = faker.company.buzzVerb() + 'Trip'
+        let reservations = await OrganizedTripReservation.find({ trip_id: trip_id })
+        let users_id = getUsersID(reservations, organizer_id)
+        users_id = assignColorToUser(users_id)
+        let temp = {
+            organizer_id,
+            trip_id,
+            users_id,
+            name,
+            messages: []
+        }
+        data.push(temp)
+    }
+    await Chat.insertMany(data)
+}
+
 module.exports = {
     createUsers,
     createAnnouncementsApp,
@@ -759,5 +799,6 @@ module.exports = {
     createAnnouncementsOrganizer,
     createOrganizersRequests,
     createOrganizedTripReservations,
-    createOrganizersRequestsNotAccepted
+    createOrganizersRequestsNotAccepted,
+    createChats
 }
