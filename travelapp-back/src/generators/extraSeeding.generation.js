@@ -136,7 +136,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 1000, userID = null) {
+async function createTrips(count = 10, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -237,7 +237,6 @@ async function createPlacesWithDescription(city_name, country_name) {
         places.push({
             place: place._id,
             notifiable: false,
-            // fix day
         })
     }
     return places
@@ -249,7 +248,8 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
     let overallPriceFlights = 0;
     let lastDepartureDate = new Date()
     let lastDestinationCountry;
-    for (let i = 0; i < count; i++) {
+    let sourceCountry;
+    for (let i = 0; i <= count; i++) {
         const _id = faker.database.mongodbObjectId()
         const user_id = userID
         const num_of_reservations = num_of_reservations1
@@ -258,6 +258,10 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         let flights;
         if (i > 0) {
             filter = { 'source.country': lastDestinationCountry, 'classes.available_seats': { $gt: num_of_reservations } }
+        }
+        if (i == count) {
+            lastDestinationCountry = sourceCountry
+            filter = { 'source.country': sourceCountry, 'classes.available_seats': { $gt: num_of_reservations } }
         }
         const randomCountFlight = await Flight.countDocuments(filter);
         const randomSkip = Math.max(Math.floor(Math.random() * randomCountFlight) - 1, 0);
@@ -269,6 +273,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
 
         lastDepartureDate = flights[0].arrival_date.dateTime
         lastDestinationCountry = flights[0].destination.country
+        if (i == 0) sourceCountry = flights[0].source.country
 
         const { temp, overall_price } = await createReservationData(num_of_reservations, flights[0]._id)
         overallPriceFlights += +overall_price.toFixed(2)
@@ -287,6 +292,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         }
         data1.push(data)
     }
+
     await PlaneReservation.insertMany(data1)
     return { flights: data1.map(data2 => data2._id), overallPriceFlights }
 }

@@ -73,4 +73,5 @@ module.exports = {
     getAllReservationsWithFlightData,
     putReservationData,
     getAllPlaneReservations,
+    getPlaneReservationCountForFlight
 }
