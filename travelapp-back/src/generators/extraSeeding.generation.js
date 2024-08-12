@@ -136,7 +136,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 100, userID = null) {
+async function createTrips(count = 1000, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -151,7 +151,7 @@ async function createTrips(count = 100, userID = null) {
         const { start_date, end_date, destinations, starting_place, places, hotelsIDs } = await createTripHelper(flights);
         const overall_num_of_days = Math.floor((end_date - start_date) / 1000 / 60 / 60 / 24);
         const { hotels, overallPrice } = await createHotelReservation(hotelsIDs, num_of_people, user_id);
-        let overall_price = +overallPrice + +overallPriceFlights;
+        let overall_price = +overallPrice + +overallPriceFlights; // fix
         overall_price = overall_price.toFixed(2)
         const price_per_person = (overall_price / num_of_people).toFixed(2);
         const data = {
@@ -246,7 +246,7 @@ async function createPlacesWithDescription(city_name, country_name) {
 //Done
 async function createOneWayFlightReservations(count, num_of_reservations1, userID) {
     let data1 = []
-    let overallPriceFlights;
+    let overallPriceFlights = 0;
     let lastDepartureDate = new Date()
     let lastDestinationCountry;
     for (let i = 0; i < count; i++) {
@@ -271,8 +271,8 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         lastDestinationCountry = flights[0].destination.country
 
         const { temp, overall_price } = await createReservationData(num_of_reservations, flights[0]._id)
-        overallPriceFlights = overall_price.toFixed(2)
-        const reservations = { data: temp, overall_price: overallPriceFlights }
+        overallPriceFlights += +overall_price.toFixed(2)
+        const reservations = { data: temp, overall_price: +overall_price.toFixed(2) }
         const reservation_type = 'One-Way'
         const is_confirmed = true
         const data = {
@@ -283,7 +283,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
             reservations,
             reservation_type,
             is_confirmed,
-            overall_price: overallPriceFlights
+            overall_price: overall_price.toFixed(2)
         }
         data1.push(data)
     }
@@ -330,7 +330,7 @@ async function createReservationData(num_of_reservations, flightId) {
 // Done
 async function createHotelReservation(hotels, num_of_people, userID) {
     let data1 = []
-    let overallPrice
+    let overallPrice = 0;
     for (let i = 0; i < hotels.length; i++) {
         const _id = faker.database.mongodbObjectId()
         const user_id = userID
@@ -338,10 +338,10 @@ async function createHotelReservation(hotels, num_of_people, userID) {
         const start_date = new Date(hotels[i].date)
         let end_date = new Date(hotels[i].date)
         end_date.setDate(start_date.getDate() + 1);
-        const { rooms, overall_price } = await createRoomCodes(hotel_id)
-        overallPrice = overall_price.toFixed(2)
+        const { rooms, overall_price } = await createRoomCodes(hotel_id, num_of_people)
+        overallPrice += +overall_price.toFixed(2)
         const room_codes = rooms
-        const room_price = overallPrice
+        const room_price = +overall_price.toFixed(2)
         const data = {
             _id,
             hotel_id,
@@ -358,29 +358,28 @@ async function createHotelReservation(hotels, num_of_people, userID) {
 }
 
 // Done
-async function createRoomCodes(hotel_id) {
+async function createRoomCodes(hotel_id, num_of_people) {
     const hotel = await Hotel.findById(hotel_id);
     const room_types = hotel.room_types
     let rooms = []
     let overall_price = 0
-    const randNumofRoomTypes = faker.number.int({ min: 1, max: 3 })
-    for (let i = 0; i < randNumofRoomTypes; i++) {
-        const room = faker.helpers.arrayElement(room_types)
-        const count = Math.min(faker.number.int({ min: 1, max: 4 }), room.available_rooms)
-        const temp = {
-            code: room.code,
-            count: count,
-            price: room.price,
-            overall_price: room.price * count
-        }
-        room.available_rooms -= count
-        overall_price += temp.overall_price
-        rooms.push(temp)
-        await Hotel.updateOne(
-            { _id: hotel_id, "room_types.code": room.code },
-            { $set: { "room_types.$.available_seats": room.available_rooms } }
-        );
+    const room = faker.helpers.arrayElement(room_types)
+    while (room.available_rooms <= num_of_people) {
+        room = faker.helpers.arrayElement(room_types)
     }
+    const temp = {
+        code: room.code,
+        count: num_of_people,
+        price: room.price,
+        overall_price: room.price * num_of_people
+    }
+    room.available_rooms -= num_of_people
+    overall_price += temp.overall_price
+    rooms.push(temp)
+    await Hotel.updateOne(
+        { _id: hotel_id, "room_types.code": room.code },
+        { $set: { "room_types.$.available_seats": room.available_rooms } }
+    );
     return { rooms, overall_price }
 }
 
@@ -397,7 +396,8 @@ async function createOrganizedTrips() {
                 const overall_seats = trip.num_of_people
                 const available_seats = 0 // fix
                 const commission = faker.number.int({ min: 0, max: 30 })
-                const discount = faker.number.int({ min: 0, max: 50 })
+                const discount = 0
+                // const discount = faker.number.int({ min: 0, max: 50 })
                 let price = trip.price_per_person + (trip.price_per_person * commission / 100)
                 price = price - price * discount / 100
                 price = price.toFixed(2)
