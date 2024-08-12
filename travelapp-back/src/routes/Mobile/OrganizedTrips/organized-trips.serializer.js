@@ -120,6 +120,7 @@ function getOrganizedTripFlightDetails(flight) {
         departure_date: dateData(flight.flights[0].departure_date),
         arrival_date: dateData(flight.flights[0].arrival_date),
         flight_price: flight_price,
+        flight_class: seat_class,
     }
 }
 
