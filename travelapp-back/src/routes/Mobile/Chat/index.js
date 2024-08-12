@@ -13,13 +13,13 @@ async function socketFunctionality(io, socket) {
     let mainChatID = null;
 
     socket.on('join-chat', async (chatId) => {
-        socket.join(chatId);
-        console.log(`User ${userID} joined chat ${chatId}`);
         const chat = await getChat(chatId, userID);
         if (!chat) {
             socket.emit('chat-error', { message: "Chat not found or access denied." });
             return
         }
+        socket.join(chatId);
+        console.log(`User ${userID} joined chat ${chatId}`);
         mainChatID = chatId
         let messages = []
         for (let i = 0; i < chat.messages.length; i++) {

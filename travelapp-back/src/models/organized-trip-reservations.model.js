@@ -39,5 +39,5 @@ module.exports = {
     getOrganizedTripReservationsForUserInTrip,
     getOrganizedTripReservation,
     updateReservationData,
-    updateReservationDataOverallPrice
+    updateReservationDataOverallPrice,
 }

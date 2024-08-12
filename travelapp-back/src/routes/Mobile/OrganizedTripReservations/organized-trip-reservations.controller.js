@@ -1,5 +1,5 @@
 const { validationErrors } = require("../../../middlewares/validationErrors")
-const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation, getOrganizedTripReservation, updateReservationData, updateReservationDataOverallPrice } = require("../../../models/organized-trip-reservations.model")
+const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation, getOrganizedTripReservation, updateReservationData, getOrganizedTripReservationsForUserInTrip } = require("../../../models/organized-trip-reservations.model")
 const { getOneOrganizedTrip, decrementSeats, incrementSeats } = require("../../../models/organized-trips.model")
 const { getReservation, putReservationData } = require("../../../models/plane-reservation.model")
 const { getTrip } = require("../../../models/trips.model")
@@ -89,7 +89,10 @@ async function httpGetMyReservationsForTrip(req, res) {
     const user = req.user
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
-    let reservations = await getOrganizedTripReservationsForUser(user.id, req.params.id);
+    const organized_trip = await getOneOrganizedTrip(req.params.id)
+    if (!organized_trip) return res.status(400).json({ message: "Organized Trip Not Found" })
+    let reservations = await getOrganizedTripReservationsForUserInTrip(user.id, req.params.id);
+    if (reservations.length == 0) return res.status(400).json({ message: "Reservation Not Found" })
     reservations = getReservationDataForTripHelper(reservations)
     return res.status(200).json({
         data: serializedData(reservations, organizedTripReservationDetailsForUser),
@@ -100,12 +103,12 @@ async function httpCancelReservation(req, res) {
     const { error } = validateCancelReservation(req.body)
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
-    const reservation_data = await getOrganizedTripReservation(req.params.id);
-    if (!reservation_data) return res.status(400).json({ message: 'Reservation Not Found' })
-    const organized_trip = await getOneOrganizedTrip(reservation_data.trip_id)
+    const organized_trip = await getOneOrganizedTrip(req.params.id)
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     const trip = await getTrip(organized_trip.trip_id)
     if (!trip) return res.status(400).json({ message: 'Trip Not Found' })
+    const reservation_data = await getOrganizedTripReservation(req.params.id2);
+    if (!reservation_data) return res.status(400).json({ message: 'Reservation Not Found' })
     let increment = 0;
     let price = 0;
     let reservation_data_new = []
@@ -141,8 +144,6 @@ async function httpCancelReservation(req, res) {
         message: "Reservation Cancelled"
     })
 }
-
-
 
 module.exports = {
     httpMakeReservation,
