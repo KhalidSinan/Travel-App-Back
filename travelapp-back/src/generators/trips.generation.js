@@ -2,6 +2,7 @@ const fs = require('fs')
 const airlines = require('../public/json/airlines.json')
 const airports = require('../public/json/airports.json')
 const flightsMongo = require('../models/flights.mongo')
+const { faker } = require('@faker-js/faker')
 
 const airportsNum = airports.length
 const airlinesNum = airlines.length
@@ -176,7 +177,7 @@ async function createFlights(num_of_trips, sourceSent = null, lastDepartureDate 
         let departure_date = createDate()
         if (lastDepartureDate) {
             tempDate = new Date(lastDepartureDate)
-            tempDate.setUTCDate(tempDate.getDate() + 1);
+            tempDate.setUTCDate(tempDate.getUTCDate() + faker.number.int({ min: 1, max: 4 }));
             departure_date = {
                 dateTime: tempDate,
                 date: tempDate.toLocaleDateString('en-GB'),
