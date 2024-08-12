@@ -48,7 +48,8 @@ function getOrganizedTripDetails(organized_trip) {
         num_of_days: organized_trip.trip_id.overall_num_of_days,
         overall_seats: organized_trip.overall_seats,
         status_of_trip: status_of_trip,
-        price: organized_trip.price,
+        price: organized_trip.trip_id.price_per_person,
+        price_with_commission: organized_trip.price,
     }
 }
 
