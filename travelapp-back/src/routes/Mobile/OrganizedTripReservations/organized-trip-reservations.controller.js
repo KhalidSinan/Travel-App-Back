@@ -3,7 +3,7 @@ const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneT
 const { getOneOrganizedTrip, decrementSeats, incrementSeats } = require("../../../models/organized-trips.model")
 const { getReservation, putReservationData } = require("../../../models/plane-reservation.model")
 const { getTrip } = require("../../../models/trips.model")
-const { organizedTripReservationData, organizedTripReservationDetails } = require("./organized-trip-reservations.serializer")
+const { organizedTripReservationData, organizedTripReservationDetails, organizedTripReservationDetailsForUser } = require("./organized-trip-reservations.serializer")
 const { validateReserveTrip, validateCancelReservation } = require("./organized-trip-reservations.validation")
 const { serializedData } = require("../../../services/serializeArray");
 const getReservationDataForTripHelper = require("./organized-trip-reservations.helper")
@@ -89,9 +89,10 @@ async function httpGetMyReservationsForTrip(req, res) {
     const user = req.user
     if (!user) return res.status(400).json({ message: 'User Not Found' })
 
-    const reservations = await getOrganizedTripReservationsForUser(user.id, req.params.id);
+    let reservations = await getOrganizedTripReservationsForUser(user.id, req.params.id);
+    reservations = getReservationDataForTripHelper(reservations)
     return res.status(200).json({
-        data: reservations,
+        data: serializedData(reservations, organizedTripReservationDetailsForUser),
     })
 }
 
@@ -115,7 +116,7 @@ async function httpCancelReservation(req, res) {
             price += temp.price
         }
     })
-    price = reservation_data.overall_price - price
+    // price = reservation_data.overall_price - price
     const flights = trip.flights
     flights.forEach(async flight => {
         const reservation_data = await getReservation(flight)
@@ -130,8 +131,8 @@ async function httpCancelReservation(req, res) {
         }
     })
     await updateReservationData(reservation_data, reservation_data.reservation_data)
-    await updateReservationDataOverallPrice(reservation_data, price)
-    await incrementSeats(organized_trip, increment)
+    // await updateReservationDataOverallPrice(reservation_data, price)
+    // await incrementSeats(organized_trip, increment)
 
     return res.status(200).json({
         message: "Reservation Cancelled"
