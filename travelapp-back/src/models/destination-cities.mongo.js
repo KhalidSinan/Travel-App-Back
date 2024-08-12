@@ -19,9 +19,6 @@ const destinationCitySchema = new mongoose.Schema({
             ref: 'Place',
             required: true,
         },
-        description: {
-            type: String,
-        },
         notifiable: {
             type: Boolean,
             required: true,
