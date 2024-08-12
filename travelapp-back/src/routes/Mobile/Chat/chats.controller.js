@@ -1,10 +1,10 @@
-const { postChat, getChats, getChatsCount, getChatByTripID, postChatMessage } = require('../../../models/chats.model');
-const { getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
+const { postChat, getChats, getChatsCount, getChatByTripID, addUserToChat } = require('../../../models/chats.model');
+const { getOrganizedTripReservationsForOneTrip, getOrganizedTripReservationsForUserInTrip } = require('../../../models/organized-trip-reservations.model');
 const { getOneOrganizedTrip } = require('../../../models/organized-trips.model');
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getPagination } = require('../../../services/query');
 const { serializedData } = require('../../../services/serializeArray');
-const { getUsersID, assignColorToUser } = require('./chat.helper');
+const { getUsersID, assignColorToUser, createUserData } = require('./chat.helper');
 const { chatData } = require('./chat.serializer');
 const { validateCreateChat } = require('./chat.validation');
 
@@ -20,7 +20,6 @@ async function httpGetAllChats(req, res) {
         count: count
     })
 }
-
 
 // Done
 async function httpPostChat(req, res) {
@@ -48,7 +47,19 @@ async function httpPostChat(req, res) {
     return res.status(200).json({ message: 'Chat Successfully Created' })
 }
 
+async function httpJoinChat(req, res) {
+    const user = req.user
+    const chat = await getChatByTripID(req.params.id)
+    if (!chat) return res.status(200).json({ message: 'Chat Not Found' })
+    const check = await getOrganizedTripReservationsForUserInTrip(user._id, req.params.id)
+    if (check.length == 0) return res.status(200).json({ message: 'No Access' })
+    const data = createUserData(req.user._id)
+    await addUserToChat(req.params.id, data)
+    return res.status(200).json({ message: 'Joined Chat Successfully' })
+}
+
 module.exports = {
     httpGetAllChats,
     httpPostChat,
+    httpJoinChat
 }

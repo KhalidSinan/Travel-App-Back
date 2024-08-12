@@ -36,6 +36,12 @@ async function getLatestMessage(chatId) {
     return chat.messages[0];
 }
 
+async function addUserToChat(id, data) {
+    const chat = await Chat.findOne({ trip_id: id })
+    if (!chat.users_id.some(user => user.id.equals(data.id))) chat.users_id.push(data);
+    await chat.save()
+}
+
 
 module.exports = {
     getChats,
@@ -44,5 +50,6 @@ module.exports = {
     postChat,
     postChatMessage,
     getChatByTripID,
-    getLatestMessage
+    getLatestMessage,
+    addUserToChat
 }

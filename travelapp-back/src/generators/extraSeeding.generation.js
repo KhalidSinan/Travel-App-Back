@@ -184,7 +184,7 @@ async function createTripHelper(plane_reservations) {
     let places = [] //
     let first_reservation = await PlaneReservation.findById(plane_reservations[0]);
     let first_flight = await Flight.findById(first_reservation.flights[0]._id)
-    let start_date = first_flight.departure_date.dateTime //
+    let start_date = first_flight.departure_date.dateTime
     let starting_place = {
         country: first_flight.source.country,
         city: first_flight.source.city,
