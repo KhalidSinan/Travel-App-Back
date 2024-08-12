@@ -65,7 +65,7 @@ function destinationData(destination, flight, hotel, start_date, days) {
         end_date: end_date.toLocaleDateString('en-GB'),
         ticket: ticket,
         hotel: hotelData,
-        overall_price: (ticket.flight_price + hotelData.overall_price).toFixed(2)
+        overall_price: (ticket.flight_price + hotelData.price).toFixed(2)
     }
 }
 
@@ -78,6 +78,7 @@ function hotelLocationData(location) {
 }
 
 function getOrganizedTripHotelDetails(hotel) {
+    console.log(hotel.room_codes[0].price)
     return {
         hotel_id: hotel.hotel_id._id,
         hotel_name: hotel.hotel_id.name,
@@ -85,7 +86,7 @@ function getOrganizedTripHotelDetails(hotel) {
         hotel_stars: hotel.hotel_id.stars,
         hotel_location: hotelLocationData(hotel.hotel_id.location),
         image: hotel.hotel_id.images[0],
-        overall_price: hotel.room_price,
+        price: hotel.room_codes[0].price,
         start_date: hotel.start_date.toLocaleDateString('en-GB'),
         end_date: hotel.end_date.toLocaleDateString('en-GB'),
         rooms_reserved: putHotelReservationWithRoomData(hotel.room_codes, hotel.hotel_id.room_types),
