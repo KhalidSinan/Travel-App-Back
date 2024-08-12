@@ -1,5 +1,6 @@
 function organizedTripReservationData(organized_trip) {
     return {
+        id: organized_trip._id,
         starting_place: organized_trip.trip_id.trip_id.starting_place.city + ', ' + organized_trip.trip_id.trip_id.starting_place.country,
         destinations: organized_trip.trip_id.trip_id.destinations.map(dest => dest.city_name).join(' - '),
         start_date: organized_trip.trip_id.trip_id.start_date.toLocaleDateString('en-GB'),
@@ -18,7 +19,16 @@ function organizedTripReservationDetails(reservation) {
     }
 }
 
+function organizedTripReservationDetailsForUser(reservation) {
+    return {
+        id: reservation._id,
+        name: reservation.name,
+        passport_number: reservation.passport_number,
+    }
+}
+
 module.exports = {
     organizedTripReservationData,
-    organizedTripReservationDetails
+    organizedTripReservationDetails,
+    organizedTripReservationDetailsForUser
 }
