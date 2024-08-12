@@ -36,7 +36,8 @@ function getOrganizedTripDetails(organized_trip) {
         organizer_name: organizer_name,
         source: { city: organized_trip.trip_id.starting_place.city, country: organized_trip.trip_id.starting_place.country },
         destinations: destinations.map((dest, index) => {
-            days += dest.num_of_days;
+            if (index == 0) days = 0;
+            else days += destinations[index - 1].num_of_days
             return destinationData(dest, flights[index], hotels[index], start_date, days)
         }),
         num_of_destination: destinations.length,
