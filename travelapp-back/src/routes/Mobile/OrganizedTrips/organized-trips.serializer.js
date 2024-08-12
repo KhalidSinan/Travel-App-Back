@@ -142,11 +142,15 @@ function getOrganizedTripScheduleDetails(schedule) {
 }
 
 function activitiesDetails(activity) {
+    console.log(activity)
     const address = activity.place.address.address + ', ' + activity.place.address.city + ', ' + activity.place.address.country
     return {
-        place_name: activity.place.name,
-        place_description: activity.place.description,
-        place_location: address,
+        id: activity.place.id,
+        name: activity.place.name,
+        address: { country: activity.place.address.country, city: activity.place.address.city },
+        phone_number: { country_code: activity.place.phone_number.country_code, number: activity.place.phone_number.number },
+        category: activity.place.category,
+        description: activity.place.description,
         notifiable: activity.notifiable,
     }
 }
