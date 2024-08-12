@@ -11,6 +11,14 @@ function organizedTripReservationData(organized_trip) {
     }
 }
 
+function organizedTripReservationDetails(reservation) {
+    return {
+        name: reservation.name,
+        passport_number: reservation.passport_number,
+    }
+}
+
 module.exports = {
-    organizedTripReservationData
+    organizedTripReservationData,
+    organizedTripReservationDetails
 }
