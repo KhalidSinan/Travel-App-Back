@@ -198,14 +198,14 @@ async function createTripHelper(plane_reservations) {
         const flight = await Flight.findById(temp.flights[0]._id)
         const hotel = await getHotelInCity(flight.destination.city, flight.destination.country)
         hotelsIDs.push({ id: hotel._id, date: flight.arrival_date.dateTime })
-        const allPlaces = await createPlacesWithDescription(flight.destination.city, flight.destination.country)
-        places.push(...allPlaces.map(place => place.place))
         let num_of_days = 0;
         if (i < plane_reservations.length - 1) {
             const temp2 = await PlaneReservation.findById(plane_reservations[i + 1]);
             const flight2 = await Flight.findById(temp2.flights[0]._id)
             num_of_days = Math.floor((flight2.departure_date.dateTime - flight.arrival_date.dateTime) / 1000 / 60 / 60 / 24)
         }
+        const allPlaces = await createPlacesWithDescription(flight.destination.city, flight.destination.country, num_of_days)
+        places.push(...allPlaces.map(place => place.place))
         const destination = {
             country_name: flight.destination.country,
             city_name: flight.destination.city,
@@ -227,16 +227,19 @@ async function getHotelInCity(city_name, country_name) {
 }
 
 //Done
-async function createPlacesWithDescription(city_name, country_name) {
+async function createPlacesWithDescription(city_name, country_name, num_of_days) {
     let places = []
     const count = faker.number.int({ min: 3, max: 5 });
+    if (num_of_days == 0) return []
     for (let i = 0; i < count; i++) {
         let place = await Place.findOne({ 'address.city': city_name })
+        let day = faker.number.int({ min: 1, max: num_of_days });
         if (!place) place = await Place.findOne({ 'address.country': country_name })
         if (!place) place = await Place.findOne()
         places.push({
             place: place._id,
             notifiable: false,
+            day: day,
         })
     }
     return places
@@ -251,7 +254,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
     let sourceCountry;
 
     // Loop to create the main set of flights
-    for (let i = 0; i <= count; i++) {
+    for (let i = 0; i < count; i++) {
         const _id = faker.database.mongodbObjectId();
         const user_id = userID;
         const num_of_reservations = num_of_reservations1;
@@ -260,11 +263,6 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         if (i > 0) {
             filter = { 'source.country': lastDestinationCountry, 'classes.available_seats': { $gt: num_of_reservations } };
         }
-        if (i == count) {
-            lastDestinationCountry = sourceCountry;
-            filter = { 'source.country': sourceCountry, 'classes.available_seats': { $gt: num_of_reservations } };
-        }
-
         const randomCountFlight = await Flight.countDocuments(filter);
         const randomSkip = Math.max(Math.floor(Math.random() * randomCountFlight) - 1, 0);
 
@@ -272,7 +270,6 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         if (!flights || !flights[0] || flights[0].departure_date.dateTime < lastDepartureDate) {
             flights = await createFlights(1, lastDestinationCountry, lastDepartureDate);
         }
-
         lastDepartureDate = flights[0].arrival_date.dateTime;
         lastDestinationCountry = flights[0].destination.country;
         if (i == 0) sourceCountry = flights[0].source.country;
@@ -304,16 +301,14 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
             'source.country': lastDestinationCountry,
             'destination.country': sourceCountry,
             'classes.available_seats': { $gt: num_of_reservations },
-            'departure_date.dateTime': { $gt: lastDepartureDate }
         };
 
         const randomCountFlight = await Flight.countDocuments(filter);
         const randomSkip = Math.max(Math.floor(Math.random() * randomCountFlight) - 1, 0);
 
         let returnFlights = await Flight.find(filter).skip(randomSkip).limit(1);
-        if (!returnFlights || !returnFlights[0]) {
-            // If no suitable flight is found, create a flight with a departure date after the lastDepartureDate
-            returnFlights = await createFlights(1, lastDestinationCountry, lastDepartureDate, sourceCountry);
+        if (!returnFlights || !returnFlights[0] || returnFlights[0].departure_date.dateTime < lastDepartureDate) {
+            returnFlights = await createFlights(1, lastDestinationCountry, lastDepartureDate);
         }
 
         const { temp, overall_price } = await createReservationData(num_of_reservations, returnFlights[0]._id);
