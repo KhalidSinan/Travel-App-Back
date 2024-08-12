@@ -3,7 +3,7 @@ const { validationErrors } = require('../../../middlewares/validationErrors');
 const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscount, addReview } = require('../../../models/organized-trips.model');
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
-const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip } = require('../../../models/organized-trip-reservations.model');
+const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip, deleteOrganizedTripReservations } = require('../../../models/organized-trip-reservations.model');
 const { getOrganizedTrips, getOrganizedTripDetails, getOrganizedTripScheduleDetails, myOrganizedTripsData } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst } = require('./organized-trips.helper');
@@ -92,6 +92,7 @@ async function httpCancelOrganizedTrip(req, res) {
     const trip = await getTrip(organized_trip.trip_id)
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
+    await deleteOrganizedTripReservations(organized_trip._id)
     await cancelTripHelper(trip, trip.id)
     return res.status(200).json({ message: `Organized Trip Cancelled` })
 }
