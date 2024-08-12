@@ -642,7 +642,6 @@ function createOrganizedTripReservationDataHelper(num_of_reservations, price) {
     for (let i = 0; i < num_of_reservations; i++) {
         temp.push({
             name: faker.person.fullName(),
-            gender: faker.datatype.boolean() ? 'Male' : 'Female',
             passport_number: faker.number.int({ min: 1000000000, max: 9999999999 }).toString(),
             price: price,
         });
