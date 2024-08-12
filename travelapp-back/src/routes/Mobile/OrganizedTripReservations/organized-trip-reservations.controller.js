@@ -3,9 +3,10 @@ const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneT
 const { getOneOrganizedTrip, decrementSeats, incrementSeats } = require("../../../models/organized-trips.model")
 const { getReservation, putReservationData } = require("../../../models/plane-reservation.model")
 const { getTrip } = require("../../../models/trips.model")
-const { organizedTripReservationData } = require("./organized-trip-reservations.serializer")
+const { organizedTripReservationData, organizedTripReservationDetails } = require("./organized-trip-reservations.serializer")
 const { validateReserveTrip, validateCancelReservation } = require("./organized-trip-reservations.validation")
 const { serializedData } = require("../../../services/serializeArray");
+const getReservationDataForTripHelper = require("./organized-trip-reservations.helper")
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -76,9 +77,10 @@ async function httpGetAllReservationsForTrip(req, res) {
 
     if (!trip.user_id.equals(user.id)) return res.status(400).json({ message: 'No Access To This Trip' })
 
-    const reservations = await getOrganizedTripReservationsForOneTrip(req.params.id);
+    let reservations = await getOrganizedTripReservationsForOneTrip(req.params.id);
+    reservations = getReservationDataForTripHelper(reservations)
     return res.status(200).json({
-        data: reservations
+        data: serializedData(reservations, organizedTripReservationDetails)
     })
 }
 
