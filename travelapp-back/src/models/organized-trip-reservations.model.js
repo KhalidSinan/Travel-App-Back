@@ -32,6 +32,10 @@ async function updateReservationDataOverallPrice(reservation, price) {
     await reservation.save();
 }
 
+async function deleteOrganizedTripReservations(trip_id) {
+    await OrganizedTripReservations.deleteMany({ trip_id })
+}
+
 module.exports = {
     postOrganizedTripReservation,
     getOrganizedTripReservationsForUser,
@@ -40,4 +44,5 @@ module.exports = {
     getOrganizedTripReservation,
     updateReservationData,
     updateReservationDataOverallPrice,
+    deleteOrganizedTripReservations
 }

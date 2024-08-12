@@ -253,8 +253,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
     let lastDestinationCountry;
     let sourceCountry;
 
-    // Loop to create the main set of flights
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i <= count; i++) {
         const _id = faker.database.mongodbObjectId();
         const user_id = userID;
         const num_of_reservations = num_of_reservations1;
@@ -263,6 +262,11 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         if (i > 0) {
             filter = { 'source.country': lastDestinationCountry, 'classes.available_seats': { $gt: num_of_reservations } };
         }
+        if (i == count) {
+            lastDestinationCountry = sourceCountry;
+            filter = { 'source.country': sourceCountry, 'classes.available_seats': { $gt: num_of_reservations } };
+        }
+
         const randomCountFlight = await Flight.countDocuments(filter);
         const randomSkip = Math.max(Math.floor(Math.random() * randomCountFlight) - 1, 0);
 
@@ -270,6 +274,7 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         if (!flights || !flights[0] || flights[0].departure_date.dateTime < lastDepartureDate) {
             flights = await createFlights(1, lastDestinationCountry, lastDepartureDate);
         }
+
         lastDepartureDate = flights[0].arrival_date.dateTime;
         lastDestinationCountry = flights[0].destination.country;
         if (i == 0) sourceCountry = flights[0].source.country;
@@ -291,8 +296,6 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
         };
         data1.push(data);
     }
-
-    // Add return flight to the initial source country
     if (sourceCountry) {
         const _id = faker.database.mongodbObjectId();
         const user_id = userID;
@@ -301,14 +304,15 @@ async function createOneWayFlightReservations(count, num_of_reservations1, userI
             'source.country': lastDestinationCountry,
             'destination.country': sourceCountry,
             'classes.available_seats': { $gt: num_of_reservations },
+            'departure_date.dateTime': { $gt: lastDepartureDate }
         };
 
         const randomCountFlight = await Flight.countDocuments(filter);
         const randomSkip = Math.max(Math.floor(Math.random() * randomCountFlight) - 1, 0);
 
         let returnFlights = await Flight.find(filter).skip(randomSkip).limit(1);
-        if (!returnFlights || !returnFlights[0] || returnFlights[0].departure_date.dateTime < lastDepartureDate) {
-            returnFlights = await createFlights(1, lastDestinationCountry, lastDepartureDate);
+        if (!returnFlights || !returnFlights[0]) {
+            returnFlights = await createFlights(1, lastDestinationCountry, lastDepartureDate, sourceCountry);
         }
 
         const { temp, overall_price } = await createReservationData(num_of_reservations, returnFlights[0]._id);
