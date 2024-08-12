@@ -41,7 +41,6 @@ async function addActivityToSchedule(trip_id, destination_id, place_id, descript
     const data = {
         _id: new mongoose.Types.ObjectId(),
         place: place_id,
-        description: description
     };
 
     await Trip.findOneAndUpdate(

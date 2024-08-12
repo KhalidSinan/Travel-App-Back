@@ -136,7 +136,7 @@ async function createReportsApp(count = 750) {
 }
 
 // Done
-async function createTrips(count = 1000, userID = null) {
+async function createTrips(count = 100, userID = null) {
     let data1 = [];
     const randomCount = await User.countDocuments();
     const promises = Array.from({ length: count }).map(async (val, i) => {
@@ -236,7 +236,8 @@ async function createPlacesWithDescription(city_name, country_name) {
         if (!place) place = await Place.findOne()
         places.push({
             place: place._id,
-            description: faker.word.words({ count: { min: 6, max: 20 } })
+            notifiable: false,
+            // fix day
         })
     }
     return places

@@ -3,7 +3,6 @@ const Joi = require('joi')
 const makeTripValidation = (data) => {
     const activitiesSchema = Joi.array().items(
         Joi.object({
-            description: Joi.string().required(),
             place: Joi.string().hex().length(24),
         })
     )

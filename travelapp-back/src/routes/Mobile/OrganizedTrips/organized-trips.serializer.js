@@ -146,7 +146,6 @@ function activitiesDetails(activity) {
         place_name: activity.place.name,
         place_description: activity.place.description,
         place_location: address,
-        description: activity.description,
         notifiable: activity.notifiable,
     }
 }
