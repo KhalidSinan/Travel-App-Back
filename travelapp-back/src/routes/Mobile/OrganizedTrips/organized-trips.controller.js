@@ -58,7 +58,7 @@ async function httpCreateOrganizedTrip(req, res) {
     const trip = await getTrip(req.body.trip_id)
     if (!trip) res.status(200).json({ message: 'Trip Not Found' })
 
-    let price = trip.price_per_person + trip.price_per_person * (req.body.commission / 100)
+    let price = trip.price_per_person + req.body.commission
     let organizer_id = await getOrganizerID(req.user._id)
     let data = { organizer_id, overall_seats: trip.num_of_people, available_seats: trip.num_of_people, price: price }
     Object.assign(data, req.body)
