@@ -25,6 +25,18 @@ async function postChatMessage(chat, message) {
     await chat.save()
 }
 
+async function getLatestMessage(chatId) {
+    const chat = await Chat.findOne({ _id: chatId })
+        .populate({
+            path: 'messages.sender_id',
+            select: 'name profile_pic'
+        })
+        .select({ messages: { $slice: -1 } });
+
+    return chat.messages[0];
+}
+
+
 module.exports = {
     getChats,
     getChatsCount,
@@ -32,4 +44,5 @@ module.exports = {
     postChat,
     postChatMessage,
     getChatByTripID,
+    getLatestMessage
 }
