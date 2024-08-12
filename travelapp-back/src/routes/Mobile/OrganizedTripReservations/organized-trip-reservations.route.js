@@ -12,7 +12,7 @@ organizedTripReservationRouter.get('/', requireJwtAuth, asyncHandler(httpGetMyRe
 organizedTripReservationRouter.post('/:id/reserve', requireJwtAuth, checkObjectID, asyncHandler(httpMakeReservation))
 organizedTripReservationRouter.get('/:id/my', requireJwtAuth, checkObjectID, asyncHandler(httpGetMyReservationsForTrip))
 organizedTripReservationRouter.get('/:id', requireJwtAuth, checkObjectID, checkOrganizer, asyncHandler(httpGetAllReservationsForTrip))
-organizedTripReservationRouter.post('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelReservation))
+organizedTripReservationRouter.post('/:id/cancel/:id2', requireJwtAuth, checkObjectID, asyncHandler(httpCancelReservation))
 
 
 module.exports = organizedTripReservationRouter;
