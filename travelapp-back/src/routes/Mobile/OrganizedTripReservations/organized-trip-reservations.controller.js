@@ -101,8 +101,11 @@ async function httpCancelReservation(req, res) {
     if (error) return res.status(400).json({ message: validationErrors(error.details) })
 
     const reservation_data = await getOrganizedTripReservation(req.params.id);
+    if (!reservation_data) return res.status(400).json({ message: 'Reservation Not Found' })
     const organized_trip = await getOneOrganizedTrip(reservation_data.trip_id)
+    if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     const trip = await getTrip(organized_trip.trip_id)
+    if (!trip) return res.status(400).json({ message: 'Trip Not Found' })
     let increment = 0;
     let price = 0;
     let reservation_data_new = []

@@ -30,7 +30,7 @@ async function socketFunctionality(io, socket) {
                 content: chat.messages[i].content,
                 timestamps: chat.messages[i].timestamp,
                 username: chat.messages[i].sender_id.name.first_name + ' ' + chat.messages[i].sender_id.name.last_name,
-                user_profile_pic: 'https://fe9d-31-9-67-50.ngrok-free.app' + pic,
+                user_profile_pic: 'https://ba11-31-9-67-50.ngrok-free.app' + pic,
                 user_color: color,
                 from_me: chat.messages[i].sender_id._id == userID,
             }
@@ -65,7 +65,7 @@ async function socketFunctionality(io, socket) {
             content: latestMessage.content,
             timestamps: latestMessage.timestamp,
             username: latestMessage.sender_id.name.first_name + ' ' + latestMessage.sender_id.name.last_name,
-            user_profile_pic: 'https://fe9d-31-9-67-50.ngrok-free.app' + pic,
+            user_profile_pic: 'https://ba11-31-9-67-50.ngrok-free.app' + pic,
             user_color: color,
             from_me: false,
         }
