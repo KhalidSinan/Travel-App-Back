@@ -1,4 +1,4 @@
-const { msToTime } = require("../../../services/convertTime")
+const { msToTime, convertToTimeFormat } = require("../../../services/convertTime")
 const { serializedData } = require("../../../services/serializeArray")
 const { getCountriesInOrganizedTrip, getOrganizedTripStatus, getOrganizedTripReservationHelper, putHotelReservationWithRoomData } = require("./organized-trips.helper")
 
@@ -78,7 +78,6 @@ function hotelLocationData(location) {
 }
 
 function getOrganizedTripHotelDetails(hotel) {
-    console.log(hotel.room_codes[0].price)
     return {
         hotel_id: hotel.hotel_id._id,
         hotel_name: hotel.hotel_id.name,
@@ -116,7 +115,7 @@ function getOrganizedTripFlightDetails(flight) {
         source: sourceDestinationData(flight.flights[0].source),
         destination: sourceDestinationData(flight.flights[0].destination),
         airline: { name: flight.flights[0].airline.name, logo: flight.flights[0].airline.logo },
-        duration: flight.flights[0].duration,
+        duration: convertToTimeFormat(flight.flights[0].duration),
         departure_date: dateData(flight.flights[0].departure_date),
         arrival_date: dateData(flight.flights[0].arrival_date),
         flight_price: flight_price,
