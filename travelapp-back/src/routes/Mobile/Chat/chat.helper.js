@@ -26,8 +26,16 @@ function assignColorToUser(users_id) {
     return data
 }
 
+function createUserData(user_id) {
+    return {
+        id: user_id,
+        color: faker.color.rgb({ prefix: '0xff' })
+    }
+}
+
 module.exports = {
     getUsersID,
     checkMessageFromWho,
-    assignColorToUser
+    assignColorToUser,
+    createUserData
 }
