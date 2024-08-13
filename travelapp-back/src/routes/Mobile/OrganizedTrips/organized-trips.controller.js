@@ -6,10 +6,11 @@ const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip, deleteOrganizedTripReservations } = require('../../../models/organized-trip-reservations.model');
 const { getOrganizedTrips, getOrganizedTripDetails, getOrganizedTripScheduleDetails, myOrganizedTripsData } = require('./organized-trips.serializer');
 const { serializedData } = require("../../../services/serializeArray");
-const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst } = require('./organized-trips.helper');
+const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst, getDeviceTokensForUsersInOrganizedTrip } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
 const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
 const { getOrganizerID } = require('../../../models/organizers.model');
+const sendPushNotification = require('../../../services/notifications');
 
 // Serializer
 async function httpGetAllOrganizedTrips(req, res) {
@@ -66,7 +67,6 @@ async function httpCreateOrganizedTrip(req, res) {
     return res.status(200).json({ message: 'Organized Trip Created Successfully' })
 }
 
-// Serializer
 async function httpGetMyOrganizedTrips(req, res) {
     let data = await getAllOrganizedTrips()
     data = data.filter(trip => trip.trip_id.user_id.equals(req.user.id))
@@ -92,9 +92,12 @@ async function httpCancelOrganizedTrip(req, res) {
     const trip = await getTrip(organized_trip.trip_id)
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
+    const reservations = await getOrganizedTripReservationsForOneTrip(organized_trip._id)
+    const device_tokens = await getDeviceTokensForUsersInOrganizedTrip(reservations)
+    // await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens)
     await deleteOrganizedTripReservations(organized_trip._id)
     await cancelTripHelper(trip, trip.id)
-    return res.status(200).json({ message: `Organized Trip Cancelled` })
+    return res.status(200).json({ message: 'Organized Trip Cancelled' })
 }
 
 async function httpReviewOrganizedTrip(req, res) {

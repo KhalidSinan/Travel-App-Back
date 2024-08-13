@@ -1,5 +1,6 @@
 const { convertDateStringToDate } = require("../../../services/convertTime");
-const { getAnnouncementForOrganizedTrip } = require('../../../models/announcements.model')
+const { getAnnouncementForOrganizedTrip } = require('../../../models/announcements.model');
+const { getDeviceTokens } = require("../../../models/users.model");
 
 function removeOldOrganizedTrips(trips) {
     let data = []
@@ -155,6 +156,19 @@ function putHotelReservationWithRoomData(reservations, room_types) {
     return data;
 }
 
+async function getDeviceTokensForUsersInOrganizedTrip(reservations) {
+    let users = []
+    reservations.forEach(reservation => {
+        users.push(reservation.user_id)
+    })
+    let device_tokens = []
+    for (const user of users) {
+        const device_token = await getDeviceTokens(user)
+        device_tokens.push(device_token[0])
+    }
+    return device_tokens
+}
+
 module.exports = {
     getAllOrganizedByCountry,
     getFilterForOrganizedTrips,
@@ -167,5 +181,6 @@ module.exports = {
     assignTypesToOrganizedTrips,
     putTypeChosenFirst,
     putDestinationsChosenFirst,
-    putHotelReservationWithRoomData
+    putHotelReservationWithRoomData,
+    getDeviceTokensForUsersInOrganizedTrip
 }
