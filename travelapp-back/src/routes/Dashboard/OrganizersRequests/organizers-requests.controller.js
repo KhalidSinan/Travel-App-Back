@@ -29,9 +29,9 @@ async function httpGetOrganizerRequest(req, res) {
 // Done
 async function httpAcceptOrganizerRequest(req, res) {
     const request = await getRequest(req.params.id)
-    if (!request) return res.status(200).json({ message: 'Organizer Request Not Found' })
+    if (!request) return res.status(400).json({ message: 'Organizer Request Not Found' })
 
-    if (request.is_accepted) return res.status(200).json({ message: 'Organizer Request Already Accepted' })
+    if (request.is_accepted) return res.status(400).json({ message: 'Organizer Request Already Accepted' })
 
     await acceptRequest(req.params.id)
     await acceptOrganizer(request.user_id)
@@ -52,7 +52,7 @@ async function httpAcceptOrganizerRequest(req, res) {
 async function httpDenyOrganizerRequest(req, res) {
     // Need id of request
     const request = await getRequest(req.params.id)
-    if (!request) return res.status(200).json({ message: 'Organizer Request Not Found' })
+    if (!request) return res.status(400).json({ message: 'Organizer Request Not Found' })
 
     await denyRequest(req.params.id)
 

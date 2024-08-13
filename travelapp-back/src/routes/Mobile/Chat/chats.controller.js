@@ -50,9 +50,9 @@ async function httpPostChat(req, res) {
 async function httpJoinChat(req, res) {
     const user = req.user
     const chat = await getChatByTripID(req.params.id)
-    if (!chat) return res.status(200).json({ message: 'Chat Not Found' })
+    if (!chat) return res.status(400).json({ message: 'Chat Not Found' })
     const check = await getOrganizedTripReservationsForUserInTrip(user._id, req.params.id)
-    if (check.length == 0) return res.status(200).json({ message: 'No Access' })
+    if (check.length == 0) return res.status(400).json({ message: 'No Access' })
     const data = createUserData(req.user._id)
     await addUserToChat(req.params.id, data)
     return res.status(200).json({ message: 'Joined Chat Successfully' })

@@ -22,7 +22,7 @@ async function httpGetAllOrganizers(req, res) {
 
 async function httpGetOneOrganizer(req, res) {
     const organizer = await getOrganizer(req.params.id);
-    if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
+    if (!organizer) return res.status(400).json({ message: 'Organizer Not Found' })
     let data = await getAllOrganizedTrips()
     organizer.trips = data.filter(trip => trip.trip_id.user_id.equals(organizer.user_id._id))
     req.query.limit = 4
@@ -34,7 +34,7 @@ async function httpGetOneOrganizer(req, res) {
 
 async function httpGetOneOrganizerTripDetails(req, res) {
     const organizer = await getOrganizer(req.params.id);
-    if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
+    if (!organizer) return res.status(400).json({ message: 'Organizer Not Found' })
     let data = await getAllOrganizedTrips()
     organizer.trip = data.filter(trip => trip.trip_id.user_id.equals(organizer.user_id._id) && trip._id == req.params.id2)
     let trip = organizer.trip[0]
@@ -57,7 +57,7 @@ async function httpSearchOrganizers(req, res) {
 // Done
 async function httpDeleteOrganizer(req, res) {
     const organizer = await getOrganizer(req.params.id);
-    if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
+    if (!organizer) return res.status(400).json({ message: 'Organizer Not Found' })
     await deleteAccount(organizer.user_id._id)
     await deleteOrganizerAccount(req.params.id)
     return res.status(200).json({ message: 'Organizer Account Deleted' });
@@ -66,7 +66,7 @@ async function httpDeleteOrganizer(req, res) {
 // Done
 async function httpDeactivateOrganizer(req, res) {
     const organizer = await getOrganizer(req.params.id);
-    if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
+    if (!organizer) return res.status(400).json({ message: 'Organizer Not Found' })
     await deactivateAccount(organizer.user_id._id)
     await deleteOrganizerAccount(req.params.id)
     return res.status(200).json({ message: 'Organizer Account Deactivated' });
@@ -77,7 +77,7 @@ async function httpAlertOrganizer(req, res) {
     if (error) return res.status(400).json({ message: validationErrors(error.details) });
 
     const organizer = await getOrganizer(req.params.id);
-    if (!organizer) return res.status(200).json({ message: 'Organizer Not Found' })
+    if (!organizer) return res.status(400).json({ message: 'Organizer Not Found' })
 
     const tokens = await getDeviceTokens(organizer.user_id)
     // await sendPushNotification(req.body.title, req.body.body, tokens)
