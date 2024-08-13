@@ -1,7 +1,10 @@
 const Chat = require('./chats.mongo');
 
 async function getChats(user_id, skip, limit) {
-    return await Chat.find({ users_id: { $elemMatch: { id: user_id } } }).skip(skip).limit(limit)
+    return await Chat.find({ users_id: { $elemMatch: { id: user_id } } })
+        .populate({ path: 'trip_id', populate: { path: 'trip_id' } })
+        .skip(skip).
+        limit(limit)
 }
 
 async function getChatsCount(user_id, skip, limit) {

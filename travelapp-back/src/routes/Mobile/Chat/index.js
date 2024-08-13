@@ -1,8 +1,10 @@
 const { validateSendMessage } = require('./chat.validation');
-const { getChat, postChatMessage, getUserChatColor, getLatestMessage } = require('../../../models/chats.model');
+const { getChat, postChatMessage, getUserChatColor, getLatestMessage, getChats } = require('../../../models/chats.model');
 const { checkMessageFromWho } = require('./chat.helper');
 const { verifyToken } = require('../../../services/token');
-const { encodeImage } = require('../../../services/images')
+const { encodeImage } = require('../../../services/images');
+const { serializedData } = require('../../../services/serializeArray');
+const { chatData } = require('./chat.serializer');
 require('dotenv').config()
 
 
