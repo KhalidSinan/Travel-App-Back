@@ -5,7 +5,7 @@ const { postAnnouncementRequest } = require('../../../models/announcement-reques
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getOneOrganizedTrip } = require("../../../models/organized-trips.model");
 const { getTrip } = require("../../../models/trips.model");
-const { calculateAnnouncementOptions, calculateAnnouncementPrice } = require("./announcements.helper");
+const { calculateAnnouncementOptions, calculateAnnouncementPrice, generateAnnouncementData } = require("./announcements.helper");
 const { validateMakeOrganizedTripAnnouncement } = require("../OrganizedTrips/organized-trips.validation");
 const { validationErrors } = require('../../../middlewares/validationErrors')
 
@@ -16,15 +16,14 @@ async function httpGetAllAnnouncements(req, res) {
     })
 }
 
-
 async function httpGetOrganizedTripAnnouncementOption(req, res) {
     const organized_trip = await getOneOrganizedTrip(req.params.id);
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     const trip = await getTrip(organized_trip.trip_id)
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
-    const options = calculateAnnouncementOptions(organized_trip.trip_id)
-    return res.status(200).json({ message: 'Announcement Option Retreieved Successfully', options })
+    const options = generateAnnouncementData(organized_trip.trip_id)
+    return res.status(200).json({ message: 'Announcement Option Retreieved Successfully', data: options })
 }
 
 async function httpMakeOrganizedTripAnnouncement(req, res) {
@@ -37,7 +36,7 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
     const organizer_id = await getOrganizerID(req.user.id)
-    const price = calculateAnnouncementPrice(req.body.num_of_days, req.body.location)
+    const price = calculateAnnouncementPrice(req.body.num_of_days, req.body.location, organized_trip)
     const data = {
         organized_trip_id: req.params.id,
         organizer_id: organizer_id._id,
