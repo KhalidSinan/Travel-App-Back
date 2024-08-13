@@ -29,7 +29,6 @@ async function httpGetOrganizedTripAnnouncementOption(req, res) {
 async function httpMakeOrganizedTripAnnouncement(req, res) {
     const { error } = validateMakeOrganizedTripAnnouncement(req.body)
     if (error) return res.status(404).json({ errors: validationErrors(error.details) })
-
     const organized_trip = await getOneOrganizedTrip(req.params.id);
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     const trip = await getTrip(organized_trip.trip_id)
