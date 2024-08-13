@@ -16,6 +16,7 @@ async function httpMakeReservation(req, res) {
     const organized_trip = await getOneOrganizedTrip(req.params.id);
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     if (organized_trip.available_seats <= 0) return res.status(400).json({ message: 'Organized Trip Full' })
+    if (organized_trip.available_seats < req.body.num_of_people) return res.status(400).json({ message: 'Organized Trip Available Seats Less Than Number Of Reservations' })
 
     req.body.reservation_data.forEach(data => {
         data.price = organized_trip.price
