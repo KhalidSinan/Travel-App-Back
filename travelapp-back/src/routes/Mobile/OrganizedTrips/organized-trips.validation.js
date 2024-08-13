@@ -25,8 +25,8 @@ function validateReviewOrganizedTrip(review) {
 
 function validateMakeOrganizedTripAnnouncement(announcement) {
     const schema = Joi.object({
-        announcement_title: Joi.string().required().messages({ 'any.required': 'Title is Required' }),
-        announcement_body: Joi.string().required().messages({ 'any.required': 'Body is Required' }),
+        announcement_title: Joi.string(),
+        announcement_body: Joi.string(),
         num_of_days: Joi.number().required().messages({ 'any.required': 'Number Of Days is Required' }),
         location: Joi.string().valid('Home', 'Organized').required().messages({ 'any.required': 'Location is Required' }),
     })
