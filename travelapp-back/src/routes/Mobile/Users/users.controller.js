@@ -1,3 +1,4 @@
+var path = require('path');
 const crypto = require('crypto');
 const { userData } = require('./users.serializer');
 const { validationErrors } = require('../../../middlewares/validationErrors')
@@ -126,7 +127,12 @@ async function httpRequestDeleteAccount(req, res) {
     await deleteRequests(user.id)
     await postRequest({ user_id: user.id, token })
     const name = user.name.first_name + ' ' + user.name.last_name
-    await sendMail('Delete Account Request', user.email, { name, token, template_name: 'views/delete_account.html' });
+    const attachments = [{
+        filename: 'logo.jpg',
+        path: path.join(__dirname, '../../../', 'public', 'images', 'mails', 'logo.png'),
+        cid: 'logo'
+    }];
+    await sendMail('Delete Account Request', user.email, { name, token, template_name: 'views/delete_account.html' }, attachments);
 
     if (!check) return res.status(400).json({ message: 'Incorrect Password', check: false })
     else return res.status(200).json({ message: 'An Email Has Been Sent', check: true })

@@ -112,8 +112,12 @@ async function forgotPassword(req, res) {
     await postRequest({ user_id: user.id, token })
 
     const name = user.name.first_name + ' ' + user.name.last_name
-
-    await sendMail('Forgot Password', req.body.email, { name, token, template_name: 'views/forgot_password.html' });
+    const attachments = [{
+        filename: 'logo.jpg',
+        path: path.join(__dirname, '../../../', 'public', 'images', 'mails', 'logo.png'),
+        cid: 'logo'
+    }];
+    await sendMail('Forgot Password', req.body.email, { name, token, template_name: 'views/forgot_password.html' }, attachments);
 
     res.status(200).json({ message: 'Check Your Email' })
 }
