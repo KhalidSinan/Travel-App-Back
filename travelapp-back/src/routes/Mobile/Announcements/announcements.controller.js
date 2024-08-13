@@ -1,4 +1,4 @@
-const { getAnnouncementsForHomePage } = require("../../../models/announcements.model");
+const { getAnnouncementsForHomePage, getAllAnnouncementForOrganizedTrip } = require("../../../models/announcements.model");
 const { announcementData } = require("./announcements.serializer");
 const { serializedData } = require('../../../services/serializeArray')
 const { postAnnouncementRequest } = require('../../../models/announcement-requests.model');
@@ -33,6 +33,13 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
     const trip = await getTrip(organized_trip.trip_id)
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
+
+    const oldAnnouncements = await getAllAnnouncementForOrganizedTrip(organized_trip._id)
+    let check = true
+    oldAnnouncements.forEach(announcement => {
+        if (announcement.expiry_date > new Date()) check = false
+    })
+    if (!check) return res.status(400).json({ message: 'Trip Already Announced' })
 
     const organizer_id = await getOrganizerID(req.user.id)
     const price = calculateAnnouncementPrice(req.body.num_of_days, req.body.location, organized_trip)

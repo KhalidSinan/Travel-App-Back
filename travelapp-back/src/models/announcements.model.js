@@ -45,6 +45,10 @@ async function getAnnouncementForOrganizedTrip(organized_trip_id) {
     return await Announcement.find({ organized_trip_id, expiry_date: { $gt: new Date() } })
 }
 
+async function getAllAnnouncementForOrganizedTrip(organized_trip_id) {
+    return await Announcement.find({ organized_trip_id })
+}
+
 module.exports = {
     postAnnouncement,
     getAnnouncementsApp,
@@ -53,5 +57,6 @@ module.exports = {
     getAnnouncementsCountApp,
     getAnnouncementsCountOrganizer,
     getAnnouncementsForHomePage,
-    getAnnouncementForOrganizedTrip
+    getAnnouncementForOrganizedTrip,
+    getAllAnnouncementForOrganizedTrip
 }
