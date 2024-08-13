@@ -15,5 +15,15 @@ function getReservationDataForTripHelper(reservations) {
     return reservation_data;
 }
 
+function checkReservationDuplicate(reservations, newReservations) {
+    const allReservations = reservations.flatMap(reservation => reservation.reservation_data);
+    let existingPassportNumbers = allReservations.map(reservation => reservation.passport_number);
+    existingPassportNumbers = existingPassportNumbers.map(String);
+    const duplicates = newReservations.filter(newReservation =>
+        existingPassportNumbers.includes(newReservation.passport_number)
+    );
+    return duplicates.length != 0;
+}
 
-module.exports = getReservationDataForTripHelper
+
+module.exports = { getReservationDataForTripHelper, checkReservationDuplicate }
