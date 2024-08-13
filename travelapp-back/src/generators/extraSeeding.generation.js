@@ -524,6 +524,7 @@ async function createAnnouncementsRequests() {
         const rand = Math.random();
         const num_of_days = faker.helpers.arrayElement([1, 3, 7, -1]);
         const location = faker.helpers.arrayElement(["Home", "Organized"]);
+        const price = faker.number.int({ min: 100, max: 2000 })
 
         let is_accepted;
         let data;
@@ -537,6 +538,7 @@ async function createAnnouncementsRequests() {
                 is_accepted,
                 num_of_days,
                 location,
+                price
             };
         } else if (rand < 0.66) {
             is_accepted = false;
@@ -548,6 +550,7 @@ async function createAnnouncementsRequests() {
                 is_accepted,
                 num_of_days,
                 location,
+                price
             };
         } else {
             data = {
@@ -557,6 +560,7 @@ async function createAnnouncementsRequests() {
                 organized_trip_id,
                 num_of_days,
                 location,
+                price
             };
         }
         return data;

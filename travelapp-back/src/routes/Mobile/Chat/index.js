@@ -7,6 +7,7 @@ const { serializedData } = require('../../../services/serializeArray');
 const { chatData } = require('./chat.serializer');
 require('dotenv').config()
 
+let onlineUsers = {}; // Object to track online users per chat room
 
 async function socketFunctionality(io, socket) {
     const token = socket.handshake.query.token;
@@ -16,15 +17,28 @@ async function socketFunctionality(io, socket) {
     }
     const userID = checkUser.id
     let userChats = await getAllChats(userID)
+    userChats = userChats.map(chat => chat.trip_id)
     let mainChatID = null;
 
-    socket.on('get-online-people', async () => {
+    function updateOnlineCount() {
+        userChats.forEach(id => {
+            const count = onlineUsers[id]?.size || 0
+            socket.emit('update-count', { chat: id, count: count })
+        })
+    }
 
-        socket.emit('online-people', daata)
+    socket.on('get-online-people', async () => {
+        updateOnlineCount()
     })
 
 
     socket.on('join-chat', async (chatId) => {
+        if (mainChatID && onlineUsers[mainChatID]) {
+            onlineUsers[mainChatID].delete(userID);
+            updateOnlineCount()
+            socket.leave(mainChatID);
+        }
+
         const chat = await getChat(chatId, userID);
         if (!chat) {
             socket.emit('chat-error', { message: "Chat not found or access denied." });
@@ -32,7 +46,14 @@ async function socketFunctionality(io, socket) {
         }
         socket.join(chatId);
         console.log(`User ${userID} joined chat ${chatId}`);
+
         mainChatID = chatId
+
+        if (!onlineUsers[chatId]) {
+            onlineUsers[chatId] = new Set();
+        }
+        onlineUsers[chatId].add(userID);
+
         let messages = []
         for (let i = 0; i < chat.messages.length; i++) {
             let color = chat.users_id.find(user => user.id == chat.messages[i].sender_id.id).color

@@ -3,12 +3,10 @@ const mongoose = require('mongoose')
 const announcementRequestSchema = new mongoose.Schema({
     announcement_title: {
         type: String,
-        required: true,
         default: ""
     },
     announcement_body: {
         type: String,
-        required: true,
         default: ""
     },
     organizer_id: {
