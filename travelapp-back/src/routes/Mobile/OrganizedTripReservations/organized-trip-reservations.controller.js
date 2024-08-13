@@ -6,7 +6,7 @@ const { getTrip } = require("../../../models/trips.model")
 const { organizedTripReservationData, organizedTripReservationDetails, organizedTripReservationDetailsForUser } = require("./organized-trip-reservations.serializer")
 const { validateReserveTrip, validateCancelReservation } = require("./organized-trip-reservations.validation")
 const { serializedData } = require("../../../services/serializeArray");
-const getReservationDataForTripHelper = require("./organized-trip-reservations.helper")
+const { getReservationDataForTripHelper, checkReservationDuplicate } = require("./organized-trip-reservations.helper")
 
 // Done
 async function httpMakeReservation(req, res) {
@@ -29,11 +29,16 @@ async function httpMakeReservation(req, res) {
         trip_id: req.params.id
     }
 
+    const reservations = await getOrganizedTripReservationsForOneTrip(req.params.id)
+    const check = checkReservationDuplicate(reservations, data.reservation_data)
+    if (check) return res.status(400).json({ message: 'Person Already Reserved In This Trip' })
     // Get flights
     const trip = await getTrip(organized_trip.trip_id)
     const flights = trip.flights
 
     await decrementSeats(organized_trip, req.body.num_of_people);
+
+
     await postOrganizedTripReservation(data)
 
     flights.forEach(async flight => {
