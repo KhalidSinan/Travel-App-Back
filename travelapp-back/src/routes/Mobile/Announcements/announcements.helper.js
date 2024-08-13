@@ -25,7 +25,7 @@ function calculateAnnouncementOptions(trip) {
 
 function calculateAnnouncementPrice(days, place, trip) {
     const announcementOptions = calculateAnnouncementOptions(trip);
-    const pageOptions = place === "home" ? announcementOptions.homePageOptions : announcementOptions.organizedTripsPageOptions;
+    const pageOptions = place === "Home" ? announcementOptions.homePageOptions : announcementOptions.organizedTripsPageOptions;
 
     let price;
     if (days <= 1) {
@@ -41,9 +41,25 @@ function calculateAnnouncementPrice(days, place, trip) {
     return price;
 }
 
+function generateAnnouncementData(trip) {
+    const announcementOptions = calculateAnnouncementOptions(trip);
+    const data = [];
 
+    data.push({ place: "Home", duration: 1, price: announcementOptions.homePageOptions.oneDay });
+    data.push({ place: "Home", duration: 3, price: announcementOptions.homePageOptions.threeDays });
+    data.push({ place: "Home", duration: 7, price: announcementOptions.homePageOptions.oneWeek });
+    data.push({ place: "Home", duration: -1, price: announcementOptions.homePageOptions.tillTheStartOfTheTrip });
+
+    data.push({ place: "Organized", duration: 1, price: announcementOptions.organizedTripsPageOptions.oneDay });
+    data.push({ place: "Organized", duration: 3, price: announcementOptions.organizedTripsPageOptions.threeDays });
+    data.push({ place: "Organized", duration: 7, price: announcementOptions.organizedTripsPageOptions.oneWeek });
+    data.push({ place: "Organized", duration: -1, price: announcementOptions.organizedTripsPageOptions.tillTheStartOfTheTrip });
+
+    return data;
+}
 
 module.exports = {
     calculateAnnouncementOptions,
-    calculateAnnouncementPrice
+    calculateAnnouncementPrice,
+    generateAnnouncementData
 }
