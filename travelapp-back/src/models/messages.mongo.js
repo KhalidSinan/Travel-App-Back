@@ -6,6 +6,7 @@ const messageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
+    image: String,
     timestamp: { type: Date, default: new Date() }
 })
 

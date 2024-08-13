@@ -1,3 +1,4 @@
+
 const { faker } = require('@faker-js/faker')
 
 function getUsersID(reservations, organizer_id) {
@@ -32,6 +33,9 @@ function createUserData(user_id) {
         color: faker.color.rgb({ prefix: '0xff' })
     }
 }
+
+
+
 
 module.exports = {
     getUsersID,
