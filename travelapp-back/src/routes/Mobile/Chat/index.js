@@ -2,6 +2,8 @@ const { validateSendMessage } = require('./chat.validation');
 const { getChat, postChatMessage, getUserChatColor, getLatestMessage } = require('../../../models/chats.model');
 const { checkMessageFromWho } = require('./chat.helper');
 const { verifyToken } = require('../../../services/token');
+require('dotenv').config()
+
 
 async function socketFunctionality(io, socket) {
     const token = socket.handshake.query.token;
@@ -14,6 +16,7 @@ async function socketFunctionality(io, socket) {
 
     socket.on('join-chat', async (chatId) => {
         const chat = await getChat(chatId, userID);
+        console.log(chatId, userID)
         if (!chat) {
             socket.emit('chat-error', { message: "Chat not found or access denied." });
             return
@@ -25,12 +28,12 @@ async function socketFunctionality(io, socket) {
         for (let i = 0; i < chat.messages.length; i++) {
             let color = chat.users_id.find(user => user.id == chat.messages[i].sender_id.id).color
             if (chat.messages[i].sender_id.id == userID) color = '0xff205E61'
-            const pic = chat.messages[i].sender_id.profile_pic ?? '/default_profile_pic.jpg'
+            const pic = chat.messages[i].sender_id.profile_pic ?? 'default_profile_pic.jpg'
             let temp = {
                 content: chat.messages[i].content,
                 timestamps: chat.messages[i].timestamp,
                 username: chat.messages[i].sender_id.name.first_name + ' ' + chat.messages[i].sender_id.name.last_name,
-                user_profile_pic: 'https://ba11-31-9-67-50.ngrok-free.app' + pic,
+                user_profile_pic: process.env.URL + pic,
                 user_color: color,
                 from_me: chat.messages[i].sender_id._id == userID,
             }
@@ -59,19 +62,19 @@ async function socketFunctionality(io, socket) {
         await postChatMessage(chat, messageData);
         let latestMessage = await getLatestMessage(chat._id)
         let color = chat.users_id.find(user => user.id == latestMessage.sender_id.id).color
-        if (latestMessage.sender_id.id == userID) color = '0xff205E61'
         const pic = latestMessage.sender_id.profile_pic ?? '/default_profile_pic.jpg'
         let emmitedMessage = {
             content: latestMessage.content,
             timestamps: latestMessage.timestamp,
             username: latestMessage.sender_id.name.first_name + ' ' + latestMessage.sender_id.name.last_name,
-            user_profile_pic: 'https://ba11-31-9-67-50.ngrok-free.app' + pic,
+            user_profile_pic: process.env.URL + pic,
             user_color: color,
             from_me: false,
         }
         socket.broadcast.to(mainChatID).emit('receive-message', emmitedMessage);
         socket.emit('receive-message', {
             ...emmitedMessage,
+            user_color: '0xff205E61',
             from_me: true
         });
     });
