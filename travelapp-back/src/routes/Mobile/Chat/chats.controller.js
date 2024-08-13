@@ -1,10 +1,10 @@
-const { postChat, getChats, getChatsCount, getChatByTripID, addUserToChat } = require('../../../models/chats.model');
-const { getOrganizedTripReservationsForOneTrip, getOrganizedTripReservationsForUserInTrip } = require('../../../models/organized-trip-reservations.model');
+const { postChat, getChats, getChatsCount, getChatByTripID, addUserToChat, checkChat } = require('../../../models/chats.model');
+const { getOrganizedTripReservationsForOneTrip, getOrganizedTripReservationsForUserInTrip, getOrganizedTripsReservationsTrip } = require('../../../models/organized-trip-reservations.model');
 const { getOneOrganizedTrip } = require('../../../models/organized-trips.model');
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getPagination } = require('../../../services/query');
 const { serializedData } = require('../../../services/serializeArray');
-const { getUsersID, assignColorToUser, createUserData, sortChatsByType } = require('./chat.helper');
+const { getUsersID, assignColorToUser, createUserData, sortChatsByType, getJoinableChats } = require('./chat.helper');
 const { chatData } = require('./chat.serializer');
 const { validateCreateChat } = require('./chat.validation');
 
@@ -16,7 +16,7 @@ async function httpGetAllChats(req, res) {
     let chats = await getChats(user_id, skip, limit)
     // const count = await getChatsCount(user_id)
     chats = sortChatsByType(chats, req.query.type)
-    let count = chats.length 
+    let count = chats.length
     chats = chats.slice(skip, skip + limit)
     return res.status(200).json({
         data: serializedData(chats, chatData),
@@ -28,14 +28,11 @@ async function httpGetChatsToJoin(req, res) {
     req.query.limit = 10;
     const { skip, limit } = getPagination(req.query)
     const user_id = req.user._id
-    let chats = await getChats(user_id, skip, limit)
-    // const count = await getChatsCount(user_id)
-    chats = sortChatsByType(chats, req.query.type)
-    let count = chats.length 
-    chats = chats.slice(skip, skip + limit)
+    const organized_trips_ids = await getOrganizedTripsReservationsTrip(user_id)
+    let joinableChats = await getJoinableChats(organized_trips_ids, user_id)
     return res.status(200).json({
-        data: serializedData(chats, chatData),
-        count: count
+        message: 'Joinable Chats Retrieved Successfully',
+        data: joinableChats
     })
 }
 

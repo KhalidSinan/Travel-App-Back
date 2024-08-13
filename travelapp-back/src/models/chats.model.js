@@ -15,6 +15,10 @@ async function getChat(id, user_id) {
     return await Chat.findOne({ trip_id: id, users_id: { $elemMatch: { id: user_id } } }).populate('messages.sender_id', 'name')
 }
 
+async function checkChat(id, user_id) {
+    return await Chat.findOne({ trip_id: id, users_id: { $elemMatch: { id: user_id } } })
+}
+
 async function getChatByTripID(trip_id) {
     return await Chat.findOne({ trip_id: trip_id })
 }
@@ -54,5 +58,6 @@ module.exports = {
     postChatMessage,
     getChatByTripID,
     getLatestMessage,
-    addUserToChat
+    addUserToChat,
+    checkChat
 }
