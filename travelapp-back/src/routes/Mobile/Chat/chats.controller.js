@@ -4,7 +4,7 @@ const { getOneOrganizedTrip } = require('../../../models/organized-trips.model')
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getPagination } = require('../../../services/query');
 const { serializedData } = require('../../../services/serializeArray');
-const { getUsersID, assignColorToUser, createUserData } = require('./chat.helper');
+const { getUsersID, assignColorToUser, createUserData, sortChatsByType } = require('./chat.helper');
 const { chatData } = require('./chat.serializer');
 const { validateCreateChat } = require('./chat.validation');
 
@@ -13,8 +13,26 @@ async function httpGetAllChats(req, res) {
     req.query.limit = 10;
     const { skip, limit } = getPagination(req.query)
     const user_id = req.user._id
-    const chats = await getChats(user_id, skip, limit)
-    const count = await getChatsCount(user_id)
+    let chats = await getChats(user_id, skip, limit)
+    // const count = await getChatsCount(user_id)
+    chats = sortChatsByType(chats, req.query.type)
+    let count = chats.length 
+    chats = chats.slice(skip, skip + limit)
+    return res.status(200).json({
+        data: serializedData(chats, chatData),
+        count: count
+    })
+}
+
+async function httpGetChatsToJoin(req, res) {
+    req.query.limit = 10;
+    const { skip, limit } = getPagination(req.query)
+    const user_id = req.user._id
+    let chats = await getChats(user_id, skip, limit)
+    // const count = await getChatsCount(user_id)
+    chats = sortChatsByType(chats, req.query.type)
+    let count = chats.length 
+    chats = chats.slice(skip, skip + limit)
     return res.status(200).json({
         data: serializedData(chats, chatData),
         count: count
@@ -61,5 +79,6 @@ async function httpJoinChat(req, res) {
 module.exports = {
     httpGetAllChats,
     httpPostChat,
-    httpJoinChat
+    httpJoinChat,
+    httpGetChatsToJoin
 }

@@ -8,9 +8,10 @@ const { notificationData } = require("./notifications.serializer");
 
 async function httpGetAllNotifications(req, res) {
     const user_id = req.user._id;
-    const notifications = await getNotificationsForUser(user_id)
+    let notifications = await getNotificationsForUser(user_id)
+    notifications = notificationSorterHelper(notifications)
     return res.status(200).json({
-        data: notificationSorterHelper(serializedData(notifications, notificationData)),
+        data: notifications,
     })
 }
 

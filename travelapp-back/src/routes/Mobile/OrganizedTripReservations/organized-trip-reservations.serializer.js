@@ -1,5 +1,4 @@
 function organizedTripReservationData(organized_trip) {
-    console.log(organized_trip)
     return {
         id: organized_trip.trip_id._id,
         starting_place: organized_trip.trip_id.trip_id.starting_place.city + ', ' + organized_trip.trip_id.trip_id.starting_place.country,

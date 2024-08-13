@@ -22,7 +22,7 @@ async function sendPushNotification(title, body, token, data = null) {
                 channel_id: 'MESSAGE_CHANNEL',// *
                 icon: 'message_icon', // *
                 tag: 'message', // *
-                // image: 'https://b945-93-190-141-59.ngrok-free.app/1711284229607-906706629-Screenshot%202023-12-23%20195454.png',
+                image: 'https://74b6-169-150-196-142.ngrok-free.app/images/mails/logo.png',
             },
         },
         data: {
@@ -34,7 +34,7 @@ async function sendPushNotification(title, body, token, data = null) {
     };
     temp.forEach(async token => {
         message.token = token
-        await admin.messaging().send(message);
+        console.log(await admin.messaging().send(message))
     })
 
 }

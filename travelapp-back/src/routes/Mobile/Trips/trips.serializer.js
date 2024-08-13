@@ -1,5 +1,6 @@
 function tripData(trip) {
     return {
+        id: trip._id,
         source: trip.starting_place.city + ', ' + trip.starting_place.country,
         destinations: trip.destinations.map(dest => dest.city_name).join(' - '),
         start_date: trip.start_date.toLocaleDateString('en-GB'),
