@@ -1,6 +1,7 @@
 
 const { faker } = require('@faker-js/faker')
-const { checkChat } = require('../../../models/chats.model')
+const { checkChat, getChat, getOneChat } = require('../../../models/chats.model')
+const { getOneOrganizedTrip } = require('../../../models/organized-trips.model')
 
 function getUsersID(reservations, organizer_id) {
     let temp = reservations.map(reservation => reservation.user_id)
@@ -53,7 +54,11 @@ async function getJoinableChats(organized_trips_ids, user_id) {
     let joinableChats = []
     for (const trip of organized_trips_ids) {
         const chat = await checkChat(trip._id, user_id)
-        if (!chat) joinableChats.push(trip)
+        if (!chat) {
+            joinableChats.push(
+                await getOneChat(trip._id)
+            )
+        }
     }
     return joinableChats
 }

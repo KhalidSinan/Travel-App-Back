@@ -5,7 +5,7 @@ const { getOrganizerID } = require('../../../models/organizers.model');
 const { getPagination } = require('../../../services/query');
 const { serializedData } = require('../../../services/serializeArray');
 const { getUsersID, assignColorToUser, createUserData, sortChatsByType, getJoinableChats } = require('./chat.helper');
-const { chatData } = require('./chat.serializer');
+const { chatData, joinableChatData } = require('./chat.serializer');
 const { validateCreateChat } = require('./chat.validation');
 
 // Done
@@ -30,9 +30,12 @@ async function httpGetChatsToJoin(req, res) {
     const user_id = req.user._id
     const organized_trips_ids = await getOrganizedTripsReservationsTrip(user_id)
     let joinableChats = await getJoinableChats(organized_trips_ids, user_id)
+    let count = joinableChats.length;
+    joinableChats = joinableChats.slice(skip, skip + limit)
     return res.status(200).json({
         message: 'Joinable Chats Retrieved Successfully',
-        data: joinableChats
+        data: serializedData(joinableChats, chatData),
+        count: count
     })
 }
 
