@@ -36,6 +36,10 @@ async function deleteOrganizedTripReservations(trip_id) {
     await OrganizedTripReservations.deleteMany({ trip_id })
 }
 
+async function getOrganizedTripsReservationsTrip(user_id) {
+    return await OrganizedTripReservations.find({ user_id }).distinct('trip_id');
+}
+
 module.exports = {
     postOrganizedTripReservation,
     getOrganizedTripReservationsForUser,
@@ -44,5 +48,6 @@ module.exports = {
     getOrganizedTripReservation,
     updateReservationData,
     updateReservationDataOverallPrice,
-    deleteOrganizedTripReservations
+    deleteOrganizedTripReservations,
+    getOrganizedTripsReservationsTrip
 }

@@ -11,7 +11,7 @@ async function httpGetAllNotifications(req, res) {
     let notifications = await getNotificationsForUser(user_id)
     notifications = notificationSorterHelper(notifications)
     return res.status(200).json({
-        data: notifications,
+        ...notifications,
     })
 }
 
