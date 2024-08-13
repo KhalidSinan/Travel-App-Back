@@ -143,7 +143,6 @@ function getOrganizedTripScheduleDetails(schedule) {
 }
 
 function activitiesDetails(activity) {
-    console.log(activity)
     const address = activity.place.address.address + ', ' + activity.place.address.city + ', ' + activity.place.address.country
     return {
         id: activity.place.id,

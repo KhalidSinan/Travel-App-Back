@@ -34,12 +34,25 @@ function createUserData(user_id) {
     }
 }
 
-
+function sortChatsByType(chats, filter) {
+    if (filter == "Present") {
+        chats = chats.filter(chat => {
+            return chat.trip_id.trip_id.start_date < new Date() && new Date() < chat.trip_id.trip_id.end_date
+        })
+    }
+    else if (filter == "Past") {
+        chats = chats.filter(chat => {
+            return new Date() > chat.trip_id.trip_id.end_date
+        })
+    }
+    return chats
+}
 
 
 module.exports = {
     getUsersID,
     checkMessageFromWho,
     assignColorToUser,
-    createUserData
+    createUserData,
+    sortChatsByType
 }
