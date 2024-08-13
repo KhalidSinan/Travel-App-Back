@@ -47,6 +47,10 @@ async function getOrganizedTripsCount() {
     return (await OrganizedTrip.distinct('trip_id')).length;
 }
 
+async function deleteOrganizedTrip(_id) {
+    return await OrganizedTrip.deleteOne({ _id });
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
@@ -55,5 +59,6 @@ module.exports = {
     makeDiscount,
     addReview,
     incrementSeats,
-    getOrganizedTripsCount
+    getOrganizedTripsCount,
+    deleteOrganizedTrip
 }

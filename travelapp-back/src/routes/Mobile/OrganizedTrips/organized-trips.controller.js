@@ -1,6 +1,6 @@
 const { validateCreateOrganizedTrip, validateMakeDiscount, validateReviewOrganizedTrip, validateMakeOrganizedTripAnnouncement } = require('./organized-trips.validation')
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscount, addReview } = require('../../../models/organized-trips.model');
+const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscount, addReview, deleteOrganizedTrip } = require('../../../models/organized-trips.model');
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip, deleteOrganizedTripReservations } = require('../../../models/organized-trip-reservations.model');
@@ -97,6 +97,7 @@ async function httpCancelOrganizedTrip(req, res) {
     // await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens)
     await deleteOrganizedTripReservations(organized_trip._id)
     await cancelTripHelper(trip, trip.id)
+    await deleteOrganizedTrip(req.params.id)
     return res.status(200).json({ message: 'Organized Trip Cancelled' })
 }
 
