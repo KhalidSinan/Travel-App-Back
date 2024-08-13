@@ -772,9 +772,11 @@ async function createChats() {
     for (const trip of organized_trips) {
         let organizer_id = trip.organizer_id
         let trip_id = trip._id
-        let name = faker.company.buzzVerb() + 'Trip'
+        let name = faker.company.buzzVerb() + ' Trip'
         let reservations = await OrganizedTripReservation.find({ trip_id: trip_id })
-        let users_id = getUsersID(reservations, organizer_id)
+        let organizer = await Organizer.findOne(organizer_id)
+        let organizer_user_id = organizer.user_id
+        let users_id = getUsersID(reservations, organizer_user_id)
         users_id = assignColorToUser(users_id)
         let temp = {
             organizer_id,
