@@ -106,7 +106,7 @@ async function httpReviewOrganizedTrip(req, res) {
 
     // check if user went on the trip
     const check = await getOrganizedTripReservationsForUserInTrip(req.user.id, req.params.id)
-    if (check.length == 0) return res.status(200).json({ message: 'Cant Review A Trip You Havent Reserved In' })
+    if (check.length == 0) return res.status(400).json({ message: 'Cant Review A Trip You Havent Reserved In' })
 
     await addReview(req.user.id, req.body.stars, trip)
     return res.status(200).json({ message: 'Trip Reviewed Successfully' })
