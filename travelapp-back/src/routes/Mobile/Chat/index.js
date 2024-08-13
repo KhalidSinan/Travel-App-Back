@@ -1,5 +1,5 @@
 const { validateSendMessage } = require('./chat.validation');
-const { getChat, postChatMessage, getUserChatColor, getLatestMessage, getChats } = require('../../../models/chats.model');
+const { getChat, postChatMessage, getUserChatColor, getLatestMessage, getChats, getAllChats } = require('../../../models/chats.model');
 const { checkMessageFromWho } = require('./chat.helper');
 const { verifyToken } = require('../../../services/token');
 const { encodeImage } = require('../../../services/images');
@@ -15,7 +15,14 @@ async function socketFunctionality(io, socket) {
         return socket.disconnect();
     }
     const userID = checkUser.id
+    let userChats = await getAllChats(userID)
     let mainChatID = null;
+
+    socket.on('get-online-people', async () => {
+
+        socket.emit('online-people', daata)
+    })
+
 
     socket.on('join-chat', async (chatId) => {
         const chat = await getChat(chatId, userID);

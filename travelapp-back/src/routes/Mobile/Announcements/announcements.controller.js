@@ -5,8 +5,9 @@ const { postAnnouncementRequest } = require('../../../models/announcement-reques
 const { getOrganizerID } = require('../../../models/organizers.model');
 const { getOneOrganizedTrip } = require("../../../models/organized-trips.model");
 const { getTrip } = require("../../../models/trips.model");
-const { calculateAnnouncementOptions } = require("./announcements.helper");
+const { calculateAnnouncementOptions, calculateAnnouncementPrice } = require("./announcements.helper");
 const { validateMakeOrganizedTripAnnouncement } = require("../OrganizedTrips/organized-trips.validation");
+const { validationErrors } = require('../../../middlewares/validationErrors')
 
 async function httpGetAllAnnouncements(req, res) {
     const announcements = await getAnnouncementsForHomePage();
@@ -36,11 +37,13 @@ async function httpMakeOrganizedTripAnnouncement(req, res) {
     if (!trip.user_id.equals(req.user.id)) return res.status(400).json({ message: 'No Access to this trip' })
 
     const organizer_id = await getOrganizerID(req.user.id)
+    const price = calculateAnnouncementPrice(req.body.num_of_days, req.body.location)
     const data = {
         organized_trip_id: req.params.id,
         organizer_id: organizer_id._id,
         num_of_days: req.body.num_of_days,
-        location: req.body.location
+        location: req.body.location,
+        price: price
     }
     Object.assign(data, req.body)
     await postAnnouncementRequest(data)

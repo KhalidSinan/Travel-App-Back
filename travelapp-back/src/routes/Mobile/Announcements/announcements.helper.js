@@ -23,7 +23,27 @@ function calculateAnnouncementOptions(trip) {
     }
 }
 
+function calculateAnnouncementPrice(days, place, trip) {
+    const announcementOptions = calculateAnnouncementOptions(trip);
+    const pageOptions = place === "home" ? announcementOptions.homePageOptions : announcementOptions.organizedTripsPageOptions;
+
+    let price;
+    if (days <= 1) {
+        price = pageOptions.oneDay;
+    } else if (days <= 3) {
+        price = pageOptions.threeDays;
+    } else if (days <= 7) {
+        price = pageOptions.oneWeek;
+    } else {
+        price = pageOptions.tillTheStartOfTheTrip;
+    }
+
+    return price;
+}
+
+
 
 module.exports = {
-    calculateAnnouncementOptions
+    calculateAnnouncementOptions,
+    calculateAnnouncementPrice
 }

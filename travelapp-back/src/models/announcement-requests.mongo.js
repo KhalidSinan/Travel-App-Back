@@ -24,6 +24,10 @@ const announcementRequestSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    },
     location: {
         type: String,
         enum: ['Home', 'Organized'],

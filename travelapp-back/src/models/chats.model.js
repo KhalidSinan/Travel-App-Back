@@ -54,6 +54,10 @@ async function getOneChat(id) {
         .populate({ path: 'trip_id', populate: { path: 'trip_id' } })
 }
 
+async function getAllChats(user_id) {
+    return await Chat.find({ users_id: { $elemMatch: { id: user_id } } })
+}
+
 
 module.exports = {
     getChats,
@@ -65,5 +69,6 @@ module.exports = {
     getLatestMessage,
     addUserToChat,
     checkChat,
-    getOneChat
+    getOneChat,
+    getAllChats
 }
