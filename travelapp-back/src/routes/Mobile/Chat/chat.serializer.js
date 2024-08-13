@@ -3,12 +3,12 @@ function chatData(chat) {
     return {
         id: chat.trip_id._id,
         chat_name: chat.name,
-        start_date: chat.trip_id.trip_id.start_date,
-        end_date: chat.trip_id.trip_id.end_date,
+        start_date: chat.trip_id.trip_id.start_date.toLocaleDateString('en-GB'),
+        end_date: chat.trip_id.trip_id.end_date.toLocaleDateString('en-GB'),
         num_of_people: `${seatsTaken}/${chat.trip_id.overall_seats}`,
-        last_message: "fix this"
     }
 }
+
 
 module.exports = {
     chatData,

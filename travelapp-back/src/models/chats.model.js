@@ -49,6 +49,11 @@ async function addUserToChat(id, data) {
     await chat.save()
 }
 
+async function getOneChat(id) {
+    return await Chat.findOne({ trip_id: id })
+        .populate({ path: 'trip_id', populate: { path: 'trip_id' } })
+}
+
 
 module.exports = {
     getChats,
@@ -59,5 +64,6 @@ module.exports = {
     getChatByTripID,
     getLatestMessage,
     addUserToChat,
-    checkChat
+    checkChat,
+    getOneChat
 }

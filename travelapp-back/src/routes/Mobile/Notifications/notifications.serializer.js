@@ -3,7 +3,7 @@ function notificationData(notification) {
         notification_title: notification.notification_title,
         notification_body: notification.notification_body,
         is_read: notification.is_read,
-        createdAt: notification.createdAt.toLocaleDateString()
+        createdAt: notification.createdAt.toLocaleDateString('en-GB')
     }
 }
 

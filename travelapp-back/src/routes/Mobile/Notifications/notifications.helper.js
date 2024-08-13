@@ -9,7 +9,7 @@ function notificationSorterHelper(notifications) {
         let temp = {
             notification_title: notification.notification_title,
             notification_body: notification.notification_body,
-            created_at: notification.createdAt.toLocaleDateString(),
+            created_at: notification.createdAt.toLocaleDateString('en-GB'),
         }
         if (new Date() - notification.createdAt < today) categorizedNotifications.today.push(temp)
         else if (new Date() - notification.createdAt < yesterday) categorizedNotifications.yesterday.push(temp)
