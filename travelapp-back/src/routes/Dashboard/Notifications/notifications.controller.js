@@ -31,7 +31,7 @@ async function httpPostNotification(req, res) {
 
     // Sending Notification For All Users
     let tokens = await getAllDeviceTokens();
-    // await sendPushNotification(req.body.notification_title, req.body.notification_body, tokens)
+    await sendPushNotification(req.body.notification_title, req.body.notification_body, tokens, '/notification-screen')
 
     return res.status(200).json({
         message: 'Notification Sent',
@@ -50,7 +50,7 @@ async function httpResendNotification(req, res) {
 
     // Sending Notification For All Users
     let tokens = await getAllDeviceTokens();
-    // await sendPushNotification(req.body.title, req.body.body, tokens)
+    await sendPushNotification(req.body.title, req.body.body, tokens, '/notification-screen')
 
     return res.status(200).json({
         message: 'Notification Resent',

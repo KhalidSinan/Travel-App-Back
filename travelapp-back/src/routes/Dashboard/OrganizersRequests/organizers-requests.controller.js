@@ -36,7 +36,7 @@ async function httpAcceptOrganizerRequest(req, res) {
     await acceptRequest(req.params.id)
     await acceptOrganizer(request.user_id)
     const tokens = await getDeviceTokens(request.user_id)
-    await sendPushNotification('Request Accepted', 'You are now an organizer', tokens)
+    await sendPushNotification('Request Accepted', 'You are now an organizer', tokens, '/notification-screen')
     const data = {
         user_id: request.user_id,
         company_name: request.company_name,

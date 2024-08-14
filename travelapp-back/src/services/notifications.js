@@ -2,8 +2,9 @@ const admin = require('firebase-admin');
 require('dotenv').config();
 
 // Add User Notification Save To DB 
-async function sendPushNotification(title, body, token, data = null) {
+async function sendPushNotification(title, body, token, type = 'MESSAGE') {
     let temp = [];
+    let data = {}
     token.forEach(tok => {
         tok.device_token.forEach(device => {
             if (device.expiry - Date.now() > 0) temp.push(device.token)
@@ -27,7 +28,7 @@ async function sendPushNotification(title, body, token, data = null) {
         },
         data: {
             click_action: 'FLUTTER_NOTIFICATION_CLICK', // *
-            type: 'MESSAGE', // *,
+            type: type, // *,
             extra: JSON.stringify(data)
         },
         token: temp[0],
