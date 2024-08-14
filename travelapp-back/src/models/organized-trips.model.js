@@ -54,6 +54,12 @@ async function getOneOrganizedTripBasedOnTripID(trip_id) {
     return await OrganizedTrip.findOne({ trip_id })
 }
 
+async function getRevenueFromOrganizedTrips(start_date, end_date) {
+    return await OrganizedTrip.find({
+        createdAt: { $gte: start_date, $lt: end_date }
+    });
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
@@ -64,5 +70,6 @@ module.exports = {
     incrementSeats,
     getOrganizedTripsCount,
     deleteOrganizedTrip,
-    getOneOrganizedTripBasedOnTripID
+    getOneOrganizedTripBasedOnTripID,
+    getRevenueFromOrganizedTrips
 }

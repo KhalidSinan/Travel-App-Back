@@ -6,7 +6,7 @@ const { getOrganizedTripsCount } = require('../../../models/organized-trips.mode
 const { getTripsCount } = require('../../../models/trips.model');
 const { getUsersAge } = require('../../../models/users.model');
 const { serializedData } = require('../../../services/serializeArray');
-const { getStatisticsCountriesHelper, announcementsRevenueHelper } = require('./statistics.helper');
+const { getStatisticsCountriesHelper, announcementsRevenueHelper, organizedTripRevenue, organizedTripRevenueHelper, completeRevenue } = require('./statistics.helper');
 const { top10HotelsData, airlineData } = require('./statistics.serializer')
 
 async function httpGetTop10Countries(req, res) {
@@ -67,11 +67,11 @@ async function httpGetAirlinesFlights(req, res) {
 
 async function httpGetRevenue(req, res) {
     let announcementsRevenue = await announcementsRevenueHelper()
-    // let organizerTripReservationRevenue = await announcementsRevenueHelper()
-    // addRevenuesHelper
+    let organizedTripRevenue = await organizedTripRevenueHelper()
+    let data = completeRevenue(announcementsRevenue, organizedTripRevenue)
     return res.status(200).json({
         message: 'Revenue Retrieved',
-        data: announcementsRevenue
+        data: data
     })
 }
 

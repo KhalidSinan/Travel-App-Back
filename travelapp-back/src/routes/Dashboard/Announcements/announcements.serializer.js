@@ -22,6 +22,7 @@ function announcementOrganizerData(announcement) {
         organizer_id: announcement.organizer_id?._id ?? null,
         organized_trip_id: announcement.organized_trip_id ?? null,
         location: announcement.location,
+        price: announcement.price,
         expiry_date: announcement.expiry_date,
         created_at: announcement.createdAt,
     }
