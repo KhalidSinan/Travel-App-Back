@@ -1,5 +1,6 @@
 const { getRevenueFromAnnouncements } = require("../../../models/announcements.model");
 const { getCountriesFlightsInAMonth } = require("../../../models/flights.model");
+const { getRevenueFromOrganizedTrips } = require("../../../models/organized-trips.model");
 
 
 async function getStatisticsCountriesHelper(countries) {
@@ -37,22 +38,68 @@ async function announcementsRevenueHelper() {
         const start_date = new Date(currentYear, month - 1, 1);
         const end_date = new Date(currentYear, month, 1);
 
-        // Find all announcements within the current month with a price
         const announcements = await getRevenueFromAnnouncements(start_date, end_date)
-        // Calculate the total revenue for the month
         const totalRevenue = announcements.reduce((sum, announcement) => sum + announcement.price, 0);
 
-        // Push the monthly revenue data
         revenueData.push({
             month: month,
-            revenue: totalRevenue,
+            revenue: totalRevenue.toFixed(2),
         });
     }
 
     return revenueData;
 }
 
+async function organizedTripRevenueHelper() {
+    const currentYear = new Date().getFullYear();
+    let revenueData = [];
+
+    for (let month = 1; month <= 12; month++) {
+        const start_date = new Date(currentYear, month - 1, 1);
+        const end_date = new Date(currentYear, month, 1);
+
+        const organizedTrips = await getRevenueFromOrganizedTrips(start_date, end_date)
+        const totalRevenue = organizedTrips.reduce((sum, trip) => sum + (trip.commission * 0.1), 0);
+
+        revenueData.push({
+            month: month,
+            revenue: totalRevenue.toFixed(2),
+        });
+    }
+
+    return revenueData;
+}
+
+function completeRevenue(announcementsRevenue, organizedTripRevenue) {
+    let data = []
+    let months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ]
+    
+    for (let i = 0; i < 12; i++) {
+        let temp = {
+            month: months[i],
+            revenue: +announcementsRevenue[i].revenue + +organizedTripRevenue[i].revenue
+        }
+        data.push(temp)
+    }
+    return data
+}
+
 module.exports = {
     getStatisticsCountriesHelper,
-    announcementsRevenueHelper
+    announcementsRevenueHelper,
+    organizedTripRevenueHelper,
+    completeRevenue
 }
