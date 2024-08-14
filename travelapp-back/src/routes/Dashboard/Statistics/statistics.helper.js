@@ -38,8 +38,7 @@ async function announcementsRevenueHelper() {
         const end_date = new Date(currentYear, month, 1);
 
         // Find all announcements within the current month with a price
-        const announcements = getRevenueFromAnnouncements(start_date, end_date)
-        console.log(announcements)
+        const announcements = await getRevenueFromAnnouncements(start_date, end_date)
         // Calculate the total revenue for the month
         const totalRevenue = announcements.reduce((sum, announcement) => sum + announcement.price, 0);
 

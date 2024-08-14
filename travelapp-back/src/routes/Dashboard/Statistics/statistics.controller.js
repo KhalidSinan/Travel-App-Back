@@ -66,9 +66,9 @@ async function httpGetAirlinesFlights(req, res) {
 }
 
 async function httpGetRevenue(req, res) {
-    const announcementsRevenue = await getRevenueFromAnnouncements();
-    announcementsRevenue = announcementsRevenueHelper(announcementsRevenue)
-    console.log(announcementsRevenue)
+    let announcementsRevenue = await announcementsRevenueHelper()
+    // let organizerTripReservationRevenue = await announcementsRevenueHelper()
+    // addRevenuesHelper
     return res.status(200).json({
         message: 'Revenue Retrieved',
         data: announcementsRevenue
