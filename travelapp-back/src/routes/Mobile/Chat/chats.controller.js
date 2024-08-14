@@ -34,7 +34,7 @@ async function httpGetChatsToJoin(req, res) {
     joinableChats = joinableChats.slice(skip, skip + limit)
     return res.status(200).json({
         message: 'Joinable Chats Retrieved Successfully',
-        data: serializedData(joinableChats, chatData),
+        data: serializedData(joinableChats, joinableChatData),
         count: count
     })
 }

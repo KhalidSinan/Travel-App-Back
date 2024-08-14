@@ -58,6 +58,15 @@ async function addActivityToSchedule(trip_id, destination_id, place_id, descript
     )
 }
 
+async function getTripsEndingToday(start_of_day, end_of_day) {
+    return await Trip.find({
+        end_date: {
+            $gte: start_of_day,
+            $lte: end_of_day
+        }
+    })
+}
+
 module.exports = {
     getTrip,
     deleteTrip,
@@ -66,5 +75,6 @@ module.exports = {
     getSharedTrips,
     getTripsCount,
     removeActivityFromSchedule,
-    addActivityToSchedule
+    addActivityToSchedule,
+    getTripsEndingToday
 }
