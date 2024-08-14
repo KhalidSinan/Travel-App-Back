@@ -31,7 +31,7 @@ async function socketFunctionality(io, socket) {
             let color = chat.users_id.find(user => user.id == chat.messages[i].sender_id.id).color
             if (chat.messages[i].sender_id.id == userID) color = '0xff205E61'
             const pic = chat.messages[i].sender_id.profile_pic ?? 'default_profile_pic.jpg'
-            let sentImage = image == null ? null : process.env.URL + image
+            let sentImage = chat.messages[i].image == null ? null : process.env.URL + chat.messages[i].image
             let temp = {
                 content: chat.messages[i].content,
                 timestamps: chat.messages[i].timestamp,
@@ -48,11 +48,11 @@ async function socketFunctionality(io, socket) {
 
     socket.on('send-message', async (data) => {
         let { message, image } = data
-        const { error } = validateSendMessage({ message });
-        if (error) {
-            socket.emit('message-error', { message: error.details[0].message });
-            return;
-        }
+        // const { error } = validateSendMessage({ message });
+        // if (error) {
+        //     socket.emit('message-error', { message: error.details[0].message });
+        //     return;
+        // }
 
         const chat = await getChat(mainChatID, userID);
         if (!chat) {
@@ -60,7 +60,7 @@ async function socketFunctionality(io, socket) {
             return;
         }
 
-        if (image != '') image = encodeImage(image)
+        if (image) image = encodeImage(image)
 
 
         let messageData = {
