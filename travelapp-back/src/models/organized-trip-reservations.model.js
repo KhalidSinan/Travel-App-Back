@@ -40,6 +40,10 @@ async function getOrganizedTripsReservationsTrip(user_id) {
     return await OrganizedTripReservations.find({ user_id }).distinct('trip_id');
 }
 
+async function getOrganizedTripsReservationsUsersID(trip_id) {
+    return await OrganizedTripReservations.find({ trip_id }).distinct('user_id');
+}
+
 module.exports = {
     postOrganizedTripReservation,
     getOrganizedTripReservationsForUser,
@@ -49,5 +53,6 @@ module.exports = {
     updateReservationData,
     updateReservationDataOverallPrice,
     deleteOrganizedTripReservations,
-    getOrganizedTripsReservationsTrip
+    getOrganizedTripsReservationsTrip,
+    getOrganizedTripsReservationsUsersID
 }

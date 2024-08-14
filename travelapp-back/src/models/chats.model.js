@@ -3,6 +3,7 @@ const Chat = require('./chats.mongo');
 async function getChats(user_id, skip, limit) {
     return await Chat.find({ users_id: { $elemMatch: { id: user_id } } })
         .populate({ path: 'trip_id', populate: { path: 'trip_id' } })
+        .populate('messages.sender_id', 'name')
         .skip(skip).
         limit(limit)
 }
@@ -57,7 +58,6 @@ async function getOneChat(id) {
 async function getAllChats(user_id) {
     return await Chat.find({ users_id: { $elemMatch: { id: user_id } } })
 }
-
 
 module.exports = {
     getChats,
