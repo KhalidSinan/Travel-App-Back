@@ -2,8 +2,10 @@ const { validateSendMessage } = require('./chat.validation');
 const { getChat, postChatMessage, getLatestMessage, getAllChats } = require('../../../models/chats.model');
 const { verifyToken } = require('../../../services/token');
 const { encodeImage } = require('../../../services/images');
+const { default: mongoose } = require('mongoose');
 require('dotenv').config()
 
+const userSocketMap = {}; // Change from object to Map if necessary for better performance with large datasets
 
 async function socketFunctionality(io, socket) {
     const token = socket.handshake.query.token;
@@ -15,8 +17,13 @@ async function socketFunctionality(io, socket) {
     let userChats = await getAllChats(userID)
     userChats = userChats.map(chat => chat.trip_id)
     let mainChatID = null;
+    userSocketMap[userID] = socket.id;
 
     socket.on('join-chat', async (chatId) => {
+        if (!mongoose.isValidObjectId(chatId)) {
+            socket.emit('chat-error', { message: "Chat not found or access denied." });
+            return;
+        }
         const chat = await getChat(chatId, userID);
         if (!chat) {
             socket.emit('chat-error', { message: "Chat not found or access denied." });
@@ -33,7 +40,7 @@ async function socketFunctionality(io, socket) {
             const pic = chat.messages[i].sender_id.profile_pic ?? 'default_profile_pic.jpg'
             let sentImage = chat.messages[i].image == null ? null : process.env.URL + chat.messages[i].image
             let temp = {
-                content: chat.messages[i].content,
+                content: chat.messages[i].content ?? '',
                 timestamps: chat.messages[i].timestamp,
                 username: chat.messages[i].sender_id.name.first_name + ' ' + chat.messages[i].sender_id.name.last_name,
                 user_profile_pic: process.env.URL + pic,
@@ -44,6 +51,14 @@ async function socketFunctionality(io, socket) {
             messages.push(temp)
         }
         socket.emit('chat-history', messages);
+    });
+
+    socket.on('leave-chat', () => {
+        if (mainChatID) {
+            socket.leave(mainChatID);
+            console.log(`User ${userID} left chat ${mainChatID}`);
+            mainChatID = null; // Clear the mainChatID when leaving
+        }
     });
 
     socket.on('send-message', async (data) => {
@@ -89,10 +104,21 @@ async function socketFunctionality(io, socket) {
             user_color: '0xff205E61',
             from_me: true
         });
+
+        const otherUsers = chat.users_id.filter(user => user.id !== userID);
+
+        otherUsers.forEach(user => {
+            const userSocket = io.sockets.sockets.get(userSocketMap[user.id]);
+            if (userSocket && !userSocket.rooms.has(mainChatID)) {
+                userSocket.emit('new-message', emmitedMessage);
+            }
+        });
+
     });
 
     socket.on('disconnect', () => {
         console.log('User Disconnected');
+        delete userSocketMap[userID]
     });
 }
 module.exports = socketFunctionality;

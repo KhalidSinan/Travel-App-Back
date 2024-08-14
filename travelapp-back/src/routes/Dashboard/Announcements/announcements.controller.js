@@ -45,7 +45,7 @@ async function httpPostAnnouncement(req, res) {
     const announcement = await postAnnouncement(data);
     // Sending Notification For Announcements
     let tokens = await getAllDeviceTokens();
-    //await sendPushNotification(req.body.title, req.body.body, tokens)
+    await sendPushNotification(req.body.title, req.body.body, tokens, '/home-screen')
 
     return res.status(200).json({
         message: 'Announcement Sent',
