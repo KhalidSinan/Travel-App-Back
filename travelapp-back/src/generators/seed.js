@@ -2,7 +2,7 @@ const { mongo } = require('mongoose');
 const adminsMongo = require('../models/admins.mongo');
 const { mongoConnect, mongoDisconnect, dropDatabase } = require('../services/mongo');
 const { createAdmins } = require('./admins.generation');
-const { createUsers, createAnnouncementsApp, createReportsApp, createOneWayFlightReservations, createTrips, createOrganizedTrips, createReportsOrganizers, createAnnouncementsRequests, createAnnouncementsOrganizer, createOrganizersRequests, createOrganizedTripReservations, createOrganizersRequestsNotAccepted, createChats } = require('./extraSeeding.generation');
+const { createUsers, createAnnouncementsApp, createReportsApp, createOneWayFlightReservations, createTrips, createOrganizedTrips, createReportsOrganizers, createAnnouncementsRequests, createAnnouncementsOrganizer, createOrganizersRequests, createOrganizedTripReservations, createOrganizersRequestsNotAccepted, createChats, createNotifications } = require('./extraSeeding.generation');
 const createHotels = require('./hotels.generation');
 const createPlaces = require('./places.generation');
 const createFlights = require('./trips.generation');
@@ -24,7 +24,7 @@ async function seedDB() {
     await createFlights(10000);
     // Hotels
     console.log('Seeding Hotels')
-    await createHotels(0)
+    await createHotels(3000)
     // Places
     console.log('Seeding Places')
     await createPlaces()
@@ -61,6 +61,8 @@ async function extraSeeding() {
     await createOrganizersRequestsNotAccepted()
     console.log('Seeding Chat')
     await createChats()
+    console.log('Seeding Notifications')
+    await createNotifications()
 }
 
 seedDB().catch(err => console.log(err));
