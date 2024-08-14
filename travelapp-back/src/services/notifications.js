@@ -37,7 +37,6 @@ async function sendPushNotification(title, body, token, type = 'MESSAGE') {
         message.token = token
         console.log(await admin.messaging().send(message))
     })
-
 }
 
 module.exports = sendPushNotification;
