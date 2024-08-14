@@ -18,6 +18,7 @@ const OrganizedTripReservation = require('../models/organized-trip-reservations.
 const OrganizerRequest = require('../models/organizer-request.mongo')
 const locations = require('../public/json/countries-all.json')
 const Chat = require('../models/chats.mongo')
+const Notification = require('../models/notifications.mongo')
 // Done
 async function createUsers(count = 2000) {
     let data1 = []
@@ -461,6 +462,7 @@ async function createOrganizedTrips() {
                 }
                 data1.push(data)
             })
+            await Organizer.findByIdAndUpdate(organizer._id, { $inc: { num_of_trips: 1 } });
         }
     })
     await Promise.all(promises);
@@ -795,6 +797,20 @@ async function createChats() {
     await Chat.insertMany(data)
 }
 
+async function createNotifications() {
+    let data = []
+    for (let i = 0; i < 3000; i++) {
+        const temp = {
+            notification_title: faker.word.words({ count: { min: 2, max: 4 } }),
+            notification_body: faker.lorem.lines({ min: 1, max: 3 }),
+            is_global: true,
+            createdAt: faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2024-08-14T00:00:00.000Z' })
+        }
+        data.push(temp)
+    }
+    await Notification.insertMany(data)
+}
+
 module.exports = {
     createUsers,
     createAnnouncementsApp,
@@ -807,5 +823,6 @@ module.exports = {
     createOrganizersRequests,
     createOrganizedTripReservations,
     createOrganizersRequestsNotAccepted,
-    createChats
+    createChats,
+    createNotifications
 }
