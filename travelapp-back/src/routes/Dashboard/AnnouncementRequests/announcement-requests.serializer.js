@@ -11,6 +11,7 @@ function announcementRequestData(announcement_request) {
         organized_trip_id: announcement_request.organized_trip_id,
         locationOfAnnouncement: announcement_request.location,
         num_of_days: announcement_request.num_of_days,
+        price: announcement_request.price,
         created_at: announcement_request.createdAt
     }
 }
