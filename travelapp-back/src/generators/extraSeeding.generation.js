@@ -68,7 +68,7 @@ async function createOrganizers(users) {
             const company_name = faker.company.name()
             const years_of_experience = faker.number.int({ min: 0, max: 20 })
             const num_of_trips = faker.number.int({ min: 0, max: 20 })
-            const num_of_reports = faker.number.int({ min: 0, max: 2 }) // need fix
+            const num_of_reports = 0
             const num_of_warnings = faker.number.int({ min: 0, max: 2 }) // need fix
             const proofs = {
                 personal_id: faker.image.url(),
@@ -494,8 +494,9 @@ async function createReportsOrganizers(count = 750) {
         const replied_to = faker.datatype.boolean()
 
         const randomSkipOrganizer = Math.floor(Math.random() * randomCountOrganizers); // Generate random skip value
-        const organizer = await Organizer.find().skip(randomSkipOrganizer).limit(1);
+        let organizer = await Organizer.find().skip(randomSkipOrganizer).limit(1);
         const organizer_id = organizer[0]._id
+        await Organizer.findByIdAndUpdate(organizer_id, { $inc: { num_of_reports: 1 } });
         const data = {
             user_id,
             report_title,
