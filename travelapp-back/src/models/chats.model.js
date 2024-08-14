@@ -7,7 +7,7 @@ async function getChats(user_id, skip, limit) {
         limit(limit)
 }
 
-async function getChatsCount(user_id, skip, limit) {
+async function getChatsCount(user_id) {
     return await Chat.find({ users_id: { $elemMatch: { id: user_id } } }).countDocuments()
 }
 
