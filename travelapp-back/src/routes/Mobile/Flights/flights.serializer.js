@@ -82,7 +82,8 @@ function flightDataForCheck(flight) {
             time: flight.departure_date.time,
         },
         arrival_date: {
-            date: flight.arrival_date.date
+            date: flight.arrival_date.date,
+            time: flight.arrival_date.time,
         },
         duration: convertToTimeFormat(flight.duration),
         price: flight.overall_price,

@@ -49,6 +49,14 @@ async function getAllAnnouncementForOrganizedTrip(organized_trip_id) {
     return await Announcement.find({ organized_trip_id })
 }
 
+
+async function getRevenueFromAnnouncements(start_date, end_date) {
+    return await Announcement.find({
+        from_organizer: true,
+        createdAt: { $gte: start_date, $lt: end_date }, // Find announcements that expire within the month
+    });
+}
+
 module.exports = {
     postAnnouncement,
     getAnnouncementsApp,
@@ -58,5 +66,6 @@ module.exports = {
     getAnnouncementsCountOrganizer,
     getAnnouncementsForHomePage,
     getAnnouncementForOrganizedTrip,
-    getAllAnnouncementForOrganizedTrip
+    getAllAnnouncementForOrganizedTrip,
+    getRevenueFromAnnouncements
 }
