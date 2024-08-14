@@ -54,6 +54,15 @@ async function getAllAirlines() {
     ])
 }
 
+async function incrementFlightSeats(flight, classType, increment) {
+    console.log(flight)
+    flight = await Flight.findOne(flight)
+    flight.available_seats += +increment;
+    const classIndex = flight.classes.findIndex(temp => temp.code === classType);
+    flight.classes[classIndex].available_seats += increment;
+    return await flight.save()
+}
+
 module.exports = {
     getFlights,
     getFlight,
@@ -63,5 +72,6 @@ module.exports = {
     getAllCountries,
     getCountriesFlightsInAMonth,
     getFlightsCount,
-    getAllAirlines
+    getAllAirlines,
+    incrementFlightSeats
 }

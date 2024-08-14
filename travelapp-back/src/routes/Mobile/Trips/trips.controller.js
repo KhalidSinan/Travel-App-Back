@@ -212,7 +212,6 @@ async function httpCancelTrip(req, res) {
     if (!trip.user_id.equals(req.user.id)) {
         return res.status(404).json({ message: 'No Access To This Trip' });
     }
-
     await cancelTripHelper(trip, trip._id)
     return res.status(200).json({ message: 'Trip Canceled' });
 }

@@ -1,5 +1,5 @@
 const { validationErrors } = require("../../../middlewares/validationErrors")
-const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation, getOrganizedTripReservation, updateReservationData, getOrganizedTripReservationsForUserInTrip } = require("../../../models/organized-trip-reservations.model")
+const { getOrganizedTripReservationsForUser, getOrganizedTripReservationsForOneTrip, postOrganizedTripReservation, getOrganizedTripReservation, updateReservationData, getOrganizedTripReservationsForUserInTrip, updateReservationDataOverallPrice } = require("../../../models/organized-trip-reservations.model")
 const { getOneOrganizedTrip, decrementSeats, incrementSeats } = require("../../../models/organized-trips.model")
 const { getReservation, putReservationData } = require("../../../models/plane-reservation.model")
 const { getTrip } = require("../../../models/trips.model")
@@ -128,7 +128,7 @@ async function httpCancelReservation(req, res) {
             price += temp.price
         }
     })
-    // price = reservation_data.overall_price - price
+    price = reservation_data.overall_price - price
     const flights = trip.flights
     flights.forEach(async flight => {
         const reservation_data = await getReservation(flight)
@@ -139,12 +139,11 @@ async function httpCancelReservation(req, res) {
                     data.person_name = 'Default'
             })
             await putReservationData(flight, reservation_data.reservations.data)
-
         }
     })
     await updateReservationData(reservation_data, reservation_data.reservation_data)
-    // await updateReservationDataOverallPrice(reservation_data, price)
-    // await incrementSeats(organized_trip, increment)
+    await updateReservationDataOverallPrice(reservation_data, price)
+    await incrementSeats(organized_trip, increment)
 
     return res.status(200).json({
         message: "Reservation Cancelled"
