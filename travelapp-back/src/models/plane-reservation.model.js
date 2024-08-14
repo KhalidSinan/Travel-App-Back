@@ -22,7 +22,7 @@ async function removeReservation(reservation, person_reservation) {
     reservation.overall_price -= person_reservation.price
 
     // Remove Coming
-    const comingBack = reservation.reservations_back.data.find(res => res.name == person_reservation.name);
+    const comingBack = reservation.reservations_back?.data.find(res => res.name == person_reservation.name);
     if (comingBack) {
         reservation.reservations_back.data.pull(comingBack)
         reservation.reservations_back.overall_price -= comingBack.price

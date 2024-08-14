@@ -1,5 +1,5 @@
 const createPaymentData = require('../../../services/payment');
-const { getFlight } = require('../../../models/flights.model');
+const { getFlight, incrementFlightSeats } = require('../../../models/flights.model');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { reservationData, allReservationData, nearestReservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservations.validation');
@@ -97,6 +97,7 @@ async function httpCancelReservation(req, res) {
         })
     }
     // const fee = await findCancelRate(reservation, person_reservation.price) // Money That Will Be Returned
+    await incrementFlightSeats(reservation.flights[0]._id, reservation.reservations.data[0].seat_class, 1)
     const length = await removeReservation(reservation, person_reservation)
     if (length == 0) await deleteReservation(reservation);
 
