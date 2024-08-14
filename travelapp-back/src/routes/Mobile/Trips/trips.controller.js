@@ -9,7 +9,8 @@ const { getHotelReservation } = require("../../../models/hotel-reservation.model
 const { checkFlightsReservations } = require('../PlaneReservations/plane-reservations.helper')
 const { checkHotelsReservations } = require('../Hotels/hotel.helper');
 const { tripData } = require('./trips.serializer');
-const { serializedData } = require('../../../services/serializeArray')
+const { serializedData } = require('../../../services/serializeArray');
+const { getOneOrganizedTripBasedOnTripID } = require('../../../models/organized-trips.model');
 require('dotenv').config()
 
 
@@ -60,7 +61,16 @@ async function makeTrip(req, res) {
 // Done
 async function getAllTrips(req, res) {
     try {
-        const trips = await Trip.find({ user_id: req.user.id }).select('-destinations._id')
+        let trips = await Trip.find({ user_id: req.user.id }).select('-destinations._id')
+        if (req.user.is_organizer) {
+            let data = []
+            for (const trip of trips) {
+                const organized = await getOneOrganizedTripBasedOnTripID(trip._id)
+                console.log(organized)
+                if (!organized) data.push(trip)
+            }
+            trips = data
+        }
         res.status(200).json({
             message: 'Trips Found',
             data: serializedData(trips, tripData)

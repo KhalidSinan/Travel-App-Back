@@ -13,7 +13,6 @@ async function getOneOrganizedTrip(_id) {
         .populate({ path: 'trip_id', populate: { path: 'flights', populate: 'flights' } })
         .populate({ path: 'trip_id', populate: { path: 'hotels', populate: 'hotel_id' } })
         .populate({ path: 'organizer_id', populate: { path: 'user_id', select: 'name' }, select: 'user_id' })
-
 }
 
 async function postOrganizedtrip(data) {
@@ -38,8 +37,8 @@ async function addReview(user_id, stars, trip) {
     await trip.save();
 }
 
-async function incrementSeats(trip, decrement) {
-    trip.available_seats += decrement;
+async function incrementSeats(trip, increment) {
+    trip.available_seats += increment;
     await trip.save();
 }
 
@@ -51,6 +50,10 @@ async function deleteOrganizedTrip(_id) {
     return await OrganizedTrip.deleteOne({ _id });
 }
 
+async function getOneOrganizedTripBasedOnTripID(trip_id) {
+    return await OrganizedTrip.findOne({ trip_id })
+}
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
@@ -60,5 +63,6 @@ module.exports = {
     addReview,
     incrementSeats,
     getOrganizedTripsCount,
-    deleteOrganizedTrip
+    deleteOrganizedTrip,
+    getOneOrganizedTripBasedOnTripID
 }
