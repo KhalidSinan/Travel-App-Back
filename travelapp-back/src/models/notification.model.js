@@ -12,7 +12,7 @@ async function getNotificationsForUser(user_id) {
             { user_id: user_id },
             { is_global: true }
         ]
-    }).select('-user_id').sort({ 'created_at': -1 })
+    }).select('-user_id').sort({ 'createdAt': -1 })
 }
 
 // get one notification

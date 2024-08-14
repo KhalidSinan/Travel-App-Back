@@ -1,10 +1,7 @@
 const { validateSendMessage } = require('./chat.validation');
-const { getChat, postChatMessage, getUserChatColor, getLatestMessage, getChats, getAllChats } = require('../../../models/chats.model');
-const { checkMessageFromWho } = require('./chat.helper');
+const { getChat, postChatMessage, getLatestMessage, getAllChats } = require('../../../models/chats.model');
 const { verifyToken } = require('../../../services/token');
 const { encodeImage } = require('../../../services/images');
-const { serializedData } = require('../../../services/serializeArray');
-const { chatData } = require('./chat.serializer');
 require('dotenv').config()
 
 
@@ -49,8 +46,8 @@ async function socketFunctionality(io, socket) {
         socket.emit('chat-history', messages);
     });
 
-    socket.on('send-message', async (image = null) => {
-        let message = "rr"
+    socket.on('send-message', async (data) => {
+        let { message, image } = data
         const { error } = validateSendMessage({ message });
         if (error) {
             socket.emit('message-error', { message: error.details[0].message });
@@ -63,9 +60,8 @@ async function socketFunctionality(io, socket) {
             return;
         }
 
-        if (image) {
-            image = encodeImage(image)
-        }
+        if (image != '') image = encodeImage(image)
+
 
         let messageData = {
             content: message,
