@@ -1,11 +1,12 @@
 const { validationErrors } = require('../../../middlewares/validationErrors');
+const { getRevenueFromAnnouncements } = require('../../../models/announcements.model');
 const { getTop10Countries, getAllCountries, getAllAirlines } = require('../../../models/flights.model');
 const { getTop10Hotels } = require('../../../models/hotel-reservation.model');
 const { getOrganizedTripsCount } = require('../../../models/organized-trips.model');
 const { getTripsCount } = require('../../../models/trips.model');
 const { getUsersAge } = require('../../../models/users.model');
 const { serializedData } = require('../../../services/serializeArray');
-const { getStatisticsCountriesHelper } = require('./statistics.helper');
+const { getStatisticsCountriesHelper, announcementsRevenueHelper } = require('./statistics.helper');
 const { top10HotelsData, airlineData } = require('./statistics.serializer')
 
 async function httpGetTop10Countries(req, res) {
@@ -64,13 +65,15 @@ async function httpGetAirlinesFlights(req, res) {
     })
 }
 
-// async function httpGetRevenue(req, res) {
-//     const data = await getRevenue();
-//     return res.status(200).json({
-//         message: 'Revenue Retrieved',
-//         data: data
-//     })
-// }
+async function httpGetRevenue(req, res) {
+    const announcementsRevenue = await getRevenueFromAnnouncements();
+    announcementsRevenue = announcementsRevenueHelper(announcementsRevenue)
+    console.log(announcementsRevenue)
+    return res.status(200).json({
+        message: 'Revenue Retrieved',
+        data: announcementsRevenue
+    })
+}
 
 
 module.exports = {
@@ -79,6 +82,6 @@ module.exports = {
     httpGetUsersAgeStatistics,
     httpGetTop10Hotels,
     httpGetPercentageOfOrganizedTrips,
-    httpGetAirlinesFlights
-    // httpGetRevenue
+    httpGetAirlinesFlights,
+    httpGetRevenue
 }
