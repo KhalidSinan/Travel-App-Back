@@ -36,7 +36,7 @@ async function getAllNearby(req, res) {
         }
 
         if (!user.location || !user.location.city) {
-            return res.status(400).json({ message: 'User location city is not set' });
+            return res.status(200).json({ message: 'User location city is not set' });
         }
 
         let query = { 'address.city': user.location.city };
