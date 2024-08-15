@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const requireJwtAuth = require('../../../middlewares/checkJwtAuth');
 const checkObjectID = require('../../../middlewares/checkObjectID');
 
-const { makeTrip, payTrip, getAllTrips, getOneTrip, httpRemoveActivityFromSchedule, httpDeleteTrip, httpShareTrip, httpCancelTrip, httpAutogenerateScheduleForTrip, httpAutogenerateTrip, httpAddActivityToSchedule } = require('./trips.controller')
+const { makeTrip, payTrip, getAllTrips, getOneTrip, httpRemoveActivityFromSchedule, httpDeleteTrip, httpShareTrip, httpCancelTrip, httpAutogenerateScheduleForTrip, httpAutogenerateTrip, httpAddActivityToSchedule, httpNotifyActivity, httpGetTripSchedule } = require('./trips.controller')
 
 const tripRouter = express.Router();
 
@@ -19,6 +19,8 @@ tripRouter.delete('/:id', requireJwtAuth, checkObjectID, asyncHandler(httpDelete
 tripRouter.post('/:id/add-activity', requireJwtAuth, checkObjectID, asyncHandler(httpAddActivityToSchedule))
 tripRouter.get('/:id/share', requireJwtAuth, checkObjectID, asyncHandler(httpShareTrip))
 tripRouter.get('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelTrip))
+tripRouter.post('/:id/notify/:activityID', requireJwtAuth, checkObjectID, asyncHandler(httpNotifyActivity))
+tripRouter.get('/:id/schedule', requireJwtAuth, checkObjectID, asyncHandler(httpGetTripSchedule))
 // review
 // tripRouter.get('/:id/cancel', requireJwtAuth, checkObjectID, asyncHandler(httpCancelTrip))
 
