@@ -21,10 +21,10 @@ async function seedDB() {
     await createAdmins();
     // Flights
     console.log('Seeding Flights')
-    await createFlights(10000);
+    await createFlights(20000);
     // Hotels
     console.log('Seeding Hotels')
-    await createHotels(3000)
+    await createHotels(10000)
     // Places
     console.log('Seeding Places')
     await createPlaces()
