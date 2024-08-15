@@ -9,8 +9,9 @@ const { getNotification, postNotification } = require('../models/notification.mo
 const HotelReservation = require('../models/hotel-reservation.mongo');
 const Hotel = require('../models/hotels.mongo');
 const { getTripsEndingToday } = require('../models/trips.model');
-const { getOneOrganizedTripBasedOnTripID } = require('../models/organized-trips.model');
+const { getOneOrganizedTripBasedOnTripID, getAllOrganizedTrips, getAllOrganizedTripForCron } = require('../models/organized-trips.model');
 const { getOrganizedTripsReservationsUsersID } = require('../models/organized-trip-reservations.model');
+const { getOrganizer } = require('../models/organizers.model');
 
 // Just Remove Comment
 
@@ -90,7 +91,7 @@ const tripEnd = schedule.scheduleJob('0 */5 * * * *', async () => {
         if (endDate.getMinutes() == now.getMinutes()) {
             console.log(`Trip ${trip.id} ended at ${trip.end_date}`);
             const tokens = await getDeviceTokens(trip.user_id)
-            await sendToOrganizedTripParticipants(trip._id)
+            await sendToOrganizedTripParticipants(trip._id, 1)
             await sendPushNotification(
                 'Trip Ended',
                 'Your Trip Has Ended',
@@ -103,16 +104,41 @@ const tripEnd = schedule.scheduleJob('0 */5 * * * *', async () => {
 })
 
 // helper
-async function sendToOrganizedTripParticipants(trip_id) {
+async function sendToOrganizedTripParticipants(trip_id, option) {
     const organized_trip = await getOneOrganizedTripBasedOnTripID(trip_id)
     if (!organized_trip) return
     const usersIDs = await getOrganizedTripsReservationsUsersID(organized_trip._id)
+    const organizer = await getOrganizer(organized_trip.organizer_id)
+    const name = organizer.user_id.name.first_name + ' ' + organizer.user_id.name.last_name;
     let tokens = []
     for (const user of usersIDs) {
         const tempTokens = await getDeviceTokens(user._id)
         tokens.push(...tempTokens)
     }
-    // await sendPushNotification('Trip Ended', 'Your Trip Has Ended', tokens, '/rateOrganizer-screen', { id: organized_trip._id })
+    if (option == 1)
+        await sendPushNotification('Trip Ended', 'Rate Your Organizer', tokens, '/rateOrganizer-screen', { id: organized_trip._id, organizer_name: name })
+    else if (option == 2)
+        await sendPushNotification('Trip Near', 'Your Trip is About To Start', tokens, '/myTrips-screen')
+
 }
 
 // Task 5 : 
+// Send Notification For Users Before Organized Trip Day
+const beforeOrganizedTrip = schedule.scheduleJob('0 * * * *', async () => {
+    const now = new Date();
+    let tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
+    const start_of_tomorrow = new Date(tomorrow);
+    start_of_tomorrow.setHours(3, 0, 0, 0);
+    const end_of_tomorrow = new Date(tomorrow);
+    end_of_tomorrow.setHours(26, 59, 59, 999);
+
+    const organized_trips = await getAllOrganizedTripForCron()
+    organized_trips.forEach(async organized_trip => {
+        const start_date = organized_trip.trip_id.start_date
+        console.log(start_date.getHours())
+        if (start_date.getHours() == now.getHours()) {
+            await sendToOrganizedTripParticipants(organized_trip.trip_id, 2)
+        }
+    })
+})

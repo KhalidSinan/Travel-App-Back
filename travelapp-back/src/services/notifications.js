@@ -45,6 +45,5 @@ async function sendPushNotification(title, body, token, type = 'MESSAGE', data =
 //     '/notification-screen',
 //     { id: 1111 }
 // )
-// sendPushNotification('Testing Home Screen', 'Hello Hamza You are going to home screen', [{ device_token: [{ token: "" }] }], '/notification-screen')
 
 module.exports = sendPushNotification;

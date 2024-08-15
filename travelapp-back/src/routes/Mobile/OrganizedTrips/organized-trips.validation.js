@@ -24,7 +24,7 @@ function validateMakeDiscount(discount) {
 
 function validateReviewOrganizedTrip(review) {
     const schema = Joi.object({
-        stars: Joi.number().min(1).max(5).required().messages({ 'any.required': 'Review Required' })
+        rating: Joi.number().min(0).max(5).required().messages({ 'any.required': 'Rating Required' })
     })
     return schema.validate(review);
 }
