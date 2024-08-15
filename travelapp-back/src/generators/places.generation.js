@@ -172,7 +172,7 @@ function createRandom() {
 function createRandom2() {
     let data = []
     let categories = ['Park', 'Attraction', 'Adventure', 'Arts & History']
-    for (let i = 0; i < 20000; i++) {
+    for (let i = 0; i < 30000; i++) {
         const address = createAddress()
         const number = createPhoneNumber()
         const temp = {

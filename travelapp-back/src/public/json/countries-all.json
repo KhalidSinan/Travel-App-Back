@@ -14,7 +14,6 @@
       "Mazar-i-Sharif"
     ]
   },
-  { "name": "Åland Islands", "cities": [] },
   {
     "name": "Albania",
     "cities": [
@@ -80,7 +79,6 @@
       "Timimoun"
     ]
   },
-  { "name": "American Samoa", "cities": [] },
   {
     "name": "Andorra",
     "cities": [
@@ -5736,7 +5734,6 @@
       "Santa Cruz de la Sierra"
     ]
   },
-  { "name": "Bonaire", "cities": [] },
   {
     "name": "Bosnia and Herzegovina",
     "cities": [
@@ -5796,7 +5793,6 @@
       "Maun"
     ]
   },
-  { "name": "Bouvet Island", "cities": [] },
   {
     "name": "Brazil",
     "cities": [
@@ -7886,7 +7882,6 @@
       "Santo Antônio do Içá"
     ]
   },
-  { "name": "British Indian Ocean Territory", "cities": [] },
   {
     "name": "United States Minor Outlying Islands",
     "cities": [
@@ -7901,8 +7896,6 @@
       "Wake Island"
     ]
   },
-  { "name": "Virgin Islands (British)", "cities": [] },
-  { "name": "Virgin Islands (U.S.)", "cities": [] },
   {
     "name": "Brunei",
     "cities": [
@@ -12937,7 +12930,6 @@
       "Becerra"
     ]
   },
-  { "name": "Curaçao", "cities": [] },
   {
     "name": "Cyprus",
     "cities": [
@@ -28337,7 +28329,6 @@
       "Tureira"
     ]
   },
-  { "name": "French Southern and Antarctic Lands", "cities": [] },
   {
     "name": "Gabon",
     "cities": [
@@ -36376,7 +36367,6 @@
       "Zacapa"
     ]
   },
-  { "name": "Guernsey", "cities": [] },
   {
     "name": "Guinea",
     "cities": [
@@ -36424,8 +36414,6 @@
       "Port Au Prince"
     ]
   },
-  { "name": "Heard Island and McDonald Islands", "cities": [] },
-  { "name": "Holy See", "cities": [] },
   {
     "name": "Honduras",
     "cities": [
@@ -44981,7 +44969,6 @@
       "Sakaiminato-shi"
     ]
   },
-  { "name": "Jersey", "cities": [] },
   {
     "name": "Jordan",
     "cities": [
@@ -46994,7 +46981,6 @@
       "Teodo"
     ]
   },
-  { "name": "Montserrat", "cities": [] },
   {
     "name": "Morocco",
     "cities": [
@@ -50885,7 +50871,6 @@
       "Zamboanga"
     ]
   },
-  { "name": "Pitcairn Islands", "cities": [] },
   {
     "name": "Poland",
     "cities": [
@@ -53359,8 +53344,6 @@
       "Doha"
     ]
   },
-  { "name": "Republic of Kosovo", "cities": [] },
-  { "name": "Réunion", "cities": [] },
   {
     "name": "Romania",
     "cities": [
@@ -54810,7 +54793,6 @@
       "Kamembe"
     ]
   },
-  { "name": "Saint Barthélemy", "cities": [] },
   {
     "name": "Saint Helena",
     "cities": ["Ascension", "Saint Helena", "Tristan da Cunha"]
@@ -54830,7 +54812,6 @@
       "Vieux Fort"
     ]
   },
-  { "name": "Saint Martin", "cities": [] },
   { "name": "Saint Pierre and Miquelon", "cities": ["St Pierre"] },
   {
     "name": "Saint Vincent and the Grenadines",
@@ -55131,7 +55112,6 @@
       "Yishun New Town"
     ]
   },
-  { "name": "Sint Maarten", "cities": [] },
   {
     "name": "Slovakia",
     "cities": [
@@ -55928,7 +55908,6 @@
       "Walvis Bay"
     ]
   },
-  { "name": "South Georgia", "cities": [] },
   {
     "name": "South Korea",
     "cities": [
@@ -58538,7 +58517,6 @@
       "Sabakoe"
     ]
   },
-  { "name": "Svalbard and Jan Mayen", "cities": [] },
   {
     "name": "Swaziland",
     "cities": ["Hhohho", "Lubombo", "Manzini", "Shiselweni"]
@@ -61460,7 +61438,6 @@
     "name": "Togo",
     "cities": ["Centre", "Kara", "Maritime", "Plateaux", "Savannes", "Lome"]
   },
-  { "name": "Tokelau", "cities": [] },
   {
     "name": "Tonga",
     "cities": [
@@ -61865,7 +61842,6 @@
       "Ashgabat"
     ]
   },
-  { "name": "Turks and Caicos Islands", "cities": [] },
   {
     "name": "Tuvalu",
     "cities": [
@@ -86608,7 +86584,6 @@
       "Vinh City"
     ]
   },
-  { "name": "Wallis and Futuna", "cities": [] },
   { "name": "Western Sahara", "cities": ["Ad Dakhla"] },
   {
     "name": "Yemen",

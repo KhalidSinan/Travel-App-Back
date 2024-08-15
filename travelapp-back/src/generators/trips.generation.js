@@ -1,5 +1,6 @@
 const fs = require('fs')
 const airlines = require('../public/json/airlines.json')
+const locations = require('../public/json/countries-all.json')
 const airports = require('../public/json/airports.json')
 const flightsMongo = require('../models/flights.mongo')
 const { faker } = require('@faker-js/faker')
@@ -87,10 +88,23 @@ function getRandomUniqueElements(array, n) {
     return Array.from(features);
 }
 
-function createPlace() {
-    let { name, city, country } = airports[Math.floor(Math.random() * airportsNum)];
-    // name += ' Airport';
-    return { name, city, country }
+// function createPlace() {
+//     let { name, city, country } = airports[Math.floor(Math.random() * airportsNum)];
+//     // name += ' Airport';
+//     return { name, city, country }
+// }
+
+function createPlace(source = null) {
+    let tempCountry = locations[Math.floor(Math.random() * locations.length)]
+    if(source) tempCountry = locations.find(country => country.name == source)
+    let tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
+    tempCity = tempCity ?? faker.location.city()
+    let suffix = faker.helpers.arrayElement([' International Airport', ' Intercontinental Airport', ' Regional Airport', ' Domestic Airport', ' Premium Airport', ' City Airport'])
+    return address = {
+        country: tempCountry.name,
+        city: tempCity,
+        name: `${tempCity}${suffix}`
+    }
 }
 
 function createDate() {
@@ -160,8 +174,8 @@ async function createFlights(num_of_trips, sourceSent = null, lastDepartureDate 
             source = createPlace()
         }
         if (sourceSent) {
-            let { name, city, country } = airports.find(airport => airport.country == sourceSent)
-            source = { name, city, country }
+            // let { name, city, country } = airports.find(airport => airport.country == sourceSent)
+            source = createPlace(sourceSent)
         }
 
         //destination
