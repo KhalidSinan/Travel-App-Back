@@ -24,6 +24,10 @@ const destinationCitySchema = new mongoose.Schema({
             required: true,
             default: false
         },
+        notification_time: {
+            type: Date,
+            default: null
+        },
         day: {
             type: Number,
             required: true,

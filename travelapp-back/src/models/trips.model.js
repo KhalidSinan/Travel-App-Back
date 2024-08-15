@@ -72,6 +72,28 @@ async function getTripActivities(id) {
     return Trip.findById(id).populate('destinations.activities.place');
 }
 
+async function makeActivityNotify(trip_id, place_id, time = null) {
+    await Trip.findOneAndUpdate(
+        {
+            _id: trip_id,
+            "destinations.activities.place": place_id // Only proceed if there are matching activities
+        },
+        {
+            $set: {
+                "destinations.$[dest].activities.$[act].notifiable": true,
+                "destinations.$[dest].activities.$[act].notification_time": time,
+            },
+        },
+        {
+            arrayFilters: [
+                { "dest.activities.place": place_id }, // Match only destinations with the specified place
+                { "act.place": place_id }              // Match only activities with the specified place
+            ]
+        }
+    );
+}
+
+
 
 module.exports = {
     getTrip,
@@ -83,5 +105,6 @@ module.exports = {
     removeActivityFromSchedule,
     addActivityToSchedule,
     getTripsEndingToday,
-    getTripActivities
+    getTripActivities,
+    makeActivityNotify
 }

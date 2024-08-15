@@ -101,11 +101,43 @@ async function cancelTripHelper(trip, trip_id) {
     await cancelTrip(trip_id)
 }
 
+async function setNotificationDateForActivity(trip, activity_id, time) {
+    let date = new Date(trip.start_date);
+    const timeParts = time.split(":");
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    let totalDaysFromPreviousDestinations = 0;
+
+    for (let i = 0; i < trip.destinations.length; i++) {
+        if (i === trip.destinations.findIndex(dest => {
+            return dest.activities.some(activity => activity.place._id.toString() === activity_id.toString());
+        })) {
+            break;
+        } else {
+            totalDaysFromPreviousDestinations += trip.destinations[i].num_of_days;
+        }
+    }
+    const destination = trip.destinations.find(dest => {
+        return dest.activities.some(activity => activity.place._id.toString() === activity_id.toString());
+    });
+
+    if (destination) {
+        const activity = destination.activities.find(act => act.place._id.toString() === activity_id.toString());
+
+        if (activity) {
+            date.setDate(date.getDate() + (totalDaysFromPreviousDestinations + activity.day - 1));
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours + 3, minutes);
+        }
+    }
+    return null
+}
+
 
 module.exports = {
     makeTripPlacesToVisitHelper,
     makeTripOverallPriceHelper,
     autogenerateScheduleForTripHelper,
     cancelTripHelper,
-    addDaysToActivities
+    addDaysToActivities,
+    setNotificationDateForActivity
 }

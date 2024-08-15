@@ -35,8 +35,10 @@ async function sendPushNotification(title, body, token, type = 'MESSAGE') {
     };
     temp.forEach(async token => {
         message.token = token
-        console.log(await admin.messaging().send(message))
+        await admin.messaging().send(message)
     })
 }
+
+// sendPushNotification('Testing Home Screen', 'Hello Hamza You are going to home screen', [{ device_token: [{ token: "" }] }], '/notification-screen')
 
 module.exports = sendPushNotification;
