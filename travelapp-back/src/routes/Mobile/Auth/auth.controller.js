@@ -24,7 +24,7 @@ async function register(req, res) {
     // check remember me
     req.body.device_token = { 'token': req.body.device_token }
     const check = await getUser(req.body.email)
-    if (check) return res.status(400).json({ message: "Email Already In Use" })
+    if (check) return res.status(400).json({ errors: { email: "Email Already In Use" } })
     const user = await postUser(req.body);
 
     const token = crypto.randomInt(100000, 999999)

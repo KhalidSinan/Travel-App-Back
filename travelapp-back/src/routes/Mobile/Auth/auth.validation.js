@@ -12,12 +12,6 @@ function validateRegisterUser(user) {
             'any.required': "Email Required",
             'string.email': "Email Must Be Valid"
         }),
-        // password: joiPassword.string().minOfSpecialCharacters(1).minOfLowercase(1).minOfUppercase(1).minOfNumeric(1).messages({
-        //     "password.minOfUppercase": "1 Uppercase is needed",
-        //     "password.minOfLowercase": "1 Lowercase is needed",
-        //     "password.minOfSpecialCharacters": "1 Symbol is needed",
-        //     "password.minOfNumeric": "1 Number is needed",
-        // }),
         password: Joi.string().min(8).max(25).required().label('Password').messages({
             'any.required': "Password Required",
             'string.min': "Password Must Be 8 Characters"
