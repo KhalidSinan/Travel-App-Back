@@ -166,7 +166,7 @@ async function httpGetMyReservations(req, res) {
 async function httpGetNearestReservation(req, res) {
     let data = await getAllReservationsWithFlightData(req.user._id)
     data = getNearestReservationHelper(data)
-
+    if(!data) return res.status(400).json({message: 'No Reservation Found'})
     return res.status(200).json({
         message: 'Nearest Reservation Retrieved Successfully',
         data: nearestReservationData(data)

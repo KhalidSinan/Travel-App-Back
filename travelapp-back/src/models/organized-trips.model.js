@@ -24,19 +24,6 @@ async function decrementSeats(trip, decrement) {
     await trip.save();
 }
 
-async function makeDiscount(trip, discount) {
-    trip.discount = discount;
-    await trip.save();
-}
-
-async function addReview(user_id, stars, trip) {
-    trip.reviews.push({
-        user_id,
-        stars
-    })
-    await trip.save();
-}
-
 async function incrementSeats(trip, increment) {
     trip.available_seats += increment;
     await trip.save();
@@ -71,8 +58,6 @@ module.exports = {
     getOneOrganizedTrip,
     postOrganizedtrip,
     decrementSeats,
-    makeDiscount,
-    addReview,
     incrementSeats,
     getOrganizedTripsCount,
     deleteOrganizedTrip,

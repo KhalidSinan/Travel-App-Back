@@ -20,11 +20,6 @@ async function getNotification(user_id, notification_identifier) {
     return await Notification.find({ user_id, notification_identifier })
 }
 
-// mark notification as read
-async function putIsRead(notification_id, is_read) {
-    await Notification.findByIdAndUpdate(notification_id, { is_read })
-}
-
 async function getNotifications(skip, limit, sort, filter) {
     let query = { is_global: true };
     if (Object.keys(filter).length > 0) Object.assign(query, filter);
@@ -47,7 +42,6 @@ module.exports = {
     postNotification,
     getNotificationsForUser,
     getNotification,
-    putIsRead,
     getNotifications,
     getNotificationByID,
     getNotificationsCount

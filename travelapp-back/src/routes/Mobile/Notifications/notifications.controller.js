@@ -1,9 +1,5 @@
 const { getNotificationsForUser, putIsRead } = require("../../../models/notification.model");
 const { notificationSorterHelper } = require("./notifications.helper");
-const { validatePutIsRead } = require("./notifications.validation");
-const { validationErrors } = require('../../../middlewares/validationErrors');
-const { serializedData } = require("../../../services/serializeArray");
-const { notificationData } = require("./notifications.serializer");
 
 
 async function httpGetAllNotifications(req, res) {

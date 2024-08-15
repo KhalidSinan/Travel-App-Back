@@ -33,7 +33,6 @@ function createRestaurants() {
             phone_number: phone_number,
             category: "Food",
             address: address,
-            // work_time:  // Fix
             description: faker.lorem.sentence(),
         }
         data.push(temp)
@@ -52,7 +51,6 @@ function createStadiums() {
             phone_number: number,
             category: "Sports",
             address: address,
-            // work_time:  // Fix
             description: faker.lorem.sentence(),
         }
         data.push(temp)
@@ -82,7 +80,6 @@ function createMusuems() {
             phone_number: phone_number,
             category: "Arts & History",
             address: address,
-            // work_time:  // Fix
             description: faker.lorem.sentence(),
         }
         data.push(temp)
@@ -101,7 +98,6 @@ function createAdventure() {
             phone_number: number,
             category: "Adventure",
             address: address,
-            // work_time:  // Fix
             description: faker.lorem.sentence(),
         }
         data.push(temp)
@@ -122,7 +118,6 @@ function createCinemasParks() {
             category: el.category,
             // Or Entertainment
             address: address,
-            // work_time:  // Fix
             description: faker.lorem.sentence(),
         }
         i++;

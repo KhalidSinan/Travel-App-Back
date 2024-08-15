@@ -111,7 +111,8 @@ async function socketFunctionality(io, socket) {
             const userSocket = io.sockets.sockets.get(userSocketMap[user.id]);
             let message = `${emmitedMessage.username}:${emmitedMessage.content}`
             if (userSocket && !userSocket.rooms.has(mainChatID)) {
-                userSocket.emit('new-message', message);
+                let data = { message, chat_id: mainChatID }
+                userSocket.emit('new-message', data);
             }
         });
 
