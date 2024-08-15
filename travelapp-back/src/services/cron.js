@@ -91,7 +91,13 @@ const tripEnd = schedule.scheduleJob('0 */5 * * * *', async () => {
             console.log(`Trip ${trip.id} ended at ${trip.end_date}`);
             const tokens = await getDeviceTokens(trip.user_id)
             await sendToOrganizedTripParticipants(trip._id)
-            // await sendPushNotification('Trip Ended', 'Your Trip Has Ended', tokens)
+            await sendPushNotification(
+                'Trip Ended',
+                'Your Trip Has Ended',
+                tokens,
+                '/shareTrip-screen',
+                { id: trip.id }
+            )
         }
     })
 })
@@ -106,7 +112,7 @@ async function sendToOrganizedTripParticipants(trip_id) {
         const tempTokens = await getDeviceTokens(user._id)
         tokens.push(...tempTokens)
     }
-    await sendPushNotification('Trip Ended', 'Your Trip Has Ended', tokens)
+    // await sendPushNotification('Trip Ended', 'Your Trip Has Ended', tokens, '/rateOrganizer-screen', { id: organized_trip._id })
 }
 
 // Task 5 : 

@@ -9,7 +9,7 @@ const { serializedData } = require("../../../services/serializeArray");
 const { getAllOrganizedByCountry, getFilterForOrganizedTrips, filterOrganizedTrips, filterOrganizedTripsShown, removeOldOrganizedTrips, calculateAnnouncementOptions, assignTypesToOrganizedTrips, putTypeChosenFirst, putDestinationsChosenFirst, getDeviceTokensForUsersInOrganizedTrip } = require('./organized-trips.helper');
 const { getPagination } = require('../../../services/query');
 const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
-const { getOrganizerID } = require('../../../models/organizers.model');
+const { getOrganizerID, rateOrganizer, getOrganizer } = require('../../../models/organizers.model');
 const sendPushNotification = require('../../../services/notifications');
 
 // Serializer
@@ -130,6 +130,23 @@ function httpGetCountries(req, res) {
     })
 }
 
+async function httpRateOrganizer(req, res) {
+    const { error } = validateReviewOrganizedTrip(req.body)
+    if (error) return res.status(404).json({ errors: validationErrors(error.details) })
+
+    const trip = await getOneOrganizedTrip(req.params.id);
+    if (!trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
+
+    // check if user went on the trip
+    const check = await getOrganizedTripReservationsForUserInTrip(req.user.id, req.params.id)
+    if (check.length == 0) return res.status(400).json({ message: 'Cant Rate An Organizer You Havent Reserved With' })
+
+    const organizer = await getOrganizer(trip.organizer_id)
+    let rating = (organizer.rating + req.body.stars) / 2
+    await rateOrganizer(trip.organizer_id, rating)
+    return res.status(200).json({ message: 'Organizer  Successfully' })
+}
+
 module.exports = {
     httpGetAllOrganizedTrips,
     httpGetOneOrganizedTrip,
@@ -140,5 +157,6 @@ module.exports = {
     httpReviewOrganizedTrip,
     httpGetCountriesWithContinents,
     httpGetCountries,
-    httpGetOneOrganizedTripSchedule
+    httpGetOneOrganizedTripSchedule,
+    httpRateOrganizer
 }
