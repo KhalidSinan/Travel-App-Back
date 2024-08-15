@@ -109,8 +109,9 @@ async function socketFunctionality(io, socket) {
 
         otherUsers.forEach(user => {
             const userSocket = io.sockets.sockets.get(userSocketMap[user.id]);
+            let message = `${emmitedMessage.username}:${emmitedMessage.content}`
             if (userSocket && !userSocket.rooms.has(mainChatID)) {
-                userSocket.emit('new-message', emmitedMessage);
+                userSocket.emit('new-message', message);
             }
         });
 
