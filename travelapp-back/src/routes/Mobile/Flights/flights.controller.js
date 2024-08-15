@@ -74,19 +74,23 @@ async function httpGetFlightsForTrip(req, res) {
 
     const classes = ['A', 'B', 'C']
     const classIndex = classes.indexOf(req.body.class_of_seats)
-
     let days = 0;
     let data = [];
     let departure_date;
     const destinations = req.body.destinations;
     for (let i = 0; i < destinations.length + +req.body.is_return; i++) {
+        //
         let [day, month, year] = req.body.start_date.split('/');
-        day = +day + days;
-        let newDate = new Date(year, month, day, 3)
-        const newMonth = newDate.getUTCMonth() < 10 ? `0${newDate.getUTCMonth()}` : newDate.getUTCMonth()
+        day = +day;
+        month = +month;
+        year = +year
+        let newDate = new Date(+year, month - 1, +day, 3)
+        newDate.setUTCDate(newDate.getUTCDate() + days)
+        const newMonth = newDate.getUTCMonth() + 1 < 10 ? `0${newDate.getUTCMonth() + 1}` : newDate.getUTCMonth()
         const newDay = newDate.getDate() < 10 ? `0${newDate.getDate()}` : newDate.getDate()
         departure_date = `${newDay}/${newMonth}/${newDate.getFullYear()}`;
-
+        console.log(departure_date)
+        //
         const source = i != 0 ? destinations[i - 1].city : req.body.source
         const destination = i != destinations.length ? destinations[i].city : req.body.source
         const filter = { 'departure_date.date': departure_date, 'source.city': source, 'destination.city': destination }
@@ -102,7 +106,6 @@ async function httpGetFlightsForTrip(req, res) {
             if (min_price != null && max_price != null) flights = getFlightsPriceFilterHelper(min_price, max_price, flights)
         }
         if (flights.length != lengthToCompare) reason = "The Filter Criteria Doesn't Match Flights"
-
         reason = flights.length > 0 ? 'Flights Available' : reason
         data.push({
             city: destination,
