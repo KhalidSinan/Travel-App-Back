@@ -50,6 +50,7 @@ function getOrganizedTripDetails(organized_trip) {
         status_of_trip: status_of_trip,
         price: organized_trip.trip_id.price_per_person,
         price_with_commission: organized_trip.price,
+        description: organized_trip.description
     }
 }
 
