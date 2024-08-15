@@ -1,10 +1,10 @@
 const Trip = require('../../../models/trips.mongo');
-const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule, addActivityToSchedule, getTripActivities } = require('../../../models/trips.model');
+const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule, addActivityToSchedule, getTripActivities, makeActivityNotify } = require('../../../models/trips.model');
 const { makeTripValidation, validateAutogenerateSchedule, addActivityToScheduleValidation } = require("./trips.validation");
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
 const { getReservation } = require('../../../models/plane-reservation.model');
-const { makeTripPlacesToVisitHelper, makeTripOverallPriceHelper, autogenerateScheduleForTripHelper, cancelTripHelper, addDaysToActivities } = require('./trips.helper');
+const { makeTripPlacesToVisitHelper, makeTripOverallPriceHelper, autogenerateScheduleForTripHelper, cancelTripHelper, addDaysToActivities, setNotificationDateForActivity } = require('./trips.helper');
 const { getHotelReservation } = require("../../../models/hotel-reservation.model");
 const { checkFlightsReservations } = require('../PlaneReservations/plane-reservations.helper')
 const { checkHotelsReservations } = require('../Hotels/hotel.helper');
@@ -231,12 +231,12 @@ async function httpAutogenerateScheduleForTrip(req, res) {
 }
 
 async function httpNotifyActivity(req, res) {
-    const { notification_time = null } = req.body
+    let { notification_time = null } = req.body
     const trip = await getTripActivities(req.params.id);
     if (!trip) return res.status(400).json({ message: 'Trip Not Found' })
     if (!trip.user_id.equals(req.user._id)) return res.status(400).json({ message: 'No Access' })
-
-    // await makeActivityNotify(req.params.activityID, notification_time)
+    if (notification_time != null) notification_time = await setNotificationDateForActivity(trip, req.params.activityID, notification_time)
+    await makeActivityNotify(req.params.id, req.params.activityID, notification_time)
     return res.status(200).json({ data: serializedData(trip.destinations, getTripScheduleDetails) })
 }
 
