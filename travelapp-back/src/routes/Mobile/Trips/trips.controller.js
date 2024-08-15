@@ -1,5 +1,5 @@
 const Trip = require('../../../models/trips.mongo');
-const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule, addActivityToSchedule } = require('../../../models/trips.model');
+const { getTrip, deleteTrip, shareTrip, removeActivityFromSchedule, addActivityToSchedule, getTripActivities } = require('../../../models/trips.model');
 const { makeTripValidation, validateAutogenerateSchedule, addActivityToScheduleValidation } = require("./trips.validation");
 const createPaymentData = require('../../../services/payment');
 const { paymentSheet } = require('../Payments/payments.controller');
@@ -8,7 +8,7 @@ const { makeTripPlacesToVisitHelper, makeTripOverallPriceHelper, autogenerateSch
 const { getHotelReservation } = require("../../../models/hotel-reservation.model");
 const { checkFlightsReservations } = require('../PlaneReservations/plane-reservations.helper')
 const { checkHotelsReservations } = require('../Hotels/hotel.helper');
-const { tripData } = require('./trips.serializer');
+const { tripData, getTripScheduleDetails } = require('./trips.serializer');
 const { serializedData } = require('../../../services/serializeArray');
 const { getOneOrganizedTripBasedOnTripID } = require('../../../models/organized-trips.model');
 require('dotenv').config()
@@ -106,6 +106,7 @@ async function getOneTrip(req, res) {
 async function httpRemoveActivityFromSchedule(req, res) {
     const trip = await getTrip(req.params.id)
     if (!trip) return res.status(404).json({ message: 'Trip not found' });
+    if (!trip.user_id.equals(req.user._id)) return res.status(400).json({ message: 'No Access' })
     await removeActivityFromSchedule(trip._id, req.params.activityID)
     res.status(200).json({ message: 'Schedule Updated Successfully' });
 }
@@ -116,8 +117,9 @@ async function httpAddActivityToSchedule(req, res) {
     if (error) return res.status(400).json({ error: error.details[0].message });
     const trip = await getTrip(req.params.id)
     if (!trip) return res.status(404).json({ message: 'Trip not found' });
-    const { destination_id, place_id, description } = req.body
-    await addActivityToSchedule(trip._id, destination_id, place_id, description)
+    if (!trip.user_id.equals(req.user._id)) return res.status(400).json({ message: 'No Access' })
+    const { city_name, place_id, day } = req.body
+    await addActivityToSchedule(trip._id, city_name, place_id, day)
     res.status(200).json({ message: 'Activity Added Successfully' });
 }
 
@@ -228,6 +230,23 @@ async function httpAutogenerateScheduleForTrip(req, res) {
     });
 }
 
+async function httpNotifyActivity(req, res) {
+    const { notification_time = null } = req.body
+    const trip = await getTripActivities(req.params.id);
+    if (!trip) return res.status(400).json({ message: 'Trip Not Found' })
+    if (!trip.user_id.equals(req.user._id)) return res.status(400).json({ message: 'No Access' })
+
+    // await makeActivityNotify(req.params.activityID, notification_time)
+    return res.status(200).json({ data: serializedData(trip.destinations, getTripScheduleDetails) })
+}
+
+async function httpGetTripSchedule(req, res) {
+    const trip = await getTripActivities(req.params.id);
+    if (!trip) return res.status(400).json({ message: 'Trip Not Found' })
+    if (!trip.user_id.equals(req.user._id)) return res.status(400).json({ message: 'No Access' })
+
+    return res.status(200).json({ data: serializedData(trip.destinations, getTripScheduleDetails) })
+}
 
 
 module.exports = {
@@ -240,5 +259,7 @@ module.exports = {
     httpCancelTrip,
     httpAutogenerateScheduleForTrip,
     httpRemoveActivityFromSchedule,
-    httpAddActivityToSchedule
+    httpAddActivityToSchedule,
+    httpNotifyActivity,
+    httpGetTripSchedule
 };

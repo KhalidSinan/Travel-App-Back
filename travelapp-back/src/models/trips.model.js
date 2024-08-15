@@ -37,18 +37,19 @@ async function removeActivityFromSchedule(trip_id, activity_id) {
     );
 }
 
-async function addActivityToSchedule(trip_id, destination_id, place_id, description) {
+async function addActivityToSchedule(trip_id, city_name, place_id, day) {
     const data = {
         _id: new mongoose.Types.ObjectId(),
         place: place_id,
+        day: day
     };
 
     await Trip.findOneAndUpdate(
-        { _id: trip_id, "destinations._id": destination_id },
+        { _id: trip_id, "destinations.city_name": city_name },
         { $push: { "destinations.$[dest].activities": data } },
         {
             arrayFilters: [
-                { "dest._id": destination_id }
+                { "dest.city_name": city_name }
             ]
         }
     )
@@ -67,6 +68,11 @@ async function getTripsEndingToday(start_of_day, end_of_day) {
     })
 }
 
+async function getTripActivities(id) {
+    return Trip.findById(id).populate('destinations.activities.place');
+}
+
+
 module.exports = {
     getTrip,
     deleteTrip,
@@ -76,5 +82,6 @@ module.exports = {
     getTripsCount,
     removeActivityFromSchedule,
     addActivityToSchedule,
-    getTripsEndingToday
+    getTripsEndingToday,
+    getTripActivities
 }

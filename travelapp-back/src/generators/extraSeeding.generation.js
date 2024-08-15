@@ -229,21 +229,23 @@ async function getHotelInCity(city_name, country_name) {
 
 //Done
 async function createPlacesWithDescription(city_name, country_name, num_of_days) {
-    let places = []
+    let data = []
     const count = faker.number.int({ min: 3, max: 5 });
+    let places = await Place.find({ 'address.city': city_name })
+    if (places.length == 0) places = await Place.find({ 'address.country': country_name })
+    if (places.length == 0) places = await Place.find()
+    let placesCount = places.length
     if (num_of_days == 0) return []
     for (let i = 0; i < count; i++) {
-        let place = await Place.findOne({ 'address.city': city_name })
         let day = faker.number.int({ min: 1, max: num_of_days });
-        if (!place) place = await Place.findOne({ 'address.country': country_name })
-        if (!place) place = await Place.findOne()
-        places.push({
+        let place = places[faker.number.int({ min: 0, max: placesCount - 1 })]
+        data.push({
             place: place._id,
             notifiable: false,
             day: day,
         })
     }
-    return places
+    return data
 }
 
 //Done

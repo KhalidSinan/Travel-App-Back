@@ -30,9 +30,9 @@ const makeTripValidation = (data) => {
 
 const addActivityToScheduleValidation = (data) => {
     const schema = Joi.object({
-        destination_id: Joi.string().hex().length(24).required(),
+        city_name: Joi.string().required(),
         place_id: Joi.string().hex().length(24).required(),
-        description: Joi.string().required(),
+        day: Joi.number().required()
     });
     return schema.validate(data);
 };

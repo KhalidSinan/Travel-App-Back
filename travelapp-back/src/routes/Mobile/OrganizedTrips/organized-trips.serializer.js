@@ -166,6 +166,8 @@ function myOrganizedTripsData(organized_trip) {
         price: organized_trip.price,
         starting_date: start_date.toLocaleDateString('en-GB'),
         num_of_people_participating: `${num_of_people_participating}/${organized_trip.overall_seats}`,
+        type_of_trip: organized_trip.type_of_trip,
+        num_of_days: organized_trip.trip_id.overall_num_of_days,
         is_complete: organized_trip.trip_id.end_date < new Date() ? true : false,
     }
 }
