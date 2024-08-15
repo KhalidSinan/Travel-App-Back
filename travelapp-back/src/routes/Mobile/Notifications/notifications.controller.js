@@ -14,5 +14,4 @@ async function httpGetAllNotifications(req, res) {
 
 module.exports = {
     httpGetAllNotifications,
-    httpMarkNotification
 }
