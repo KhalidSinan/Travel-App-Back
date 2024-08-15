@@ -66,7 +66,6 @@ async function getAllTrips(req, res) {
             let data = []
             for (const trip of trips) {
                 const organized = await getOneOrganizedTripBasedOnTripID(trip._id)
-                console.log(organized)
                 if (!organized) data.push(trip)
             }
             trips = data

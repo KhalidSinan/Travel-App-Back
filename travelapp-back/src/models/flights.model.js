@@ -55,7 +55,6 @@ async function getAllAirlines() {
 }
 
 async function incrementFlightSeats(flight, classType, increment) {
-    console.log(flight)
     flight = await Flight.findOne(flight)
     flight.available_seats += +increment;
     const classIndex = flight.classes.findIndex(temp => temp.code === classType);

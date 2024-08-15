@@ -136,7 +136,6 @@ const beforeOrganizedTrip = schedule.scheduleJob('0 * * * *', async () => {
     const organized_trips = await getAllOrganizedTripForCron()
     organized_trips.forEach(async organized_trip => {
         const start_date = organized_trip.trip_id.start_date
-        console.log(start_date.getHours())
         if (start_date.getHours() == now.getHours()) {
             await sendToOrganizedTripParticipants(organized_trip.trip_id, 2)
         }
