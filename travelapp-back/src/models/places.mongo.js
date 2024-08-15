@@ -21,10 +21,6 @@ const placeSchema = new mongoose.Schema({
         type: String, // Fix Erd
         required: true,
     },
-    work_time: {
-        type: workTimeSchema,
-        // required: true,
-    },
     description: {
         type: String,
     }

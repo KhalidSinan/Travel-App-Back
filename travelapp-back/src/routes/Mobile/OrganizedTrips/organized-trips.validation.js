@@ -14,14 +14,6 @@ function validateCreateOrganizedTrip(organized_trip) {
     return schema.validate(organized_trip, { abortEarly: false });
 }
 
-
-function validateMakeDiscount(discount) {
-    const schema = Joi.object({
-        discount: Joi.number().min(1).max(100).required().messages({ 'any.required': 'Discount Required' })
-    })
-    return schema.validate(discount);
-}
-
 function validateReviewOrganizedTrip(review) {
     const schema = Joi.object({
         rating: Joi.number().min(0).max(5).required().messages({ 'any.required': 'Rating Required' })
@@ -41,7 +33,6 @@ function validateMakeOrganizedTripAnnouncement(announcement) {
 
 module.exports = {
     validateCreateOrganizedTrip,
-    validateMakeDiscount,
     validateReviewOrganizedTrip,
     validateMakeOrganizedTripAnnouncement
 }

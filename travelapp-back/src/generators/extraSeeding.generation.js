@@ -444,13 +444,9 @@ async function createOrganizedTrips() {
                 const overall_seats = trip.num_of_people
                 const available_seats = 0 // fix
                 const commission = faker.number.int({ min: 0, max: 10000 })
-                const discount = 0
-                // const discount = faker.number.int({ min: 0, max: 50 })
                 let price = trip.price_per_person + commission
-                price = price - price * discount / 100
                 price = price.toFixed(2)
                 const type_of_trip = faker.helpers.arrayElements(["Entertainment", "Exploratory", "Therapeutic", "Artistic", "Educational"])
-                const reviews = []
                 const description = faker.lorem.sentence()
                 const data = {
                     organizer_id: organizerData._id,
@@ -458,10 +454,8 @@ async function createOrganizedTrips() {
                     overall_seats,
                     available_seats,
                     commission,
-                    discount,
                     price,
                     type_of_trip,
-                    reviews,
                     description
                 }
                 data1.push(data)

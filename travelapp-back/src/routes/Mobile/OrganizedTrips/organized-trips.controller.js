@@ -1,6 +1,6 @@
-const { validateCreateOrganizedTrip, validateMakeDiscount, validateReviewOrganizedTrip, validateMakeOrganizedTripAnnouncement } = require('./organized-trips.validation')
+const { validateCreateOrganizedTrip, validateReviewOrganizedTrip, validateMakeOrganizedTripAnnouncement } = require('./organized-trips.validation')
 const { validationErrors } = require('../../../middlewares/validationErrors');
-const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, makeDiscount, addReview, deleteOrganizedTrip } = require('../../../models/organized-trips.model');
+const { postOrganizedtrip, getAllOrganizedTrips, getOneOrganizedTrip, deleteOrganizedTrip } = require('../../../models/organized-trips.model');
 const { getTrip } = require('../../../models/trips.model');
 const { cancelTripHelper } = require('../Trips/trips.helper');
 const { getOrganizedTripReservationsForUserInTrip, getOrganizedTripReservationsForOneTrip, deleteOrganizedTripReservations } = require('../../../models/organized-trip-reservations.model');
@@ -73,18 +73,6 @@ async function httpGetMyOrganizedTrips(req, res) {
     return res.status(200).json({ message: 'Your Organized Trips Retrieved Successfully', data: serializedData(data, myOrganizedTripsData) })
 }
 
-// Done
-async function httpMakeDiscountOrganizedTrip(req, res) {
-    const { error } = validateMakeDiscount(req.body)
-    if (error) return res.status(404).json({ errors: validationErrors(error.details) })
-
-    const trip = await getOneOrganizedTrip(req.params.id);
-    if (!trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
-
-    await makeDiscount(trip, req.body.discount);
-    return res.status(200).json({ message: `Discount of ${req.body.discount}% has been made` })
-}
-
 async function httpCancelOrganizedTrip(req, res) {
     const organized_trip = await getOneOrganizedTrip(req.params.id);
     if (!organized_trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
@@ -99,21 +87,6 @@ async function httpCancelOrganizedTrip(req, res) {
     await cancelTripHelper(trip, trip.id)
     await deleteOrganizedTrip(req.params.id)
     return res.status(200).json({ message: 'Organized Trip Cancelled' })
-}
-
-async function httpReviewOrganizedTrip(req, res) {
-    const { error } = validateReviewOrganizedTrip(req.body)
-    if (error) return res.status(404).json({ errors: validationErrors(error.details) })
-
-    const trip = await getOneOrganizedTrip(req.params.id);
-    if (!trip) return res.status(400).json({ message: 'Organized Trip Not Found' })
-
-    // check if user went on the trip
-    const check = await getOrganizedTripReservationsForUserInTrip(req.user.id, req.params.id)
-    if (check.length == 0) return res.status(400).json({ message: 'Cant Review A Trip You Havent Reserved In' })
-
-    await addReview(req.user.id, req.body.stars, trip)
-    return res.status(200).json({ message: 'Trip Reviewed Successfully' })
 }
 
 function httpGetCountriesWithContinents(req, res) {
@@ -152,9 +125,7 @@ module.exports = {
     httpGetOneOrganizedTrip,
     httpCreateOrganizedTrip,
     httpGetMyOrganizedTrips,
-    httpMakeDiscountOrganizedTrip,
     httpCancelOrganizedTrip,
-    httpReviewOrganizedTrip,
     httpGetCountriesWithContinents,
     httpGetCountries,
     httpGetOneOrganizedTripSchedule,
