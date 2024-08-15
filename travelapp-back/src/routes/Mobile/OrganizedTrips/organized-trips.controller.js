@@ -142,7 +142,7 @@ async function httpRateOrganizer(req, res) {
     if (check.length == 0) return res.status(400).json({ message: 'Cant Rate An Organizer You Havent Reserved With' })
 
     const organizer = await getOrganizer(trip.organizer_id)
-    let rating = (organizer.rating + req.body.stars) / 2
+    let rating = (organizer.rating + req.body.rating) / 2
     await rateOrganizer(trip.organizer_id, rating)
     return res.status(200).json({ message: 'Organizer  Successfully' })
 }

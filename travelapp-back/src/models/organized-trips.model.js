@@ -60,6 +60,12 @@ async function getRevenueFromOrganizedTrips(start_date, end_date) {
     });
 }
 
+async function getAllOrganizedTripForCron(filter) {
+    return await OrganizedTrip.find()
+        .populate('trip_id')
+}
+
+
 module.exports = {
     getAllOrganizedTrips,
     getOneOrganizedTrip,
@@ -71,5 +77,6 @@ module.exports = {
     getOrganizedTripsCount,
     deleteOrganizedTrip,
     getOneOrganizedTripBasedOnTripID,
-    getRevenueFromOrganizedTrips
+    getRevenueFromOrganizedTrips,
+    getAllOrganizedTripForCron
 }
