@@ -29,6 +29,10 @@ async function getOrganizerID(user_id) {
     return await Organizers.findOne({ user_id });
 }
 
+async function rateOrganizer(organizer_id, rating) {
+    return await Organizers.findByIdAndUpdate(organizer_id, { rating })
+}
+
 
 module.exports = {
     getOrganizers,
@@ -37,5 +41,6 @@ module.exports = {
     postOrganizerData,
     incrementWarnings,
     getOrganizersCount,
-    getOrganizerID
+    getOrganizerID,
+    rateOrganizer
 }

@@ -2,12 +2,11 @@ const admin = require('firebase-admin');
 require('dotenv').config();
 
 // Add User Notification Save To DB 
-async function sendPushNotification(title, body, token, type = 'MESSAGE') {
+async function sendPushNotification(title, body, token, type = 'MESSAGE', data = {}) {
     let temp = [];
-    let data = {}
     token.forEach(tok => {
         tok.device_token.forEach(device => {
-            if (device.expiry - Date.now() > 0) temp.push(device.token)
+            temp.push(device.token)
         })
     })
     // token = [ { device_token: [{token: 1231231223 }] } ]
@@ -39,6 +38,13 @@ async function sendPushNotification(title, body, token, type = 'MESSAGE') {
     })
 }
 
+// sendPushNotification(
+//     'Trip Ended',
+//     'Your Trip Has Ended',
+//     [{ device_token: [{ token: "dXMrg-PERhWmewlGGopvgz:APA91bEiRfvjFB1kraN19Qgibe2jD7kpnc2A0GTjm6C0HIQQIxCunBeuRvGNUYpWilqziqMU6UorSOq1bQroqVIoNJYgTDVxd-_P1q00n0YrmCKzBfbnjzVgr15smuT2rbmK52hUJfMG" }] }],
+//     '/notification-screen',
+//     { id: 1111 }
+// )
 // sendPushNotification('Testing Home Screen', 'Hello Hamza You are going to home screen', [{ device_token: [{ token: "" }] }], '/notification-screen')
 
 module.exports = sendPushNotification;

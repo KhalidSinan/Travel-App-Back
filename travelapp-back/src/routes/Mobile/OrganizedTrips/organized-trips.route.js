@@ -28,5 +28,7 @@ organizedTripRouter.delete('/:id', requireJwtAuth, checkObjectID, checkOrganizer
 organizedTripRouter.post('/:id/discount', requireJwtAuth, checkObjectID, checkOrganizer, asyncHandler(httpMakeDiscountOrganizedTrip))
 // Review trip (user)
 organizedTripRouter.post('/:id/review', requireJwtAuth, checkObjectID, asyncHandler(httpReviewOrganizedTrip))
+// Rate Organizer (user)
+organizedTripRouter.post('/:id/rate', requireJwtAuth, checkObjectID, asyncHandler(httpReviewOrganizedTrip))
 
 module.exports = organizedTripRouter;

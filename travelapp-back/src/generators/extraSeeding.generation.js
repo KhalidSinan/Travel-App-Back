@@ -720,7 +720,7 @@ async function updatePlaneReservations(organizedTrip_tripID, reservation_data) {
                 aa.person_name = reservation_data[i].name;
                 aa.person_passport = reservation_data[i].passport_number;
             } else {
-                aa.person_name = "Organizer Name (Not Reserved Yet)";
+                aa.person_name = "Default";
             }
             i++;
             tempData.push(aa)
