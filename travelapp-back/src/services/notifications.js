@@ -21,7 +21,7 @@ async function sendPushNotification(title, body, token, type = 'MESSAGE', data =
                 channel_id: 'MESSAGE_CHANNEL',
                 icon: 'message_icon',
                 tag: 'message',
-                image: 'https://74b6-169-150-196-142.ngrok-free.app/images/mails/logo.png',
+                image: `${process.env.URL}/images/mails/logo.png`,
             },
         },
         data: {

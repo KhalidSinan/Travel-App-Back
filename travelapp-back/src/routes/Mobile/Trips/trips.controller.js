@@ -135,7 +135,7 @@ async function payTrip(req, res) {
         return getReservation(flightReservation)
     }));
     let hotelReservations = await Promise.all(hotels.map(async (hotelReservation) => {
-        if (! await getHotelReservation(hotelReservation)) return res.status(400).json({ message: "Hotel Reservation Not Found" })
+        if (!await getHotelReservation(hotelReservation)) return res.status(400).json({ message: "Hotel Reservation Not Found" })
         return getHotelReservation(hotelReservation)
     }))
 
@@ -154,12 +154,13 @@ async function payTrip(req, res) {
         total_amount += payment_data_hotel.transactions[0].amount.total
     })
 
+    total_amount = total_amount.toFixed(2)
     // Add data into items
     const mergedPaymentData = {
         intent: 'sale',
         payer: { payment_method: 'paypal' },
         redirect_urls: {
-            return_url: `https://5710-93-190-138-195.ngrok-free.app/payment/execute_payment?amount=${total_amount}&currency=USD`,
+            return_url: `${process.env.URL}/payment/execute_payment?amount=${total_amount}&currency=USD`,
             cancel_url: `${process.env.URL}/payment/cancel`
         },
         "transactions": [{

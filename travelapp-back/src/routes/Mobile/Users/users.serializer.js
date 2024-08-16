@@ -1,5 +1,4 @@
 function userData(user) {
-    const imageName = process.env.URL + user.profile_pic;
     return {
         name: user.name,
         email: user.email,

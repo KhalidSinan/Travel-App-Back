@@ -65,8 +65,8 @@ async function httpCreateOrganizedTrip(req, res) {
     let organizer_id = await getOrganizerID(req.user._id)
     let data = { organizer_id, overall_seats: trip.num_of_people, available_seats: trip.num_of_people, price: price }
     Object.assign(data, req.body)
-    await postOrganizedtrip(data)
-    return res.status(200).json({ message: 'Organized Trip Created Successfully' })
+    const organized_trip = await postOrganizedtrip(data)
+    return res.status(200).json({ message: 'Organized Trip Created Successfully', data: organized_trip._id })
 }
 
 async function httpGetMyOrganizedTrips(req, res) {
@@ -92,7 +92,7 @@ async function httpCancelOrganizedTrip(req, res) {
         start_date: trip.start_date.toLocaleDateString('en-GB')
     }
     console.log(JSON.stringify(notificationData))
-    await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens, '/cancelTrip-screen', notificationData)
+    await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens, '/cancel-organized-group-screen', notificationData)
     for (const reservation of reservations) {
         const user_id = reservation.user_id;
         await postNotification({
