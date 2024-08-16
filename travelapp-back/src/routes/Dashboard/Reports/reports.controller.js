@@ -44,10 +44,9 @@ async function httpReplyReport(req, res) {
     if (!report) return res.status(400).json({ message: 'Report Not Found' })
     const user = await getUserById(report.user_id)
     if (!user) return res.status(400).json({ message: 'User Not Found' })
-
-    // await sendMail('Report Considered', user.email, { name, token, template_name: 'views/confirm_email.html' });
+    const name = user.name.first_name + ' ' + user.name.last_name
+    await sendMail('Report Considered', user.email, { name, report_id: report._id, template_name: 'views/report_reply.html' });
     await putRepliedTo(req.params.id)
-
     return res.status(200).json({ message: 'Replied To User' })
 }
 

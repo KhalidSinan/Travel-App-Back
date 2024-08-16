@@ -10,6 +10,8 @@ function organizerRequestsData(request) {
 function organizerRequestDetailsData(request) {
     const age = (Date.now() - request.user_id.date_of_birth) / 1000 / 60 / 60 / 24 / 365
     const previous_companies = request.proofs.companies_worked_for.join(' - ')
+    let phone = 'Organizer dint Provide a Phone Number'
+    if (request.user_id.phone) phone = '+' + request.user_id.phone.country_code + ' ' + request.user_id.phone.number
     return {
         id: request._id,
         organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
@@ -17,7 +19,7 @@ function organizerRequestDetailsData(request) {
         personal_picture: process.env.URL + request.proofs.personal_picture,
         location: request.user_id.location.city + ', ' + request.user_id.location.country,
         gender: request.user_id.gender,
-        phone_number: '+' + request.user_id.phone.country_code + ' ' + request.user_id.phone.number,
+        phone_number: phone,
         age: age.toFixed(0),
         years_of_experience: request.years_of_experience,
         previous_companies: previous_companies,
