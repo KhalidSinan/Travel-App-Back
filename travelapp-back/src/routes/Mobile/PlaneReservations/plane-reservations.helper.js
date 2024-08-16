@@ -26,7 +26,7 @@ async function findCancelRate(reservation, person_price) {
 }
 
 function changeClassName(reservations, reservations_back) {
-    let classesMap = new Map([['A', 'First'], ['B', 'Business'], ['C', 'Economy']])
+    let classesMap = new Map([['First', 'A'], ['Business', 'B'], ['Economy', 'C']])
     reservations.data.forEach(reservation => {
         reservation.seat_class = classesMap.get(reservation.seat_class)
     })

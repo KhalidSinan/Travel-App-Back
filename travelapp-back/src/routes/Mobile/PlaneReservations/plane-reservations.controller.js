@@ -39,7 +39,7 @@ async function httpMakeReservation(req, res) {
     if (reservations_back.length == 0) reservations_back = null
     overall_price = overall_price.toFixed(2)
 
-    changeClassName(reservations, reservations_back)
+    // changeClassName(reservations, reservations_back)
 
     const data = {
         user_id, flights, num_of_reservations, reservations,
@@ -136,7 +136,7 @@ async function httpPayReservation(req, res) {
     const reservation = await getReservation(req.params.id)
     if (!reservation) return res.status(400).json({ message: 'Reservation Not Found' })
     const data = reservation.reservations.data
-    if (reservation.reservations_back.data.length > 0) data.push(...reservation.reservations_back.data)
+    if (reservation.reservations_back?.data.length > 0) data.push(...reservation.reservations_back.data)
     const payment_data = createPaymentData(data, reservation.overall_price, "flight")
     req.body.data = payment_data
     paymentSheet(req, res)

@@ -91,7 +91,6 @@ async function httpCancelOrganizedTrip(req, res) {
         destinations: trip.destinations.map(dest => dest.city_name),
         start_date: trip.start_date.toLocaleDateString('en-GB')
     }
-    console.log(JSON.stringify(notificationData))
     await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens, '/cancel-organized-group-screen', notificationData)
     for (const reservation of reservations) {
         const user_id = reservation.user_id;

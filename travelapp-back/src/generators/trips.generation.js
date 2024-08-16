@@ -96,7 +96,7 @@ function getRandomUniqueElements(array, n) {
 
 function createPlace(source = null) {
     let tempCountry = locations[Math.floor(Math.random() * locations.length)]
-    if(source) tempCountry = locations.find(country => country.name == source)
+    if (source) tempCountry = locations.find(country => country.name == source)
     let tempCity = tempCountry.cities[Math.floor(Math.random() * tempCountry.cities.length)]
     tempCity = tempCity ?? faker.location.city()
     let suffix = faker.helpers.arrayElement([' International Airport', ' Intercontinental Airport', ' Regional Airport', ' Domestic Airport', ' Premium Airport', ' City Airport'])
@@ -209,7 +209,7 @@ async function createFlights(num_of_trips, sourceSent = null, lastDepartureDate 
             date: arrival_date.dateTime.toLocaleDateString('en-GB'),
             time: arrival_date.dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         }
-        const available_seats = Math.floor(Math.random() * 300)
+        const available_seats = Math.floor(Math.random() * 300) + 100
         const overall_seats = available_seats
 
         const classes = createClasses(available_seats);
@@ -255,6 +255,123 @@ function revertTrip(trip) {
         classes: trip.classes
     }
     return trip_back
+}
+
+async function createOrganizedTripFlights() {
+    let source = {
+        name: 'Damascus International Airport',
+        city: 'Damascus',
+        country: 'Syria',
+    }
+    let destination = {
+        name: 'Beirut International Airport',
+        city: 'Beirut',
+        country: 'Lebanon',
+    }
+    let airline = createAirline()
+    let date1 = createDate33('08-20-2024')
+    let available_seats = Math.floor(Math.random() * 300) + 100
+    let overall_seats = available_seats
+    let classes = createClasses(available_seats);
+    let trip = { source, destination, duration: date1.duration, airline, overall_seats, available_seats, departure_date: date1.departure_date, arrival_date: date1.arrival_date, classes }
+    await flightsMongo.create(trip)
+    //------------------
+    source = {
+        name: 'Beirut International Airport',
+        city: 'Beirut',
+        country: 'Lebanon',
+    }
+    destination = {
+        name: 'Paris International Airport',
+        city: 'Paris',
+        country: 'France',
+    }
+    date1 = createDate33('08-23-2024')
+    airline = createAirline()
+    available_seats = Math.floor(Math.random() * 300) + 100
+    overall_seats = available_seats
+    classes = createClasses(available_seats);
+    trip = { source, destination, duration: date1.duration, airline, overall_seats, available_seats, departure_date: date1.departure_date, arrival_date: date1.arrival_date, classes }
+    await flightsMongo.create(trip)
+    //=================
+    source = {
+        name: 'Paris International Airport',
+        city: 'Paris',
+        country: 'France',
+    }
+    destination = {
+        name: 'Seoul International Airport',
+        city: 'Seoul',
+        country: 'South Korea',
+    }
+    airline = createAirline()
+    date1 = createDate33('08-26-2024')
+    available_seats = Math.floor(Math.random() * 300) + 100
+    overall_seats = available_seats
+    classes = createClasses(available_seats);
+    trip = { source, destination, duration: date1.duration, airline, overall_seats, available_seats, departure_date: date1.departure_date, arrival_date: date1.arrival_date, classes }
+    await flightsMongo.create(trip)
+    // -----------------------
+    source = {
+        name: 'Seoul International Airport',
+        city: 'Seoul',
+        country: 'South Korea',
+    }
+    destination = {
+        name: 'Chicago International Airport',
+        city: 'Chicago',
+        country: 'United States',
+    }
+    airline = createAirline()
+    date1 = createDate33('08-29-2024')
+    available_seats = Math.floor(Math.random() * 300) + 100
+    overall_seats = available_seats
+    classes = createClasses(available_seats);
+    trip = { source, destination, duration: date1.duration, airline, overall_seats, available_seats, departure_date: date1.departure_date, arrival_date: date1.arrival_date, classes }
+    await flightsMongo.create(trip)
+    // ------------------------
+    source = {
+        name: 'Chicago International Airport',
+        city: 'Chicago',
+        country: 'United States',
+    }
+    destination = {
+        name: 'Damascus International Airport',
+        city: 'Damascus',
+        country: 'Syria',
+    }
+    airline = createAirline()
+    date1 = createDate33('09-01-2024')
+    available_seats = Math.floor(Math.random() * 300) + 100
+    overall_seats = available_seats
+    classes = createClasses(available_seats);
+    trip = { source, destination, duration: date1.duration, airline, overall_seats, available_seats, departure_date: date1.departure_date, arrival_date: date1.arrival_date, classes }
+    await flightsMongo.create(trip)
+}
+
+createOrganizedTripFlights()
+
+function createDate33(date) {
+    let departure_date = new Date(date)
+    departure_date.setHours(3)
+    departure_date = {
+        dateTime: departure_date,
+        date: departure_date.toLocaleDateString('en-GB'),
+        time: departure_date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    }
+    const duration = 60 + Math.floor(Math.random() * 300 / 5) * 5
+
+    let arrival_date = new Date(departure_date.dateTime)
+    arrival_date = {
+        dateTime: arrival_date,
+    }
+    arrival_date.dateTime.setMinutes(arrival_date.dateTime.getMinutes() + duration)
+    arrival_date = {
+        dateTime: arrival_date.dateTime,
+        date: arrival_date.dateTime.toLocaleDateString('en-GB'),
+        time: arrival_date.dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    }
+    return { departure_date, arrival_date, duration }
 }
 
 // createTrips(1);

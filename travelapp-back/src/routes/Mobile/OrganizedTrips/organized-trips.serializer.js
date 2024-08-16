@@ -112,6 +112,9 @@ function dateData(date) {
 
 function getOrganizedTripFlightDetails(flight) {
     const seat_class = flight.reservations.data[0].seat_class
+    console.log(seat_class)
+    console.log(flight.flights[0].classes)
+    console.log(flight.flights[0].classes.find(type => type.code == seat_class))
     const flight_price = flight.flights[0].classes.find(type => type.code == seat_class).price
     return {
         id: flight.flights[0]._id,
