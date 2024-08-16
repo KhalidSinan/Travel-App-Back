@@ -14,7 +14,8 @@ function organizersData(organizer) {
 
 function organizerData(organizer) {
     const name = organizer.user_id.name.first_name + ' ' + organizer.user_id.name.last_name;
-    const phone = '+' + organizer.user_id.phone.country_code + ' ' + organizer.user_id.phone.number;
+    let phone = 'Organizer dint Provide a Phone Number'
+    if (organizer.user_id.phone) phone = '+' + organizer.user_id.phone.country_code + ' ' + organizer.user_id.phone.number;
     const age = (new Date() - organizer.user_id.date_of_birth) / 1000 / 60 / 60 / 24 / 365
     const previous_companies = organizer.proofs.companies_worked_for.join(' - ')
     return {

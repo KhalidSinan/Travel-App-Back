@@ -42,8 +42,9 @@ async function httpDeleteReport(req, res) {
 async function httpReplyReport(req, res) {
     const report = await getOneReport(req.params.id);
     if (!report) return res.status(400).json({ message: 'Report Not Found' })
-    const user = await getUserById(report.user_id)
+    let user = await getUserById(report.user_id)
     if (!user) return res.status(400).json({ message: 'User Not Found' })
+    user = user[0]
     const name = user.name.first_name + ' ' + user.name.last_name
     await sendMail('Report Considered', user.email, { name, report_id: report._id, template_name: 'views/report_reply.html' });
     await putRepliedTo(req.params.id)
