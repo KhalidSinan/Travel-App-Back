@@ -19,7 +19,7 @@ function createPaymentData(data, amount, type) {
             temp = {
                 name: e.code,
                 sku: type,
-                price: e.price,
+                price: e.overall_price,
                 currency: currency,
                 quantity: e.count
             }

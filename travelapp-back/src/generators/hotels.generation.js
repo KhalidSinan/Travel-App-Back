@@ -90,7 +90,7 @@ function getHotelImages() {
     const images = new Set();
     while (images.size < 5) {
         const randomIndex = Math.floor(Math.random() * hotelImages.length);
-        images.add('/images/hotels/' + hotelImages[randomIndex]);
+        images.add('images/hotels/' + hotelImages[randomIndex]);
     }
     return Array.from(images);
 }
@@ -99,7 +99,7 @@ function getRoomImages() {
     const images = new Set();
     while (images.size < 3) {
         const randomIndex = Math.floor(Math.random() * roomImages.length);
-        images.add('/images/rooms/' + roomImages[randomIndex]);
+        images.add('images/rooms/' + roomImages[randomIndex]);
     }
     return Array.from(images);
 }

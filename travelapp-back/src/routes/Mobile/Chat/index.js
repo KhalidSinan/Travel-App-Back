@@ -38,12 +38,12 @@ async function socketFunctionality(io, socket) {
             let color = chat.users_id.find(user => user.id == chat.messages[i].sender_id.id).color
             if (chat.messages[i].sender_id.id == userID) color = '0xff205E61'
             const pic = chat.messages[i].sender_id.profile_pic ?? 'default_profile_pic.jpg'
-            let sentImage = chat.messages[i].image == null ? null : process.env.URL + chat.messages[i].image
+            let sentImage = chat.messages[i].image == null ? null : process.env.URL + '/' + chat.messages[i].image
             let temp = {
                 content: chat.messages[i].content ?? '',
                 timestamps: chat.messages[i].timestamp,
                 username: chat.messages[i].sender_id.name.first_name + ' ' + chat.messages[i].sender_id.name.last_name,
-                user_profile_pic: process.env.URL + pic,
+                user_profile_pic: process.env.URL + '/' + pic,
                 user_color: color,
                 image: sentImage,
                 from_me: chat.messages[i].sender_id._id == userID,
@@ -88,12 +88,12 @@ async function socketFunctionality(io, socket) {
         let latestMessage = await getLatestMessage(chat._id)
         let color = chat.users_id.find(user => user.id == latestMessage.sender_id.id).color
         const pic = latestMessage.sender_id.profile_pic ?? '/default_profile_pic.jpg'
-        let sentImage = image == null ? null : process.env.URL + image
+        let sentImage = image == null ? null : process.env.URL + '/' + image
         let emmitedMessage = {
             content: latestMessage.content,
             timestamps: latestMessage.timestamp,
             username: latestMessage.sender_id.name.first_name + ' ' + latestMessage.sender_id.name.last_name,
-            user_profile_pic: process.env.URL + pic,
+            user_profile_pic: process.env.URL + '/' + pic,
             image: sentImage,
             user_color: color,
             from_me: false,

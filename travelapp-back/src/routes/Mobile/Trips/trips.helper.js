@@ -47,7 +47,7 @@ async function makeTripOverallPriceHelper(flights, hotels) {
     let overall_price = flightPrices.reduce((acc, reservation) => acc + reservation.overall_price, 0);
     overall_price += hotelPrices.reduce((acc, reservation) => acc + reservation.room_price, 0);
 
-    return overall_price;
+    return overall_price.toFixed(2);
 }
 
 async function getSharedTripsActivitiesHelper(cityName) {

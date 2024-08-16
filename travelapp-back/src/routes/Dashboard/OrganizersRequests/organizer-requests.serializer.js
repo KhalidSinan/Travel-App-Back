@@ -1,9 +1,12 @@
+const { isAbsoluteURL } = require("../../../services/url");
+
 function organizerRequestsData(request) {
+    const personal_picture = request.proofs.personal_picture
     return {
         id: request._id,
         organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
-        personal_picture: process.env.URL + request.proofs.personal_picture,
+        personal_picture: isAbsoluteURL(personal_picture) ? personal_picture : process.env.URL + '/' + personal_picture,
     }
 }
 
@@ -12,11 +15,12 @@ function organizerRequestDetailsData(request) {
     const previous_companies = request.proofs.companies_worked_for.join(' - ')
     let phone = 'Organizer dint Provide a Phone Number'
     if (request.user_id.phone) phone = '+' + request.user_id.phone.country_code + ' ' + request.user_id.phone.number
+    const personal_picture = request.proofs.personal_picture
     return {
         id: request._id,
         organizer_name: request.user_id.name.first_name + ' ' + request.user_id.name.last_name,
         company_name: request.company_name,
-        personal_picture: process.env.URL + request.proofs.personal_picture,
+        personal_picture: isAbsoluteURL(personal_picture) ? personal_picture : process.env.URL + '/' + personal_picture,
         location: request.user_id.location.city + ', ' + request.user_id.location.country,
         gender: request.user_id.gender,
         phone_number: phone,
@@ -29,10 +33,13 @@ function organizerRequestDetailsData(request) {
 }
 
 function proofData(proof) {
+    const work_id = proof.work_id
+    const personal_id = proof.personal_id
+    const last_certificate = proof.last_certificate
     return [
-        { name: "work_id", picture: process.env.URL + proof.work_id },
-        { name: "personal_id", picture: process.env.URL + proof.personal_id },
-        { name: "last_certificate", picture: process.env.URL + proof.last_certificate },
+        { name: "work_id", picture: isAbsoluteURL(work_id) ? work_id : process.env.URL + '/' + proof.work_id },
+        { name: "personal_id", picture: isAbsoluteURL(personal_id) ? personal_id : process.env.URL + '/' + proof.personal_id },
+        { name: "last_certificate", picture: isAbsoluteURL(last_certificate) ? last_certificate : process.env.URL + '/' + proof.last_certificate },
     ];
 }
 
