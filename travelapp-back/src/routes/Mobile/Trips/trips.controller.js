@@ -61,7 +61,7 @@ async function makeTrip(req, res) {
 // Done
 async function getAllTrips(req, res) {
     try {
-        let trips = await Trip.find({ user_id: req.user.id }).select('-destinations._id')
+        let trips = await Trip.find({ user_id: req.user.id, is_canceled: false }).select('-destinations._id')
         if (req.user.is_organizer) {
             let data = []
             for (const trip of trips) {
