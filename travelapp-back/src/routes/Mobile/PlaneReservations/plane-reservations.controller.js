@@ -3,13 +3,14 @@ const { getFlight, incrementFlightSeats } = require('../../../models/flights.mod
 const { paymentSheet } = require('../Payments/payments.controller');
 const { reservationData, allReservationData, nearestReservationData } = require('./plane-reservations.serializer');
 const { validateReserveFlight } = require('./plane-reservations.validation');
-const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReservations, getNearestReservationHelper } = require('./plane-reservations.helper')
+const { reserveFlightHelper, findCancelRate, changeClassName, getUpcomingReservations, getNearestReservationHelper, createPDFDataForTicket } = require('./plane-reservations.helper')
 const { postReservation, getReservation, putConfirmation, removeReservation, deleteReservation, getAllReservationsWithFlightData } = require('../../../models/plane-reservation.model');
 const sendPushNotification = require('../../../services/notifications');
 const { postNotification } = require('../../../models/notification.model');
 const { validationErrors } = require('../../../middlewares/validationErrors');
 const { getDeviceTokens } = require('../../../models/users.model');
-const { serializedData } = require('../../../services/serializeArray')
+const { serializedData } = require('../../../services/serializeArray');
+const generatePDF = require('../../../services/generatePDF');
 
 
 // Done
@@ -66,11 +67,13 @@ async function httpConfirmReservation(req, res) {
     const body = 'Reservation Has Been Confirmed'
 
     const tokens = await getDeviceTokens(req.user._id);
-    // await sendPushNotification(title, body, tokens);
+    await sendPushNotification(title, body, tokens);
     await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: reservation._id });
-
+    const data = createPDFDataForTicket(reservation)
+    await generatePDF('views/flight_ticket.html', data, reservation._id)
     return res.status(200).json({
-        message: 'Reservation Confirmed'
+        message: 'Reservation Confirmed',
+        // pdf_path: ,
     })
 }
 
@@ -106,7 +109,7 @@ async function httpCancelReservation(req, res) {
     const body = `${person_reservation.person_name} Reservation Has Been Cancelled`
 
     const tokens = await getDeviceTokens(req.user._id);
-    // await sendPushNotification(title, body, tokens);
+    await sendPushNotification(title, body, tokens);
     await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: person_reservation._id });
 
     return res.status(200).json({
@@ -166,7 +169,7 @@ async function httpGetMyReservations(req, res) {
 async function httpGetNearestReservation(req, res) {
     let data = await getAllReservationsWithFlightData(req.user._id)
     data = getNearestReservationHelper(data)
-    if(!data) return res.status(400).json({message: 'No Reservation Found'})
+    if (!data) return res.status(400).json({ message: 'No Reservation Found' })
     return res.status(200).json({
         message: 'Nearest Reservation Retrieved Successfully',
         data: nearestReservationData(data)

@@ -78,11 +78,34 @@ function getNearestReservationHelper(data) {
     return nearestReservation
 }
 
+function createPDFDataForTicket(reservation) {
+    return data = {
+        airline_name: reservation.flights[0].airline.name,
+        airline_logo: reservation.flights[0].airline.logo,
+        source: reservation.flights[0].source.name,
+        destination: reservation.flights[0].destination.name,
+        departure_date_date: reservation.flights[0].departure_date.date,
+        departure_date_time: reservation.flights[0].departure_date.time,
+        arrival_date_date: reservation.flights[0].arrival_date.date,
+        arrival_date_time: reservation.flights[0].arrival_date.time,
+        duration: reservation.flights[0].duration,
+        reservations: reservation.reservations.data.map(res => ({
+            person_name: res.person_name,
+            seat_class: res.seat_class,
+            person_passport: res.person_passport,
+            seat_number: res.seat_number,
+            price: res.price,
+        })),
+        overall_price: reservation.overall_price,
+    }
+}
+
 module.exports = {
     findCancelRate,
     reserveFlightHelper,
     changeClassName,
     getUpcomingReservations,
     checkFlightsReservations,
-    getNearestReservationHelper
+    getNearestReservationHelper,
+    createPDFDataForTicket
 }
