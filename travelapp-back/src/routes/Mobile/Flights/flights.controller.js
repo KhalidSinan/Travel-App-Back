@@ -89,7 +89,6 @@ async function httpGetFlightsForTrip(req, res) {
         const newMonth = newDate.getUTCMonth() + 1 < 10 ? `0${newDate.getUTCMonth() + 1}` : newDate.getUTCMonth()
         const newDay = newDate.getDate() < 10 ? `0${newDate.getDate()}` : newDate.getDate()
         departure_date = `${newDay}/${newMonth}/${newDate.getFullYear()}`;
-        console.log(departure_date)
         //
         const source = i != 0 ? destinations[i - 1].city : req.body.source
         const destination = i != destinations.length ? destinations[i].city : req.body.source

@@ -82,7 +82,7 @@ async function httpCancelOrganizedTrip(req, res) {
 
     const reservations = await getOrganizedTripReservationsForOneTrip(organized_trip._id)
     const device_tokens = await getDeviceTokensForUsersInOrganizedTrip(reservations)
-    // await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens)
+    await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens)
     await deleteOrganizedTripReservations(organized_trip._id)
     await cancelTripHelper(trip, trip.id)
     await deleteOrganizedTrip(req.params.id)
