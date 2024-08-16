@@ -6,6 +6,7 @@ const { organizerRequestsData, organizerRequestDetailsData } = require('./organi
 const { getPagination } = require('../../../services/query');
 const { postOrganizerData } = require("../../../models/organizers.model");
 const sendPushNotification = require('../../../services/notifications');
+const { postNotification } = require("../../../models/notification.model");
 
 // Done
 async function httpGetOrganizersRequests(req, res) {
@@ -43,6 +44,13 @@ async function httpAcceptOrganizerRequest(req, res) {
         years_of_experience: request.years_of_experience,
         proofs: request.proofs
     }
+    const notificationData = {
+        user_id: request.user_id,
+        notification_title: 'Request Accepted',
+        notification_body: 'You are now an organizer',
+        is_global: false
+    }
+    await postNotification(notificationData)
     await postOrganizerData(data)
 
     return res.status(200).json({ message: 'Organizer Request Accepted' })

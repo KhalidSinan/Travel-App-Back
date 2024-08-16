@@ -3,6 +3,7 @@ require('dotenv').config();
 
 // Add User Notification Save To DB 
 async function sendPushNotification(title, body, token, type = 'MESSAGE', data = {}) {
+    console.log(title, body, type, data)
     let temp = [];
     token.forEach(tok => {
         tok.device_token.forEach(device => {

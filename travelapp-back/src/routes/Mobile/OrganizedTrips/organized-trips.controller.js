@@ -11,6 +11,8 @@ const { getPagination } = require('../../../services/query');
 const { getCountriesWithContinents, getCountries } = require('../../../services/locations');
 const { getOrganizerID, rateOrganizer, getOrganizer } = require('../../../models/organizers.model');
 const sendPushNotification = require('../../../services/notifications');
+const { getUserById } = require('../../../models/users.model');
+const { postNotification } = require('../../../models/notification.model');
 
 // Serializer
 async function httpGetAllOrganizedTrips(req, res) {
@@ -82,7 +84,24 @@ async function httpCancelOrganizedTrip(req, res) {
 
     const reservations = await getOrganizedTripReservationsForOneTrip(organized_trip._id)
     const device_tokens = await getDeviceTokensForUsersInOrganizedTrip(reservations)
-    await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens)
+    const organizer = await getUserById(trip.user_id)
+    const notificationData = {
+        organizer_name: organizer[0].name.first_name + ' ' + organizer[0].name.last_name,
+        source: trip.starting_place.city,
+        destinations: trip.destinations.map(dest => dest.city_name),
+        start_date: trip.start_date.toLocaleDateString('en-GB')
+    }
+    console.log(JSON.stringify(notificationData))
+    await sendPushNotification('Organized Trip Cancelled', 'Your Organized Trip has been Cancelled', device_tokens, '/cancelTrip-screen', notificationData)
+    for (const reservation of reservations) {
+        const user_id = reservation.user_id;
+        await postNotification({
+            user_id,
+            notification_title: 'Organized Trip Cancelled',
+            notification_body: 'Your Organized Trip has been Cancelled',
+        })
+    }
+
     await deleteOrganizedTripReservations(organized_trip._id)
     await cancelTripHelper(trip, trip.id)
     await deleteOrganizedTrip(req.params.id)

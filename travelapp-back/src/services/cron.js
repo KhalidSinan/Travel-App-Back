@@ -28,9 +28,9 @@ const SendConfirmationReminder = schedule.scheduleJob('0 */5 * * * *', async fun
         const flight = await getFlight(reservation.flights[0]);
         if (!await getNotification(reservation.user_id, `timeleft24-${reservation._id}`)) {
             if (flight.departure_date - Date.now() < 1000 * 60 * 60 * 24) {
-                await sendPushNotification(title, body, tokens)
+                await sendPushNotification(title, body, tokens, '/myReservations-screen')
+                await postNotification({ user_id: reservation.user_id, notification_title: title, notification_body: body, notification_identifier: `timeleft24-${reservation._id}` })
             }
-            await postNotification({ user_id: reservation.user_id, notification_title: title, notification_body: body, notification_identifier: `timeleft24-${reservation._id}` })
         }
     })
 })

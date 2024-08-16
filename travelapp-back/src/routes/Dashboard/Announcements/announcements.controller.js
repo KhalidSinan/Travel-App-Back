@@ -8,6 +8,7 @@ const { serializedData } = require('../../../services/serializeArray')
 const { getPagination } = require('../../../services/query');
 const { filterAnnouncementsHelper } = require("./announcements.helper");
 const { convertDateStringToDate } = require("../../../services/convertTime");
+const { postNotification } = require("../../../models/notification.model");
 
 async function httpGetAllAnnouncementsApp(req, res) {
     req.query.limit = 10
@@ -46,7 +47,11 @@ async function httpPostAnnouncement(req, res) {
     // Sending Notification For Announcements
     let tokens = await getAllDeviceTokens();
     await sendPushNotification(req.body.title, req.body.body, tokens, '/home-screen')
-
+    await postNotification({
+        notification_title: req.body.title,
+        notification_body: req.body.body,
+        is_global: true
+    })
     return res.status(200).json({
         message: 'Announcement Sent',
         data: announcement
