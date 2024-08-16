@@ -46,7 +46,12 @@ async function httpReplyReport(req, res) {
     if (!user) return res.status(400).json({ message: 'User Not Found' })
     user = user[0]
     const name = user.name.first_name + ' ' + user.name.last_name
-    await sendMail('Report Considered', user.email, { name, report_id: report._id, template_name: 'views/report_reply.html' });
+    const attachments = [{
+        filename: 'logo.jpg',
+        path: path.join(__dirname, '../../../', 'public', 'images', 'mails', 'logo.png'),
+        cid: 'logo'
+    }];
+    await sendMail('Report Considered', user.email, { name, report_id: report._id, template_name: 'views/report_reply.html' }, attachments);
     await putRepliedTo(req.params.id)
     return res.status(200).json({ message: 'Replied To User' })
 }
