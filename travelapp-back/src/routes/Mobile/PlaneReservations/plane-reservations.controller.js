@@ -67,13 +67,13 @@ async function httpConfirmReservation(req, res) {
     const body = 'Reservation Has Been Confirmed'
 
     const tokens = await getDeviceTokens(req.user._id);
-    await sendPushNotification(title, body, tokens);
+    await sendPushNotification(title, body, tokens, '/myReservations-screen');
     await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: reservation._id });
     const data = createPDFDataForTicket(reservation)
     await generatePDF('views/flight_ticket.html', data, reservation._id)
     return res.status(200).json({
         message: 'Reservation Confirmed',
-        // pdf_path: ,
+        pdf_path: `public/pdfs/pdf-${reservation._id}.pdf`,
     })
 }
 
@@ -107,10 +107,6 @@ async function httpCancelReservation(req, res) {
     //Notifications
     const title = "Reservation Cancelled"
     const body = `${person_reservation.person_name} Reservation Has Been Cancelled`
-
-    const tokens = await getDeviceTokens(req.user._id);
-    await sendPushNotification(title, body, tokens);
-    await postNotification({ user_id, notification_title: title, notification_body: body, notification_identifier: person_reservation._id });
 
     return res.status(200).json({
         message: 'Reservation Cancelled'

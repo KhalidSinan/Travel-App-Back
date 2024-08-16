@@ -11,6 +11,7 @@ const { getAllOrganizedTrips } = require("../../../models/organized-trips.model"
 const { getHotelReservationsWithDetails } = require("../../../models/hotel-reservation.model");
 const { getAllPlaneReservations } = require("../../../models/plane-reservation.model");
 const { getPlaces } = require("../../../models/places.model");
+const { postNotification } = require("../../../models/notification.model");
 
 async function httpGetAllOrganizers(req, res) {
     req.query.limit = 6
@@ -81,6 +82,13 @@ async function httpAlertOrganizer(req, res) {
 
     const tokens = await getDeviceTokens(organizer.user_id)
     await sendPushNotification(req.body.title, req.body.body, tokens, '/notification-screen')
+    const data = {
+        user_id: organizer.user_id,
+        notification_title: req.body.title,
+        notification_body: req.body.body,
+        is_global: false
+    }
+    await postNotification(data)
 
     await incrementWarnings(organizer)
 
