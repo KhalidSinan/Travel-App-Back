@@ -17,6 +17,7 @@ function chatData(chat) {
 }
 
 function joinableChatData(chat) {
+    const seatsTaken = chat.trip_id.overall_seats - chat.trip_id.available_seats
     return {
         id: chat.trip_id._id,
         chat_name: chat.name,
