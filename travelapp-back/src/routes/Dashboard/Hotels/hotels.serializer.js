@@ -6,7 +6,7 @@ function hotelData(hotel) {
         location: location,
         reservationCount: hotel.reservationCount,
         stars: hotel.stars,
-        images: '/' + hotel.images[0]
+        images: hotel.images[0]
     }
 }
 

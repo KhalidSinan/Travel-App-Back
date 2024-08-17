@@ -349,7 +349,6 @@ async function createOrganizedTripFlights() {
     await flightsMongo.create(trip)
 }
 
-createOrganizedTripFlights()
 
 function createDate33(date) {
     let departure_date = new Date(date)
@@ -376,4 +375,4 @@ function createDate33(date) {
 
 // createTrips(1);
 
-module.exports = createFlights;
+module.exports = {createFlights, createOrganizedTripFlights};

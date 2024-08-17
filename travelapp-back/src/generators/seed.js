@@ -5,7 +5,7 @@ const { createAdmins } = require('./admins.generation');
 const { createUsers, createAnnouncementsApp, createReportsApp, createOneWayFlightReservations, createTrips, createOrganizedTrips, createReportsOrganizers, createAnnouncementsRequests, createAnnouncementsOrganizer, createOrganizersRequests, createOrganizedTripReservations, createOrganizersRequestsNotAccepted, createChats, createNotifications } = require('./extraSeeding.generation');
 const createHotels = require('./hotels.generation');
 const createPlaces = require('./places.generation');
-const createFlights = require('./trips.generation');
+const { createFlights, createOrganizedTripFlights } = require('./trips.generation');
 
 async function seedDB() {
     await mongoConnect();
@@ -22,6 +22,7 @@ async function seedDB() {
     // Flights
     console.log('Seeding Flights')
     await createFlights(20000);
+    await createOrganizedTripFlights()
     // Hotels
     console.log('Seeding Hotels')
     await createHotels(10000)
