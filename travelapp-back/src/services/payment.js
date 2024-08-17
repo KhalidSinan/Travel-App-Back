@@ -21,11 +21,12 @@ function createPaymentData(data, amount, type) {
                 sku: type,
                 price: e.overall_price,
                 currency: currency,
-                quantity: e.count
+                quantity: 1
             }
         }
         items.push(temp)
     })
+    console.log(amount, items)
     const payment_data = {
         "intent": "sale",
         "payer": {

@@ -10,7 +10,7 @@ function organizersData(organizer) {
         organizer_name: name,
         company_name: organizer.company_name,
         rating: organizer.rating,
-        personal_picture: isAbsoluteURL(personal_picture) ? personal_picture : process.env.URL + '/' + personal_picture,
+        personal_picture: isAbsoluteURL(personal_picture) ? personal_picture : process.env.WEB_URL + '/' + personal_picture,
     }
 }
 
@@ -26,7 +26,7 @@ function organizerData(organizer) {
         company_name: organizer.company_name,
         rating: organizer.rating,
         gender: organizer.user_id.gender,
-        personal_picture: isAbsoluteURL(personal_picture) ? personal_picture : process.env.URL + '/' + personal_picture,
+        personal_picture: isAbsoluteURL(personal_picture) ? personal_picture : process.env.WEB_URL + '/' + personal_picture,
         phone: phone,
         location: organizer.user_id.location.city + ', ' + organizer.user_id.location.country,
         age: age.toFixed(0),
@@ -45,9 +45,9 @@ function proofData(proof) {
     const personal_id = proof.personal_id
     const last_certificate = proof.last_certificate
     return [
-        { name: "work_id", picture: isAbsoluteURL(work_id) ? work_id : process.env.URL + '/' + proof.work_id },
-        { name: "personal_id", picture: isAbsoluteURL(personal_id) ? personal_id : process.env.URL + '/' + proof.personal_id },
-        { name: "last_certificate", picture: isAbsoluteURL(last_certificate) ? last_certificate : process.env.URL + '/' + proof.last_certificate },
+        { name: "work_id", picture: isAbsoluteURL(work_id) ? work_id : process.env.WEB_URL + '/' + proof.work_id },
+        { name: "personal_id", picture: isAbsoluteURL(personal_id) ? personal_id : process.env.WEB_URL + '/' + proof.personal_id },
+        { name: "last_certificate", picture: isAbsoluteURL(last_certificate) ? last_certificate : process.env.WEB_URL + '/' + proof.last_certificate },
     ];
 }
 
